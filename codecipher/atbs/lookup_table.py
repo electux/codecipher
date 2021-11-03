@@ -1,0 +1,34 @@
+# -*- coding: UTF-8 -*-
+
+'''
+ Module
+     lookup_table.py
+ Copyright
+     Copyright (C) 2021 Vladimir Roncevic <elektron.ronca@gmail.com>
+     codecipher is free software: you can redistribute it and/or modify it
+     under the terms of the GNU General Public License as published by the
+     Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     codecipher is distributed in the hope that it will be useful, but
+     WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+     See the GNU General Public License for more details.
+     You should have received a copy of the GNU General Public License along
+     with this program. If not, see <http://www.gnu.org/licenses/>.
+ Info
+     Defined dict LOOKUP_TABLE for AlephTawBetShin format.
+'''
+
+LOOKUP_TABLE = {
+    'A': 'Z', 'B': 'Y', 'C': 'X', 'D': 'W', 'E': 'V',
+    'F': 'U', 'G': 'T', 'H': 'S', 'I': 'R', 'J': 'Q',
+    'K': 'P', 'L': 'O', 'M': 'N', 'N': 'M', 'O': 'L',
+    'P': 'K', 'Q': 'J', 'R': 'I', 'S': 'H', 'T': 'G',
+    'U': 'F', 'V': 'E', 'W': 'D', 'X': 'C', 'Y': 'B',
+    'Z': 'A', 'a': 'z', 'b': 'y', 'c': 'x', 'd': 'w',
+    'e': 'v', 'f': 'u', 'g': 't', 'h': 's', 'i': 'r',
+    'j': 'q', 'k': 'p', 'l': 'o', 'm': 'n', 'n': 'm',
+    'o': 'l', 'p': 'k', 'q': 'j', 'r': 'i', 's': 'h',
+    't': 'g', 'u': 'f', 'v': 'e', 'w': 'd', 'x': 'c',
+    'y': 'b', 'z': 'a', ' ': ' ', '\n': '\n'
+}
