@@ -23,8 +23,8 @@
 import sys
 
 try:
-    from a1z26.encode import A1Z26Encode
-    from a1z26.decode import A1Z26Decode
+    from codecipher.a1z26.encode import A1Z26Encode
+    from codecipher.a1z26.decode import A1Z26Decode
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################

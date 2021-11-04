@@ -16,18 +16,11 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class AlephTawBetShinDecode with attribute(s) and method(s).
+     Defined class CaesarDecode with attribute(s) and method(s).
      Created decode class with backend API.
 '''
 
-import sys
 from dataclasses import dataclass
-
-try:
-    from codecipher.atbs.lookup_table import LOOKUP_TABLE
-except ImportError as ats_error_message:
-    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
-    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://vroncevic.github.io/codecipherv'
@@ -40,9 +33,9 @@ __status__ = 'Updated'
 
 
 @dataclass
-class AlephTawBetShinDecode:
+class CaesarDecode:
     """
-        Defined class AlephTawBetShinDecode with attribute(s) and method(s).
+        Defined class CaesarDecode with attribute(s) and method(s).
         Created decode class with backend API.
         It defines:
 
@@ -50,7 +43,7 @@ class AlephTawBetShinDecode:
                 | __decode_data - data decode container.
             :methods:
                 | decode_data - property methods for decode data.
-                | decode - decode data from AlephTawBetShin format.
+                | decode - decode data from Caesar format.
     """
 
     __decode_data: str
@@ -78,16 +71,32 @@ class AlephTawBetShinDecode:
         """
         self.__decode_data = decode_data
 
-    def decode(self, data: str) -> None:
+    def decode(self, data: str, shift_counter: int) -> None:
         """
-            Decoding data from AlephTawBetShin format.
+            Decoding data from Caesar format.
 
             :param data: data which should be decoded.
             :type data: <str>
+            :param shift_counter: defining the shift count.
+            :type shift_counter: <int>
             :return: None
             :exceptions: None
         """
         decode_list = []
-        for i in data:
-            decode_list.append(LOOKUP_TABLE[i])
+        for data_char in data:
+            if data_char.isspace() or data_char.isnumeric():
+                decode_list.append(data_char)
+                continue
+            data_char_index, new_index = None, None
+            new_unicode, new_character = None, None
+            if data_char.isupper():
+                data_char_index = ord(data_char) - ord("A")
+                new_index = (data_char_index - shift_counter) % 26
+                new_unicode = new_index + ord("A")
+            else:
+                data_char_index = ord(data_char) - ord("a")
+                new_index = (data_char_index - shift_counter) % 26
+                new_unicode = new_index + ord("a")
+            new_character = chr(new_unicode)
+            decode_list.append(new_character)
         self.__decode_data = "".join(decode_list)

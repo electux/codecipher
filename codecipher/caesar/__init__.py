@@ -16,15 +16,15 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class AlephTawBetShin with attribute(s) and method(s).
+     Defined class Caesar with attribute(s) and method(s).
      Create container class with aggregate backend API.
 '''
 
 import sys
 
 try:
-    from codecipher.atbs.encode import AlephTawBetShinEncode
-    from codecipher.atbs.decode import AlephTawBetShinDecode
+    from codecipher.caesar.encode import CaesarEncode
+    from codecipher.caesar.decode import CaesarDecode
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
@@ -39,9 +39,9 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class AlephTawBetShin(AlephTawBetShinEncode, AlephTawBetShinDecode):
+class Caesar(CaesarEncode, CaesarDecode):
     """
-        Defined class AlephTawBetShin with attribute(s) and method(s).
+        Defined class Caesar with attribute(s) and method(s).
         Create container class with aggregate backend API.
         It defines:
 
@@ -57,4 +57,4 @@ class AlephTawBetShin(AlephTawBetShinEncode, AlephTawBetShinDecode):
 
             :exceptions: None
         """
-        super(AlephTawBetShin).__init__()
+        super(Caesar).__init__()

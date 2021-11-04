@@ -23,8 +23,8 @@
 import sys
 
 try:
-    from b64.encode import B64Encode
-    from b64.decode import B64Decode
+    from codecipher.b64.encode import B64Encode
+    from codecipher.b64.decode import B64Decode
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
