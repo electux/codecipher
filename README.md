@@ -28,8 +28,6 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
-![Install Python3 Package](https://github.com/electux/codecipher/workflows/Install%20Python3%20Package%20codecipher/badge.svg?branch=main)
-
 Currently there are three ways to install package:
 * Install process based on using pip
 * Install process based on setup.py (setuptools)
