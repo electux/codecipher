@@ -1,4 +1,19 @@
+<<<<<<< HEAD
 <img align="right" src="https://raw.githubusercontent.com/electux/codecipher/dev/docs/codecipher_logo.png" width="25%">
+=======
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Welcome to GitHub Pages](#welcome-to-github-pages)
+  - [Markdown](#markdown)
+  - [Jekyll Themes](#jekyll-themes)
+  - [Support or Contact](#support-or-contact)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Welcome to GitHub Pages
+>>>>>>> df6ecb7e417df4a2fb7902c76d39a338dde59918
 
 # CODECipher
 
