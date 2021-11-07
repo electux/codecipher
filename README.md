@@ -5,10 +5,17 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [Welcome to GitHub Pages](#welcome-to-github-pages)
-  - [Markdown](#markdown)
-  - [Jekyll Themes](#jekyll-themes)
-  - [Support or Contact](#support-or-contact)
+  - [Welcome to GitHub Pages](#welcome-to-github-pages)
+- [CODECipher](#codecipher)
+    - [Installation](#installation)
+        - [Install using pip](#install-using-pip)
+        - [Install using setuptools](#install-using-setuptools)
+        - [Install using docker](#install-using-docker)
+    - [Dependencies](#dependencies)
+    - [Usage](#usage)
+    - [Package structure](#package-structure)
+    - [Docs](#docs)
+    - [Copyright and Licence](#copyright-and-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
