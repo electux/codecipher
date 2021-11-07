@@ -33,11 +33,6 @@ other information that should be provided before the modules are installed.
 Installation
 -------------
 
-|Install Python3 Package|
-
-.. |Install Python3 Package| image:: https://github.com/electux/codecipher/workflows/Install%20Python3%20Package%20codecipher/badge.svg
-   :target: https://github.com/electux/codecipher/workflows/Install%20Python3%20Package%20codecipher/badge.svg?branch=main
-
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/electux/codecipher/releases
