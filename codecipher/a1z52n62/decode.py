@@ -16,7 +16,7 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class A1Z26Decode with attribute(s) and method(s).
+     Defined class A1z52N62Decode with attribute(s) and method(s).
      Created decode class with backend API.
 '''
 
@@ -33,9 +33,9 @@ __status__ = 'Updated'
 
 
 @dataclass
-class A1Z26Decode:
+class A1z52N62Decode:
     """
-        Defined class A1Z26Decode with attribute(s) and method(s).
+        Defined class A1z52N62Decode with attribute(s) and method(s).
         Created decode class with backend API.
         It defines:
 
@@ -43,7 +43,7 @@ class A1Z26Decode:
                 | __decode_data - data decode container.
             :methods:
                 | decode_data - property methods for decode data.
-                | decode - decode data from A1Z26 format.
+                | decode - decode data from A1z52N62 format.
     """
 
     __decode_data: str
@@ -73,7 +73,7 @@ class A1Z26Decode:
 
     def decode(self, data: str) -> None:
         """
-            Decoding data from A1Z26 format.
+            Decoding data from A1z52N62 format.
 
             :param data: data which should be decoded.
             :type data: <str>
@@ -82,9 +82,15 @@ class A1Z26Decode:
         """
         decode_list = []
         data = data.split(" - ")
-        for i in data:
-            if i.isnumeric():
-                decode_list.append(chr(int(i) + 96))
+        for char_data in data:
+            if char_data.isnumeric():
+                if int(char_data) <= 52:
+                    if int(char_data) <= 26:
+                        decode_list.append(chr(int(char_data) + 64))
+                    else:
+                        decode_list.append(chr(int(char_data) + 96 - 27))
+                else:
+                    decode_list.append(str(int(char_data) - 53))
             else:
-                decode_list.append(i)
+                decode_list.append(char_data)
         self.__decode_data = "".join(decode_list)

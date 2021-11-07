@@ -16,7 +16,7 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class A1Z26Encode with attribute(s) and method(s).
+     Defined class A1z52N62Encode with attribute(s) and method(s).
      Created encode class with backend API.
 '''
 
@@ -33,9 +33,9 @@ __status__ = 'Updated'
 
 
 @dataclass
-class A1Z26Encode:
+class A1z52N62Encode:
     """
-        Defined class A1Z26Encode with attribute(s) and method(s).
+        Defined class A1z52N62Encode with attribute(s) and method(s).
         Created encode class with backend API.
         It defines:
 
@@ -43,7 +43,7 @@ class A1Z26Encode:
                 | __encode_data - data encode container.
             :methods:
                 | encode_data - property methods for encode data.
-                | encode - encode data to A1Z26 format.
+                | encode - encode data to A1z52N62 format.
     """
 
     __encode_data: str
@@ -73,7 +73,7 @@ class A1Z26Encode:
 
     def encode(self, data: str) -> None:
         """
-            Encoding data to A1Z26 format.
+            Encoding data to A1z52N62 format.
 
             :param data: data which should be encoded.
             :type data: <str>
@@ -81,9 +81,15 @@ class A1Z26Encode:
             :exceptions: None
         """
         encode_list = []
-        for i in data:
-            if i.isalpha():
-                encode_list.append(str(ord(i.lower()) - 96))
+        for char_data in data:
+            if char_data.isalpha():
+                if char_data.isupper():
+                    encode_list.append(str(ord(char_data) - 64))
+                else:
+                    encode_list.append(str(ord(char_data) - 96 + 27))
             else:
-                encode_list.append(i)
+                if char_data.isnumeric():
+                    encode_list.append(str(int(char_data) + 53))
+                else:
+                    encode_list.append(char_data)
         self.__encode_data = " - ".join(encode_list)

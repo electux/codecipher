@@ -16,15 +16,15 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Defined class A1Z26 with attribute(s) and method(s).
+     Defined class A1z52N62 with attribute(s) and method(s).
      Create container class with aggregate backend API.
 '''
 
 import sys
 
 try:
-    from codecipher.a1z26.encode import A1Z26Encode
-    from codecipher.a1z26.decode import A1Z26Decode
+    from codecipher.a1z52n62.encode import A1z52N62Encode
+    from codecipher.a1z52n62.decode import A1z52N62Decode
 except ImportError as ats_error_message:
     MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
@@ -39,9 +39,9 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class A1Z26(A1Z26Encode, A1Z26Decode):
+class A1z52N62(A1z52N62Encode, A1z52N62Decode):
     """
-        Defined class A1Z26 with attribute(s) and method(s).
+        Defined class A1z52N62 with attribute(s) and method(s).
         Create container class with aggregate backend API.
         It defines:
 
@@ -57,4 +57,4 @@ class A1Z26(A1Z26Encode, A1Z26Decode):
 
             :exceptions: None
         """
-        super(A1Z26).__init__()
+        super(A1z52N62).__init__()
