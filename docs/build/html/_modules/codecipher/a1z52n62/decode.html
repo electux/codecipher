@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>codecipher.a1z52n62.decode &mdash; codecipher https://github.com/electux/codecipher/releases documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> codecipher
+          </a>
+              <div class="version">
+                1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">CODECipher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">codecipher</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">codecipher</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../a1z52n62.html">codecipher.a1z52n62</a> &raquo;</li>
+      <li>codecipher.a1z52n62.decode</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for codecipher.a1z52n62.decode</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd"> Module</span>
+<span class="sd">     decode.py</span>
+<span class="sd"> Copyright</span>
+<span class="sd">     Copyright (C) 2021 Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;</span>
+<span class="sd">     codecipher is free software: you can redistribute it and/or modify it</span>
+<span class="sd">     under the terms of the GNU General Public License as published by the</span>
+<span class="sd">     Free Software Foundation, either version 3 of the License, or</span>
+<span class="sd">     (at your option) any later version.</span>
+<span class="sd">     codecipher is distributed in the hope that it will be useful, but</span>
+<span class="sd">     WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="sd">     See the GNU General Public License for more details.</span>
+<span class="sd">     You should have received a copy of the GNU General Public License along</span>
+<span class="sd">     with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd"> Info</span>
+<span class="sd">     Defined class A1z52N62Decode with attribute(s) and method(s).</span>
+<span class="sd">     Created decode class with backend API.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2021, https://electux.github.io/codecipher&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/electux/codecipher/blob/main/LICENSE&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.0.0&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
+
+
+<div class="viewcode-block" id="A1z52N62Decode"><a class="viewcode-back" href="../../../codecipher.a1z52n62.decode.html#codecipher.a1z52n62.decode.A1z52N62Decode">[docs]</a><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">A1z52N62Decode</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Defined class A1z52N62Decode with attribute(s) and method(s).</span>
+<span class="sd">        Created decode class with backend API.</span>
+<span class="sd">        It defines:</span>
+
+<span class="sd">            :attributes:</span>
+<span class="sd">                | __decode_data - data decode container.</span>
+<span class="sd">            :methods:</span>
+<span class="sd">                | decode_data - property methods for decode data.</span>
+<span class="sd">                | decode - decode data from A1z52N62 format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__decode_data</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">decode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Property method for getting decode data.</span>
+
+<span class="sd">            :return: decode data in str format.</span>
+<span class="sd">            :rtype: &lt;str&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__decode_data</span>
+
+    <span class="nd">@decode_data</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">decode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decode_data</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Property method for setting decode data.</span>
+
+<span class="sd">            :param decode_data: decoded data.</span>
+<span class="sd">            :type decode_data: &lt;str&gt;</span>
+<span class="sd">            :return: None</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__decode_data</span> <span class="o">=</span> <span class="n">decode_data</span>
+
+<div class="viewcode-block" id="A1z52N62Decode.decode"><a class="viewcode-back" href="../../../codecipher.a1z52n62.decode.html#codecipher.a1z52n62.decode.A1z52N62Decode.decode">[docs]</a>    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Decoding data from A1z52N62 format.</span>
+
+<span class="sd">            :param data: data which should be decoded.</span>
+<span class="sd">            :type data: &lt;str&gt;</span>
+<span class="sd">            :return: None</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">decode_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; - &quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">char_data</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">char_data</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+                <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">char_data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">52</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">char_data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">26</span><span class="p">:</span>
+                        <span class="n">decode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">char_data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">64</span><span class="p">))</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">decode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">chr</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">char_data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">96</span> <span class="o">-</span> <span class="mi">27</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">decode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">char_data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">53</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">decode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__decode_data</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">decode_list</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

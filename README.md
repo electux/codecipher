@@ -1,37 +1,228 @@
-## Welcome to GitHub Pages
+<img align="right" src="https://raw.githubusercontent.com/electux/codecipher/dev/docs/codecipher_logo.png" width="25%">
 
-You can use the [editor on GitHub](https://github.com/electux/codecipher/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+# CODECipher
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**codecipher** is package for cipher utilities.
 
-### Markdown
+Developed in **[python](https://www.python.org/)** code: **100%**.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+[![codecov](https://codecov.io/gh/electux/codecipher/branch/main/graph/badge.svg?token=VNQOBXIHDB)](https://codecov.io/gh/electux/codecipher)
 
-```markdown
-Syntax highlighted code block
+The README is used to introduce the modules and provide instructions on
+how to install the modules, any machine dependencies it may have and any
+other information that should be provided before the modules are installed.
 
-# Header 1
-## Header 2
-### Header 3
+![Python package](https://github.com/electux/codecipher/workflows/Python%20package%20codecipher/badge.svg?branch=main) [![GitHub issues open](https://img.shields.io/github/issues/electux/codecipher.svg)](https://github.com/electux/codecipher/issues) [![GitHub contributors](https://img.shields.io/github/contributors/electux/codecipher.svg)](https://github.com/electux/codecipher/graphs/contributors)
 
-- Bulleted
-- List
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 
-1. Numbered
-2. List
+- [Installation](#installation)
+    - [Install using pip](#install-using-pip)
+    - [Install using setuptools](#install-using-setuptools)
+    - [Install using docker](#install-using-docker)
+- [Dependencies](#dependencies)
+- [Usage](#usage)
+- [Package structure](#package-structure)
+- [Docs](#docs)
+- [Copyright and Licence](#copyright-and-licence)
 
-**Bold** and _Italic_ and `Code` text
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-[Link](url) and ![Image](src)
+### Installation
+
+![Install Python3 Package](https://github.com/electux/codecipher/workflows/Install%20Python3%20Package%20codecipher/badge.svg?branch=main)
+
+Currently there are three ways to install package:
+* Install process based on using pip
+* Install process based on setup.py (setuptools)
+* Install process based on docker mechanism
+
+##### Install using pip
+
+Python package is located at **[pypi.org](https://pypi.org/project/codecipher/)**.
+
+You can install by using pip
+```
+# python3
+pip3 install codecipher
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+##### Install using setuptools
 
-### Jekyll Themes
+Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/electux/codecipher/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+To install modules, locate and run setup.py with arguments
+```
+tar xvzf codecipher-x.y.z.tar.gz
+cd codecipher-x.y.z
+# python3
+pip3 install -r requirements.txt
+python3 setup.py install_lib
+python3 setup.py install_egg_info
+```
 
-### Support or Contact
+##### Install using docker
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+You can use Dockerfile to create image/container.
+
+[![codecipher docker checker](https://github.com/electux/codecipher/workflows/codecipher%20docker%20checker/badge.svg)](https://github.com/electux/codecipher/actions?query=workflow%3A%22codecipher+docker+checker%22)
+
+### Dependencies
+
+These modules requires other modules and libraries (Python 3.x):
+* None
+
+### Usage
+
+```
+from codecipher.a1z52n62 import A1z52N62
+from codecipher.atbs import AlephTawBetShin
+from codecipher.b64 import B64
+from codecipher.caesar import Caesar
+from codecipher.vigenere import Vigenere
+from codecipher.vernam import Vernam
+
+print("A1z52N62 cipher")
+cipher = A1z52N62()
+data = "More Human Than Human01 Is Our Motto"
+# encoding data
+cipher.encode(data)
+# encoded data
+print(cipher.encode_data)
+# decoding data
+cipher.decode(cipher.encode_data)
+# decoded data
+print(cipher.decode_data)
+print(50*'=')
+
+print("AlephTawBetShin cipher")
+cipher = AlephTawBetShin()
+data = "More Human Than Human01 Is Our Motto"
+# encoding data
+cipher.encode(data)
+# encoded data
+print(cipher.encode_data)
+# decoding data
+cipher.decode(cipher.encode_data)
+# decoded data
+print(cipher.decode_data)
+print(50*'=')
+
+print("B64 cipher")
+cipher = B64()
+data = "More Human Than Human01 Is Our Motto"
+# encoding data
+cipher.encode(data)
+# encoded data
+print(cipher.encode_data)
+# decoding data
+cipher.decode(cipher.encode_data)
+# decoded data
+print(cipher.decode_data)
+print(50*'=')
+
+print("Caesar cipher")
+cipher = Caesar()
+data = "More Human Than Human01 Is Our Motto"
+# encoding data
+cipher.encode(data, 3)
+# encoded data
+print(cipher.encode_data)
+# decoding data
+cipher.decode(cipher.encode_data, 3)
+# decoded data
+print(cipher.decode_data)
+print(50*'=')
+
+print("Vigenere cipher")
+cipher = Vigenere()
+data = "More Human Than Human01 Is Our Motto"
+cipher.data_len = len(data)
+cipher.key = "AYUSH"
+cipher.generate_key()
+# encoding data
+cipher.encode(data, cipher.key)
+# encoded data
+print(cipher.encode_data)
+# decoding data
+cipher.decode(cipher.encode_data, cipher.key)
+# decoded data
+print(cipher.decode_data)
+print(50*'=')
+
+print("Vernam cipher")
+cipher = Vernam()
+data = "More Human Than Human01 Is Our Motto"
+# encoding data
+cipher.encode(data, "randomrandomrandom")
+# encoded data
+print(cipher.encode_data)
+# decoding data
+cipher.decode(cipher.encode_data, "randomrandomrandom")
+# decoded data
+print(cipher.decode_data)
+print(50*'=')
+```
+
+### Package structure
+
+**codecipher** is based on OOP:
+
+Package structure:
+```
+codecipher/
+├── a1z52n62/
+│   ├── decode.py
+│   ├── encode.py
+│   └── __init__.py
+├── atbs/
+│   ├── decode.py
+│   ├── encode.py
+│   ├── __init__.py
+│   └── lookup_table.py
+├── b64/
+│   ├── decode.py
+│   ├── encode.py
+│   └── __init__.py
+├── caesar/
+│   ├── decode.py
+│   ├── encode.py
+│   └── __init__.py
+├── __init__.py
+├── vernam/
+│   ├── decode.py
+│   ├── encode.py
+│   └── __init__.py
+└── vigenere/
+    ├── decode.py
+    ├── encode.py
+    ├── __init__.py
+    ├── key_generator.py
+    └── lookup_table.py
+```
+
+### Docs
+
+[![Documentation Status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/projects/codecipher/en/latest/?badge=latest)
+
+More documentation and info at:
+* [codecipher.readthedocs.io](https://codecipher.readthedocs.io/en/latest/)
+* [www.python.org](https://www.python.org/)
+
+### Copyright and Licence
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+Copyright (C) 2021 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
+
+**codecipher** is free software; you can redistribute it and/or modify
+it under the same terms as Python itself, either Python version 3.x or,
+at your option, any later version of Python 3 you may have available.
+
+Lets help and support PSF.
+
+[![Python Software Foundation](https://raw.githubusercontent.com/electux/codecipher/dev/docs/psf-logo-alpha.png)](https://www.python.org/psf/)
+
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2)
