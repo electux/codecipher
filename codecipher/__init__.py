@@ -15,7 +15,4 @@
      See the GNU General Public License for more details.
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
- Info
-     Defined class Daemon with attribute(s) and method(s).
-     Created base class with backend API.
 '''
