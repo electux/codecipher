@@ -24,9 +24,9 @@ from dataclasses import dataclass
 from base64 import b64encode
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2021, https://vroncevic.github.io/codecipherv'
+__copyright__ = 'Copyright 2021, https://electux.github.io/codecipher'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'https://github.com/vroncevic/codecipher/blob/dev/LICENSE'
+__license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
 __version__ = '1.0.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'

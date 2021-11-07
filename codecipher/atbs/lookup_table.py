@@ -19,6 +19,15 @@
      Defined dict LOOKUP_TABLE for AlephTawBetShin format.
 '''
 
+__author__ = 'Vladimir Roncevic'
+__copyright__ = 'Copyright 2021, https://electux.github.io/codecipher'
+__credits__ = ['Vladimir Roncevic']
+__license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
+__version__ = '1.0.0'
+__maintainer__ = 'Vladimir Roncevic'
+__email__ = 'elektron.ronca@gmail.com'
+__status__ = 'Updated'
+
 LOOKUP_TABLE = {
     'A': 'Z', 'B': 'Y', 'C': 'X', 'D': 'W', 'E': 'V',
     'F': 'U', 'G': 'T', 'H': 'S', 'I': 'R', 'J': 'Q',
