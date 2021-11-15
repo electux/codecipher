@@ -27,7 +27,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2021, https://electux.github.io/codecipher'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -36,7 +36,7 @@ THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
 with open(join(THIS_DIR, 'README.md')) as readme:
     LONG_DESCRIPTION = readme.read()
 PROGRAMMING_LANG = 'Programming Language :: Python ::'
-VERSIONS = ['3', '3.2', '3.3', '3.4']
+VERSIONS = ['3.7', '3.8', '3.9']
 SUPPORTED_PY_VERSIONS = [
     '{0} {1}'.format(PROGRAMMING_LANG, VERSION) for VERSION in VERSIONS
 ]
@@ -54,7 +54,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='codecipher',
-    version='1.0.0',
+    version='1.0.1',
     description='Python Cipher Utilities',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -63,7 +63,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     keywords='cipher, encryption, decryption, cryptology, cryptography',
-    platforms='POSIX',
+    platforms='any',
     classifiers=PYP_CLASSIFIERS,
     packages=[
         'codecipher',
