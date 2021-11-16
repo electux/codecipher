@@ -18,8 +18,8 @@ other information that should be provided before the modules are installed.
 
 - [Installation](#installation)
     - [Install using pip](#install-using-pip)
-    - [Install using py setup](#install-using-py-setup)
     - [Install using build](#install-using-build)
+    - [Install using py setup](#install-using-py-setup)
     - [Install using docker](#install-using-docker)
 - [Dependencies](#dependencies)
 - [Usage](#usage)
@@ -35,8 +35,8 @@ other information that should be provided before the modules are installed.
 
 Currently there are three ways to install package
 * Install process based on using pip
-* Install process based on setup.py (setuptools)
 * Install process based on build (setuptools)
+* Install process based on setup.py (setuptools)
 * Install process based on docker mechanism
 
 ##### Install using pip
@@ -49,7 +49,7 @@ You can install by using pip
 pip3 install codecipher
 ```
 
-##### Install using py setup
+##### Install using build
 
 Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
@@ -59,11 +59,12 @@ tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
 # python3
 pip3 install -r requirements.txt
-python3 setup.py install_lib
-python3 setup.py install_egg_info
+python3 -m build
+pip3 install codecipher-x.y.z-py3-none-any.whl
 ```
 
-##### Install using build
+##### Install using py setup
+
 Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
 To install **codecipher**, locate and run
@@ -72,8 +73,9 @@ tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
 # python3
 pip3 install -r requirements.txt
-python3 -m build
-pip3 install codecipher-x.y.z-py3-none-any.whl
+python3 setup.py install_lib
+python3 setup.py install_egg_info
+
 ```
 
 ##### Install using docker
