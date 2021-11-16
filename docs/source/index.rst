@@ -37,7 +37,18 @@ Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/electux/codecipher/releases
 
-To install package type the following
+To install **codecipher** type the following
+
+.. code-block:: bash
+
+    tar xvzf codecipher-x.y.z.tar.gz
+    cd codecipher-x.y.z/
+    # pyton3
+    pip3 install -r requirements.txt
+    python3 -m build
+    pip3 install codecipher-x.y.z-py3-none-any.whl
+
+or old fashioned way
 
 .. code-block:: bash
 
