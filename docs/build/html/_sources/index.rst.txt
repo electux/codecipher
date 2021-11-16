@@ -37,7 +37,7 @@ Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/electux/codecipher/releases
 
-To install package type the following:
+To install package type the following
 
 .. code-block:: bash
 
@@ -48,7 +48,7 @@ To install package type the following:
     python3 setup.py install_lib
     python3 setup.py install_egg_info
 
-You can use Docker to create image/container, or You can use pip to install:
+You can use Docker to create image/container, or You can use pip to install
 
 .. code-block:: bash
 
@@ -63,7 +63,7 @@ You can use Docker to create image/container, or You can use pip to install:
 Dependencies
 -------------
 
-**codecipher** requires next modules and libraries:
+**codecipher** requires next modules and libraries
 
 * None
 
@@ -72,7 +72,7 @@ Package structure
 
 **codecipher** is based on OOP.
 
-Package structure:
+Package structure
 
 .. code-block:: bash
 

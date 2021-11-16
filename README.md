@@ -4,6 +4,8 @@
 
 Developed in **[python](https://www.python.org/)** code: **100%**.
 
+[![codecov](https://codecov.io/gh/electux/codecipher/branch/main/graph/badge.svg?token=ZgZrRiseG8)](https://codecov.io/gh/electux/codecipher)
+
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
@@ -30,7 +32,7 @@ other information that should be provided before the modules are installed.
 
 [![Install Python3 Package codecipher](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml/badge.svg?branch=main)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml)
 
-Currently there are three ways to install package:
+Currently there are three ways to install package
 * Install process based on using pip
 * Install process based on setup.py (setuptools)
 * Install process based on docker mechanism
@@ -49,7 +51,7 @@ pip3 install codecipher
 
 Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
-To install modules, locate and run setup.py with arguments
+To install **codecipher**, locate and run setup.py with arguments
 ```
 tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
@@ -67,7 +69,7 @@ You can use Dockerfile to create image/container.
 
 ### Dependencies
 
-**codecipher** requires other modules and libraries (Python 3.x):
+**codecipher** requires other modules and libraries (Python 3.x)
 * None
 
 ### Usage
@@ -164,9 +166,9 @@ print(50*'=')
 
 ### Package structure
 
-**codecipher** is based on OOP:
+**codecipher** is based on OOP.
 
-Package structure:
+Package structure
 ```
 codecipher/
 ├── a1z52n62/
@@ -203,7 +205,7 @@ codecipher/
 
 [![Documentation Status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/projects/codecipher/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 * [codecipher.readthedocs.io](https://codecipher.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 
