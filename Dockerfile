@@ -21,19 +21,31 @@ RUN DEBIAN_FRONTEND=noninteractive \
     htop \
     python3 \
     python3-pip \
-    python3-wheel
+    python3-wheel \
+    python3-venv
 
-RUN pip3 install --upgrade setuptools
+RUN python3 -m venv env
+RUN python3 -m pip install --upgrade setuptools
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --upgrade build
 RUN mkdir /codecipher/
 COPY codecipher /codecipher/
+COPY setup.cfg /
+COPY pyproject.toml /
+COPY MANIFEST.in /
 COPY setup.py /
 COPY README.md /
+COPY LICENSE /
 COPY requirements.txt /
 RUN pip3 install -r requirements.txt
 RUN rm -f requirements.txt
-RUN find /codecipher/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
-RUN python3 setup.py install_lib
-RUN python3 setup.py install_egg_info
-RUN rm -rf /codecipher/
+RUN python3 -m build
+RUN pip install /dist/codecipher-*.whl
+RUN rm -rf /codecipher*
+RUN rm -rf dist/ tests/
+RUN rm -f setup.cfg
+RUN rm -f pyproject.toml
+RUN rm -f MANIFEST.in
 RUN rm -f setup.py
 RUN rm -f README.md
+RUN rm -f LICENSE
