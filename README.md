@@ -28,6 +28,8 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
+[![Install Python3 Package codecipher](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml/badge.svg?branch=main)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml)
+
 Currently there are three ways to install package:
 * Install process based on using pip
 * Install process based on setup.py (setuptools)
@@ -65,7 +67,7 @@ You can use Dockerfile to create image/container.
 
 ### Dependencies
 
-These modules requires other modules and libraries (Python 3.x):
+**codecipher** requires other modules and libraries (Python 3.x):
 * None
 
 ### Usage
