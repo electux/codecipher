@@ -28,7 +28,7 @@
             <a href="#" class="icon icon-home"> codecipher
           </a>
               <div class="version">
-                1.0.2
+                1.0.3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -102,7 +102,16 @@ other information that should be provided before the modules are installed.</p>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
 <p>Navigate to release <a class="reference external" href="https://github.com/electux/codecipher/releases">page</a> download and extract release archive.</p>
-<p>To install package type the following</p>
+<p>To install <strong>codecipher</strong> type the following</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf codecipher-x.y.z.tar.gz
+<span class="nb">cd</span> codecipher-x.y.z/
+<span class="c1"># pyton3</span>
+pip3 install -r requirements.txt
+python3 -m build
+pip3 install codecipher-x.y.z-py3-none-any.whl
+</pre></div>
+</div>
+<p>or old fashioned way</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf codecipher-x.y.z.tar.gz
 <span class="nb">cd</span> codecipher-x.y.z/
 <span class="c1"># pyton3</span>
