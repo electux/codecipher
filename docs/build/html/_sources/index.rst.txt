@@ -11,8 +11,11 @@ other information that should be provided before the modules are installed.
 
 |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
 
-.. |Python package| image:: https://github.com/electux/codecipher/workflows/Python%20package/badge.svg
-   :target: https://github.com/electux/codecipher/workflows/Python%20package/badge.svg?branch=main
+[![Python package codecipher]()]()
+
+
+.. |Python package| image:: https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg
+   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml
 
 .. |GitHub issues| image:: https://img.shields.io/github/issues/electux/codecipher.svg
    :target: https://github.com/electux/codecipher/issues
