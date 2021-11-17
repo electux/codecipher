@@ -53,7 +53,7 @@ pip3 install codecipher
 
 Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
-To install **codecipher**, locate and run setup.py with arguments
+To install **codecipher**, run
 ```
 tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
@@ -67,7 +67,7 @@ pip3 install codecipher-x.y.z-py3-none-any.whl
 
 Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
-To install **codecipher**, locate and run
+To install **codecipher**, locate and run setup.py with arguments
 ```
 tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
