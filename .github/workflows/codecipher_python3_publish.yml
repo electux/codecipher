@@ -2,8 +2,20 @@ name: Install Python3 Package codecipher
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'codecipher/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'codecipher/**'
+      - 'MANIFEST.in'
+      - 'pyproject.toml'
+      - 'setup.cfg'
+      - 'setup.py'
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,9 +31,9 @@ jobs:
         python -m pip install --upgrade build
         pip install setuptools wheel
         pip install -r requirements.txt
+    - name: Build by python build
+      run: |
+        python -m build --no-isolation --wheel
     - name: Build by setup.py
       run: |
         python setup.py sdist bdist_wheel
-    - name: Build by python build
-      run: |
-        python -m build

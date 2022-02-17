@@ -2,8 +2,14 @@ name: Python package codecipher
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'codecipher/**'
+      - 'setup.py'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'codecipher/**'
+      - 'setup.py'
 jobs:
   build:
     runs-on: ubuntu-latest
