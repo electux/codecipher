@@ -4,7 +4,7 @@
 
 Developed in **[python](https://www.python.org/)** code: **100%**.
 
-[![codecov](https://codecov.io/gh/electux/codecipher/branch/main/graph/badge.svg?token=ZgZrRiseG8)](https://codecov.io/gh/electux/codecipher)
+[![codecov](https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg?token=ZgZrRiseG8)](https://codecov.io/gh/electux/codecipher)
 [![CircleCI](https://circleci.com/gh/electux/codecipher/tree/main.svg?style=svg)](https://circleci.com/gh/electux/codecipher/tree/main)
 
 The README is used to introduce the modules and provide instructions on
