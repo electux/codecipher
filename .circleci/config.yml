@@ -1,23 +1,28 @@
 version: 2.1
-executors:
-  my-custom-executor:
-    docker:
-      - image: cimg/base:stable
-        auth:
-          # ensure you have first added these secrets
-          # visit app.circleci.com/settings/project/github/electux/codecipher/environment-variables
-          username: $DOCKER_HUB_USER
-          password: $DOCKER_HUB_PASSWORD
+orbs:
+  python: circleci/python@1.5.0
 jobs:
-  codecipher:
-
-    executor: my-custom-executor
+  build_and_test:
+    docker:
+      - image: cimg/python:3.9
     steps:
       - checkout
-      - run: |
-          # echo Hello, World!
-
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Install lxml
+          command: pip install lxml
+      - run:
+          name: Install pytest
+          command: pip install pytest
+      - run:
+          name: Run tests
+          command: python -m pytest
 workflows:
-  my-custom-workflow:
+  codecipher:
     jobs:
-      - codecipher
+      - build_and_test:
+          filters:
+            branches:
+              only: main
+

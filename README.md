@@ -2,7 +2,7 @@
 
 **codecipher** is package for cipher utilities.
 
-Developed in **[python](https://www.python.org/)** code: **100%**.
+Developed in **[python](https://www.python.org/)** code.
 
 [![codecov](https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg?token=ZgZrRiseG8)](https://codecov.io/gh/electux/codecipher)
 [![CircleCI](https://circleci.com/gh/electux/codecipher/tree/main.svg?style=svg)](https://circleci.com/gh/electux/codecipher/tree/main)
@@ -26,6 +26,7 @@ other information that should be provided before the modules are installed.
 - [Usage](#usage)
 - [Package structure](#package-structure)
 - [Docs](#docs)
+- [Contributing](#contributing)
 - [Copyright and Licence](#copyright-and-licence)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -45,7 +46,8 @@ Currently there are three ways to install package
 **codecipher** is located at **[pypi.org](https://pypi.org/project/codecipher/)**.
 
 You can install by using pip
-```
+
+```bash
 # python3
 pip3 install codecipher
 ```
@@ -55,7 +57,8 @@ pip3 install codecipher
 Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
 To install **codecipher**, run
-```
+
+```bash
 tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
 # python3
@@ -69,7 +72,8 @@ pip3 install codecipher-x.y.z-py3-none-any.whl
 Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
 To install **codecipher**, locate and run setup.py with arguments
-```
+
+```bash
 tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
 # python3
@@ -92,7 +96,7 @@ You can use Dockerfile to create image/container.
 
 ### Usage
 
-```
+```python
 from codecipher.a1z52n62 import A1z52N62
 from codecipher.atbs import AlephTawBetShin
 from codecipher.b64 import B64
@@ -187,7 +191,8 @@ print(50*'=')
 **codecipher** is based on OOP.
 
 Package structure
-```
+
+```bash
 codecipher/
 ├── a1z52n62/
 │   ├── decode.py
@@ -226,6 +231,10 @@ codecipher/
 More documentation and info at
 * [codecipher.readthedocs.io](https://codecipher.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
+
+### Contributing
+
+[Contributing to codecipher](CONTRIBUTING.md)
 
 ### Copyright and Licence
 
