@@ -1,6 +1,6 @@
 # Contributing to codecipher
 
-The following is a set of guidelines for contributing to codecipher and its package, which are hosted in the [codecipher](https://github.com/vroncevic/codecipher) on GitHub. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+The following is a set of guidelines for contributing to codecipher and its package, which are hosted in the [codecipher](https://github.com/electux/codecipher) on GitHub. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 ## Code of Conduct
 
