@@ -5,3 +5,6 @@ The following is a set of guidelines for contributing to codecipher and its pack
 ## Code of Conduct
 
 codecipher project and everyone participating in it is governed by the [codecipher Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [codecipher](mailto:elektron.ronca@gmail.com).
+
+For more projects check at [github.com/electux](https://github.com/electux)
+
