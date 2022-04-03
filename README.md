@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/electux/codecipher/dev/docs/codecipher_logo.png" width="25%">
+
 # CODECipher
 
 **codecipher** is package for cipher utilities.
