@@ -47,7 +47,7 @@ COPY LICENSE /
 COPY requirements.txt /
 RUN pip3 install -r requirements.txt
 RUN rm -f requirements.txt
-RUN python3 -m build
+RUN python3 -m build --no-isolation --wheel
 RUN pip install /dist/codecipher-*.whl
 RUN rm -rf /codecipher*
 RUN rm -rf dist/ tests/
