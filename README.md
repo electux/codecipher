@@ -2,18 +2,18 @@
 
 # CODECipher
 
-**codecipher** is package for cipher utilities.
+☯️ **codecipher** is package for cipher utilities.
 
-Developed in **[python](https://www.python.org/)** code.
+Developed in 🐍 **[python](https://www.python.org/)** code.
 
 [![codecov](https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg?token=ZgZrRiseG8)](https://codecov.io/gh/electux/codecipher)
-[![CircleCI](https://circleci.com/gh/electux/codecipher/tree/main.svg?style=svg)](https://circleci.com/gh/electux/codecipher/tree/main)
+[![circleci](https://circleci.com/gh/electux/codecipher/tree/main.svg?style=svg)](https://circleci.com/gh/electux/codecipher/tree/main)
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![Python package codecipher](https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/electux/codecipher.svg)](https://github.com/electux/codecipher/issues) [![GitHub contributors](https://img.shields.io/github/contributors/electux/codecipher.svg)](https://github.com/electux/codecipher/graphs/contributors)
+[![codecipher py code checker](https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml) [![codecipher python package checker](https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/electux/codecipher.svg)](https://github.com/electux/codecipher/issues) [![GitHub contributors](https://img.shields.io/github/contributors/electux/codecipher.svg)](https://github.com/electux/codecipher/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -35,17 +35,19 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
-[![Install Python3 Package codecipher](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml/badge.svg?branch=main)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml)
+[![codecipher build python3 package](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml)
+
+![ubuntu linux os](https://raw.githubusercontent.com/electux/codecipher/dev/docs/ubuntuxis.png)
 
 Currently there are three ways to install package
-* Install process based on using pip
-* Install process based on build (setuptools)
-* Install process based on setup.py (setuptools)
+* Install process based on using pip mechanism
+* Install process based on build mechanism
+* Install process based on setup.py mechanism
 * Install process based on docker mechanism
 
 ##### Install using pip
 
-**codecipher** is located at **[pypi.org](https://pypi.org/project/codecipher/)**.
+**codecipher** 📦 is located at **[pypi.org](https://pypi.org/project/codecipher/)**.
 
 You can install by using pip
 
@@ -56,7 +58,7 @@ pip3 install codecipher
 
 ##### Install using build
 
-Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
+Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive 📦.
 
 To install **codecipher**, run
 
@@ -64,14 +66,20 @@ To install **codecipher**, run
 tar xvzf codecipher-x.y.z.tar.gz
 cd codecipher-x.y.z
 # python3
+wget https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py 
+python3 -m pip install --upgrade setuptools
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade build
 pip3 install -r requirements.txt
-python3 -m build
+python3 -m build --no-isolation --wheel
 pip3 install codecipher-x.y.z-py3-none-any.whl
+rm -f get-pip.py
 ```
 
 ##### Install using py setup
 
-Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
+Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive 📦.
 
 To install **codecipher**, locate and run setup.py with arguments
 
@@ -82,14 +90,13 @@ cd codecipher-x.y.z
 pip3 install -r requirements.txt
 python3 setup.py install_lib
 python3 setup.py install_egg_info
-
 ```
 
 ##### Install using docker
 
-You can use Dockerfile to create image/container.
+You can use Dockerfile to create image/container 🚢.
 
-[![codecipher docker checker](https://github.com/electux/codecipher/workflows/codecipher%20docker%20checker/badge.svg)](https://github.com/electux/codecipher/actions?query=workflow%3A%22codecipher+docker+checker%22)
+[![codecipher docker checker](https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml)
 
 ### Dependencies
 
@@ -192,7 +199,7 @@ print(50*'=')
 
 **codecipher** is based on OOP.
 
-Package structure
+🧰 Package structure
 
 ```bash
 codecipher/
@@ -228,15 +235,15 @@ codecipher/
 
 ### Docs
 
-[![Documentation Status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/projects/codecipher/en/latest/?badge=latest)
+[![documentation status](https://readthedocs.org/projects/codecipher/badge/?version=main)](https://codecipher.readthedocs.io/projects/codecipher/en/main/?badge=main) [![Pages build deployment](https://github.com/electux/ats_utilities/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/electux/ats_utilities/actions/workflows/pages/pages-build-deployment)
 
-More documentation and info at
+📗 More documentation and info at
 * [codecipher.readthedocs.io](https://codecipher.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 
 ### Contributing
 
-[Contributing to codecipher](CONTRIBUTING.md)
+🌎 🌍 🌏 [Contributing to codecipher](CONTRIBUTING.md)
 
 ### Copyright and Licence
 
