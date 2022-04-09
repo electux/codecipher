@@ -5,11 +5,22 @@ CODECipher
 
 Developed in `python <https://www.python.org/>`_ code.
 
+|CodeCov| |CircleCI|
+
+.. |CodeCov| image:: https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg
+   :target: https://codecov.io/gh/electux/codecipher
+
+.. |CircleCI| image:: https://circleci.com/gh/electux/codecipher/tree/main.svg
+   :target: https://circleci.com/gh/electux/codecipher/tree/main
+
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-|Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+|Python checker| |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+
+.. |Python checker| image:: https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml/badge.svg
+   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml
 
 .. |Python package| image:: https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg
    :target: https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml
@@ -20,8 +31,8 @@ other information that should be provided before the modules are installed.
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/electux/codecipher.svg
    :target: https://github.com/electux/codecipher/graphs/contributors
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/codecipher/badge/?version=latest
-   :target: https://codecipher.readthedocs.io/projects/codecipher/en/latest/?badge=latest
+.. |Documentation Status| image:: https://readthedocs.org/projects/codecipher/badge/?version=main
+   :target: https://codecipher.readthedocs.io/projects/codecipher/en/main/?badge=main
 
 .. toctree::
    :maxdepth: 4
@@ -45,7 +56,7 @@ To install **codecipher** type the following
     cd codecipher-x.y.z/
     # pyton3
     pip3 install -r requirements.txt
-    python3 -m build
+    python3 -m build -s --no-isolation --wheel
     pip3 install codecipher-x.y.z-py3-none-any.whl
 
 or old fashioned way
@@ -64,12 +75,12 @@ You can use Docker to create image/container, or You can use pip to install
 .. code-block:: bash
 
     # python3
-    pip3 install ats-utilities
+    pip3 install codecipher
 
 |GitHub docker checker|
 
-.. |GitHub docker checker| image:: https://github.com/electux/codecipher/workflows/codecipher%20docker%20checker/badge.svg
-   :target: https://github.com/electux/codecipher/actions?query=workflow%3A%22codecipher+docker+checker%22
+.. |GitHub docker checker| image:: https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml/badge.svg
+   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml
 
 Dependencies
 -------------
@@ -79,7 +90,7 @@ Dependencies
 * None
 
 Package structure
---------------------
+------------------
 
 **codecipher** is based on OOP.
 

@@ -1,4 +1,4 @@
-name: Python package codecipher
+name: codecipher python package
 on:
   push:
     branches: [ main ]
@@ -18,11 +18,11 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: set up python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Lint with flake8
+    - name: lint with flake8
       run: |
         pip install flake8
         # stop the build if there are Python syntax errors or undefined names

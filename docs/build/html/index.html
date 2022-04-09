@@ -29,7 +29,7 @@
             <a href="#" class="icon icon-home"> codecipher
           </a>
               <div class="version">
-                1.1.5
+                1.2.5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -73,10 +73,11 @@
 <h1>CODECipher<a class="headerlink" href="#codecipher" title="Permalink to this headline"></a></h1>
 <p><strong>codecipher</strong> is package for cipher utilities.</p>
 <p>Developed in <a class="reference external" href="https://www.python.org/">python</a> code.</p>
+<p><a class="reference external" href="https://codecov.io/gh/electux/codecipher"><img alt="CodeCov" src="https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg" /></a> <a class="reference external" href="https://circleci.com/gh/electux/codecipher/tree/main"><img alt="CircleCI" src="https://circleci.com/gh/electux/codecipher/tree/main.svg" /></a></p>
 <p>The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.</p>
-<p><a class="reference external" href="https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml"><img alt="Python package" src="https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/electux/codecipher/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/electux/codecipher.svg" /></a> <a class="reference external" href="https://codecipher.readthedocs.io/projects/codecipher/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/codecipher/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/electux/codecipher/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/electux/codecipher.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml"><img alt="Python checker" src="https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml"><img alt="Python package" src="https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/electux/codecipher/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/electux/codecipher.svg" /></a> <a class="reference external" href="https://codecipher.readthedocs.io/projects/codecipher/en/main/?badge=main"><img alt="Documentation Status" src="https://readthedocs.org/projects/codecipher/badge/?version=main" /></a> <a class="reference external" href="https://github.com/electux/codecipher/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/electux/codecipher.svg" /></a></p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
@@ -108,7 +109,7 @@ other information that should be provided before the modules are installed.</p>
 <span class="nb">cd</span> codecipher-x.y.z/
 <span class="c1"># pyton3</span>
 pip3 install -r requirements.txt
-python3 -m build
+python3 -m build -s --no-isolation --wheel
 pip3 install codecipher-x.y.z-py3-none-any.whl
 </pre></div>
 </div>
@@ -123,10 +124,10 @@ python3 setup.py install_egg_info
 </div>
 <p>You can use Docker to create image/container, or You can use pip to install</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># python3</span>
-pip3 install ats-utilities
+pip3 install codecipher
 </pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/electux/codecipher/actions?query=workflow%3A%22codecipher+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/electux/codecipher/workflows/codecipher%20docker%20checker/badge.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml"><img alt="GitHub docker checker" src="https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml/badge.svg" /></a></p>
 </section>
 <section id="dependencies">
 <h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline"></a></h1>
