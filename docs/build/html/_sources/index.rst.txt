@@ -31,8 +31,8 @@ other information that should be provided before the modules are installed.
 .. |GitHub contributors| image:: https://img.shields.io/github/contributors/electux/codecipher.svg
    :target: https://github.com/electux/codecipher/graphs/contributors
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/codecipher/badge/?version=main
-   :target: https://codecipher.readthedocs.io/projects/codecipher/en/main/?badge=main
+.. |Documentation Status| image:: https://readthedocs.org/projects/codecipher/badge/?version=latest
+   :target: https://codecipher.readthedocs.io/en/latest/?badge=latest
 
 .. toctree::
    :maxdepth: 4
