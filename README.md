@@ -235,7 +235,8 @@ codecipher/
 
 ### Docs
 
-[![documentation status](https://readthedocs.org/projects/codecipher/badge/?version=main)](https://codecipher.readthedocs.io/projects/codecipher/en/main/?badge=main) [![pages-build-deployment](https://github.com/electux/codecipher/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/electux/codecipher/actions/workflows/pages/pages-build-deployment)
+[![Documentation Status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/en/latest/?badge=latest)
+ [![pages-build-deployment](https://github.com/electux/codecipher/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/electux/codecipher/actions/workflows/pages/pages-build-deployment)
 
 📗 More documentation and info at
 * [codecipher.readthedocs.io](https://codecipher.readthedocs.io/en/latest/)
