@@ -1,11 +1,11 @@
-name: codecipher toc generator
+name: codecipher_toc
 on:
   push:
     paths:
       - '**.md'
 jobs:
   generateTOC:
-    name: codecipher toc generator
+    name: codecipher_toc
     runs-on: ubuntu-latest
     steps:
       - uses: technote-space/toc-generator@v2

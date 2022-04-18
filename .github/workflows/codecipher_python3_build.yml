@@ -1,4 +1,4 @@
-name: codecipher build python3 package
+name: codecipher_python3_build
 on:
   push:
     branches: [ main ]
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python
+    - name: set up python3
       uses: actions/setup-python@v1
       with:
         python-version: '3.9'
@@ -32,9 +32,9 @@ jobs:
         python3 -m pip install --upgrade build
         python3 -m pip install --upgrade wheel
         pip3 install -r requirements.txt
-    - name: build by python build
+    - name: build python3 package
       run: |
         python3 -m build -s --no-isolation --wheel
-    - name: build by python setup
+    - name: build python3 package setup
       run: |
         python3 setup.py sdist bdist_wheel

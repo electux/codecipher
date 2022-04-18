@@ -1,37 +1,41 @@
 CODECipher
 ----------
 
-**codecipher** is package for cipher utilities.
+☯️ **codecipher** is package for cipher utilities.
 
-Developed in `python <https://www.python.org/>`_ code.
+Developed in 🐍 `python <https://www.python.org/>`_ code.
 
-|CodeCov| |CircleCI|
+|codecov| |circleci|
 
-.. |CodeCov| image:: https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg
+.. |codecov| image:: https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg
    :target: https://codecov.io/gh/electux/codecipher
 
-.. |CircleCI| image:: https://circleci.com/gh/electux/codecipher/tree/main.svg
+.. |circleci| image:: https://circleci.com/gh/electux/codecipher/tree/main.svg
    :target: https://circleci.com/gh/electux/codecipher/tree/main
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-|Python checker| |Python package| |GitHub issues| |Documentation Status| |GitHub contributors|
+|codecipher python checker| |codecipher python package|
 
-.. |Python checker| image:: https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml/badge.svg
-   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml
+|codecipher github issues| |codecipher documentation status|
 
-.. |Python package| image:: https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg
-   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml
+|codecipher github contributors|
 
-.. |GitHub issues| image:: https://img.shields.io/github/issues/electux/codecipher.svg
+.. |codecipher python checker| image:: https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_python_checker?style=flat&label=codecipher%20python%20checker
+   :target: https://github.com/vroncevic/codecipher/actions/workflows/codecipher_python_checker.yml
+
+.. |codecipher python package| image:: https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_package_checker?style=flat&label=codecipher%20package%20checker
+   :target: https://github.com/vroncevic/codecipher/actions/workflows/codecipher_package_checker.yml
+
+.. |codecipher github issues| image:: https://img.shields.io/github/issues/electux/codecipher.svg
    :target: https://github.com/electux/codecipher/issues
 
-.. |GitHub contributors| image:: https://img.shields.io/github/contributors/electux/codecipher.svg
+.. |codecipher github contributors| image:: https://img.shields.io/github/contributors/electux/codecipher.svg
    :target: https://github.com/electux/codecipher/graphs/contributors
 
-.. |Documentation Status| image:: https://readthedocs.org/projects/codecipher/badge/?version=latest
+.. |codecipher documentation status| image:: https://readthedocs.org/projects/codecipher/badge/?version=latest
    :target: https://codecipher.readthedocs.io/en/latest/?badge=latest
 
 .. toctree::
@@ -44,11 +48,22 @@ other information that should be provided before the modules are installed.
 Installation
 -------------
 
+Used next development environment
+
+|ubuntu linux os|
+
+.. |ubuntu linux os| image:: https://raw.githubusercontent.com/vroncevic/ats_utilities/dev/docs/ubuntuxis.png
+
+|ats_utilities python3 build|
+
+.. |ats_utilities python3 build| image:: https://img.shields.io/github/workflow/status/vroncevic/ats_utilities/ats_utilities_python3_build?style=flat&label=ats_utilities%20python3%20build
+   :target: https://github.com/vroncevic/ats_utilities/actions/workflows/ats_utilities_python3_build.yml
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/electux/codecipher/releases
 
-To install **codecipher** type the following
+To install **codecipher** 📦 type the following
 
 .. code-block:: bash
 
@@ -70,17 +85,17 @@ or old fashioned way
     python3 setup.py install_lib
     python3 setup.py install_egg_info
 
-You can use Docker to create image/container, or You can use pip to install
+You can use Docker to create image/container, or You can use pip to install 📦
 
 .. code-block:: bash
 
     # python3
     pip3 install codecipher
 
-|GitHub docker checker|
+|github docker checker|
 
-.. |GitHub docker checker| image:: https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml/badge.svg
-   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml
+.. |github docker checker| image:: https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_python3_build?style=flat&label=codecipher%20python3%20build
+   :target: https://github.com/vroncevic/codecipher/actions/workflows/codecipher_python3_build.yml
 
 Dependencies
 -------------
@@ -94,7 +109,7 @@ Package structure
 
 **codecipher** is based on OOP.
 
-Package structure
+🧰 Package structure
 
 .. code-block:: bash
 
@@ -131,13 +146,13 @@ Package structure
 Copyright and licence
 ----------------------
 
-|License: GPL v3| |License: Apache 2.0|
+|license: gpl v3| |license: apache 2.0|
 
-.. |License: GPL v3| image:: https://img.shields.io/badge/License-GPLv3-blue.svg
+.. |license: gpl v3| image:: https://img.shields.io/badge/license-gplv3-blue.svg
    :target: https://www.gnu.org/licenses/gpl-3.0
 
-.. |License: Apache 2.0| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
-   :target: https://opensource.org/licenses/Apache-2.0
+.. |license: apache 2.0| image:: https://img.shields.io/badge/license-apache%202.0-blue.svg
+   :target: https://opensource.org/licenses/apache-2.0
 
 Copyright (C) 2021 by `electux.github.io/codecipher <https://electux.github.io/codecipher>`_
 
@@ -147,14 +162,14 @@ at your option, any later version of Python 3 you may have available.
 
 Lets help and support PSF.
 
-|Python Software Foundation|
+|python software foundation|
 
-.. |Python Software Foundation| image:: https://raw.githubusercontent.com/electux/codecipher/dev/docs/psf-logo-alpha.png
+.. |python software foundation| image:: https://raw.githubusercontent.com/electux/codecipher/dev/docs/psf-logo-alpha.png
    :target: https://www.python.org/psf/
 
-|Donate|
+|donate|
 
-.. |Donate| image:: https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif
+.. |donate| image:: https://www.paypalobjects.com/en_us/i/btn/btn_donatecc_lg.gif
    :target: https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2
 
 Indices and tables

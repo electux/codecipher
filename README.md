@@ -13,7 +13,7 @@ The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![codecipher py code checker](https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_py_checker.yml) [![codecipher python package checker](https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/electux/codecipher.svg)](https://github.com/electux/codecipher/issues) [![GitHub contributors](https://img.shields.io/github/contributors/electux/codecipher.svg)](https://github.com/electux/codecipher/graphs/contributors)
+[![codecipher python checker](https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_python_checker?style=flat&label=codecipher%20python%20checker)](https://github.com/vroncevic/codecipher/actions/workflows/codecipher_python_checker.yml) [![codecipher package checker](https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_package_checker?style=flat&label=codecipher%20package%20checker)](https://github.com/vroncevic/codecipher/actions/workflows/codecipher_package_checker.yml) [![GitHub issues open](https://img.shields.io/github/issues/vroncevic/codecipher.svg)](https://github.com/vroncevic/codecipher/issues) [![GitHub contributors](https://img.shields.io/github/contributors/vroncevic/codecipher.svg)](https://github.com/vroncevic/codecipher/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -35,9 +35,11 @@ other information that should be provided before the modules are installed.
 
 ### Installation
 
-[![codecipher build python3 package](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_publish.yml)
+Used next development environment
 
 ![ubuntu linux os](https://raw.githubusercontent.com/electux/codecipher/dev/docs/ubuntuxis.png)
+
+[![codecipher python3 build](https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_python3_build?style=flat&label=codecipher%20python3%20build)](https://github.com/vroncevic/codecipher/actions/workflows/codecipher_python3_build.yml)
 
 Currently there are three ways to install package
 * Install process based on using pip mechanism
@@ -96,7 +98,7 @@ python3 setup.py install_egg_info
 
 You can use Dockerfile to create image/container 🚢.
 
-[![codecipher docker checker](https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml)
+[![codecipher docker checker](https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_docker_checker?style=flat&label=codecipher%20docker%20checker)](https://github.com/vroncevic/codecipher/actions/workflows/codecipher_docker_checker.yml)
 
 ### Dependencies
 
@@ -235,10 +237,10 @@ codecipher/
 
 ### Docs
 
-[![Documentation Status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/en/latest/?badge=latest)
- [![pages-build-deployment](https://github.com/electux/codecipher/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/electux/codecipher/actions/workflows/pages/pages-build-deployment)
+[![documentation status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/en/latest/?badge=latest)
 
 📗 More documentation and info at
+
 * [codecipher.readthedocs.io](https://codecipher.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 
@@ -248,7 +250,7 @@ codecipher/
 
 ### Copyright and Licence
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![license: gpl v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![license apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Copyright (C) 2021 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
 
