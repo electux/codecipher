@@ -23,11 +23,11 @@ other information that should be provided before the modules are installed.
 
 |codecipher github contributors|
 
-.. |codecipher python checker| image:: https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_python_checker?style=flat&label=codecipher%20python%20checker
-   :target: https://github.com/vroncevic/codecipher/actions/workflows/codecipher_python_checker.yml
+.. |codecipher python checker| image:: https://img.shields.io/github/workflow/status/electux/codecipher/codecipher_python_checker?style=flat&label=codecipher%20python%20checker
+   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_python_checker.yml
 
-.. |codecipher python package| image:: https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_package_checker?style=flat&label=codecipher%20package%20checker
-   :target: https://github.com/vroncevic/codecipher/actions/workflows/codecipher_package_checker.yml
+.. |codecipher python package| image:: https://img.shields.io/github/workflow/status/electux/codecipher/codecipher_package_checker?style=flat&label=codecipher%20package%20checker
+   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_package_checker.yml
 
 .. |codecipher github issues| image:: https://img.shields.io/github/issues/electux/codecipher.svg
    :target: https://github.com/electux/codecipher/issues
@@ -52,12 +52,12 @@ Used next development environment
 
 |ubuntu linux os|
 
-.. |ubuntu linux os| image:: https://raw.githubusercontent.com/vroncevic/ats_utilities/dev/docs/ubuntuxis.png
+.. |ubuntu linux os| image:: https://raw.githubusercontent.com/electux/ats_utilities/dev/docs/ubuntuxis.png
 
 |ats_utilities python3 build|
 
-.. |ats_utilities python3 build| image:: https://img.shields.io/github/workflow/status/vroncevic/ats_utilities/ats_utilities_python3_build?style=flat&label=ats_utilities%20python3%20build
-   :target: https://github.com/vroncevic/ats_utilities/actions/workflows/ats_utilities_python3_build.yml
+.. |ats_utilities python3 build| image:: https://img.shields.io/github/workflow/status/electux/ats_utilities/ats_utilities_python3_build?style=flat&label=ats_utilities%20python3%20build
+   :target: https://github.com/electux/ats_utilities/actions/workflows/ats_utilities_python3_build.yml
 
 Navigate to release `page`_ download and extract release archive.
 
@@ -94,8 +94,8 @@ You can use Docker to create image/container, or You can use pip to install 📦
 
 |github docker checker|
 
-.. |github docker checker| image:: https://img.shields.io/github/workflow/status/vroncevic/codecipher/codecipher_python3_build?style=flat&label=codecipher%20python3%20build
-   :target: https://github.com/vroncevic/codecipher/actions/workflows/codecipher_python3_build.yml
+.. |github docker checker| image:: https://img.shields.io/github/workflow/status/electux/codecipher/codecipher_python3_build?style=flat&label=codecipher%20python3%20build
+   :target: https://github.com/electux/codecipher/actions/workflows/codecipher_python3_build.yml
 
 Dependencies
 -------------
