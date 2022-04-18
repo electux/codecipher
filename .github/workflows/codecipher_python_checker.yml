@@ -1,4 +1,4 @@
-name: codecipher py checker
+name: codecipher_python_checker
 on:
   push:
     branches: [ main ]
