@@ -50,7 +50,8 @@ RUN rm -f requirements.txt
 RUN python3 -m build --no-isolation --wheel
 RUN pip install /dist/codecipher-*.whl
 RUN rm -rf /codecipher*
-RUN rm -rf dist/ tests/
+RUN rm -rf dist/
+RUN rm -rf tests/
 RUN rm -f setup.cfg
 RUN rm -f pyproject.toml
 RUN rm -f MANIFEST.in
