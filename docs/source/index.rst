@@ -59,7 +59,7 @@ Used next development environment
 .. |ats_utilities python3 build| image:: https://img.shields.io/github/workflow/status/electux/ats_utilities/ats_utilities_python3_build?style=flat&label=ats_utilities%20python3%20build
    :target: https://github.com/electux/ats_utilities/actions/workflows/ats_utilities_python3_build.yml
 
-Navigate to release `page`_ download and extract release archive.
+Navigate to release `page`_ download and extract release archive 📦.
 
 .. _page: https://github.com/electux/codecipher/releases
 
@@ -160,7 +160,7 @@ Copyright (C) 2021 by `electux.github.io/codecipher <https://electux.github.io/c
 it under the same terms as Python itself, either Python version 3.x or,
 at your option, any later version of Python 3 you may have available.
 
-Lets help and support PSF.
+🌎 🌍 🌏 Lets help and support PSF.
 
 |python software foundation|
 
