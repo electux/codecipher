@@ -1,98 +1,57 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>codecipher.vigenere.lookup_table module &mdash; codecipher https://github.com/electux/codecipher/releases documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>codecipher.vigenere.lookup_table module &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="codecipher.vigenere.key_generator module" href="codecipher.vigenere.key_generator.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.vigenere.key_generator.html" title="codecipher.vigenere.key_generator module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.vigenere.html" accesskey="U">codecipher.vigenere package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.lookup_table module</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> codecipher
-          </a>
-              <div class="version">
-                1.3.5
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">CODECipher</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">codecipher</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="codecipher.html">codecipher package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="codecipher.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="codecipher.a1z52n62.html">codecipher.a1z52n62 package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.atbs.html">codecipher.atbs package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.b64.html">codecipher.b64 package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.caesar.html">codecipher.caesar package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.vernam.html">codecipher.vernam package</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="codecipher.vigenere.html">codecipher.vigenere package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.html#module-codecipher">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">codecipher</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">codecipher</a> &raquo;</li>
-          <li><a href="codecipher.html">codecipher package</a> &raquo;</li>
-          <li><a href="codecipher.vigenere.html">codecipher.vigenere package</a> &raquo;</li>
-      <li>codecipher.vigenere.lookup_table module</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/codecipher.vigenere.lookup_table.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
   <section id="module-codecipher.vigenere.lookup_table">
-<span id="codecipher-vigenere-lookup-table-module"></span><h1>codecipher.vigenere.lookup_table module<a class="headerlink" href="#module-codecipher.vigenere.lookup_table" title="Permalink to this headline"></a></h1>
+<span id="codecipher-vigenere-lookup-table-module"></span><h1>codecipher.vigenere.lookup_table module<a class="headerlink" href="#module-codecipher.vigenere.lookup_table" title="Permalink to this heading">¶</a></h1>
 <dl class="simple">
 <dt>Module</dt><dd><p>lookup_table.py</p>
 </dd>
-<dt>Copyright</dt><dd><p>Copyright (C) 2021 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+<dt>Copyright</dt><dd><p>Copyright (C) 2021 - 2024 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 codecipher is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or
@@ -104,30 +63,30 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
-<dt>Info</dt><dd><p>Defined class LookUpTable with attribute(s).
-Created lookup table class with support for encoding/decoding.</p>
+<dt>Info</dt><dd><p>Defines class LookUpTable with attribute(s).
+Creates lookup table class with support for encoding/decoding.</p>
 </dd>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecipher.vigenere.lookup_table.LookUpTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.vigenere.lookup_table.</span></span><span class="sig-name descname"><span class="pre">LookUpTable</span></span><a class="reference internal" href="_modules/codecipher/vigenere/lookup_table.html#LookUpTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.vigenere.lookup_table.</span></span><span class="sig-name descname"><span class="pre">LookUpTable</span></span><a class="reference internal" href="_modules/codecipher/vigenere/lookup_table.html#LookUpTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class LookUpTable with attribute(s) and method(s).
-Created lookup table class with support for encoding/decoding.
-It defines:</p>
+<p>Defines class LookUpTable with attribute(s) and method(s).
+Creates lookup table class with support for encoding/decoding.</p>
+<p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
-<dt class="field-odd">attributes</dt>
+<dt class="field-odd">attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
 <div class="line">ALPHA - Define alphabet for encoding/decoding.</div>
-<div class="line">NUM -  Defined numeric for encoding/decoding.</div>
-<div class="line">WHITE_SPACE - Defined white space for encoding/decoding.</div>
+<div class="line">NUM -  Defines numeric for encoding/decoding.</div>
+<div class="line">WHITE_SPACE - Defines white space for encoding/decoding.</div>
 <div class="line">ALPHANUM - Aggregated chars for encoding/decoding.</div>
 <div class="line">LETTER_TO_INDEX - Indexed letters for encoding/decoding.</div>
 <div class="line">INDEX_TO_LETTER - Indexed letters for encoding/decoding.</div>
 </div>
 </dd>
-<dt class="field-even">methods</dt>
+<dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
 <div class="line">None</div>
 </div>
@@ -136,32 +95,32 @@ It defines:</p>
 </div></blockquote>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecipher.vigenere.lookup_table.LookUpTable.ALPHA">
-<span class="sig-name descname"><span class="pre">ALPHA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.ALPHA" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ALPHA</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.ALPHA" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecipher.vigenere.lookup_table.LookUpTable.ALPHANUM">
-<span class="sig-name descname"><span class="pre">ALPHANUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</span> <span class="pre">'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.ALPHANUM" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ALPHANUM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</span> <span class="pre">'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.ALPHANUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecipher.vigenere.lookup_table.LookUpTable.INDEX_TO_LETTER">
-<span class="sig-name descname"><span class="pre">INDEX_TO_LETTER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'a',</span> <span class="pre">1:</span> <span class="pre">'b',</span> <span class="pre">2:</span> <span class="pre">'c',</span> <span class="pre">3:</span> <span class="pre">'d',</span> <span class="pre">4:</span> <span class="pre">'e',</span> <span class="pre">5:</span> <span class="pre">'f',</span> <span class="pre">6:</span> <span class="pre">'g',</span> <span class="pre">7:</span> <span class="pre">'h',</span> <span class="pre">8:</span> <span class="pre">'i',</span> <span class="pre">9:</span> <span class="pre">'j',</span> <span class="pre">10:</span> <span class="pre">'k',</span> <span class="pre">11:</span> <span class="pre">'l',</span> <span class="pre">12:</span> <span class="pre">'m',</span> <span class="pre">13:</span> <span class="pre">'n',</span> <span class="pre">14:</span> <span class="pre">'o',</span> <span class="pre">15:</span> <span class="pre">'p',</span> <span class="pre">16:</span> <span class="pre">'q',</span> <span class="pre">17:</span> <span class="pre">'r',</span> <span class="pre">18:</span> <span class="pre">'s',</span> <span class="pre">19:</span> <span class="pre">'t',</span> <span class="pre">20:</span> <span class="pre">'u',</span> <span class="pre">21:</span> <span class="pre">'v',</span> <span class="pre">22:</span> <span class="pre">'w',</span> <span class="pre">23:</span> <span class="pre">'x',</span> <span class="pre">24:</span> <span class="pre">'y',</span> <span class="pre">25:</span> <span class="pre">'z',</span> <span class="pre">26:</span> <span class="pre">'A',</span> <span class="pre">27:</span> <span class="pre">'B',</span> <span class="pre">28:</span> <span class="pre">'C',</span> <span class="pre">29:</span> <span class="pre">'D',</span> <span class="pre">30:</span> <span class="pre">'E',</span> <span class="pre">31:</span> <span class="pre">'F',</span> <span class="pre">32:</span> <span class="pre">'G',</span> <span class="pre">33:</span> <span class="pre">'H',</span> <span class="pre">34:</span> <span class="pre">'I',</span> <span class="pre">35:</span> <span class="pre">'J',</span> <span class="pre">36:</span> <span class="pre">'K',</span> <span class="pre">37:</span> <span class="pre">'L',</span> <span class="pre">38:</span> <span class="pre">'M',</span> <span class="pre">39:</span> <span class="pre">'N',</span> <span class="pre">40:</span> <span class="pre">'O',</span> <span class="pre">41:</span> <span class="pre">'P',</span> <span class="pre">42:</span> <span class="pre">'Q',</span> <span class="pre">43:</span> <span class="pre">'R',</span> <span class="pre">44:</span> <span class="pre">'S',</span> <span class="pre">45:</span> <span class="pre">'T',</span> <span class="pre">46:</span> <span class="pre">'U',</span> <span class="pre">47:</span> <span class="pre">'V',</span> <span class="pre">48:</span> <span class="pre">'W',</span> <span class="pre">49:</span> <span class="pre">'X',</span> <span class="pre">50:</span> <span class="pre">'Y',</span> <span class="pre">51:</span> <span class="pre">'Z',</span> <span class="pre">52:</span> <span class="pre">'0',</span> <span class="pre">53:</span> <span class="pre">'1',</span> <span class="pre">54:</span> <span class="pre">'2',</span> <span class="pre">55:</span> <span class="pre">'3',</span> <span class="pre">56:</span> <span class="pre">'4',</span> <span class="pre">57:</span> <span class="pre">'5',</span> <span class="pre">58:</span> <span class="pre">'6',</span> <span class="pre">59:</span> <span class="pre">'7',</span> <span class="pre">60:</span> <span class="pre">'8',</span> <span class="pre">61:</span> <span class="pre">'9',</span> <span class="pre">62:</span> <span class="pre">'</span> <span class="pre">'}</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.INDEX_TO_LETTER" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">INDEX_TO_LETTER</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'a',</span> <span class="pre">1:</span> <span class="pre">'b',</span> <span class="pre">2:</span> <span class="pre">'c',</span> <span class="pre">3:</span> <span class="pre">'d',</span> <span class="pre">4:</span> <span class="pre">'e',</span> <span class="pre">5:</span> <span class="pre">'f',</span> <span class="pre">6:</span> <span class="pre">'g',</span> <span class="pre">7:</span> <span class="pre">'h',</span> <span class="pre">8:</span> <span class="pre">'i',</span> <span class="pre">9:</span> <span class="pre">'j',</span> <span class="pre">10:</span> <span class="pre">'k',</span> <span class="pre">11:</span> <span class="pre">'l',</span> <span class="pre">12:</span> <span class="pre">'m',</span> <span class="pre">13:</span> <span class="pre">'n',</span> <span class="pre">14:</span> <span class="pre">'o',</span> <span class="pre">15:</span> <span class="pre">'p',</span> <span class="pre">16:</span> <span class="pre">'q',</span> <span class="pre">17:</span> <span class="pre">'r',</span> <span class="pre">18:</span> <span class="pre">'s',</span> <span class="pre">19:</span> <span class="pre">'t',</span> <span class="pre">20:</span> <span class="pre">'u',</span> <span class="pre">21:</span> <span class="pre">'v',</span> <span class="pre">22:</span> <span class="pre">'w',</span> <span class="pre">23:</span> <span class="pre">'x',</span> <span class="pre">24:</span> <span class="pre">'y',</span> <span class="pre">25:</span> <span class="pre">'z',</span> <span class="pre">26:</span> <span class="pre">'A',</span> <span class="pre">27:</span> <span class="pre">'B',</span> <span class="pre">28:</span> <span class="pre">'C',</span> <span class="pre">29:</span> <span class="pre">'D',</span> <span class="pre">30:</span> <span class="pre">'E',</span> <span class="pre">31:</span> <span class="pre">'F',</span> <span class="pre">32:</span> <span class="pre">'G',</span> <span class="pre">33:</span> <span class="pre">'H',</span> <span class="pre">34:</span> <span class="pre">'I',</span> <span class="pre">35:</span> <span class="pre">'J',</span> <span class="pre">36:</span> <span class="pre">'K',</span> <span class="pre">37:</span> <span class="pre">'L',</span> <span class="pre">38:</span> <span class="pre">'M',</span> <span class="pre">39:</span> <span class="pre">'N',</span> <span class="pre">40:</span> <span class="pre">'O',</span> <span class="pre">41:</span> <span class="pre">'P',</span> <span class="pre">42:</span> <span class="pre">'Q',</span> <span class="pre">43:</span> <span class="pre">'R',</span> <span class="pre">44:</span> <span class="pre">'S',</span> <span class="pre">45:</span> <span class="pre">'T',</span> <span class="pre">46:</span> <span class="pre">'U',</span> <span class="pre">47:</span> <span class="pre">'V',</span> <span class="pre">48:</span> <span class="pre">'W',</span> <span class="pre">49:</span> <span class="pre">'X',</span> <span class="pre">50:</span> <span class="pre">'Y',</span> <span class="pre">51:</span> <span class="pre">'Z',</span> <span class="pre">52:</span> <span class="pre">'0',</span> <span class="pre">53:</span> <span class="pre">'1',</span> <span class="pre">54:</span> <span class="pre">'2',</span> <span class="pre">55:</span> <span class="pre">'3',</span> <span class="pre">56:</span> <span class="pre">'4',</span> <span class="pre">57:</span> <span class="pre">'5',</span> <span class="pre">58:</span> <span class="pre">'6',</span> <span class="pre">59:</span> <span class="pre">'7',</span> <span class="pre">60:</span> <span class="pre">'8',</span> <span class="pre">61:</span> <span class="pre">'9',</span> <span class="pre">62:</span> <span class="pre">'</span> <span class="pre">'}</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.INDEX_TO_LETTER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecipher.vigenere.lookup_table.LookUpTable.LETTER_TO_INDEX">
-<span class="sig-name descname"><span class="pre">LETTER_TO_INDEX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'</span> <span class="pre">':</span> <span class="pre">62,</span> <span class="pre">'0':</span> <span class="pre">52,</span> <span class="pre">'1':</span> <span class="pre">53,</span> <span class="pre">'2':</span> <span class="pre">54,</span> <span class="pre">'3':</span> <span class="pre">55,</span> <span class="pre">'4':</span> <span class="pre">56,</span> <span class="pre">'5':</span> <span class="pre">57,</span> <span class="pre">'6':</span> <span class="pre">58,</span> <span class="pre">'7':</span> <span class="pre">59,</span> <span class="pre">'8':</span> <span class="pre">60,</span> <span class="pre">'9':</span> <span class="pre">61,</span> <span class="pre">'A':</span> <span class="pre">26,</span> <span class="pre">'B':</span> <span class="pre">27,</span> <span class="pre">'C':</span> <span class="pre">28,</span> <span class="pre">'D':</span> <span class="pre">29,</span> <span class="pre">'E':</span> <span class="pre">30,</span> <span class="pre">'F':</span> <span class="pre">31,</span> <span class="pre">'G':</span> <span class="pre">32,</span> <span class="pre">'H':</span> <span class="pre">33,</span> <span class="pre">'I':</span> <span class="pre">34,</span> <span class="pre">'J':</span> <span class="pre">35,</span> <span class="pre">'K':</span> <span class="pre">36,</span> <span class="pre">'L':</span> <span class="pre">37,</span> <span class="pre">'M':</span> <span class="pre">38,</span> <span class="pre">'N':</span> <span class="pre">39,</span> <span class="pre">'O':</span> <span class="pre">40,</span> <span class="pre">'P':</span> <span class="pre">41,</span> <span class="pre">'Q':</span> <span class="pre">42,</span> <span class="pre">'R':</span> <span class="pre">43,</span> <span class="pre">'S':</span> <span class="pre">44,</span> <span class="pre">'T':</span> <span class="pre">45,</span> <span class="pre">'U':</span> <span class="pre">46,</span> <span class="pre">'V':</span> <span class="pre">47,</span> <span class="pre">'W':</span> <span class="pre">48,</span> <span class="pre">'X':</span> <span class="pre">49,</span> <span class="pre">'Y':</span> <span class="pre">50,</span> <span class="pre">'Z':</span> <span class="pre">51,</span> <span class="pre">'a':</span> <span class="pre">0,</span> <span class="pre">'b':</span> <span class="pre">1,</span> <span class="pre">'c':</span> <span class="pre">2,</span> <span class="pre">'d':</span> <span class="pre">3,</span> <span class="pre">'e':</span> <span class="pre">4,</span> <span class="pre">'f':</span> <span class="pre">5,</span> <span class="pre">'g':</span> <span class="pre">6,</span> <span class="pre">'h':</span> <span class="pre">7,</span> <span class="pre">'i':</span> <span class="pre">8,</span> <span class="pre">'j':</span> <span class="pre">9,</span> <span class="pre">'k':</span> <span class="pre">10,</span> <span class="pre">'l':</span> <span class="pre">11,</span> <span class="pre">'m':</span> <span class="pre">12,</span> <span class="pre">'n':</span> <span class="pre">13,</span> <span class="pre">'o':</span> <span class="pre">14,</span> <span class="pre">'p':</span> <span class="pre">15,</span> <span class="pre">'q':</span> <span class="pre">16,</span> <span class="pre">'r':</span> <span class="pre">17,</span> <span class="pre">'s':</span> <span class="pre">18,</span> <span class="pre">'t':</span> <span class="pre">19,</span> <span class="pre">'u':</span> <span class="pre">20,</span> <span class="pre">'v':</span> <span class="pre">21,</span> <span class="pre">'w':</span> <span class="pre">22,</span> <span class="pre">'x':</span> <span class="pre">23,</span> <span class="pre">'y':</span> <span class="pre">24,</span> <span class="pre">'z':</span> <span class="pre">25}</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.LETTER_TO_INDEX" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">LETTER_TO_INDEX</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'</span> <span class="pre">':</span> <span class="pre">62,</span> <span class="pre">'0':</span> <span class="pre">52,</span> <span class="pre">'1':</span> <span class="pre">53,</span> <span class="pre">'2':</span> <span class="pre">54,</span> <span class="pre">'3':</span> <span class="pre">55,</span> <span class="pre">'4':</span> <span class="pre">56,</span> <span class="pre">'5':</span> <span class="pre">57,</span> <span class="pre">'6':</span> <span class="pre">58,</span> <span class="pre">'7':</span> <span class="pre">59,</span> <span class="pre">'8':</span> <span class="pre">60,</span> <span class="pre">'9':</span> <span class="pre">61,</span> <span class="pre">'A':</span> <span class="pre">26,</span> <span class="pre">'B':</span> <span class="pre">27,</span> <span class="pre">'C':</span> <span class="pre">28,</span> <span class="pre">'D':</span> <span class="pre">29,</span> <span class="pre">'E':</span> <span class="pre">30,</span> <span class="pre">'F':</span> <span class="pre">31,</span> <span class="pre">'G':</span> <span class="pre">32,</span> <span class="pre">'H':</span> <span class="pre">33,</span> <span class="pre">'I':</span> <span class="pre">34,</span> <span class="pre">'J':</span> <span class="pre">35,</span> <span class="pre">'K':</span> <span class="pre">36,</span> <span class="pre">'L':</span> <span class="pre">37,</span> <span class="pre">'M':</span> <span class="pre">38,</span> <span class="pre">'N':</span> <span class="pre">39,</span> <span class="pre">'O':</span> <span class="pre">40,</span> <span class="pre">'P':</span> <span class="pre">41,</span> <span class="pre">'Q':</span> <span class="pre">42,</span> <span class="pre">'R':</span> <span class="pre">43,</span> <span class="pre">'S':</span> <span class="pre">44,</span> <span class="pre">'T':</span> <span class="pre">45,</span> <span class="pre">'U':</span> <span class="pre">46,</span> <span class="pre">'V':</span> <span class="pre">47,</span> <span class="pre">'W':</span> <span class="pre">48,</span> <span class="pre">'X':</span> <span class="pre">49,</span> <span class="pre">'Y':</span> <span class="pre">50,</span> <span class="pre">'Z':</span> <span class="pre">51,</span> <span class="pre">'a':</span> <span class="pre">0,</span> <span class="pre">'b':</span> <span class="pre">1,</span> <span class="pre">'c':</span> <span class="pre">2,</span> <span class="pre">'d':</span> <span class="pre">3,</span> <span class="pre">'e':</span> <span class="pre">4,</span> <span class="pre">'f':</span> <span class="pre">5,</span> <span class="pre">'g':</span> <span class="pre">6,</span> <span class="pre">'h':</span> <span class="pre">7,</span> <span class="pre">'i':</span> <span class="pre">8,</span> <span class="pre">'j':</span> <span class="pre">9,</span> <span class="pre">'k':</span> <span class="pre">10,</span> <span class="pre">'l':</span> <span class="pre">11,</span> <span class="pre">'m':</span> <span class="pre">12,</span> <span class="pre">'n':</span> <span class="pre">13,</span> <span class="pre">'o':</span> <span class="pre">14,</span> <span class="pre">'p':</span> <span class="pre">15,</span> <span class="pre">'q':</span> <span class="pre">16,</span> <span class="pre">'r':</span> <span class="pre">17,</span> <span class="pre">'s':</span> <span class="pre">18,</span> <span class="pre">'t':</span> <span class="pre">19,</span> <span class="pre">'u':</span> <span class="pre">20,</span> <span class="pre">'v':</span> <span class="pre">21,</span> <span class="pre">'w':</span> <span class="pre">22,</span> <span class="pre">'x':</span> <span class="pre">23,</span> <span class="pre">'y':</span> <span class="pre">24,</span> <span class="pre">'z':</span> <span class="pre">25}</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.LETTER_TO_INDEX" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecipher.vigenere.lookup_table.LookUpTable.NUM">
-<span class="sig-name descname"><span class="pre">NUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'0123456789'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.NUM" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">NUM</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'0123456789'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.NUM" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="codecipher.vigenere.lookup_table.LookUpTable.WHITE_SPACE">
-<span class="sig-name descname"><span class="pre">WHITE_SPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.WHITE_SPACE" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WHITE_SPACE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">'</span></em><a class="headerlink" href="#codecipher.vigenere.lookup_table.LookUpTable.WHITE_SPACE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -169,33 +128,78 @@ It defines:</p>
 </section>
 
 
-           </div>
+            <div class="clearer"></div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="codecipher.vigenere.key_generator.html" class="btn btn-neutral float-left" title="codecipher.vigenere.key_generator module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">codecipher.vigenere.lookup_table module</a><ul>
+<li><a class="reference internal" href="#codecipher.vigenere.lookup_table.LookUpTable"><code class="docutils literal notranslate"><span class="pre">LookUpTable</span></code></a><ul>
+<li><a class="reference internal" href="#codecipher.vigenere.lookup_table.LookUpTable.ALPHA"><code class="docutils literal notranslate"><span class="pre">LookUpTable.ALPHA</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.lookup_table.LookUpTable.ALPHANUM"><code class="docutils literal notranslate"><span class="pre">LookUpTable.ALPHANUM</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.lookup_table.LookUpTable.INDEX_TO_LETTER"><code class="docutils literal notranslate"><span class="pre">LookUpTable.INDEX_TO_LETTER</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.lookup_table.LookUpTable.LETTER_TO_INDEX"><code class="docutils literal notranslate"><span class="pre">LookUpTable.LETTER_TO_INDEX</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.lookup_table.LookUpTable.NUM"><code class="docutils literal notranslate"><span class="pre">LookUpTable.NUM</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.lookup_table.LookUpTable.WHITE_SPACE"><code class="docutils literal notranslate"><span class="pre">LookUpTable.WHITE_SPACE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-</body>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="codecipher.vigenere.key_generator.html"
+                          title="previous chapter">codecipher.vigenere.key_generator module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/codecipher.vigenere.lookup_table.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.vigenere.key_generator.html" title="codecipher.vigenere.key_generator module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.vigenere.html" >codecipher.vigenere package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.lookup_table module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
 </html>

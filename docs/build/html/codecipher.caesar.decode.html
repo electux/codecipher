@@ -1,99 +1,61 @@
-<!DOCTYPE html>
-<html class="writer-html5" lang="en" >
-<head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>codecipher.caesar.decode module &mdash; codecipher https://github.com/electux/codecipher/releases documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>codecipher.caesar.decode module &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="codecipher.caesar.encode module" href="codecipher.caesar.encode.html" />
     <link rel="prev" title="codecipher.caesar package" href="codecipher.caesar.html" /> 
-</head>
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.caesar.encode.html" title="codecipher.caesar.encode module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="codecipher.caesar.html" title="codecipher.caesar package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.caesar.html" accesskey="U">codecipher.caesar package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.caesar.decode module</a></li> 
+      </ul>
+    </div>  
 
-<body class="wy-body-for-nav"> 
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> codecipher
-          </a>
-              <div class="version">
-                1.3.5
-              </div>
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="index.html">CODECipher</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">codecipher</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="codecipher.html">codecipher package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="codecipher.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="codecipher.a1z52n62.html">codecipher.a1z52n62 package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.atbs.html">codecipher.atbs package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.b64.html">codecipher.b64 package</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="codecipher.caesar.html">codecipher.caesar package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.vernam.html">codecipher.vernam package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="codecipher.vigenere.html">codecipher.vigenere package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.html#module-codecipher">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-      </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">codecipher</a>
-      </nav>
-
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
-  <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">codecipher</a> &raquo;</li>
-          <li><a href="codecipher.html">codecipher package</a> &raquo;</li>
-          <li><a href="codecipher.caesar.html">codecipher.caesar package</a> &raquo;</li>
-      <li>codecipher.caesar.decode module</li>
-      <li class="wy-breadcrumbs-aside">
-            <a href="_sources/codecipher.caesar.decode.rst.txt" rel="nofollow"> View page source</a>
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-           <div itemprop="articleBody">
-             
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
   <section id="module-codecipher.caesar.decode">
-<span id="codecipher-caesar-decode-module"></span><h1>codecipher.caesar.decode module<a class="headerlink" href="#module-codecipher.caesar.decode" title="Permalink to this headline"></a></h1>
+<span id="codecipher-caesar-decode-module"></span><h1>codecipher.caesar.decode module<a class="headerlink" href="#module-codecipher.caesar.decode" title="Permalink to this heading">¶</a></h1>
 <dl class="simple">
 <dt>Module</dt><dd><p>decode.py</p>
 </dd>
-<dt>Copyright</dt><dd><p>Copyright (C) 2021 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+<dt>Copyright</dt><dd><p>Copyright (C) 2021 - 2024 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 codecipher is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or
@@ -105,47 +67,52 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
-<dt>Info</dt><dd><p>Defined class CaesarDecode with attribute(s) and method(s).
-Created decode class with backend API.</p>
+<dt>Info</dt><dd><p>Defines class CaesarDecode with attribute(s) and method(s).
+Creates decode class with backend API.</p>
 </dd>
 </dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="codecipher.caesar.decode.CaesarDecode">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.caesar.decode.</span></span><span class="sig-name descname"><span class="pre">CaesarDecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_CaesarDecode__decode_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/codecipher/caesar/decode.html#CaesarDecode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.caesar.decode.CaesarDecode" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.caesar.decode.</span></span><span class="sig-name descname"><span class="pre">CaesarDecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_decode_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/codecipher/caesar/decode.html#CaesarDecode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.caesar.decode.CaesarDecode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defined class CaesarDecode with attribute(s) and method(s).
-Created decode class with backend API.
-It defines:</p>
+<p>Defines class CaesarDecode with attribute(s) and method(s).
+Creates decode class with backend API.</p>
+<p>It defines:</p>
 <blockquote>
 <div><dl class="field-list">
-<dt class="field-odd">attributes</dt>
+<dt class="field-odd">attributes<span class="colon">:</span></dt>
 <dd class="field-odd"><div class="line-block">
-<div class="line">__decode_data - data decode container.</div>
+<div class="line">_decode_data - Data decode container.</div>
 </div>
 </dd>
-<dt class="field-even">methods</dt>
+<dt class="field-even">methods<span class="colon">:</span></dt>
 <dd class="field-even"><div class="line-block">
-<div class="line">decode_data - property methods for decode data.</div>
-<div class="line">decode - decode data from Caesar format.</div>
+<div class="line">decode_data - Property methods for decode data.</div>
+<div class="line">decode - Decode data from Caesar format.</div>
 </div>
 </dd>
 </dl>
 </div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.caesar.decode.CaesarDecode._decode_data">
+<span class="sig-name descname"><span class="pre">_decode_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.caesar.decode.CaesarDecode._decode_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="codecipher.caesar.decode.CaesarDecode.decode">
-<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/codecipher/caesar/decode.html#CaesarDecode.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.caesar.decode.CaesarDecode.decode" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_counter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/codecipher/caesar/decode.html#CaesarDecode.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.caesar.decode.CaesarDecode.decode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Decoding data from Caesar format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>&lt;str&gt;</em>) – data which should be decoded.</p></li>
-<li><p><strong>shift_counter</strong> (<em>&lt;int&gt;</em>) – defining the shift count.</p></li>
+<li><p><strong>data</strong> (<em>&lt;str&gt;</em><em> | </em><em>&lt;NoneType&gt;</em>) – Data which should be decoded | None</p></li>
+<li><p><strong>shift_counter</strong> (<em>&lt;int&gt;</em><em> | </em><em>&lt;NoneType&gt;</em>) – Defining the shift count | None</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>None</p>
 </dd>
-<dt class="field-odd">Exceptions</dt>
+<dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
@@ -153,16 +120,16 @@ It defines:</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="codecipher.caesar.decode.CaesarDecode.decode_data">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#codecipher.caesar.decode.CaesarDecode.decode_data" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.caesar.decode.CaesarDecode.decode_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Property method for getting decode data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>decode data in str format.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Decode data in str format | None</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>&lt;str&gt;</p>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>&lt;str&gt; | &lt;NoneType&gt;</p>
 </dd>
-<dt class="field-odd">Exceptions</dt>
+<dt class="field-odd">Exceptions<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
 </dd>
 </dl>
@@ -173,34 +140,83 @@ It defines:</p>
 </section>
 
 
-           </div>
+            <div class="clearer"></div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="codecipher.caesar.html" class="btn btn-neutral float-left" title="codecipher.caesar package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="codecipher.caesar.encode.html" class="btn btn-neutral float-right" title="codecipher.caesar.encode module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <p>&#169; Copyright 2021, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.</p>
-  </div>
-
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
-
-</footer>
         </div>
       </div>
-    </section>
-  </div>
-  <script>
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script> 
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">codecipher.caesar.decode module</a><ul>
+<li><a class="reference internal" href="#codecipher.caesar.decode.CaesarDecode"><code class="docutils literal notranslate"><span class="pre">CaesarDecode</span></code></a><ul>
+<li><a class="reference internal" href="#codecipher.caesar.decode.CaesarDecode._decode_data"><code class="docutils literal notranslate"><span class="pre">CaesarDecode._decode_data</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.caesar.decode.CaesarDecode.decode"><code class="docutils literal notranslate"><span class="pre">CaesarDecode.decode()</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.caesar.decode.CaesarDecode.decode_data"><code class="docutils literal notranslate"><span class="pre">CaesarDecode.decode_data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
-</body>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="codecipher.caesar.html"
+                          title="previous chapter">codecipher.caesar package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="codecipher.caesar.encode.html"
+                          title="next chapter">codecipher.caesar.encode module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/codecipher.caesar.decode.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.caesar.encode.html" title="codecipher.caesar.encode module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="codecipher.caesar.html" title="codecipher.caesar package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.caesar.html" >codecipher.caesar package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.caesar.decode module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
 </html>

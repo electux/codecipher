@@ -5,6 +5,7 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    codecipher.atbs.decode
    codecipher.atbs.encode
@@ -14,6 +15,7 @@ Module contents
 ---------------
 
 .. automodule:: codecipher.atbs
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
