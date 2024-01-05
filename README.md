@@ -2,18 +2,15 @@
 
 # CODECipher
 
-☯️ **codecipher** is package for cipher utilities.
+**codecipher** is package for cipher utilities.
 
-Developed in 🐍 **[python](https://www.python.org/)** code.
-
-[![codecov](https://codecov.io/gh/electux/codecipher/branch/dev/graph/badge.svg?token=ZgZrRiseG8)](https://codecov.io/gh/electux/codecipher)
-[![circleci](https://circleci.com/gh/electux/codecipher/tree/main.svg?style=svg)](https://circleci.com/gh/electux/codecipher/tree/main)
+Developed in **[python](https://www.python.org/)** code.
 
 The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.
 
-[![codecipher python checker](https://img.shields.io/github/workflow/status/electux/codecipher/codecipher_python_checker?style=flat&label=codecipher%20python%20checker)](https://github.com/electux/codecipher/actions/workflows/codecipher_python_checker.yml) [![codecipher package checker](https://img.shields.io/github/workflow/status/electux/codecipher/codecipher_package_checker?style=flat&label=codecipher%20package%20checker)](https://github.com/electux/codecipher/actions/workflows/codecipher_package_checker.yml) [![GitHub issues open](https://img.shields.io/github/issues/electux/codecipher.svg)](https://github.com/electux/codecipher/issues) [![GitHub contributors](https://img.shields.io/github/contributors/electux/codecipher.svg)](https://github.com/electux/codecipher/graphs/contributors)
+[![codecipher python checker](https://github.com/electux/codecipher/actions/workflows/codecipher_python_checker.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_python_checker.yml) [![codecipher package checker](https://github.com/electux/codecipher/actions/workflows/codecipher_package_checker.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_package.yml) [![GitHub issues open](https://img.shields.io/github/issues/electux/codecipher.svg)](https://github.com/electux/codecipher/issues) [![GitHub contributors](https://img.shields.io/github/contributors/electux/codecipher.svg)](https://github.com/electux/codecipher/graphs/contributors)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -37,9 +34,11 @@ other information that should be provided before the modules are installed.
 
 Used next development environment
 
-![ubuntu linux os](https://raw.githubusercontent.com/electux/codecipher/dev/docs/ubuntuxis.png)
+Used next development environment
 
-[![codecipher python3 build](https://img.shields.io/github/workflow/status/electux/codecipher/codecipher_python3_build?style=flat&label=codecipher%20python3%20build)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_build.yml)
+![debian linux os](https://raw.githubusercontent.com/electux/codecipher/dev/docs/debtux.png)
+
+[![codecipher python3 build](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_build.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_build.yml)
 
 Currently there are three ways to install package
 * Install process based on using pip mechanism
@@ -49,7 +48,7 @@ Currently there are three ways to install package
 
 ##### Install using pip
 
-**codecipher** 📦 is located at **[pypi.org](https://pypi.org/project/codecipher/)**.
+**codecipher** is located at **[pypi.org](https://pypi.org/project/codecipher/)**.
 
 You can install by using pip
 
@@ -60,7 +59,7 @@ pip3 install codecipher
 
 ##### Install using build
 
-Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive 📦.
+Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
 To install **codecipher**, run
 
@@ -81,7 +80,7 @@ rm -f get-pip.py
 
 ##### Install using py setup
 
-Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive 📦.
+Navigate to **[release page](https://github.com/electux/codecipher/releases)** download and extract release archive.
 
 To install **codecipher**, locate and run setup.py with arguments
 
@@ -96,9 +95,7 @@ python3 setup.py install_egg_info
 
 ##### Install using docker
 
-You can use Dockerfile to create image/container 🚢.
-
-[![codecipher docker checker](https://img.shields.io/github/workflow/status/electux/codecipher/codecipher_docker_checker?style=flat&label=codecipher%20docker%20checker)](https://github.com/electux/codecipher/actions/workflows/codecipher_docker_checker.yml)
+You can use Dockerfile to create image/container.
 
 ### Dependencies
 
@@ -201,58 +198,58 @@ print(50*'=')
 
 **codecipher** is based on OOP.
 
-🧰 Package structure
+Package structure
 
 ```bash
-codecipher/
-├── a1z52n62/
-│   ├── decode.py
-│   ├── encode.py
-│   └── __init__.py
-├── atbs/
-│   ├── decode.py
-│   ├── encode.py
-│   ├── __init__.py
-│   └── lookup_table.py
-├── b64/
-│   ├── decode.py
-│   ├── encode.py
-│   └── __init__.py
-├── caesar/
-│   ├── decode.py
-│   ├── encode.py
-│   └── __init__.py
-├── __init__.py
-├── vernam/
-│   ├── decode.py
-│   ├── encode.py
-│   └── __init__.py
-└── vigenere/
-    ├── decode.py
-    ├── encode.py
-    ├── __init__.py
-    ├── key_generator.py
-    └── lookup_table.py
+    codecipher/
+        ├── a1z52n62/
+        │   ├── decode.py
+        │   ├── encode.py
+        │   └── __init__.py
+        ├── atbs/
+        │   ├── decode.py
+        │   ├── encode.py
+        │   ├── __init__.py
+        │   └── lookup_table.py
+        ├── b64/
+        │   ├── decode.py
+        │   ├── encode.py
+        │   └── __init__.py
+        ├── caesar/
+        │   ├── decode.py
+        │   ├── encode.py
+        │   └── __init__.py
+        ├── __init__.py
+        ├── vernam/
+        │   ├── decode.py
+        │   ├── encode.py
+        │   └── __init__.py
+        └── vigenere/
+            ├── decode.py
+            ├── encode.py
+            ├── __init__.py
+            ├── key_generator.py
+            └── lookup_table.py
 ```
 
 ### Docs
 
 [![documentation status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/en/latest/?badge=latest)
 
-📗 More documentation and info at
+More documentation and info at
 
 * [codecipher.readthedocs.io](https://codecipher.readthedocs.io/en/latest/)
 * [www.python.org](https://www.python.org/)
 
 ### Contributing
 
-🌎 🌍 🌏 [Contributing to codecipher](CONTRIBUTING.md)
+[Contributing to codecipher](CONTRIBUTING.md)
 
 ### Copyright and Licence
 
-[![license: gpl v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![license apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2021 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
+Copyright (C) 2021 - 2024 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
 
 **codecipher** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 3.x or,
@@ -262,4 +259,4 @@ Lets help and support PSF.
 
 [![Python Software Foundation](https://raw.githubusercontent.com/electux/codecipher/dev/docs/psf-logo-alpha.png)](https://www.python.org/psf/)
 
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://psfmember.org/index.php?q=civicrm/contribute/transact&reset=1&id=2)
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.python.org/psf/donations/)

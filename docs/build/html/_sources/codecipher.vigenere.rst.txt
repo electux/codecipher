@@ -5,6 +5,7 @@ Submodules
 ----------
 
 .. toctree::
+   :maxdepth: 4
 
    codecipher.vigenere.decode
    codecipher.vigenere.encode
@@ -15,6 +16,7 @@ Module contents
 ---------------
 
 .. automodule:: codecipher.vigenere
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:

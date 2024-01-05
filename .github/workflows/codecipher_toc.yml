@@ -1,6 +1,7 @@
 name: codecipher_toc
 on:
   push:
+    branches: [ main ]
     paths:
       - '**.md'
 jobs:
@@ -8,4 +9,4 @@ jobs:
     name: codecipher_toc
     runs-on: ubuntu-latest
     steps:
-      - uses: technote-space/toc-generator@v2
+      - uses: technote-space/toc-generator@v4
