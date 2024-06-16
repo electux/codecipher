@@ -34,7 +34,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -59,4 +59,4 @@ class AlephTawBetShin(AlephTawBetShinEncode, AlephTawBetShinDecode):
 
             :exceptions: None
         '''
-        super(AlephTawBetShin).__init__()
+        super().__init__()

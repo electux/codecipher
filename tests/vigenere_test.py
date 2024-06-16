@@ -36,7 +36,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/dev/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -69,11 +69,11 @@ class VigenereTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         '''Call before test cases.'''
-        self.raw_data = VigenereTestCase.RAW_DATA
-        self.enc_sequence = VigenereTestCase.ENC_SEQ
-        self.enc_data = None
-        self.dec_data = None
-        self.cipher = Vigenere()
+        self.raw_data: str | None = VigenereTestCase.RAW_DATA
+        self.enc_sequence: str | None = VigenereTestCase.ENC_SEQ
+        self.enc_data: str | None = None
+        self.dec_data: str | None = None
+        self.cipher: Vigenere | None = Vigenere()
         self.cipher.data_len = len(self.raw_data)
         self.cipher.key = 'AYUSH'
         self.cipher.generate_key()
@@ -87,17 +87,19 @@ class VigenereTestCase(unittest.TestCase):
 
     def test_vigenere_encoding(self) -> None:
         '''Test base encoding.'''
-        self.cipher.encode(self.raw_data, self.cipher.key)
-        self.enc_data = self.cipher.encode_data
-        self.assertEqual(self.enc_sequence, self.enc_data)
+        if bool(self.cipher):
+            self.cipher.encode(self.raw_data, self.cipher.key)
+            self.enc_data = self.cipher.encode_data
+            self.assertEqual(self.enc_sequence, self.enc_data)
 
     def test_vigenere_decoding(self) -> None:
         '''Test base decoding.'''
-        self.cipher.encode(self.raw_data, self.cipher.key)
-        self.enc_data = self.cipher.encode_data
-        self.cipher.decode(self.enc_data, self.cipher.key)
-        self.dec_data = self.cipher.decode_data
-        self.assertEqual(self.raw_data, self.dec_data)
+        if bool(self.cipher):
+            self.cipher.encode(self.raw_data, self.cipher.key)
+            self.enc_data = self.cipher.encode_data
+            self.cipher.decode(self.enc_data, self.cipher.key)
+            self.dec_data = self.cipher.decode_data
+            self.assertEqual(self.raw_data, self.dec_data)
 
 
 if __name__ == '__main__':

@@ -1,20 +1,16 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>codecipher.vigenere.encode &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=514cf933" />
     
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/documentation_options.js?v=199d8b52"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -64,7 +60,7 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -77,13 +73,15 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;(C) 2024, https://electux.github.io/codecipher&#39;</span>
 <span class="n">__credits__</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/electux/codecipher/blob/main/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.5&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.6&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="VigenereEncode"><a class="viewcode-back" href="../../../codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode">[docs]</a><span class="nd">@dataclass</span>
+<div class="viewcode-block" id="VigenereEncode">
+<a class="viewcode-back" href="../../../codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode">[docs]</a>
+<span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">VigenereEncode</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Defines class VigenereEncode with attribute(s) and method(s).</span>
@@ -99,7 +97,7 @@
 <span class="sd">                | encode - Encode data to Vigenere format.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="n">_encode_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">_encode_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">encode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -125,7 +123,9 @@
         <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">encode_data_val</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_encode_data</span> <span class="o">=</span> <span class="n">encode_data_val</span>
 
-<div class="viewcode-block" id="VigenereEncode._split_data"><a class="viewcode-back" href="../../../codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode._split_data">[docs]</a>    <span class="k">def</span> <span class="nf">_split_data</span><span class="p">(</span>
+<div class="viewcode-block" id="VigenereEncode._split_data_encode">
+<a class="viewcode-back" href="../../../codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode._split_data_encode">[docs]</a>
+    <span class="k">def</span> <span class="nf">_split_data_encode</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">data_to_encode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -140,12 +140,15 @@
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">elements</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="nb">bool</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">),</span> <span class="nb">bool</span><span class="p">(</span><span class="n">key</span><span class="p">)]):</span>
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)):</span>
                 <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)])</span>
         <span class="k">return</span> <span class="n">elements</span></div>
 
-<div class="viewcode-block" id="VigenereEncode.encode"><a class="viewcode-back" href="../../../codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode.encode">[docs]</a>    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_to_encode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+<div class="viewcode-block" id="VigenereEncode.encode">
+<a class="viewcode-back" href="../../../codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode.encode">[docs]</a>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_to_encode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Encoding data to Vigenere format.</span>
 
@@ -156,9 +159,9 @@
 <span class="sd">            :return: None</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="nb">bool</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">),</span> <span class="nb">bool</span><span class="p">(</span><span class="n">key</span><span class="p">)]):</span>
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
             <span class="n">encode_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_data</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_data_encode</span><span class="p">(</span><span class="n">data_to_encode</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
                     <span class="n">process_index</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="n">LookUpTable</span><span class="o">.</span><span class="n">LETTER_TO_INDEX</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">+</span>
@@ -167,7 +170,9 @@
                     <span class="n">encode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">LookUpTable</span><span class="o">.</span><span class="n">INDEX_TO_LETTER</span><span class="p">[</span><span class="n">process_index</span><span class="p">]</span>
                     <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_encode_data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">encode_list</span><span class="p">)</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_encode_data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">encode_list</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
             <div class="clearer"></div>
@@ -206,8 +211,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

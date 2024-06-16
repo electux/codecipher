@@ -20,14 +20,14 @@ Info
     Creates encode class with backend API.
 '''
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,7 +48,7 @@ class CaesarEncode:
                 | encode - Encode data to Caesar format.
     '''
 
-    _encode_data: str | None
+    _encode_data: str | None = field(default=None)
 
     @property
     def encode_data(self) -> str | None:
@@ -85,14 +85,16 @@ class CaesarEncode:
             :return: None
             :exceptions: None
         '''
-        if all([bool(data), bool(shift_counter)]):
+        if bool(data) and bool(shift_counter):
             encode_list: List[str] = []
             for element in data:
                 if element.isspace() or element.isnumeric():
                     encode_list.append(element)
                     continue
-                element_index, new_index = None, None
-                new_unicode, new_character = None, None
+                element_index: int | None = None
+                new_index: int | None = None
+                new_unicode: int | None = None
+                new_character: str | None = None
                 if element.isupper():
                     element_index = ord(element) - ord('A')
                     new_index = (element_index + shift_counter) % 26
