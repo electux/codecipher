@@ -20,14 +20,14 @@ Info
     Creates decode class with backend API.
 '''
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,7 +48,7 @@ class VernamDecode:
                 | decode - Decode data from Vernam format.
     '''
 
-    _decode_data: str | None
+    _decode_data: str | None = field(default=None)
 
     @property
     def decode_data(self) -> str | None:
@@ -85,7 +85,7 @@ class VernamDecode:
             :return: None
             :exceptions: None
         '''
-        if all([bool(data), bool(key)]):
+        if bool(data) and bool(key):
             decode_list: List[str] = []
             key = (key * (len(data) // len(key))) + key[:len(data) % len(key)]
             for i, element in enumerate(data):

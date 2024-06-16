@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 try:
@@ -34,7 +34,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -55,7 +55,7 @@ class AlephTawBetShinDecode:
                 | decode - Decode data from AlephTawBetShin format.
     '''
 
-    _decode_data: str | None
+    _decode_data: str | None = field(default=None)
 
     @property
     def decode_data(self) -> str | None:

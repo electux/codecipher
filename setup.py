@@ -29,12 +29,12 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
-THIS_DIR = abspath(dirname(__file__))
+THIS_DIR: str = abspath(dirname(__file__))
 long_description: str | None = None
 with open(join(THIS_DIR, 'README.md'), encoding='utf-8') as readme:
     long_description = readme.read()
@@ -57,7 +57,7 @@ APPROVED_LICENSES: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='codecipher',
-    version='1.4.5',
+    version='1.4.6',
     description='Python Cipher Utilities',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -76,5 +76,10 @@ setup(
         'codecipher.caesar',
         'codecipher.vernam',
         'codecipher.vigenere'
-    ]
+    ],
+    package_data={
+        'codecipher': [
+            'py.typed'
+        ]
+    }
 )

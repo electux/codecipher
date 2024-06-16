@@ -20,14 +20,14 @@ Info
     Creates encode class with backend API.
 '''
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,7 +48,7 @@ class VernamEncode:
                 | encode - Encode data to Vernam format.
     '''
 
-    _encode_data: str | None
+    _encode_data: str | None = field(default=None)
 
     @property
     def encode_data(self) -> str | None:
@@ -85,8 +85,8 @@ class VernamEncode:
             :return: None
             :exceptions: None
         '''
-        if all([bool(data), bool(key)]):
-            encode_list = []
+        if bool(data) and bool(key):
+            encode_list: List[str] = []
             key = (key * (len(data) // len(key))) + key[:len(data) % len(key)]
             for i, element in enumerate(data):
                 if element.isalpha() and key[i].isalpha():

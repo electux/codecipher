@@ -20,14 +20,14 @@ Info
     Creates key generator class for Vigener encoding/decoding.
 '''
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -50,8 +50,8 @@ class KeyGenerator:
                 | generate_key - Generates key for encoding/decoding.
     '''
 
-    _data_len: int | None
-    _key: str | None
+    _data_len: int | None = field(default=None)
+    _key: str | None = field(default=None)
 
     @property
     def data_len(self) -> int | None:
@@ -108,10 +108,12 @@ class KeyGenerator:
             :return: None
             :exceptions: None
         '''
-        key_list: List[str] = list(self._key)
-        if self._data_len == len(key_list):
-            pass
-        else:
-            for i in range(self._data_len - len(key_list)):
-                key_list.append(key_list[i % len(key_list)])
-        self._key = ''. join(key_list)
+        if bool(self._key):
+            key_list: List[str] = list(self._key)
+            if bool(key_list) and bool(self._data_len):
+                if self._data_len == len(key_list):
+                    pass
+                else:
+                    for i in range(self._data_len - len(key_list)):
+                        key_list.append(key_list[i % len(key_list)])
+                self._key = ''. join(key_list)

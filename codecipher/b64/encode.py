@@ -20,7 +20,7 @@ Info
     Creates encode class with backend API.
 '''
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from base64 import b64encode
 from typing import List
 
@@ -28,7 +28,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -49,7 +49,7 @@ class B64Encode:
                 | encode - Encode data to AlephTawBetShin format.
     '''
 
-    _encode_data: str | None
+    _encode_data: str | None = field(default=None)
 
     @property
     def encode_data(self) -> str | None:

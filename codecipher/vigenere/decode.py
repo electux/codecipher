@@ -21,7 +21,7 @@ Info
 '''
 
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 try:
@@ -34,7 +34,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -56,7 +56,7 @@ class VigenereDecode:
                 | decode - Decode data from Vigenere format.
     '''
 
-    _decode_data: str | None
+    _decode_data: str | None = field(default=None)
 
     @property
     def decode_data(self) -> str | None:
@@ -82,7 +82,7 @@ class VigenereDecode:
         if bool(decode_data_val):
             self._decode_data = decode_data_val
 
-    def _split_data(
+    def _split_data_decode(
         self, data_to_decode: str | None, key: str | None
     ) -> List[str]:
         '''
@@ -97,7 +97,7 @@ class VigenereDecode:
             :exceptions: None
         '''
         elements: List[str] = []
-        if all([bool(data_to_decode), bool(key)]):
+        if bool(data_to_decode) and bool(key):
             for i in range(0, len(data_to_decode), len(key)):
                 elements.append(data_to_decode[i: i + len(key)])
         return elements
@@ -113,9 +113,9 @@ class VigenereDecode:
             :return: None
             :exceptions: None
         '''
-        if all([bool(data_to_decode), bool(key)]):
+        if bool(data_to_decode) and bool(key):
             decode_list: List[str] = []
-            for element in self._split_data(data_to_decode, key):
+            for element in self._split_data_decode(data_to_decode, key):
                 for index, letter in enumerate(element):
                     process_index = (
                         LookUpTable.LETTER_TO_INDEX[letter] -

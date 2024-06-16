@@ -20,14 +20,14 @@ Info
     Creates decode class with backend API.
 '''
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.5'
+__version__ = '1.4.6'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,7 +48,7 @@ class A1z52N62Decode:
                 | decode - Decode data from A1z52N62 format.
     '''
 
-    _decode_data: str | None
+    _decode_data: str | None = field(default=None)
 
     @property
     def decode_data(self) -> str | None:
@@ -62,7 +62,7 @@ class A1z52N62Decode:
         return self._decode_data
 
     @decode_data.setter
-    def decode_data(self, decode_data: str) -> None:
+    def decode_data(self, decode_data: str | None) -> None:
         '''
             Property method for setting decode data.
 
@@ -74,7 +74,7 @@ class A1z52N62Decode:
         if bool(decode_data):
             self._decode_data = decode_data
 
-    def decode(self, data: str) -> None:
+    def decode(self, data: str | None) -> None:
         '''
             Decoding data from A1z52N62 format.
 
@@ -85,8 +85,7 @@ class A1z52N62Decode:
         '''
         if bool(data):
             decode_list: List[str] = []
-            data = data.split(' - ')
-            for element in data:
+            for element in data.split(' - '):
                 if element.isnumeric():
                     if int(element) <= 52:
                         if int(element) <= 26:
