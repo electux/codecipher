@@ -21,13 +21,13 @@ Info
 '''
 
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.6'
+__version__ = '1.4.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,38 +48,38 @@ class A1z52N62Encode:
                 | encode - Encode data to A1z52N62 format.
     '''
 
-    _encode_data: str | None = field(default=None)
+    _encode_data: Optional[str] = field(default=None)
 
     @property
-    def encode_data(self) -> str | None:
+    def encode_data(self) -> Optional[str]:
         '''
             Property method for getting encode data.
 
             :return: Encoded data
-            :rtype: <str> | <NoneType>
+            :rtype: <Optional[str]>
             :exceptions: None
         '''
         return self._encode_data
 
     @encode_data.setter
-    def encode_data(self, encode_data: str | None) -> None:
+    def encode_data(self, encode_data: Optional[str]) -> None:
         '''
             Property method for setting encode data.
 
             :param encode_data: Encode data | None
-            :type encode_data: <str> | <NoneType>
+            :type encode_data: <Optional[str]>
             :return: None
             :exceptions: None
         '''
         if bool(encode_data):
             self._encode_data = encode_data
 
-    def encode(self, data: str | None) -> None:
+    def encode(self, data: Optional[str]) -> None:
         '''
             Encoding data to A1z52N62 format.
 
             :param data: Data which should be encoded | None
-            :type data: <str> | <NoneType>
+            :type data: <Optional[str]>
             :return: None
             :exceptions: None
         '''

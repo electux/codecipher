@@ -21,13 +21,13 @@ Info
 '''
 
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.6'
+__version__ = '1.4.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -50,27 +50,27 @@ class KeyGenerator:
                 | generate_key - Generates key for encoding/decoding.
     '''
 
-    _data_len: int | None = field(default=None)
-    _key: str | None = field(default=None)
+    _data_len: Optional[int] = field(default=None)
+    _key: Optional[str] = field(default=None)
 
     @property
-    def data_len(self) -> int | None:
+    def data_len(self) -> Optional[int]:
         '''
             Property method for getting data length.
 
             :return: Data length | None
-            :rtype: <int> | <NoneType>
+            :rtype: <Optional[int]>
             :exceptions: None
         '''
         return self._data_len
 
     @data_len.setter
-    def data_len(self, data_length: int | None) -> None:
+    def data_len(self, data_length: Optional[int]) -> None:
         '''
             Property method for setting data length.
 
             :param data: Data length | None
-            :type data: <int> | <NoneType>
+            :type data: <Optional[int]>
             :return: None
             :exceptions: None
         '''
@@ -78,23 +78,23 @@ class KeyGenerator:
             self._data_len = data_length
 
     @property
-    def key(self) -> str | None:
+    def key(self) -> Optional[str]:
         '''
             Property method for getting key.
 
             :return: Key for encoding/decoding | None
-            :rtype: <str> | <NoneType>
+            :rtype: <Optional[str]>
             :exceptions: None
         '''
         return self._key
 
     @key.setter
-    def key(self, key: str | None) -> None:
+    def key(self, key: Optional[str]) -> None:
         '''
             Property method for setting key.
 
             :param key: Key for encoding/decoding | None
-            :type key: <str> | <NoneType>
+            :type key: <Optional[str]>
             :return: None
             :exceptions: None
         '''
