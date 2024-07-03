@@ -111,6 +111,7 @@ Package structure
         │   ├── encode.py
         │   └── __init__.py
         ├── __init__.py
+        ├── py.typed
         ├── vernam/
         │   ├── decode.py
         │   ├── encode.py
@@ -121,6 +122,8 @@ Package structure
             ├── __init__.py
             ├── key_generator.py
             └── lookup_table.py
+    
+    7 directories, 23 files
 
 Copyright and licence
 ----------------------

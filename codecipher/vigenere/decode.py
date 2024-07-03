@@ -22,7 +22,7 @@ Info
 
 import sys
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 try:
     from codecipher.vigenere.lookup_table import LookUpTable
@@ -34,7 +34,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.6'
+__version__ = '1.4.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -56,26 +56,26 @@ class VigenereDecode:
                 | decode - Decode data from Vigenere format.
     '''
 
-    _decode_data: str | None = field(default=None)
+    _decode_data: Optional[str] = field(default=None)
 
     @property
-    def decode_data(self) -> str | None:
+    def decode_data(self) -> Optional[str]:
         '''
             Property method for getting decode data.
 
             :return: Decode data in str format | None
-            :rtype: <str> | <NoneType>
+            :rtype: <Optional[str]>
             :exceptions: None
         '''
         return self._decode_data
 
     @decode_data.setter
-    def decode_data(self, decode_data_val: str | None) -> None:
+    def decode_data(self, decode_data_val: Optional[str]) -> None:
         '''
             Property method for setting decode data.
 
             :param decode_data_val: Decoded data | None
-            :type decode_data_val: <str> | <NoneType>
+            :type decode_data_val: <Optional[str]>
             :return: None
             :exceptions: None
         '''
@@ -83,15 +83,15 @@ class VigenereDecode:
             self._decode_data = decode_data_val
 
     def _split_data_decode(
-        self, data_to_decode: str | None, key: str | None
+        self, data_to_decode: Optional[str], key: Optional[str]
     ) -> List[str]:
         '''
             Splitting data for decoding.
 
             :param data_to_decode: Data which should be decoded | None
-            :type data_to_decode: <str> | <NoneType>
+            :type data_to_decode: <Optional[str]>
             :param key: Key for decoding | None
-            :type key: <str> | <NoneType>
+            :type key: <Optional[str]>
             :return: List with data for decoding
             :rtype: <List[str]>
             :exceptions: None
@@ -102,14 +102,16 @@ class VigenereDecode:
                 elements.append(data_to_decode[i: i + len(key)])
         return elements
 
-    def decode(self, data_to_decode: str | None, key: str | None) -> None:
+    def decode(
+        self, data_to_decode: Optional[str], key: Optional[str]
+    ) -> None:
         '''
             Decoding data from Vigenere format.
 
             :param data_to_decode: Data which should be decoded
-            :type data_to_decode: <str> | <NoneType>
+            :type data_to_decode: <Optional[str]>
             :param key: Key for decoding
-            :type key: <str> | <NoneType>
+            :type key: <Optional[str]>
             :return: None
             :exceptions: None
         '''
@@ -117,7 +119,7 @@ class VigenereDecode:
             decode_list: List[str] = []
             for element in self._split_data_decode(data_to_decode, key):
                 for index, letter in enumerate(element):
-                    process_index = (
+                    process_index: int = (
                         LookUpTable.LETTER_TO_INDEX[letter] -
                         LookUpTable.LETTER_TO_INDEX[key[index]]
                     ) % len(LookUpTable.ALPHANUM)

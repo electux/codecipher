@@ -21,13 +21,13 @@ Info
 '''
 
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.6'
+__version__ = '1.4.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,40 +48,42 @@ class CaesarDecode:
                 | decode - Decode data from Caesar format.
     '''
 
-    _decode_data: str | None = field(default=None)
+    _decode_data: Optional[str] = field(default=None)
 
     @property
-    def decode_data(self) -> str | None:
+    def decode_data(self) -> Optional[str]:
         '''
             Property method for getting decode data.
 
             :return: Decode data in str format | None
-            :rtype: <str> | <NoneType>
+            :rtype: <Optional[str]>
             :exceptions: None
         '''
         return self._decode_data
 
     @decode_data.setter
-    def decode_data(self, decode_data: str | None) -> None:
+    def decode_data(self, decode_data: Optional[str]) -> None:
         '''
             Property method for setting decode data.
 
             :param decode_data: Decoded data | None
-            :type decode_data: <str> | <NoneType>
+            :type decode_data: <Optional[str]>
             :return: None
             :exceptions: None
         '''
         if bool(decode_data):
             self._decode_data = decode_data
 
-    def decode(self, data: str | None, shift_counter: int | None) -> None:
+    def decode(
+        self, data: Optional[str], shift_counter: Optional[int]
+    ) -> None:
         '''
             Decoding data from Caesar format.
 
             :param data: Data which should be decoded | None
-            :type data: <str> | <NoneType>
+            :type data: <Optional[str]>
             :param shift_counter: Defining the shift count | None
-            :type shift_counter: <int> | <NoneType>
+            :type shift_counter: <Optional[int]>
             :return: None
             :exceptions: None
         '''
@@ -91,10 +93,10 @@ class CaesarDecode:
                 if element.isspace() or element.isnumeric():
                     decode_list.append(element)
                     continue
-                element_index: int | None = None
-                new_index: int | None = None
-                new_unicode: int | None = None
-                new_character: str | None = None
+                element_index: Optional[int] = None
+                new_index: Optional[int] = None
+                new_unicode: Optional[int] = None
+                new_character: Optional[str] = None
                 if element.isupper():
                     element_index = ord(element) - ord('A')
                     new_index = (element_index - shift_counter) % 26

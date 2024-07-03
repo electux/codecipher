@@ -61,7 +61,7 @@
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">codecipher.atbs.lookup_table</span> <span class="kn">import</span> <span class="n">LOOKUP_TABLE</span>
@@ -73,7 +73,7 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;(C) 2024, https://electux.github.io/codecipher&#39;</span>
 <span class="n">__credits__</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/electux/codecipher/blob/main/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.6&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.7&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
@@ -96,26 +96,26 @@
 <span class="sd">                | decode - Decode data from AlephTawBetShin format.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="n">_decode_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">_decode_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">decode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Property method for getting decode data.</span>
 
 <span class="sd">            :return: Decode data in str format | None</span>
-<span class="sd">            :rtype: &lt;str&gt; | &lt;NoneType&gt;</span>
+<span class="sd">            :rtype: &lt;Optional[str]&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decode_data</span>
 
     <span class="nd">@decode_data</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">decode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decode_data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decode_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">decode_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Property method for setting decode data.</span>
 
 <span class="sd">            :param decode_data: Decoded data | None</span>
-<span class="sd">            :type decode_data: &lt;str&gt; | &lt;NoneType&gt;</span>
+<span class="sd">            :type decode_data: &lt;Optional[str]&gt;</span>
 <span class="sd">            :return: None</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -124,12 +124,12 @@
 
 <div class="viewcode-block" id="AlephTawBetShinDecode.decode">
 <a class="viewcode-back" href="../../../codecipher.atbs.decode.html#codecipher.atbs.decode.AlephTawBetShinDecode.decode">[docs]</a>
-    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Decoding data from AlephTawBetShin format.</span>
 
 <span class="sd">            :param data: Data which should be decoded | None</span>
-<span class="sd">            :type data: &lt;str&gt; | &lt;NoneType&gt;</span>
+<span class="sd">            :type data: &lt;Optional[str]&gt;</span>
 <span class="sd">            :return: None</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>

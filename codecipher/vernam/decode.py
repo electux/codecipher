@@ -21,13 +21,13 @@ Info
 '''
 
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__ = '1.4.6'
+__version__ = '1.4.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -48,40 +48,40 @@ class VernamDecode:
                 | decode - Decode data from Vernam format.
     '''
 
-    _decode_data: str | None = field(default=None)
+    _decode_data: Optional[str] = field(default=None)
 
     @property
-    def decode_data(self) -> str | None:
+    def decode_data(self) -> Optional[str]:
         '''
             Property method for getting decode data.
 
             :return: Decode data in str format | None
-            :rtype: <str> | <NoneType>
+            :rtype: <Optional[str]>
             :exceptions: None
         '''
         return self._decode_data
 
     @decode_data.setter
-    def decode_data(self, decode_data: str | None) -> None:
+    def decode_data(self, decode_data: Optional[str]) -> None:
         '''
             Property method for setting decode data.
 
             :param decode_data: Decoded data | None
-            :type decode_data: <str> | <NoneType>
+            :type decode_data: <Optional[str]>
             :return: None
             :exceptions: None
         '''
         if bool(decode_data):
             self._decode_data = decode_data
 
-    def decode(self, data: str | None, key: str | None) -> None:
+    def decode(self, data: Optional[str], key: Optional[str]) -> None:
         '''
             Decoding data from Vernam format.
 
             :param data: Data which should be decoded | None
-            :type data: <str> | <NoneType>
+            :type data: <Optional[str]>
             :param key: Key for decoding | None
-            :type key: <str> | <NoneType>
+            :type key: <Optional[str]>
             :return: None
             :exceptions: None
         '''

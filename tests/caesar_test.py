@@ -24,7 +24,7 @@ Execute
 
 import sys
 import unittest
-from typing import List
+from typing import List, Optional
 
 try:
     from codecipher.caesar import Caesar
@@ -36,7 +36,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/electux/codecipher/blob/dev/LICENSE'
-__version__ = '1.4.6'
+__version__ = '1.4.7'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -69,11 +69,11 @@ class CaesarTestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         '''Call before test cases.'''
-        self.raw_data: str | None = CaesarTestCase.RAW_DATA
-        self.enc_sequence: str | None = CaesarTestCase.ENC_SEQ
-        self.enc_data: str | None = None
-        self.dec_data: str | None = None
-        self.cipher: Caesar | None = Caesar()
+        self.raw_data: Optional[str] = CaesarTestCase.RAW_DATA
+        self.enc_sequence: Optional[str] = CaesarTestCase.ENC_SEQ
+        self.enc_data: Optional[str] = None
+        self.dec_data: Optional[str] = None
+        self.cipher: Optional[Caesar] = Caesar()
 
     def tearDown(self) -> None:
         '''Call after test cases.'''
