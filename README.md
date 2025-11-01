@@ -24,6 +24,7 @@ other information that should be provided before the modules are installed.
 - [Dependencies](#dependencies)
 - [Usage](#usage)
 - [Package structure](#package-structure)
+- [Code coverage](#code-coverage)
 - [Docs](#docs)
 - [Contributing](#contributing)
 - [Copyright and Licence](#copyright-and-licence)
@@ -235,6 +236,34 @@ Package structure
     7 directories, 23 files
 ```
 
+### Code coverage
+
+| Name | Stmts | Miss | Cover |
+|------|-------|------|-------|
+| `codecipher/__init__.py` | 0 | 0 | 100%|
+| `codecipher/a1z52n62/__init__.py` | 16 | 0 | 100%|
+| `codecipher/a1z52n62/decode.py` | 32 | 2 | 94%|
+| `codecipher/a1z52n62/encode.py` | 32 | 2 | 94%|
+| `codecipher/atbs/__init__.py` | 16 | 0 | 100%|
+| `codecipher/atbs/decode.py` | 29 | 2 | 93%|
+| `codecipher/atbs/encode.py` | 29 | 2 | 93%|
+| `codecipher/atbs/lookup_table.py` | 10 | 0 | 100%|
+| `codecipher/b64/__init__.py` | 16 | 0 | 100%|
+| `codecipher/b64/decode.py` | 24 | 2 | 92%|
+| `codecipher/b64/encode.py` | 24 | 2 | 92%|
+| `codecipher/caesar/__init__.py` | 16 | 0 | 100%|
+| `codecipher/caesar/decode.py` | 41 | 2 | 95%|
+| `codecipher/caesar/encode.py` | 41 | 2 | 95%|
+| `codecipher/vernam/__init__.py` | 16 | 0 | 100%|
+| `codecipher/vernam/decode.py` | 36 | 2 | 94%|
+| `codecipher/vernam/encode.py` | 36 | 2 | 94%|
+| `codecipher/vigenere/__init__.py` | 17 | 0 | 100%|
+| `codecipher/vigenere/decode.py` | 37 | 2 | 95%|
+| `codecipher/vigenere/encode.py` | 37 | 2 | 95%|
+| `codecipher/vigenere/key_generator.py` | 37 | 2 | 95%|
+| `codecipher/vigenere/lookup_table.py` | 16 | 0 | 100%|
+| **Total** | 558 | 26 | 95% |
+
 ### Docs
 
 [![documentation status](https://readthedocs.org/projects/codecipher/badge/?version=latest)](https://codecipher.readthedocs.io/en/latest/?badge=latest)
@@ -252,7 +281,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2021 - 2024 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
+Copyright (C) 2021 - 2025 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
 
 **codecipher** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 3.x or,
