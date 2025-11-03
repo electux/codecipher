@@ -29,7 +29,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 project: str = 'codecipher'
 project_copyright: str = '2025, Vladimir Roncevic <elektron.ronca@gmail.com>'
 author: str = 'Vladimir Roncevic <elektron.ronca@gmail.com>'
-version: str = '1.4.8'
+version: str = '1.4.9'
 release: str = 'https://github.com/electux/codecipher/releases'
 extensions: List[str] = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 templates_path: List[str] = ['_templates']

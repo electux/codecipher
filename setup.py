@@ -29,7 +29,7 @@ __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2025, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__: str = '1.4.8'
+__version__: str = '1.4.9'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
@@ -50,7 +50,7 @@ LICENSES: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS
 setup(
     name='codecipher',
-    version='1.4.8',
+    version='1.4.9',
     description='Python Cipher Utilities',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
