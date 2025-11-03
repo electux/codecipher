@@ -35,8 +35,6 @@ other information that should be provided before the modules are installed.
 
 Used next development environment
 
-Used next development environment
-
 ![debian linux os](https://raw.githubusercontent.com/electux/codecipher/dev/docs/debtux.png)
 
 [![codecipher python3 build](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_build.yml/badge.svg)](https://github.com/electux/codecipher/actions/workflows/codecipher_python3_build.yml)
