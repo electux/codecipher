@@ -136,7 +136,7 @@ Copyright and licence
 .. |license: apache 2.0| image:: https://img.shields.io/badge/license-apache%202.0-blue.svg
    :target: https://opensource.org/licenses/apache-2.0
 
-Copyright (C) 2021 - 2025 by `electux.github.io/codecipher <https://electux.github.io/codecipher>`_
+Copyright (C) 2021 - 2026 by `electux.github.io/codecipher <https://electux.github.io/codecipher>`_
 
 **codecipher** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 3.x or,
