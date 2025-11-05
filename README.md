@@ -279,7 +279,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2021 - 2025 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
+Copyright (C) 2021 - 2026 by [electux.github.io/codecipher](https://electux.github.io/codecipher/)
 
 **codecipher** is free software; you can redistribute it and/or modify
 it under the same terms as Python itself, either Python version 3.x or,

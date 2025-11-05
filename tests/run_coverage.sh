@@ -14,4 +14,5 @@ python3 -m coverage xml -o codecipher_coverage.xml
 python3 -m coverage json -o codecipher_coverage.json
 python3 -m coverage report --format=markdown -m
 python3 ats_coverage.py -n codecipher
+rm htmlcov/.gitignore
 echo "Done"

@@ -38,7 +38,6 @@ RUN python3 -m pip install --upgrade build
 RUN rm -f get-pip.py
 RUN mkdir /codecipher/
 COPY codecipher /codecipher/
-COPY setup.cfg /
 COPY pyproject.toml /
 COPY MANIFEST.in /
 COPY setup.py /
@@ -52,7 +51,6 @@ RUN pip install /dist/codecipher-*.whl
 RUN rm -rf /codecipher*
 RUN rm -rf dist/
 RUN rm -rf tests/
-RUN rm -f setup.cfg
 RUN rm -f pyproject.toml
 RUN rm -f MANIFEST.in
 RUN rm -f setup.py
