@@ -2,7 +2,7 @@
 
 '''
 Module
-    decode.py
+    ib64decoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,13 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class AlephTawBetShinDecode with attribute(s) and method(s).
-    Creates decode class with backend API.
+    Defines interface IB64Decoder for B64Decoder class.
 '''
 
-from dataclasses import dataclass, field
-from base64 import b64decode
-from typing import List, Optional
+from abc import ABC, abstractmethod
+from typing import Optional, List
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -34,55 +32,39 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-@dataclass
-class B64Decode:
+class IB64Decoder(ABC):
     '''
-        Defines class AlephTawBetShinDecode with attribute(s) and method(s).
-        Creates decode class with backend API.
+        Defines interface IB64Decoder with methods.
 
         It defines:
 
-            :attributes:
-                | _decode_data - Data decode container.
+            :attributes: None
             :methods:
-                | decode_data - Property methods for decode data.
-                | decode - Decode data from AlephTawBetShin format.
+                | decode_data - Property method for getting decode data.
+                | decode - Decoding data from B64 format.
     '''
 
-    _decode_data: Optional[str] = field(default=None)
-
     @property
+    @abstractmethod
     def decode_data(self) -> Optional[str]:
         '''
             Property method for getting decode data.
 
-            :return: Decode data in str format | None
+            :return: Decoded data | None
             :rtype: <Optional[str]>
-            :exceptions: None
+            :exceptions: NotImplementedError
         '''
-        return self._decode_data
+        raise NotImplementedError('Property decode_data must be implemented.')
 
-    @decode_data.setter
-    def decode_data(self, decode_data: Optional[str]) -> None:
+    @abstractmethod
+    def decode(self, data: Optional[str]) -> bool:
         '''
-            Property method for setting decode data.
-
-            :param decode_data: Decoded data
-            :type decode_data: <Optional[str]>
-            :return: None
-            :exceptions: None
-        '''
-        if bool(decode_data):
-            self._decode_data = decode_data
-
-    def decode(self, data: Optional[str]) -> None:
-        '''
-            Decoding data from AlephTawBetShin format.
+            Decoding data from B64 format.
 
             :param data: Data which should be decoded | None
             :type data: <Optional[str]>
-            :return: None
-            :exceptions: None
+            :return: True (if success) | False (if fail)
+            :rtype: <bool>
+            :exceptions: NotImplementedError
         '''
-        if bool(data):
-            self._decode_data = b64decode(data).decode()
+        raise NotImplementedError('Method decode must be implemented.')

@@ -2,7 +2,7 @@
 
 '''
 Module
-    icharacter_validator.py
+    ib64encoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface ICharacterValidator for CharacterValidator class.
+    Defines interface IB64Encoder for B64Encoder class.
 '''
 
 from abc import ABC, abstractmethod
@@ -32,26 +32,39 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class ICharacterValidator(ABC):
+class IB64Encoder(ABC):
     '''
-        Defines interface ICharacterValidator with methods.
+        Defines interface IB64Encoder with methods.
 
         It defines:
 
             :attributes: None
             :methods:
-                | is_valid_char - Validates if a character is a valid constituent.
+                | encode_data - Property method for getting encode data.
+                | encode - Encoding data to B64 format.
     '''
 
+    @property
     @abstractmethod
-    def is_valid_char(self, char: Optional[str]) -> bool:
+    def encode_data(self) -> Optional[str]:
         '''
-            Validating if a character is a valid A1z52N62 alphabet constituent.
+            Property method for getting encode data.
 
-            :param char: Single character to validate | None
-            :type char: <Optional[str]>
-            :return: True (if valid) | False (if invalid)
+            :return: Encoded data | None
+            :rtype: <Optional[str]>
+            :exceptions: NotImplementedError
+        '''
+        raise NotImplementedError('Property encode_data must be implemented.')
+
+    @abstractmethod
+    def encode(self, data: Optional[str]) -> bool:
+        '''
+            Encoding data to B64 format.
+
+            :param data: Data which should be encoded | None
+            :type data: <Optional[str]>
+            :return: True (if success) | False (if fail)
             :rtype: <bool>
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError("Subclasses must implement is_valid_char method")
+        raise NotImplementedError('Method encode must be implemented.')

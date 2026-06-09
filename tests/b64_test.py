@@ -22,15 +22,10 @@ Execute
     python3 -m unittest -v b64_test
 '''
 
-import sys
 import unittest
+from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-
-try:
-    from codecipher.b64 import B64
-except ImportError as test_error_message:
-    # Force close python test #################################################
-    sys.exit(f'\n{__file__}\n{test_error_message}\n')
+from codecipher.b64 import B64
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -66,6 +61,10 @@ class B64TestCase(unittest.TestCase):
 
     RAW_DATA: str = 'More Human Than Human01 Is Our Motto'
     ENC_SEQ: str = 'TW9yZSBIdW1hbiBUaGFuIEh1bWFuMDEgSXMgT3VyIE1vdHRv'
+    EMPTY_DATA: str = ''
+    EMPTY_ENC_SEQ: str = ''
+    UNICODE_DATA: str = 'Привет, мир! 👋'
+    UNICODE_ENC_SEQ: str = '0J/RgNC40LLQtdGCLCDQvNC40YAhIPCfkYs='
 
     def setUp(self) -> None:
         '''Call before test cases.'''
@@ -97,6 +96,106 @@ class B64TestCase(unittest.TestCase):
             self.cipher.decode(self.enc_data)
             self.dec_data = self.cipher.decode_data
             self.assertEqual(self.raw_data, self.dec_data)
+
+    def test_b64_encoding_empty_string(self) -> None:
+        '''Test encoding an empty string.'''
+        if bool(self.cipher):
+            # B64.encode returns False for empty string and doesn't set encode_data
+            result = self.cipher.encode(self.EMPTY_DATA)
+            self.assertFalse(result)
+            self.enc_data = self.cipher.encode_data
+            self.assertIsNone(self.enc_data)
+
+    def test_b64_decoding_empty_string(self) -> None:
+        '''Test decoding an empty string.'''
+        if bool(self.cipher):
+            # B64.decode returns False for empty string and doesn't set decode_data
+            result = self.cipher.decode(self.EMPTY_ENC_SEQ)
+            self.assertFalse(result)
+            self.dec_data = self.cipher.decode_data
+            self.assertIsNone(self.dec_data)
+
+    def test_b64_with_none_data(self) -> None:
+        '''Test encoding and decoding with None.'''
+        if bool(self.cipher):
+            self.assertFalse(self.cipher.encode(None))
+            self.assertFalse(self.cipher.decode(None))
+
+    def test_b64_encoding_with_spaces(self) -> None:
+        '''Test encoding a string with only spaces.'''
+        data_with_spaces = '   '
+        expected_encoded = 'ICAg'
+        if bool(self.cipher):
+            self.cipher.encode(data_with_spaces)
+            self.enc_data = self.cipher.encode_data
+            self.assertEqual(expected_encoded, self.enc_data)
+
+    def test_b64_decoding_with_spaces(self) -> None:
+        '''Test decoding a string with only spaces.'''
+        data_with_spaces = '   '
+        expected_encoded = 'ICAg'
+        if bool(self.cipher):
+            self.cipher.decode(expected_encoded)
+            self.dec_data = self.cipher.decode_data
+            self.assertEqual(data_with_spaces, self.dec_data)
+
+    def test_b64_encoding_with_numbers_and_symbols(self) -> None:
+        '''Test encoding a string with numbers and symbols.'''
+        data = '123!@#abcABC'
+        expected_encoded = 'MTIzIUAjYWJjQUJD'
+        if bool(self.cipher):
+            self.cipher.encode(data)
+            self.enc_data = self.cipher.encode_data
+            self.assertEqual(expected_encoded, self.enc_data)
+
+    def test_b64_decoding_with_numbers_and_symbols(self) -> None:
+        '''Test decoding a string with numbers and symbols.'''
+        data = '123!@#abcABC'
+        expected_encoded = 'MTIzIUAjYWJjQUJD'
+        if bool(self.cipher):
+            self.cipher.decode(expected_encoded)
+            self.dec_data = self.cipher.decode_data
+            self.assertEqual(data, self.dec_data)
+
+    def test_b64_encoding_unicode(self) -> None:
+        '''Test encoding a Unicode string.'''
+        if bool(self.cipher):
+            self.cipher.encode(self.UNICODE_DATA)
+            self.enc_data = self.cipher.encode_data
+            # The actual base64 encoding of 'Привет, мир! 👋' is '0J/QtdC70Ywg0LzQvtC7ISA47u+x'
+            # when encoded as UTF-8 bytes.
+            self.assertEqual(self.UNICODE_ENC_SEQ, self.enc_data)
+
+    def test_b64_decoding_unicode(self) -> None:
+        '''Test decoding a Unicode string.'''
+        if bool(self.cipher):
+            self.cipher.decode(self.UNICODE_ENC_SEQ)
+            self.dec_data = self.cipher.decode_data
+            self.assertEqual(self.UNICODE_DATA, self.dec_data)
+
+    def test_b64_mock_interactions(self) -> None:
+        '''Test interactions with a mocked B64 cipher object.'''
+        mock_cipher = MagicMock(spec=B64)
+        test_data = "Hello Mock!"
+        mock_encoded_data = "SGVsbG8gTW9jayE="
+        mock_decoded_data = "Hello Mock!"
+
+        # Configure the mock's encode method
+        mock_cipher.encode.return_value = True
+        type(mock_cipher).encode_data = PropertyMock(return_value=mock_encoded_data)
+
+        # Configure the mock's decode method
+        mock_cipher.decode.return_value = True
+        type(mock_cipher).decode_data = PropertyMock(return_value=mock_decoded_data)
+
+        # Use the mocked cipher
+        self.assertTrue(mock_cipher.encode(test_data))
+        self.assertEqual(mock_encoded_data, mock_cipher.encode_data)
+        mock_cipher.encode.assert_called_once_with(test_data)
+
+        self.assertTrue(mock_cipher.decode(mock_encoded_data))
+        self.assertEqual(mock_decoded_data, mock_cipher.decode_data)
+        mock_cipher.decode.assert_called_once_with(mock_encoded_data)
 
 
 if __name__ == '__main__':

@@ -20,15 +20,19 @@ Info
     Creates container class with aggregate backend API.
 '''
 
-import sys
 from typing import List
-
-try:
-    from codecipher.b64.encode import B64Encode
-    from codecipher.b64.decode import B64Decode
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from .b64 import B64
+from .ib64 import IB64
+from .b64encoder import B64Encoder
+from .b64decoder import B64Decoder
+from .ib64encoder import IB64Encoder
+from .ib64decoder import IB64Decoder
+from .validation_engine import ValidationEngine
+from .ivalidation_engine import IValidationEngine
+from .data_validator import DataValidator
+from .idata_validator import IDataValidator
+from .character_validator import CharacterValidator
+from .icharacter_validator import ICharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -39,24 +43,17 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-
-class B64(B64Encode, B64Decode):
-    '''
-        Defines class B64 with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
-
-        It defines:
-
-            :attributes:
-                | None.
-            :methods:
-                | __init__ - Initials B64 constructor.
-    '''
-
-    def __init__(self) -> None:
-        '''
-            Initials B64 constructor.
-
-            :exceptions: None
-        '''
-        super().__init__()
+__all__: List[str] = [
+    'IB64',
+    'IB64Encoder',
+    'IB64Decoder',
+    'B64Encoder',
+    'B64Decoder',
+    'B64',
+    'IValidationEngine',
+    'ValidationEngine',
+    'IDataValidator',
+    'DataValidator',
+    'ICharacterValidator',
+    'CharacterValidator'
+]

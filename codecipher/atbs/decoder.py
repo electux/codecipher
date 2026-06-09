@@ -16,19 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class AlephTawBetShinDecode with attribute(s) and method(s).
+    Defines class ATBSDecoder with attribute(s) and method(s).
     Creates decode class with backend API.
 '''
 
-import sys
-from dataclasses import dataclass, field
 from typing import List, Optional
-
-try:
-    from codecipher.atbs.lookup_table import LOOKUP_TABLE
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from .idecoder import IATBSDecoder
+from .lookup_table import LOOKUP_TABLE
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,22 +34,28 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-@dataclass
-class AlephTawBetShinDecode:
+class ATBSDecoder(IATBSDecoder):
     '''
-        Defines class AlephTawBetShinDecode with attribute(s) and method(s).
+        Defines class ATBSDecoder with attribute(s) and method(s).
         Creates decode class with backend API.
 
         It defines:
 
             :attributes:
-                | _decode_data - Data decode container.
+                | __decode_data - Data decode container.
             :methods:
+                | __init__ - Initializes ATBSDecoder constructor.
                 | decode_data - Property methods for decode data.
-                | decode - Decode data from AlephTawBetShin format.
+                | decode - Decode data from ATBS format.
     '''
 
-    _decode_data: Optional[str] = field(default=None)
+    def __init__(self) -> None:
+        '''
+            Initializes ATBSDecoder constructor.
+
+            :exceptions: None
+        '''
+        self.__decode_data: Optional[str] = None
 
     @property
     def decode_data(self) -> Optional[str]:
@@ -66,7 +66,7 @@ class AlephTawBetShinDecode:
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self._decode_data
+        return self.__decode_data
 
     @decode_data.setter
     def decode_data(self, decode_data: Optional[str]) -> None:
@@ -79,11 +79,11 @@ class AlephTawBetShinDecode:
             :exceptions: None
         '''
         if bool(decode_data):
-            self._decode_data = decode_data
+            self.__decode_data = decode_data
 
-    def decode(self, data: Optional[str]) -> None:
+    def decode(self, data: Optional[str]) -> bool:
         '''
-            Decoding data from AlephTawBetShin format.
+            Decoding data from ATBS format.
 
             :param data: Data which should be decoded | None
             :type data: <Optional[str]>
@@ -94,4 +94,6 @@ class AlephTawBetShinDecode:
             decode_list: List[str] = []
             for element in data:
                 decode_list.append(LOOKUP_TABLE[element])
-            self._decode_data = ''.join(decode_list)
+            self.__decode_data = ''.join(decode_list)
+            return True
+        return False

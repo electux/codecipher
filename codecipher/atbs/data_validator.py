@@ -2,7 +2,7 @@
 
 '''
 Module
-    idata_validator.py
+    data_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface IDataValidator for DataValidator class.
+    Defines class DataValidator for ATBS.
 '''
 
 from typing import List, Optional
@@ -37,7 +37,7 @@ __status__: str = 'Updated'
 class DataValidator(IDataValidator):
     '''
         Defines class DataValidator with attribute(s) and method(s).
-        Creates data validator class with backend API.
+        Creates data validator class for ATBS.
 
         It defines:
 
@@ -45,7 +45,7 @@ class DataValidator(IDataValidator):
                 | __char_validator - Validator for individual characters.
             :methods:
                 | __init__ - Initializes DataValidator constructor.
-                | is_valid - Validates if data is in A1z52N62 format.
+                | is_valid - Validates if data is in ATBS format.
     '''
 
     def __init__(self, char_validator: Optional[ICharacterValidator] = None) -> None:
@@ -60,7 +60,7 @@ class DataValidator(IDataValidator):
 
     def is_valid(self, data: Optional[str]) -> bool:
         '''
-            Validating if data is in A1z52N62 format.
+            Validating if data is in ATBS format.
 
             :param data: Data which should be validated | None
             :type data: <Optional[str]>

@@ -16,19 +16,22 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class AlephTawBetShin with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Initialization for atbs package.
 '''
 
-import sys
 from typing import List
-
-try:
-    from codecipher.atbs.encode import AlephTawBetShinEncode
-    from codecipher.atbs.decode import AlephTawBetShinDecode
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from .iatbs import IATBS
+from .iencoder import IATBSEncoder
+from .idecoder import IATBSDecoder
+from .encoder import ATBSEncoder
+from .decoder import ATBSDecoder
+from .atbs import ATBS
+from .ivalidation_engine import IValidationEngine
+from .validation_engine import ValidationEngine
+from .idata_validator import IDataValidator
+from .data_validator import DataValidator
+from .icharacter_validator import ICharacterValidator
+from .character_validator import CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -39,24 +42,17 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-
-class AlephTawBetShin(AlephTawBetShinEncode, AlephTawBetShinDecode):
-    '''
-        Defines class AlephTawBetShin with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
-
-        It defines:
-
-            :attributes:
-                | None.
-            :methods:
-                | __init__ - Initials AlephTawBetShin constructor.
-    '''
-
-    def __init__(self) -> None:
-        '''
-            Initials AlephTawBetShin constructor.
-
-            :exceptions: None
-        '''
-        super().__init__()
+__all__: List[str] = [
+    'IATBS',
+    'IATBSEncoder',
+    'IATBSDecoder',
+    'ATBSEncoder',
+    'ATBSDecoder',
+    'ATBS',
+    'IValidationEngine',
+    'ValidationEngine',
+    'IDataValidator',
+    'DataValidator',
+    'ICharacterValidator',
+    'CharacterValidator'
+]

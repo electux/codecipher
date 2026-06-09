@@ -2,7 +2,7 @@
 
 '''
 Module
-    icharacter_validator.py
+    idecoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface ICharacterValidator for CharacterValidator class.
+    Defines interface IATBSDecoder for ATBSDecode class.
 '''
 
 from abc import ABC, abstractmethod
@@ -32,26 +32,39 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class ICharacterValidator(ABC):
+class IATBSDecoder(ABC):
     '''
-        Defines interface ICharacterValidator with methods.
+        Defines interface IATBSDecoder with methods.
 
         It defines:
 
             :attributes: None
             :methods:
-                | is_valid_char - Validates if a character is a valid constituent.
+                | decode_data - Property method for getting decode data.
+                | decode - Decoding data from ATBS format.
     '''
 
+    @property
     @abstractmethod
-    def is_valid_char(self, char: Optional[str]) -> bool:
+    def decode_data(self) -> Optional[str]:
         '''
-            Validating if a character is a valid A1z52N62 alphabet constituent.
+            Property method for getting decode data.
 
-            :param char: Single character to validate | None
-            :type char: <Optional[str]>
-            :return: True (if valid) | False (if invalid)
+            :return: Decoded data | None
+            :rtype: <Optional[str]>
+            :exceptions: NotImplementedError
+        '''
+        raise NotImplementedError('Property decode_data must be implemented.')
+
+    @abstractmethod
+    def decode(self, data: Optional[str]) -> bool:
+        '''
+            Decoding data from ATBS format.
+
+            :param data: Data which should be decoded | None
+            :type data: <Optional[str]>
+            :return: True (if success) | False (if fail)
             :rtype: <bool>
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError("Subclasses must implement is_valid_char method")
+        raise NotImplementedError('Method decode must be implemented.')

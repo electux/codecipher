@@ -2,7 +2,7 @@
 
 '''
 Module
-    encode.py
+    b64encoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,19 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class AlephTawBetShinEncode with attribute(s) and method(s).
+    Defines class B64Encoder with attribute(s) and method(s).
     Creates encode class with backend API.
 '''
 
-import sys
-from dataclasses import dataclass, field
+from base64 import b64encode
 from typing import List, Optional
-
-try:
-    from codecipher.atbs.lookup_table import LOOKUP_TABLE
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from .ib64encoder import IB64Encoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,22 +34,26 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-@dataclass
-class AlephTawBetShinEncode:
+class B64Encoder(IB64Encoder):
     '''
-        Defines class AlephTawBetShinEncode with attribute(s) and method(s).
+        Defines class B64Encoder with attribute(s) and method(s).
         Creates encode class with backend API.
 
         It defines:
 
             :attributes:
-                | _encode_data - Data encode container.
+                | __encode_data - Data encode container.
             :methods:
+                | __init__ - Initializes B64Encoder constructor.
                 | encode_data - Property methods for encode data.
-                | encode - Encode data to AlephTawBetShin format.
+                | encode - Encode data to B64 format.
     '''
 
-    _encode_data: Optional[str] = field(default=None)
+    def __init__(self) -> None:
+        '''
+            Initializes B64Encoder constructor.
+        '''
+        self.__encode_data: Optional[str] = None
 
     @property
     def encode_data(self) -> Optional[str]:
@@ -66,7 +64,7 @@ class AlephTawBetShinEncode:
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self._encode_data
+        return self.__encode_data
 
     @encode_data.setter
     def encode_data(self, encode_data: Optional[str]) -> None:
@@ -79,19 +77,19 @@ class AlephTawBetShinEncode:
             :exceptions: None
         '''
         if bool(encode_data):
-            self._encode_data = encode_data
+            self.__encode_data = encode_data
 
-    def encode(self, data: Optional[str]) -> None:
+    def encode(self, data: Optional[str]) -> bool:
         '''
-            Encoding data to AlephTawBetShin format.
+            Encoding data to B64 format.
 
             :param data: Data which should be encoded | None
             :type data: <Optional[str]>
-            :return: None
+            :return: True (if success) | False (if fail)
+            :rtype: <bool>
             :exceptions: None
         '''
         if bool(data):
-            encode_list: List[str] = []
-            for element in data:
-                encode_list.append(LOOKUP_TABLE[element])
-            self._encode_data = ''.join(encode_list)
+            self.__encode_data = (b64encode(data.encode())).decode()
+            return True
+        return False

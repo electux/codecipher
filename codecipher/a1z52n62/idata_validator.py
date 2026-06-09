@@ -40,13 +40,13 @@ class IDataValidator(ABC):
 
             :attributes: None
             :methods:
-                | is_valid - Validates if data is in A1z52N62 format.
+                | is_valid - Validates data using specific validation logic.
     '''
 
     @abstractmethod
     def is_valid(self, data: Optional[str]) -> bool:
         '''
-            Validates if data is in A1z52N62 format.
+            Validating data using specific validation logic.
 
             :param data: Data which should be validated | None
             :type data: <Optional[str]>

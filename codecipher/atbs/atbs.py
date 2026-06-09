@@ -2,7 +2,7 @@
 
 '''
 Module
-    a1z52n62.py
+    aleph_taw_bet_shin.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,22 +16,20 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class A1z52N62 with attribute(s) and method(s).
+    Defines class AlephTawBetShin with attribute(s) and method(s).
     Creates container class with aggregate backend API.
 '''
 
-from typing import List, Optional
-from .ia1z52n62 import IA1z52N62
-from .iencoder import IA1z52N62Encoder
-from .encoder import A1z52N62Encoder
-from .idecoder import IA1z52N62Decoder
-from .decoder import A1z52N62Decoder
-from .a1z52n62_config import A1z52N62Config
+from typing import Optional, List
+from .iatbs import IATBS
+from .iencoder import IATBSEncoder
+from .encoder import ATBSEncoder
+from .idecoder import IATBSDecoder
+from .decoder import ATBSDecoder
 from .ivalidation_engine import IValidationEngine
 from .validation_engine import ValidationEngine
 from .data_validator import DataValidator
 from .character_validator import CharacterValidator
-
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -43,9 +41,9 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class A1z52N62(IA1z52N62):
+class ATBS(IATBS):
     '''
-        Defines class A1z52N62 with attribute(s) and method(s).
+        Defines class ATBS with attribute(s) and method(s).
         Creates container class with aggregate backend API.
 
         It defines:
@@ -56,50 +54,41 @@ class A1z52N62(IA1z52N62):
                 | __encoder - Encoder for algorithm.
                 | __decoder - Decoder for algorithm.
             :methods:
-                | __init__ - Initializes A1z52N62 constructor.
-                | encode - Encoding data to A1z52N62 format.
+                | __init__ - Initializes ATBS constructor.
+                | encode - Encoding data to ATBS format.
                 | encode_data - Property method for getting encode data.
-                | decode - Decoding data from A1z52N62 format.
+                | decode - Decoding data from ATBS format.
                 | decode_data - Property method for getting decode data.
     '''
 
     def __init__(
         self,
-        config: Optional[A1z52N62Config] = None,
         validation_engine: Optional[IValidationEngine] = None,
-        encoder: Optional[IA1z52N62Encoder] = None,
-        decoder: Optional[IA1z52N62Decoder] = None,
+        encoder: Optional[IATBSEncoder] = None,
+        decoder: Optional[IATBSDecoder] = None,
     ) -> None:
         '''
-            Initializes A1z52N62 constructor.
+            Initializes ATBS constructor.
 
             :param config: Configuration for algorithm | None
-            :type config: <Optional[A1z52N62Config]>
+            :type config: <Optional[ATBSConfig]>
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
             :param encoder: Encoder for algorithm | None
-            :type encoder: <Optional[IA1z52N62Encoder]>
+            :type encoder: <Optional[IATBSEncoder]>
             :param decoder: Decoder for algorithm | None
-            :type decoder: <Optional[IA1z52N62Decoder]>
+            :type decoder: <Optional[IATBSDecoder]>
             :exceptions: None
         '''
-        self.__config = config or A1z52N62Config()
-
         self.__validation_engine: IValidationEngine = validation_engine or ValidationEngine(
             [DataValidator(CharacterValidator())]
         )
-        self.__encoder: IA1z52N62Encoder = encoder or A1z52N62Encoder(_config=self.__config)
-        self.__decoder: IA1z52N62Decoder = decoder or A1z52N62Decoder(_config=self.__config)
+        self.__encoder: IATBSEncoder = encoder or ATBSEncoder()
+        self.__decoder: IATBSDecoder = decoder or ATBSDecoder()
 
     def encode(self, data: Optional[str]) -> bool:
         '''
-            Encoding data to A1z52N62 format.
-
-            :param data: Data which should be encoded | None
-            :type data: <Optional[str]>
-            :return: True (if success) | False (if fail)
-            :rtype: <bool>
-            :exceptions: None
+            Encoding data to ATBS format.
         '''
         if not bool(data) or not self.__validation_engine.is_valid(data):
             return False
@@ -109,22 +98,12 @@ class A1z52N62(IA1z52N62):
     def encode_data(self) -> Optional[str]:
         '''
             Property method for getting encode data.
-
-            :return: Encoded data
-            :rtype: <Optional[str]>
-            :exceptions: None
         '''
         return self.__encoder.encode_data
 
     def decode(self, data: Optional[str]) -> bool:
         '''
-            Decoding data from A1z52N62 format.
-
-            :param data: Data which should be decoded | None
-            :type data: <Optional[str]>
-            :return: True (if success) | False (if fail)
-            :rtype: <bool>
-            :exceptions: None
+            Decoding data from ATBS format.
         '''
         if not bool(data) or not self.__decoder.decode(data):
             return False
@@ -135,9 +114,5 @@ class A1z52N62(IA1z52N62):
     def decode_data(self) -> Optional[str]:
         '''
             Property method for getting decode data.
-
-            :return: Decoded data
-            :rtype: <Optional[str]>
-            :exceptions: None
         '''
         return self.__decoder.decode_data

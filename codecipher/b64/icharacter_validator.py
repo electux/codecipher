@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    icharacter_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,17 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class Caesar with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Defines interface ICharacterValidator for CharacterValidator class.
 '''
 
-from typing import List
-from .caesar import Caesar
-from .icaesar import ICaesar
-from .icaesar_encoder import ICaesarEncoder
-from .icaesar_decoder import ICaesarDecoder
-from .encoder import CaesarEncoder
-from .decoder import CaesarDecoder
+from abc import ABC, abstractmethod
+from typing import Optional, List
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -37,11 +31,27 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-__all__: List[str] = [
-    'Caesar',
-    'ICaesar',
-    'ICaesarEncoder',
-    'ICaesarDecoder',
-    'CaesarEncoder',
-    'CaesarDecoder'
-]
+
+class ICharacterValidator(ABC):
+    '''
+        Defines interface ICharacterValidator with methods.
+
+        It defines:
+
+            :attributes: None
+            :methods:
+                | is_valid_char - Validates if a character is a valid constituent.
+    '''
+
+    @abstractmethod
+    def is_valid_char(self, char: Optional[str]) -> bool:
+        '''
+            Validating if a character is a valid B64 alphabet constituent.
+
+            :param char: Single character to validate | None
+            :type char: <Optional[str]>
+            :return: True (if valid) | False (if invalid)
+            :rtype: <bool>
+            :exceptions: NotImplementedError
+        '''
+        raise NotImplementedError("Subclasses must implement is_valid_char method")

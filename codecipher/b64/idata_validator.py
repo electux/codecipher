@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    idata_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,17 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class Caesar with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Defines interface IDataValidator for DataValidator class.
 '''
 
-from typing import List
-from .caesar import Caesar
-from .icaesar import ICaesar
-from .icaesar_encoder import ICaesarEncoder
-from .icaesar_decoder import ICaesarDecoder
-from .encoder import CaesarEncoder
-from .decoder import CaesarDecoder
+from abc import ABC, abstractmethod
+from typing import List, Optional
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -37,11 +31,27 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-__all__: List[str] = [
-    'Caesar',
-    'ICaesar',
-    'ICaesarEncoder',
-    'ICaesarDecoder',
-    'CaesarEncoder',
-    'CaesarDecoder'
-]
+
+class IDataValidator(ABC):
+    '''
+        Defines interface IDataValidator with methods.
+
+        It defines:
+
+            :attributes: None
+            :methods:
+                | is_valid - Validates data using specific validation logic.
+    '''
+
+    @abstractmethod
+    def is_valid(self, data: Optional[str]) -> bool:
+        '''
+            Validating data using specific validation logic.
+
+            :param data: Data which should be validated | None
+            :type data: <Optional[str]>
+            :return: True (if valid) | False (if invalid)
+            :rtype: <bool>
+            :exceptions: NotImplementedError
+        '''
+        raise NotImplementedError('Method is_valid must be implemented.')

@@ -2,7 +2,7 @@
 
 '''
 Module
-    idata_validator.py
+    ivalidation_engine.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,13 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface IDataValidator for DataValidator class.
+    Defines interface IValidationEngine for ValidationEngine class.
 '''
 
+from abc import ABC, abstractmethod
 from typing import List, Optional
 from .idata_validator import IDataValidator
-from .icharacter_validator import ICharacterValidator
-from .character_validator import CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -34,44 +33,39 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class DataValidator(IDataValidator):
+class IValidationEngine(ABC):
     '''
-        Defines class DataValidator with attribute(s) and method(s).
-        Creates data validator class with backend API.
+        Defines interface IValidationEngine with methods.
 
         It defines:
 
-            :attributes:
-                | __char_validator - Validator for individual characters.
+            :attributes: None
             :methods:
-                | __init__ - Initializes DataValidator constructor.
-                | is_valid - Validates if data is in A1z52N62 format.
+                | add_validator - Adds a new validator to the engine.
+                | is_valid - Validates data using all registered validators.
     '''
 
-    def __init__(self, char_validator: Optional[ICharacterValidator] = None) -> None:
+    @abstractmethod
+    def add_validator(self, validator: IDataValidator) -> None:
         '''
-            Initializes DataValidator constructor.
+            Adding a new validator to the engine.
 
-            :param char_validator: Character validator instance | None
-            :type char_validator: <Optional[ICharacterValidator]>
-            :exceptions: None
+            :param validator: Validator instance to add.
+            :type validator: <IDataValidator>
+            :return: None
+            :exceptions: NotImplementedError
         '''
-        self.__char_validator: ICharacterValidator = char_validator or CharacterValidator()
+        raise NotImplementedError('Method add_validator must be implemented.')
 
+    @abstractmethod
     def is_valid(self, data: Optional[str]) -> bool:
         '''
-            Validating if data is in A1z52N62 format.
+            Validating data using all registered validators.
 
             :param data: Data which should be validated | None
             :type data: <Optional[str]>
-            :return: True (if valid) | False (if invalid)
+            :return: True (if all valid) | False (if any invalid)
             :rtype: <bool>
-            :exceptions: None
+            :exceptions: NotImplementedError
         '''
-        if not bool(data):
-            return False
-
-        for element in data:
-            if not self.__char_validator.is_valid_char(element):
-                return False
-        return True
+        raise NotImplementedError('Method is_valid must be implemented.')

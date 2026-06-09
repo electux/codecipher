@@ -105,7 +105,7 @@ You can use Dockerfile to create image/container.
 
 ```python
 from codecipher.a1z52n62 import A1z52N62
-from codecipher.atbs import AlephTawBetShin
+from codecipher.atbs import ATBS
 from codecipher.b64 import B64
 from codecipher.caesar import Caesar
 from codecipher.vigenere import Vigenere
@@ -124,8 +124,8 @@ cipher.decode(cipher.encode_data)
 print(cipher.decode_data)
 print(50*'=')
 
-print("AlephTawBetShin cipher")
-cipher = AlephTawBetShin()
+print("ATBS cipher")
+cipher = ATBS()
 data = "More Human Than Human01 Is Our Motto"
 # encoding data
 cipher.encode(data)

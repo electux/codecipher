@@ -2,7 +2,7 @@
 
 '''
 Module
-    encode.py
+    iencoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,13 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class B64Encode with attribute(s) and method(s).
-    Creates encode class with backend API.
+    Defines interface IATBSEncoder for ATBSEncode class.
 '''
 
-from dataclasses import dataclass, field
-from base64 import b64encode
-from typing import List, Optional
+from abc import ABC, abstractmethod
+from typing import Optional, List
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -34,55 +32,39 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-@dataclass
-class B64Encode:
+class IATBSEncoder(ABC):
     '''
-        Defines class B64Encode with attribute(s) and method(s).
-        Creates encode class with backend API.
+        Defines interface IATBSEncoder with methods.
 
         It defines:
 
-            :attributes:
-                | _encode_data - Data encode container.
+            :attributes: None
             :methods:
-                | encode_data - Property methods for encode data.
-                | encode - Encode data to AlephTawBetShin format.
+                | encode_data - Property method for getting encode data.
+                | encode - Encoding data to ATBS format.
     '''
 
-    _encode_data: Optional[str] = field(default=None)
-
     @property
+    @abstractmethod
     def encode_data(self) -> Optional[str]:
         '''
             Property method for getting encode data.
 
             :return: Encoded data | None
             :rtype: <Optional[str]>
-            :exceptions: None
+            :exceptions: NotImplementedError
         '''
-        return self._encode_data
+        raise NotImplementedError('Property encode_data must be implemented.')
 
-    @encode_data.setter
-    def encode_data(self, encode_data: Optional[str]) -> None:
+    @abstractmethod
+    def encode(self, data: Optional[str]) -> bool:
         '''
-            Property method for setting encode data.
-
-            :param encode_data: Encode data | None
-            :type encode_data: <Optional[str]>
-            :return: None
-            :exceptions: None
-        '''
-        if bool(encode_data):
-            self._encode_data = encode_data
-
-    def encode(self, data: Optional[str]) -> None:
-        '''
-            Encoding data to AlephTawBetShin format.
+            Encoding data to ATBS format.
 
             :param data: Data which should be encoded | None
             :type data: <Optional[str]>
-            :return: None
-            :exceptions: None
+            :return: True (if success) | False (if fail)
+            :rtype: <bool>
+            :exceptions: NotImplementedError
         '''
-        if bool(data):
-            self._encode_data = (b64encode(data.encode())).decode()
+        raise NotImplementedError('Method encode must be implemented.')

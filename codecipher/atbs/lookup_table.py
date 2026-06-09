@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines dict LOOKUP_TABLE for AlephTawBetShin format.
+    Defines dict LOOKUP_TABLE for ATBS format.
 '''
 
 from typing import List, Dict
