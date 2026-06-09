@@ -2,7 +2,7 @@
 
 '''
 Module
-    encode.py
+    iencoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,12 +16,10 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class B64Encode with attribute(s) and method(s).
-    Creates encode class with backend API.
+    Defines interface IA1z52N62Encoder for A1z52N62Encoder class.
 '''
 
-from dataclasses import dataclass, field
-from base64 import b64encode
+from abc import ABC, abstractmethod
 from typing import List, Optional
 
 __author__: str = 'Vladimir Roncevic'
@@ -34,35 +32,31 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-@dataclass
-class B64Encode:
+class IA1z52N62Encoder(ABC):
     '''
-        Defines class B64Encode with attribute(s) and method(s).
-        Creates encode class with backend API.
+        Defines interface IA1z52N62Encoder with property and method.
 
         It defines:
 
-            :attributes:
-                | _encode_data - Data encode container.
             :methods:
                 | encode_data - Property methods for encode data.
-                | encode - Encode data to AlephTawBetShin format.
+                | encode - Encode data to A1z52N62 format.
     '''
 
-    _encode_data: Optional[str] = field(default=None)
-
     @property
+    @abstractmethod
     def encode_data(self) -> Optional[str]:
         '''
             Property method for getting encode data.
 
-            :return: Encoded data | None
+            :return: Encoded data
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self._encode_data
+        raise NotImplementedError('Method encode_data must be implemented.')
 
     @encode_data.setter
+    @abstractmethod
     def encode_data(self, encode_data: Optional[str]) -> None:
         '''
             Property method for setting encode data.
@@ -72,17 +66,17 @@ class B64Encode:
             :return: None
             :exceptions: None
         '''
-        if bool(encode_data):
-            self._encode_data = encode_data
+        raise NotImplementedError('Method encode_data must be implemented.')
 
-    def encode(self, data: Optional[str]) -> None:
+    @abstractmethod
+    def encode(self, data: Optional[str]) -> bool:
         '''
-            Encoding data to AlephTawBetShin format.
+            Encoding data to A1z52N62 format.
 
             :param data: Data which should be encoded | None
             :type data: <Optional[str]>
-            :return: None
+            :return: True (if success) | False (if fail)
+            :rtype: <bool>
             :exceptions: None
         '''
-        if bool(data):
-            self._encode_data = (b64encode(data.encode())).decode()
+        raise NotImplementedError('Method encode must be implemented.')

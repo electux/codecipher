@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    idata_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,19 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class B64 with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Defines interface IDataValidator for DataValidator class.
 '''
 
-import sys
-from typing import List
-
-try:
-    from codecipher.b64.encode import B64Encode
-    from codecipher.b64.decode import B64Decode
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from typing import List, Optional
+from .idata_validator import IDataValidator
+from .icharacter_validator import ICharacterValidator
+from .character_validator import CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,23 +34,33 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class B64(B64Encode, B64Decode):
+class DataValidator(IDataValidator):
     '''
-        Defines class B64 with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
-
-        It defines:
-
-            :attributes:
-                | None.
-            :methods:
-                | __init__ - Initials B64 constructor.
+        Defines class DataValidator with attribute(s) and method(s).
     '''
 
-    def __init__(self) -> None:
+    def __init__(self, char_validator: Optional[ICharacterValidator] = None) -> None:
         '''
-            Initials B64 constructor.
+            Initials DataValidator constructor.
 
             :exceptions: None
         '''
-        super().__init__()
+        self.__char_validator: ICharacterValidator = char_validator or CharacterValidator()
+
+    def is_valid(self, data: Optional[str]) -> bool:
+        '''
+            Validates if data is in A1z52N62 format.
+
+            :param data: Data which should be validated | None
+            :type data: <Optional[str]>
+            :return: True (if valid) | False (if invalid)
+            :rtype: <bool>
+            :exceptions: None
+        '''
+        if not bool(data):
+            return False
+
+        for element in data:
+            if not self.__char_validator.is_valid_char(element):
+                return False
+        return True

@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    character_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,19 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class B64 with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Defines class CharacterValidator for strict A1z52N62 character validation.
 '''
 
-import sys
-from typing import List
-
-try:
-    from codecipher.b64.encode import B64Encode
-    from codecipher.b64.decode import B64Decode
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from typing import List, Optional, Set
+from string import ascii_lowercase, ascii_uppercase, digits
+from .icharacter_validator import ICharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,23 +33,39 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class B64(B64Encode, B64Decode):
+class CharacterValidator(ICharacterValidator):
     '''
-        Defines class B64 with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
+        Defines class CharacterValidator with attribute(s) and method(s).
+        Creates character validator class with backend API.
 
         It defines:
 
             :attributes:
-                | None.
+                | __allowed_chars - Strict ASCII alphanumeric character set.
             :methods:
-                | __init__ - Initials B64 constructor.
+                | __init__ - Initializes CharacterValidator constructor.
+                | is_valid_char - Validates if a single character belongs to A1z52N62.
     '''
 
     def __init__(self) -> None:
         '''
-            Initials B64 constructor.
+            Initializes CharacterValidator constructor.
 
             :exceptions: None
         '''
-        super().__init__()
+        self.__allowed_chars: Set[str] = set(ascii_lowercase + ascii_uppercase + digits)
+
+    def is_valid_char(self, char: Optional[str]) -> bool:
+        '''
+            Validating if a character belongs strictly to ASCII alphanumeric set.
+
+            :param char: Single character to validate | None
+            :type char: <Optional[str]>
+            :return: True (if valid) | False (if invalid)
+            :rtype: <bool>
+            :exceptions: None
+        '''
+        if not bool(char) or len(char) != 1:
+            return False
+
+        return char in self.__allowed_chars

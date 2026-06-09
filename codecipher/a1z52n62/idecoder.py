@@ -2,7 +2,7 @@
 
 '''
 Module
-    decode.py
+    idecoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,11 +16,10 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class CaesarDecode with attribute(s) and method(s).
-    Creates decode class with backend API.
+    Defines interface IA1z52N62Decoder for A1z52N62Decoder class.
 '''
 
-from dataclasses import dataclass, field
+from abc import ABC, abstractmethod
 from typing import List, Optional
 
 __author__: str = 'Vladimir Roncevic'
@@ -33,24 +32,19 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-@dataclass
-class CaesarDecode:
+class IA1z52N62Decoder(ABC):
     '''
-        Defines class CaesarDecode with attribute(s) and method(s).
-        Creates decode class with backend API.
+        Defines interface IA1z52N62Decoder with property and method.
 
         It defines:
 
-            :attributes:
-                | _decode_data - Data decode container.
             :methods:
                 | decode_data - Property methods for decode data.
-                | decode - Decode data from Caesar format.
+                | decode - Decode data from A1z52N62 format.
     '''
 
-    _decode_data: Optional[str] = field(default=None)
-
     @property
+    @abstractmethod
     def decode_data(self) -> Optional[str]:
         '''
             Property method for getting decode data.
@@ -59,9 +53,10 @@ class CaesarDecode:
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self._decode_data
+        raise NotImplementedError('Method decode_data must be implemented.')
 
     @decode_data.setter
+    @abstractmethod
     def decode_data(self, decode_data: Optional[str]) -> None:
         '''
             Property method for setting decode data.
@@ -71,40 +66,17 @@ class CaesarDecode:
             :return: None
             :exceptions: None
         '''
-        if bool(decode_data):
-            self._decode_data = decode_data
+        raise NotImplementedError('Method decode_data must be implemented.')
 
-    def decode(
-        self, data: Optional[str], shift_counter: Optional[int]
-    ) -> None:
+    @abstractmethod
+    def decode(self, data: Optional[str]) -> bool:
         '''
-            Decoding data from Caesar format.
+            Decoding data from A1z52N62 format.
 
             :param data: Data which should be decoded | None
             :type data: <Optional[str]>
-            :param shift_counter: Defining the shift count | None
-            :type shift_counter: <Optional[int]>
-            :return: None
+            :return: True (if success) | False (if fail)
+            :rtype: <bool>
             :exceptions: None
         '''
-        if bool(data) and bool(shift_counter):
-            decode_list: List[str] = []
-            for element in data:
-                if element.isspace() or element.isnumeric():
-                    decode_list.append(element)
-                    continue
-                element_index: Optional[int] = None
-                new_index: Optional[int] = None
-                new_unicode: Optional[int] = None
-                new_character: Optional[str] = None
-                if element.isupper():
-                    element_index = ord(element) - ord('A')
-                    new_index = (element_index - shift_counter) % 26
-                    new_unicode = new_index + ord('A')
-                else:
-                    element_index = ord(element) - ord('a')
-                    new_index = (element_index - shift_counter) % 26
-                    new_unicode = new_index + ord('a')
-                new_character = chr(new_unicode)
-                decode_list.append(new_character)
-            self._decode_data = ''.join(decode_list)
+        raise NotImplementedError('Method decode must be implemented.')

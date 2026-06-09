@@ -55,7 +55,7 @@
 <span class="sd">    You should have received a copy of the GNU General Public License along</span>
 <span class="sd">    with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <span class="sd">Info</span>
-<span class="sd">    Defines class A1z52N62Decode with attribute(s) and method(s).</span>
+<span class="sd">    Defines class A1z52N62Decoder with attribute(s) and method(s).</span>
 <span class="sd">    Creates decode class with backend API.</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
@@ -66,18 +66,18 @@
 <span class="n">__copyright__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;(C) 2026, https://electux.github.io/codecipher&#39;</span>
 <span class="n">__credits__</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
 <span class="n">__license__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/electux/codecipher/blob/main/LICENSE&#39;</span>
-<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;1.5.0&#39;</span>
+<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;1.5.1&#39;</span>
 <span class="n">__maintainer__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="A1z52N62Decode">
-<a class="viewcode-back" href="../../../codecipher.a1z52n62.decode.html#codecipher.a1z52n62.decode.A1z52N62Decode">[docs]</a>
+<div class="viewcode-block" id="A1z52N62Decoder">
+<a class="viewcode-back" href="../../../codecipher.a1z52n62.decode.html#codecipher.a1z52n62.decode.A1z52N62Decoder">[docs]</a>
 <span class="nd">@dataclass</span>
-<span class="k">class</span> <span class="nc">A1z52N62Decode</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">A1z52N62Decoder</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        Defines class A1z52N62Decode with attribute(s) and method(s).</span>
+<span class="sd">        Defines class A1z52N62Decoder with attribute(s) and method(s).</span>
 <span class="sd">        Creates decode class with backend API.</span>
 
 <span class="sd">        It defines:</span>
@@ -115,8 +115,8 @@
         <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">decode_data</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_decode_data</span> <span class="o">=</span> <span class="n">decode_data</span>
 
-<div class="viewcode-block" id="A1z52N62Decode.decode">
-<a class="viewcode-back" href="../../../codecipher.a1z52n62.decode.html#codecipher.a1z52n62.decode.A1z52N62Decode.decode">[docs]</a>
+<div class="viewcode-block" id="A1z52N62Decoder.decode">
+<a class="viewcode-back" href="../../../codecipher.a1z52n62.decode.html#codecipher.a1z52n62.decode.A1z52N62Decoder.decode">[docs]</a>
     <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Decoding data from A1z52N62 format.</span>

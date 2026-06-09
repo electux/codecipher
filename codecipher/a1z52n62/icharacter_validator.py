@@ -2,7 +2,7 @@
 
 '''
 Module
-    __init__.py
+    icharacter_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -15,9 +15,12 @@ Copyright
     See the GNU General Public License for more details.
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines interface ICharacterValidator for CharacterValidator class.
 '''
 
-from typing import List
+from abc import ABC, abstractmethod
+from typing import Optional, List
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -27,3 +30,28 @@ __version__: str = '1.5.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
+
+
+class ICharacterValidator(ABC):
+    '''
+        Defines interface ICharacterValidator with methods.
+
+        It defines:
+
+            :attributes: None
+            :methods:
+                | is_valid_char - Validates if a single character belongs to A1z52N62.
+    '''
+
+    @abstractmethod
+    def is_valid_char(self, char: Optional[str]) -> bool:
+        '''
+            Validates if a character is a valid A1z52N62 alphabet constituent.
+
+            :param char: Single character to validate | None
+            :type char: <Optional[str]>
+            :return: True (if valid) | False (if invalid)
+            :rtype: <bool>
+            :exceptions: NotImplementedError
+        '''
+        raise NotImplementedError("Subclasses must implement is_valid_char method")
