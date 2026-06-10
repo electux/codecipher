@@ -25,14 +25,11 @@ from .b64 import B64
 from .ib64 import IB64
 from .b64encoder import B64Encoder
 from .b64decoder import B64Decoder
-from .ib64encoder import IB64Encoder
-from .ib64decoder import IB64Decoder
-from .validation_engine import ValidationEngine
-from .ivalidation_engine import IValidationEngine
-from .data_validator import DataValidator
-from .idata_validator import IDataValidator
-from .character_validator import CharacterValidator
-from .icharacter_validator import ICharacterValidator
+from .iencoder import IEncoder
+from .idecoder import IDecoder
+from .default_validation_engine import DefaultB64ValidationEngine
+from .default_data_validator import DefaultB64DataValidator
+from .default_character_validator import DefaultB64CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -45,15 +42,12 @@ __status__: str = 'Updated'
 
 __all__: List[str] = [
     'IB64',
-    'IB64Encoder',
-    'IB64Decoder',
+    'IEncoder',
+    'IDecoder',
     'B64Encoder',
     'B64Decoder',
     'B64',
-    'IValidationEngine',
-    'ValidationEngine',
-    'IDataValidator',
-    'DataValidator',
-    'ICharacterValidator',
-    'CharacterValidator'
+    'DefaultB64ValidationEngine',
+    'DefaultB64DataValidator',
+    'DefaultB64CharacterValidator'
 ]

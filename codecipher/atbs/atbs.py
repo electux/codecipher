@@ -21,15 +21,13 @@ Info
 '''
 
 from typing import Optional, List
+from codecipher.abstracts import IValidationEngine
 from .iatbs import IATBS
 from .iencoder import IATBSEncoder
 from .encoder import ATBSEncoder
 from .idecoder import IATBSDecoder
 from .decoder import ATBSDecoder
-from .ivalidation_engine import IValidationEngine
-from .validation_engine import ValidationEngine
-from .data_validator import DataValidator
-from .character_validator import CharacterValidator
+from .default_validation_engine import DefaultATBSValidationEngine
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -80,9 +78,7 @@ class ATBS(IATBS):
             :type decoder: <Optional[IATBSDecoder]>
             :exceptions: None
         '''
-        self.__validation_engine: IValidationEngine = validation_engine or ValidationEngine(
-            [DataValidator(CharacterValidator())]
-        )
+        self.__validation_engine: IValidationEngine = validation_engine or DefaultATBSValidationEngine()
         self.__encoder: IATBSEncoder = encoder or ATBSEncoder()
         self.__decoder: IATBSDecoder = decoder or ATBSDecoder()
 

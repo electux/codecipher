@@ -22,7 +22,7 @@ Info
 
 from base64 import b64decode
 from typing import List, Optional
-from .ib64decoder import IB64Decoder
+from .idecoder import IDecoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -34,7 +34,7 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class B64Decoder(IB64Decoder):
+class B64Decoder(IDecoder):
     '''
         Defines class B64Decoder with attribute(s) and method(s).
         Creates decode class with backend API.

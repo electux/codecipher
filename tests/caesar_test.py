@@ -25,7 +25,8 @@ Execute
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.caesar import Caesar, ICaesarEncoder, ICaesarDecoder
+from codecipher.abstracts import IValidationEngine
+from codecipher.caesar import Caesar, IEncoder, IDecoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -52,6 +53,7 @@ class CaesarTestCase(unittest.TestCase):
                 | enc_data - Encoded data.
                 | dec_data - Decoded data.
                 | cipher - Cipher object.
+                | mock_validation_engine - Mocked validation engine.
             :methods:
                 | setUp - Call before test cases.
                 | tearDown - Call after test cases.
@@ -73,14 +75,21 @@ class CaesarTestCase(unittest.TestCase):
         self.enc_data: Optional[str] = None
         self.dec_data: Optional[str] = None
 
-        # Initialize Caesar with default (real) encoder/decoder for most tests
-        self.cipher: Caesar = Caesar()
+        # Mock validation engine to be used by default or for specific tests
+        self.mock_validation_engine = MagicMock(spec=IValidationEngine)
+        self.mock_validation_engine.is_valid.return_value = True
+
+        # Initialize Caesar with mocked validation engine to avoid strict checks in tests
+        self.cipher: Caesar = Caesar(validation_engine=self.mock_validation_engine)
 
         # Mocks for specific mock interaction tests
-        self.mock_encoder: MagicMock = MagicMock(spec=ICaesarEncoder)
-        self.mock_decoder: MagicMock = MagicMock(spec=ICaesarDecoder)
-        self.mock_cipher_with_deps: Caesar = Caesar(encoder=self.mock_encoder,
-                                                    decoder=self.mock_decoder)
+        self.mock_encoder = MagicMock(spec=IEncoder)
+        self.mock_decoder = MagicMock(spec=IDecoder)
+        self.mock_cipher_with_deps: Caesar = Caesar(
+            validation_engine=self.mock_validation_engine,
+            encoder=self.mock_encoder,
+            decoder=self.mock_decoder
+        )
 
     def tearDown(self) -> None:
         '''Call after test cases.'''
@@ -88,9 +97,10 @@ class CaesarTestCase(unittest.TestCase):
         self.enc_data = None
         self.dec_data = None
         self.cipher = None  # type: ignore
-        self.mock_encoder = None # type: ignore
-        self.mock_decoder = None # type: ignore
-        self.mock_cipher_with_deps = None # type: ignore
+        self.mock_encoder = None  # type: ignore
+        self.mock_decoder = None  # type: ignore
+        self.mock_cipher_with_deps = None  # type: ignore
+        self.mock_validation_engine = None  # type: ignore
 
     def test_caesar_encoding(self) -> None:
         '''Test base encoding.'''
@@ -194,22 +204,22 @@ class CaesarTestCase(unittest.TestCase):
         shift = 3
 
         # Configure mock encoder
-        self.mock_encoder.encode.return_value = True
-        type(self.mock_encoder).encode_data = PropertyMock(return_value=mock_encoded)
+        self.mock_encoder.encode.return_value = True  # type: ignore
+        type(self.mock_encoder).encode_data = PropertyMock(return_value=mock_encoded)  # type: ignore
 
         # Configure mock decoder
-        self.mock_decoder.decode.return_value = True
-        type(self.mock_decoder).decode_data = PropertyMock(return_value=mock_decoded)
+        self.mock_decoder.decode.return_value = True  # type: ignore
+        type(self.mock_decoder).decode_data = PropertyMock(return_value=mock_decoded)  # type: ignore
 
         # Test encode interaction
         self.assertTrue(self.mock_cipher_with_deps.encode(test_data, shift))
         self.assertEqual(mock_encoded, self.mock_cipher_with_deps.encode_data)
-        self.mock_encoder.encode.assert_called_once_with(test_data, shift)
+        self.mock_encoder.encode.assert_called_once_with(test_data, shift)  # type: ignore
 
         # Test decode interaction
         self.assertTrue(self.mock_cipher_with_deps.decode(mock_encoded, shift))
         self.assertEqual(mock_decoded, self.mock_cipher_with_deps.decode_data)
-        self.mock_decoder.decode.assert_called_once_with(mock_encoded, shift)
+        self.mock_decoder.decode.assert_called_once_with(mock_encoded, shift)  # type: ignore
 
 
 if __name__ == '__main__':

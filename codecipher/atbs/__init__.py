@@ -26,12 +26,9 @@ from .idecoder import IATBSDecoder
 from .encoder import ATBSEncoder
 from .decoder import ATBSDecoder
 from .atbs import ATBS
-from .ivalidation_engine import IValidationEngine
-from .validation_engine import ValidationEngine
-from .idata_validator import IDataValidator
-from .data_validator import DataValidator
-from .icharacter_validator import ICharacterValidator
-from .character_validator import CharacterValidator
+from .default_validation_engine import DefaultATBSValidationEngine
+from .default_data_validator import DefaultATBSDataValidator
+from .default_character_validator import DefaultATBSCharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -49,10 +46,7 @@ __all__: List[str] = [
     'ATBSEncoder',
     'ATBSDecoder',
     'ATBS',
-    'IValidationEngine',
-    'ValidationEngine',
-    'IDataValidator',
-    'DataValidator',
-    'ICharacterValidator',
-    'CharacterValidator'
+    'DefaultATBSValidationEngine',
+    'DefaultATBSDataValidator',
+    'DefaultATBSCharacterValidator'
 ]

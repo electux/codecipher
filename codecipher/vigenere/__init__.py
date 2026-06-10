@@ -16,20 +16,20 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class Vigenere with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Initialization for vigenere package.
 '''
 
-import sys
 from typing import List
-
-try:
-    from codecipher.vigenere.encode import VigenereEncode
-    from codecipher.vigenere.decode import VigenereDecode
-    from codecipher.vigenere.key_generator import KeyGenerator
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from .ivigenere import IVigenere
+from .iencoder import IEncoder
+from .idecoder import IDecoder
+from .ikey_generator import IKeyGenerator
+from .encoder import VigenereEncoder
+from .decoder import VigenereDecoder
+from .vigenere import Vigenere
+from .default_validation_engine import DefaultVigenereValidationEngine
+from .default_data_validator import DefaultVigenereDataValidator
+from .default_character_validator import DefaultVigenereCharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,24 +40,15 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-
-class Vigenere(VigenereEncode, VigenereDecode, KeyGenerator):
-    '''
-        Defines class Vigenere with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
-
-        It defines:
-
-            :attributes:
-                | None.
-            :methods:
-                | __init__ - Initials Vigenere constructor.
-    '''
-
-    def __init__(self) -> None:
-        '''
-            Initials Vigenere constructor.
-
-            :exceptions: None
-        '''
-        super().__init__()
+__all__: List[str] = [
+    'IVigenere',
+    'IEncoder',
+    'IDecoder',
+    'IKeyGenerator',
+    'VigenereEncoder',
+    'VigenereDecoder',
+    'Vigenere',
+    'DefaultVigenereValidationEngine',
+    'DefaultVigenereDataValidator',
+    'DefaultVigenereCharacterValidator'
+]

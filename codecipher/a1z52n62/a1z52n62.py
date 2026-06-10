@@ -21,17 +21,14 @@ Info
 '''
 
 from typing import List, Optional
+from codecipher.abstracts import IValidationEngine
 from .ia1z52n62 import IA1z52N62
 from .iencoder import IA1z52N62Encoder
 from .encoder import A1z52N62Encoder
 from .idecoder import IA1z52N62Decoder
 from .decoder import A1z52N62Decoder
 from .a1z52n62_config import A1z52N62Config
-from .ivalidation_engine import IValidationEngine
-from .validation_engine import ValidationEngine
-from .data_validator import DataValidator
-from .character_validator import CharacterValidator
-
+from .default_validation_engine import DefaultA1Z52N62ValidationEngine
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -84,10 +81,7 @@ class A1z52N62(IA1z52N62):
             :exceptions: None
         '''
         self.__config = config or A1z52N62Config()
-
-        self.__validation_engine: IValidationEngine = validation_engine or ValidationEngine(
-            [DataValidator(CharacterValidator())]
-        )
+        self.__validation_engine: IValidationEngine = validation_engine or DefaultA1Z52N62ValidationEngine()
         self.__encoder: IA1z52N62Encoder = encoder or A1z52N62Encoder(_config=self.__config)
         self.__decoder: IA1z52N62Decoder = decoder or A1z52N62Decoder(_config=self.__config)
 

@@ -23,7 +23,7 @@ Info
 from __future__ import print_function
 from typing import List, Optional
 from os.path import abspath, dirname, join
-from setuptools import setup
+from setuptools import setup, find_packages
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -57,15 +57,7 @@ setup(
     keywords='cipher, encryption, decryption, cryptology, cryptography',
     platforms='any',
     classifiers=PYP_CLASSIFIERS,
-    packages=[
-        'codecipher',
-        'codecipher.a1z52n62',
-        'codecipher.atbs',
-        'codecipher.b64',
-        'codecipher.caesar',
-        'codecipher.vernam',
-        'codecipher.vigenere'
-    ],
+    packages=find_packages(exclude=['tests', 'tests.*']),
     package_data={
         'codecipher': [
             'py.typed'

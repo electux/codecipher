@@ -22,6 +22,7 @@ Info
 
 from dataclasses import dataclass, field
 from typing import List, Optional
+from .ikey_generator import IKeyGenerator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -34,7 +35,7 @@ __status__: str = 'Updated'
 
 
 @dataclass
-class KeyGenerator:
+class KeyGenerator(IKeyGenerator):
     '''
         Defines class KeyGenerator with attribute(s) and method(s).
         Creates key generator class for Vigener encoding/decoding.
@@ -101,19 +102,28 @@ class KeyGenerator:
         if bool(key):
             self._key = key
 
-    def generate_key(self) -> None:
+    def generate_key(self, data_len: Optional[int] = None) -> bool:
         '''
             Generates key for encoding/decoding.
 
-            :return: None
+            :param data_len: Length of data for which key is generated | None
+            :type data_len: <Optional[int]>
+            :return: True (if success) | False (if fail)
             :exceptions: None
         '''
-        if bool(self._key):
+        if bool(data_len):
+            self._data_len = data_len
+
+        if bool(self._key) and bool(self._data_len):
             key_list: List[str] = list(self._key)
-            if bool(key_list) and bool(self._data_len):
-                if self._data_len == len(key_list):
-                    pass
-                else:
-                    for i in range(self._data_len - len(key_list)):
-                        key_list.append(key_list[i % len(key_list)])
-                self._key = ''. join(key_list)
+
+            if self._data_len == len(key_list):
+                pass
+            else:
+                for i in range(self._data_len - len(key_list)):
+                    key_list.append(key_list[i % len(key_list)])
+            self._key = ''.join(key_list)
+
+            return True
+
+        return False

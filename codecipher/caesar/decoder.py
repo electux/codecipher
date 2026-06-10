@@ -22,7 +22,7 @@ Info
 
 from dataclasses import dataclass, field
 from typing import List, Optional
-from .icaesar_decoder import ICaesarDecoder
+from .idecoder import IDecoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -35,7 +35,7 @@ __status__: str = 'Updated'
 
 
 @dataclass
-class CaesarDecoder(ICaesarDecoder):
+class CaesarDecoder(IDecoder):
     '''
         Defines class CaesarDecoder with attribute(s) and method(s).
         Creates decode class with backend API.

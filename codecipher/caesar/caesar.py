@@ -20,12 +20,24 @@ Info
     Creates container class with aggregate backend API.
 '''
 
-from typing import Optional
-from .icaesar_encoder import ICaesarEncoder
+from typing import Optional, List
+from codecipher.abstracts import IValidationEngine
+from .iencoder import IEncoder
 from .icaesar import ICaesar
-from .icaesar_decoder import ICaesarDecoder
+from .idecoder import IDecoder
 from .encoder import CaesarEncoder
 from .decoder import CaesarDecoder
+from .default_validation_engine import DefaultCaesarValidationEngine
+
+__author__: str = 'Vladimir Roncevic'
+__copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__: str = 'https://github.com/electux/codecipher/blob/main/LICENSE'
+__version__: str = '1.5.1'
+__maintainer__: str = 'Vladimir Roncevic'
+__email__: str = 'elektron.ronca@gmail.com'
+__status__: str = 'Updated'
+
 
 class Caesar(ICaesar):
     '''
@@ -34,6 +46,7 @@ class Caesar(ICaesar):
 
         It defines:
             :attributes:
+                | __validation_engine - Engine for data validation.
                 | __encoder - Encoder for Caesar algorithm.
                 | __decoder - Decoder for Caesar algorithm.
             :methods:
@@ -46,20 +59,24 @@ class Caesar(ICaesar):
 
     def __init__(
         self,
-        encoder: Optional[ICaesarEncoder] = None,
-        decoder: Optional[ICaesarDecoder] = None,
+        validation_engine: Optional[IValidationEngine] = None,
+        encoder: Optional[IEncoder] = None,
+        decoder: Optional[IDecoder] = None,
     ) -> None:
         '''
             Initializes Caesar constructor.
 
+            :param validation_engine: Engine for data validation | None
+            :type validation_engine: <Optional[IValidationEngine]>
             :param encoder: Encoder for algorithm | None
-            :type encoder: <Optional[ICaesarEncoder]>
+            :type encoder: <Optional[IEncoder]>
             :param decoder: Decoder for algorithm | None
-            :type decoder: <Optional[ICaesarDecoder]>
+            :type decoder: <Optional[IDecoder]>
             :exceptions: None
         '''
-        self.__encoder: ICaesarEncoder = encoder or CaesarEncoder()
-        self.__decoder: ICaesarDecoder = decoder or CaesarDecoder()
+        self.__validation_engine: IValidationEngine = validation_engine or DefaultCaesarValidationEngine()
+        self.__encoder: IEncoder = encoder or CaesarEncoder()
+        self.__decoder: IDecoder = decoder or CaesarDecoder()
 
     def encode(self, data: Optional[str], shift_counter: Optional[int]) -> bool:
         '''
@@ -73,7 +90,7 @@ class Caesar(ICaesar):
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(data) or shift_counter is None:
+        if shift_counter is None or not self.__validation_engine.is_valid(data):
             return False
         return self.__encoder.encode(data, shift_counter)
 
@@ -100,7 +117,7 @@ class Caesar(ICaesar):
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(data) or shift_counter is None:
+        if shift_counter is None or not self.__validation_engine.is_valid(data):
             return False
         return self.__decoder.decode(data, shift_counter)
 

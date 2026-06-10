@@ -25,12 +25,8 @@ Execute
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.atbs import (
-    ATBS,
-    IValidationEngine,
-    IATBSEncoder,
-    IATBSDecoder
-)
+from codecipher.abstracts import IValidationEngine
+from codecipher.atbs import ATBS, IATBSEncoder, IATBSDecoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

@@ -25,12 +25,8 @@ Execute
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.a1z52n62 import (
-    A1z52N62,
-    IValidationEngine,
-    IA1z52N62Encoder,
-    IA1z52N62Decoder
-)
+from codecipher.abstracts import IValidationEngine
+from codecipher.a1z52n62 import A1z52N62, IA1z52N62Encoder, IA1z52N62Decoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

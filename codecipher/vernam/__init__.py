@@ -16,19 +16,19 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class Vernam with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Initialization for vernam package.
 '''
 
-import sys
 from typing import List
-
-try:
-    from codecipher.vernam.encode import VernamEncode
-    from codecipher.vernam.decode import VernamDecode
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
+from .ivernam import IVernam
+from .iencoder import IEncoder
+from .idecoder import IDecoder
+from .encoder import VernamEncoder
+from .decoder import VernamDecoder
+from .vernam import Vernam
+from .default_validation_engine import DefaultVernamValidationEngine
+from .default_data_validator import DefaultVernamDataValidator
+from .default_character_validator import DefaultVernamCharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -39,24 +39,14 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-
-class Vernam(VernamEncode, VernamDecode):
-    '''
-        Defines class Vernam with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
-
-        It defines:
-
-            :attributes:
-                | None.
-            :methods:
-                | __init__ - Initials Vernam constructor.
-    '''
-
-    def __init__(self) -> None:
-        '''
-            Initials Vernam constructor.
-
-            :exceptions: None
-        '''
-        super().__init__()
+__all__: List[str] = [
+    'IVernam',
+    'IEncoder',
+    'IDecoder',
+    'VernamEncoder',
+    'VernamDecoder',
+    'Vernam',
+    'DefaultVernamValidationEngine',
+    'DefaultVernamDataValidator',
+    'DefaultVernamCharacterValidator'
+]

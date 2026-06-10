@@ -21,14 +21,13 @@ Info
 '''
 
 from typing import List, Optional
+from codecipher.abstracts import IValidationEngine
 from .ib64 import IB64
-from .ib64encoder import IB64Encoder
-from .ib64decoder import IB64Decoder
+from .iencoder import IEncoder
+from .idecoder import IDecoder
 from .b64encoder import B64Encoder
 from .b64decoder import B64Decoder
-from .ivalidation_engine import IValidationEngine
-from .validation_engine import ValidationEngine
-from .data_validator import DataValidator
+from .default_validation_engine import DefaultB64ValidationEngine
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -62,8 +61,8 @@ class B64(IB64):
     def __init__(
         self,
         validation_engine: Optional[IValidationEngine] = None,
-        encoder: Optional[IB64Encoder] = None,
-        decoder: Optional[IB64Decoder] = None,
+        encoder: Optional[IEncoder] = None,
+        decoder: Optional[IDecoder] = None,
     ) -> None:
         '''
             Initializes B64 constructor.
@@ -71,16 +70,14 @@ class B64(IB64):
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
             :param encoder: Encoder for algorithm | None
-            :type encoder: <Optional[IB64Encoder]>
+            :type encoder: <Optional[IEncoder]>
             :param decoder: Decoder for algorithm | None
-            :type decoder: <Optional[IB64Decoder]>
+            :type decoder: <Optional[IDecoder]>
             :exceptions: None
         '''
-        self.__validation_engine: IValidationEngine = validation_engine or ValidationEngine(
-            [DataValidator()]
-        )
-        self.__encoder: IB64Encoder = encoder or B64Encoder()
-        self.__decoder: IB64Decoder = decoder or B64Decoder()
+        self.__validation_engine: IValidationEngine = validation_engine or DefaultB64ValidationEngine()
+        self.__encoder: IEncoder = encoder or B64Encoder()
+        self.__decoder: IDecoder = decoder or B64Decoder()
 
     def encode(self, data: Optional[str]) -> bool:
         '''

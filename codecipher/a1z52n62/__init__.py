@@ -27,12 +27,9 @@ from .idecoder import IA1z52N62Decoder
 from .encoder import A1z52N62Encoder
 from .decoder import A1z52N62Decoder
 from .a1z52n62_config import A1z52N62Config
-from .ivalidation_engine import IValidationEngine
-from .validation_engine import ValidationEngine
-from .idata_validator import IDataValidator
-from .data_validator import DataValidator
-from .icharacter_validator import ICharacterValidator
-from .character_validator import CharacterValidator
+from .default_validation_engine import DefaultA1Z52N62ValidationEngine
+from .default_data_validator import DefaultA1Z52N62DataValidator
+from .default_character_validator import DefaultA1Z52N62CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -51,10 +48,7 @@ __all__: List[str] = [
     'A1z52N62Decoder',
     'A1z52N62',
     'A1z52N62Config',
-    'IValidationEngine',
-    'ValidationEngine',
-    'IDataValidator',
-    'DataValidator',
-    'ICharacterValidator',
-    'CharacterValidator'
+    'DefaultA1Z52N62ValidationEngine',
+    'DefaultA1Z52N62DataValidator',
+    'DefaultA1Z52N62CharacterValidator'
 ]
