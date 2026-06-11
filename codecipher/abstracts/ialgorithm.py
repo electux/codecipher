@@ -2,7 +2,7 @@
 
 '''
 Module
-    a1z52n62_config.py
+    ialgorithm.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,11 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines constants for A1z52N62 encoding and decoding.
+    Defines class IAlgorithm for cipher algorithm.
 '''
 
-from typing import List
-from dataclasses import dataclass
+from typing import List, Optional, TypeVar, Generic
+from abc import ABC, abstractmethod
+from .iconfig import IConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -31,23 +32,32 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
+# Generic type for algorithm configuration
+ConfigT = TypeVar('ConfigT', bound=IConfig)
 
-@dataclass(frozen=True)
-class A1z52N62Config:
-    '''
-        Configuration container for A1z52N62 algorithm.
 
-        :attributes:
-            | upper_case_offset - Offset for uppercase letters (default 64).
-            | lower_case_offset - Offset for lowercase letters (default 96).
-            | lower_case_base - Base index for lowercase letters (default 27).
-            | numeric_base - Base index for numeric characters (default 53).
-            | alphabet_size - Size of alphabet (default 26).
-            | code_splitter - Code splitter (default ' - ').
+class IAlgorithm(ABC, Generic[ConfigT]):
     '''
-    upper_case_offset: int = 64
-    lower_case_offset: int = 96
-    lower_case_base: int = 27
-    numeric_base: int = 53
-    alphabet_size: int = 26
-    code_splitter: str = ' - '
+        Defines interface IAlgorithm with abstract method.
+
+        It defines:
+
+            :attributes: None
+            :methods:
+                | execute - Execute algorithm for processing data.
+    '''
+
+    @abstractmethod
+    def execute(self, data: Optional[str] = None, config: Optional[ConfigT] = None) -> Optional[str]:
+        '''
+            Execute algorithm for processing data.
+
+            :param data: Data which should to be processed | None
+            :type data: <Optional[str]>
+            :param config: Configuration parameters for algorithm | None
+            :type config: <Optional[IConfig]>
+            :return: Processed data in str format (success) | None (fail)
+            :rtype: <Optional[str]>
+            :exceptions: None
+        '''
+        raise NotImplementedError('Method execute() must be implemented.')

@@ -2,7 +2,7 @@
 
 '''
 Module
-    icharacter_validator.py
+    default_config.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,11 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface ICharacterValidator for character validators.
+    Defines configuration for algorithm A1z52N62.
 '''
 
-from typing import Optional, List
-from abc import ABC, abstractmethod
+from typing import List
+from dataclasses import dataclass
+from codecipher.abstracts import IA1Z52N62Config
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -32,26 +33,28 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class ICharacterValidator(ABC):
+@dataclass(frozen=True)
+class DefaultA1z52N62Config(IA1Z52N62Config):
     '''
-        Defines interface ICharacterValidator with abstract method.
+        Defines class DefaultA1z52N62Config with attribute(s).
 
         It defines:
 
-            :attributes: None
-            :methods:
-                | is_valid_char - Validates if a character is a valid constituent.
+            :attributes:
+                | allow_space - Allow space in A1Z52N62 (default True).
+                | upper_case_offset - Offset for uppercase letters (default 64).
+                | lower_case_offset - Offset for lowercase letters (default 96).
+                | lower_case_base - Base index for lowercase letters (default 27).
+                | numeric_base - Base index for numeric characters (default 53).
+                | alphabet_size - Size of alphabet (default 26).
+                | code_splitter - Code splitter (default ' - ').
+            :methods: None
     '''
 
-    @abstractmethod
-    def is_valid_char(self, char: Optional[str]) -> bool:
-        '''
-            Validating if a character is a valid ATBS alphabet constituent.
-
-            :param char: Single character to be validated | None
-            :type char: <Optional[str]>
-            :return: True (valid) | False (invalid)
-            :rtype: <bool>
-            :exceptions: NotImplementedError
-        '''
-        raise NotImplementedError("Method is_valid_char() must be implemented.")
+    allow_space: bool = True
+    upper_case_offset: int = 64
+    lower_case_offset: int = 96
+    lower_case_base: int = 27
+    numeric_base: int = 53
+    alphabet_size: int = 26
+    code_splitter: str = ' - '

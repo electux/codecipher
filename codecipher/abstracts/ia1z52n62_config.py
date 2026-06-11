@@ -2,7 +2,7 @@
 
 '''
 Module
-    icharacter_validator.py
+    ia1z52n62_config.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,11 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface ICharacterValidator for character validators.
+    Defines class IA1Z52N62Config with expected configuration for A1Z52N62 algorithm.
 '''
 
-from typing import Optional, List
-from abc import ABC, abstractmethod
+from typing import List
+from abc import ABC
+from .iconfig import IConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -32,26 +33,27 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class ICharacterValidator(ABC):
+class IA1Z52N62Config(IConfig, ABC):
     '''
-        Defines interface ICharacterValidator with abstract method.
+        Defines abstract class with expected configuration attribute(s).
 
         It defines:
 
-            :attributes: None
-            :methods:
-                | is_valid_char - Validates if a character is a valid constituent.
+            :attributes:
+              | allow_space - Allow space in A1Z52N62.
+              | upper_case_offset - Upper case in integer format.
+              | lower_case_offset - Lower case in integer format.
+              | lower_case_base - Lower case base in integer format.
+              | numeric_base - Numeric base in integer format.
+              | alphabet_size - Alphabet size in integer format.
+              | code_splitter - Code splitter in integer format.
+            :methods: None
     '''
 
-    @abstractmethod
-    def is_valid_char(self, char: Optional[str]) -> bool:
-        '''
-            Validating if a character is a valid ATBS alphabet constituent.
-
-            :param char: Single character to be validated | None
-            :type char: <Optional[str]>
-            :return: True (valid) | False (invalid)
-            :rtype: <bool>
-            :exceptions: NotImplementedError
-        '''
-        raise NotImplementedError("Method is_valid_char() must be implemented.")
+    allow_space: bool
+    upper_case_offset: int
+    lower_case_offset: int
+    lower_case_base: int
+    numeric_base: int
+    alphabet_size: int
+    code_splitter: str

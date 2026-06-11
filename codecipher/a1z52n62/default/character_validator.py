@@ -41,19 +41,24 @@ class DefaultA1Z52N62CharacterValidator(ICharacterValidator):
         It defines:
 
             :attributes:
-                | __allowed_chars - Strict ASCII alphanumeric character set.
+                | __allowed_chars - Strict ASCII alphanumeric character set (optional space).
             :methods:
                 | __init__ - Initializes DefaultA1Z52N62CharacterValidator constructor.
                 | is_valid_char - Validates if a single character belongs to A1z52N62.
     '''
 
-    def __init__(self) -> None:
+    def __init__(self, allow_space: bool = False) -> None:
         '''
             Initializes DefaultA1Z52N62CharacterValidator constructor.
 
+            :param allow_space: Whether to allow space character | False
+            :type allow_space: <bool>
             :exceptions: None
         '''
-        self.__allowed_chars: Set[str] = set(ascii_lowercase + ascii_uppercase + digits)
+        self.__allowed_chars: Set[str] = set(ascii_lowercase + ascii_uppercase + digits) 
+
+        if allow_space:
+            self.__allowed_chars.add(' ')
 
     def is_valid_char(self, char: Optional[str]) -> bool:
         '''
@@ -65,7 +70,7 @@ class DefaultA1Z52N62CharacterValidator(ICharacterValidator):
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(char) or len(char) != 1:
+        if not char or len(char) != 1:
             return False
 
         return char in self.__allowed_chars

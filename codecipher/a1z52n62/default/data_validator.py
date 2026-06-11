@@ -2,7 +2,7 @@
 
 '''
 Module
-    default_data_validator.py
+    data_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -21,7 +21,7 @@ Info
 
 from typing import List, Optional
 from codecipher.abstracts import IDataValidator, ICharacterValidator
-from .default_character_validator import DefaultA1Z52N62CharacterValidator
+from .character_validator import DefaultA1Z52N62CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -47,15 +47,23 @@ class DefaultA1Z52N62DataValidator(IDataValidator):
                 | is_valid - Validates if data is in A1z52N62 format.
     '''
 
-    def __init__(self, char_validator: Optional[ICharacterValidator] = None) -> None:
+    def __init__(
+        self,
+        allow_space: bool = False,
+        char_validator: Optional[ICharacterValidator] = None
+    ) -> None:
         '''
             Initializes DefaultA1Z52N62DataValidator constructor.
 
+            :param allow_space: Whether to allow space character | False
+            :type allow_space: <bool>
             :param char_validator: Character validator instance | None
             :type char_validator: <Optional[ICharacterValidator]>
             :exceptions: None
         '''
-        self.__char_validator: ICharacterValidator = char_validator or DefaultA1Z52N62CharacterValidator()
+        self.__char_validator: ICharacterValidator = char_validator or DefaultA1Z52N62CharacterValidator(
+            allow_space
+        )
 
     def is_valid(self, data: Optional[str]) -> bool:
         '''

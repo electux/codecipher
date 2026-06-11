@@ -17,18 +17,17 @@ Copyright
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
     Defines class A1z52N62 with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
 '''
 
 from typing import List, Optional
-from codecipher.abstracts import IValidationEngine
+from codecipher.abstracts import IValidationEngine, IA1Z52N62Config, IEncoder, IDecoder
+from codecipher.a1z52n62.default import (
+    DefaultA1z52N62Config,
+    DefaultA1Z52N62ValidationEngine,
+    DefaultA1z52N62Encoder,
+    DefaultA1z52N62Decoder
+)
 from .ia1z52n62 import IA1z52N62
-from .iencoder import IA1z52N62Encoder
-from .encoder import A1z52N62Encoder
-from .idecoder import IA1z52N62Decoder
-from .decoder import A1z52N62Decoder
-from .a1z52n62_config import A1z52N62Config
-from .default_validation_engine import DefaultA1Z52N62ValidationEngine
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -43,95 +42,102 @@ __status__: str = 'Updated'
 class A1z52N62(IA1z52N62):
     '''
         Defines class A1z52N62 with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
 
         It defines:
 
             :attributes:
-                | __config - Configuration for algorithm.
+                | __config - Configuration for A1Z52N62 algorithm.
                 | __validation_engine - Engine for data validation.
-                | __encoder - Encoder for algorithm.
-                | __decoder - Decoder for algorithm.
+                | __encoder - Encoder for A1Z52N62 algorithm.
+                | __decoder - Decoder for A1Z52N62 algorithm.
             :methods:
                 | __init__ - Initializes A1z52N62 constructor.
                 | encode - Encoding data to A1z52N62 format.
-                | encode_data - Property method for getting encode data.
+                | encode_data - Property method for getting encoded data.
                 | decode - Decoding data from A1z52N62 format.
-                | decode_data - Property method for getting decode data.
+                | decode_data - Property method for getting decoded data.
     '''
 
     def __init__(
         self,
-        config: Optional[A1z52N62Config] = None,
+        config: Optional[IA1Z52N62Config] = None,
         validation_engine: Optional[IValidationEngine] = None,
-        encoder: Optional[IA1z52N62Encoder] = None,
-        decoder: Optional[IA1z52N62Decoder] = None,
+        encoder: Optional[IEncoder] = None,
+        decoder: Optional[IDecoder] = None,
     ) -> None:
         '''
             Initializes A1z52N62 constructor.
 
-            :param config: Configuration for algorithm | None
-            :type config: <Optional[A1z52N62Config]>
+            :param config: Configuration for A1Z52N62 algorithm | None
+            :type config: <Optional[IA1Z52N62Config]>
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
             :param encoder: Encoder for algorithm | None
-            :type encoder: <Optional[IA1z52N62Encoder]>
+            :type encoder: <Optional[IEncoder]>
             :param decoder: Decoder for algorithm | None
-            :type decoder: <Optional[IA1z52N62Decoder]>
+            :type decoder: <Optional[IDecoder]>
             :exceptions: None
         '''
-        self.__config = config or A1z52N62Config()
-        self.__validation_engine: IValidationEngine = validation_engine or DefaultA1Z52N62ValidationEngine()
-        self.__encoder: IA1z52N62Encoder = encoder or A1z52N62Encoder(_config=self.__config)
-        self.__decoder: IA1z52N62Decoder = decoder or A1z52N62Decoder(_config=self.__config)
+        # Dependecy injection or use default implementation
+        self.__config: IA1Z52N62Config = config or DefaultA1z52N62Config()
+        self.__validation_engine: IValidationEngine = validation_engine or DefaultA1Z52N62ValidationEngine(
+            allow_space=self.__config.allow_space
+        )
+        self.__encoder: IEncoder = encoder or DefaultA1z52N62Encoder(_config=self.__config)
+        self.__decoder: IDecoder = decoder or DefaultA1z52N62Decoder(_config=self.__config)
 
     def encode(self, data: Optional[str]) -> bool:
         '''
             Encoding data to A1z52N62 format.
 
-            :param data: Data which should be encoded | None
+            :param data: Data which should to be encoded | None
             :type data: <Optional[str]>
-            :return: True (if success) | False (if fail)
+            :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(data) or not self.__validation_engine.is_valid(data):
+        # Checking and validation data for encoding
+        if not data or not self.__validation_engine.is_valid(data):
             return False
+
+        # Checking encoding data
         return self.__encoder.encode(data)
 
     @property
-    def encode_data(self) -> Optional[str]:
+    def encoded_data(self) -> Optional[str]:
         '''
-            Property method for getting encode data.
+            Property method for getting encoded data.
 
-            :return: Encoded data
+            :return: Encoded data | None
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self.__encoder.encode_data
+        return self.__encoder.encoded_data
 
     def decode(self, data: Optional[str]) -> bool:
         '''
             Decoding data from A1z52N62 format.
 
-            :param data: Data which should be decoded | None
+            :param data: Data which should to be decoded | None
             :type data: <Optional[str]>
-            :return: True (if success) | False (if fail)
+            :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(data) or not self.__decoder.decode(data):
+        # Checking and decoding data
+        if not data or not self.__decoder.decode(data):
             return False
 
-        return self.__validation_engine.is_valid(self.decode_data)
+        # Checking and validation decoding data
+        return self.__validation_engine.is_valid(self.decoded_data)
 
     @property
-    def decode_data(self) -> Optional[str]:
+    def decoded_data(self) -> Optional[str]:
         '''
-            Property method for getting decode data.
+            Property method for getting decoded data.
 
-            :return: Decoded data
+            :return: Decoded data | None
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self.__decoder.decode_data
+        return self.__decoder.decoded_data

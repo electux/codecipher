@@ -19,8 +19,8 @@ Info
     Defines interface IDataValidator for data validators.
 '''
 
-from abc import ABC, abstractmethod
 from typing import List, Optional
+from abc import ABC, abstractmethod
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -48,10 +48,10 @@ class IDataValidator(ABC):
         '''
             Validating data using specific validation logic.
 
-            :param data: Data which should be validated | None
+            :param data: Data which should to be validated | None
             :type data: <Optional[str]>
-            :return: True (if valid) | False (if invalid)
+            :return: True (valid) | False (invalid)
             :rtype: <bool>
             :exceptions: None
         '''
-        raise NotImplementedError('Method is_valid must be implemented.')
+        raise NotImplementedError('Method is_valid() must be implemented.')

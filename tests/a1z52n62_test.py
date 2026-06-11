@@ -22,11 +22,13 @@ Execute
     python3 -m unittest -v a1z52n62_test
 '''
 
+import random
+import string
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.abstracts import IValidationEngine
-from codecipher.a1z52n62 import A1z52N62, IA1z52N62Encoder, IA1z52N62Decoder
+from codecipher.abstracts import IA1Z52N62Config, IValidationEngine, IEncoder, IDecoder
+from codecipher.a1z52n62 import A1z52N62
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -53,6 +55,7 @@ class A1z52N62TestCase(unittest.TestCase):
                 | enc_data - Encoded data.
                 | dec_data - Decoded data.
                 | cipher - Cipher object.
+                | real_cipher - Real cipher object for integration testing.
             :methods:
                 | setUp - Call before test cases.
                 | tearDown - Call after test cases.
@@ -65,14 +68,15 @@ class A1z52N62TestCase(unittest.TestCase):
                 | test_decode_with_decoder_failure - Test for decoding with decoder failure.
                 | test_decode_with_validation_failure - Test for decoding with validation failure.
                 | test_decode_delegation - Test for decoding delegation to decoder.
+                | test_encode_with_encoder_failure - Test for encoding with encoder failure.
     '''
 
     RAW_DATA: str = 'More Human Than Human01 Is Our Motto'
     ENC_SEQ: List[str] = [
-        '13', '42', '45', '32', ' ', '8', '48', '40', '28', '41', ' ',
-        '20', '35', '28', '41', ' ', '8', '48', '40', '28', '41', '53',
-        '54', ' ', '9', '46', ' ', '15', '48', '45', ' ', '13', '42',
-        '47', '47', '42'
+        '13', '41', '44', '31', ' ', '8', '47', '39', '27', '40', ' ',
+        '20', '34', '27', '40', ' ', '8', '47', '39', '27', '40', '53',
+        '54', ' ', '9', '45', ' ', '15', '47', '44', ' ', '13', '41',
+        '46', '46', '41'
     ]
 
     def setUp(self) -> None:
@@ -83,22 +87,28 @@ class A1z52N62TestCase(unittest.TestCase):
         self.dec_data: Optional[str] = None
 
         # Mock dependencies for the base tests
-        self.mock_encoder = MagicMock(spec=IA1z52N62Encoder)
-        self.mock_encoder.encode.return_value = True
-        type(self.mock_encoder).encode_data = PropertyMock(return_value=self.enc_sequence)
+        self.mock_encoder = MagicMock(spec=IEncoder)
+        self.mock_encoder.encode.return_value = True # type: ignore
+        type(self.mock_encoder).encoded_data = PropertyMock(return_value=self.enc_sequence) # type: ignore
 
-        self.mock_decoder = MagicMock(spec=IA1z52N62Decoder)
-        self.mock_decoder.decode.return_value = True
-        type(self.mock_decoder).decode_data = PropertyMock(return_value=self.raw_data)
+        self.mock_decoder = MagicMock(spec=IDecoder)
+        self.mock_decoder.decode.return_value = True # type: ignore
+        type(self.mock_decoder).decoded_data = PropertyMock(return_value=self.raw_data) # type: ignore
 
         self.mock_validation_engine = MagicMock(spec=IValidationEngine)
-        self.mock_validation_engine.is_valid.return_value = True
+        self.mock_validation_engine.is_valid.return_value = True # type: ignore
+
+        self.mock_config = MagicMock(spec=IA1Z52N62Config)
 
         self.cipher: A1z52N62 = A1z52N62(
+            config=self.mock_config,
             validation_engine=self.mock_validation_engine,
             encoder=self.mock_encoder,
             decoder=self.mock_decoder
         )
+
+        # Real cipher for integration testing
+        self.real_cipher: A1z52N62 = A1z52N62()
 
     def tearDown(self) -> None:
         '''Call after test cases.'''
@@ -106,90 +116,109 @@ class A1z52N62TestCase(unittest.TestCase):
         self.enc_data = None
         self.dec_data = None
         self.cipher = None  # type: ignore
+        self.real_cipher = None  # type: ignore
+        self.mock_encoder = None  # type: ignore
+        self.mock_decoder = None  # type: ignore
+        self.mock_validation_engine = None  # type: ignore
+        self.mock_config = None  # type: ignore
 
     def test_a1z52n62_encoding(self) -> None:
         '''Testing base encoding.'''
-        self.cipher.encode(self.raw_data)
-        self.enc_data: Optional[str] = self.cipher.encode_data
-        self.assertEqual(self.enc_sequence, self.enc_data)
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(self.raw_data)
+            self.assertTrue(result)
+            self.enc_data: Optional[str] = self.real_cipher.encoded_data
+            self.assertEqual(self.enc_sequence, self.enc_data)
 
     def test_a1z52n62_decoding(self) -> None:
         '''Testing base decoding.'''
-        self.cipher.encode(self.raw_data)
-        self.enc_data = self.cipher.encode_data
-        self.cipher.decode(self.enc_data)
-        self.dec_data: Optional[str] = self.cipher.decode_data
-        self.assertEqual(self.raw_data, self.dec_data)
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(self.raw_data)
+            self.assertTrue(result)
+            self.enc_data = self.real_cipher.encoded_data
+
+            result = self.real_cipher.decode(self.enc_data)
+            self.assertTrue(result)
+            self.dec_data: Optional[str] = self.real_cipher.decoded_data
+            self.assertEqual(self.raw_data, self.dec_data)
 
     def test_encode_with_none_data(self) -> None:
         '''Testing encode with None or empty data.'''
-        cipher = A1z52N62()
-        self.assertFalse(cipher.encode(None))
-        self.assertFalse(cipher.encode(''))
+        if bool(self.real_cipher):
+            self.assertFalse(self.real_cipher.encode(None))
+            self.assertFalse(self.real_cipher.encode(''))
 
     def test_encode_with_validation_failure(self) -> None:
         '''Testing encode when validation engine fails.'''
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = False
-        cipher = A1z52N62(validation_engine=mock_engine)
-
-        self.assertFalse(cipher.encode("test_data"))
-        mock_engine.is_valid.assert_called_once_with("test_data")
+        self.mock_validation_engine.is_valid.return_value = False # type: ignore
+        result = self.cipher.encode(self.raw_data)
+        self.assertFalse(result)
+        self.mock_validation_engine.is_valid.assert_called_once_with(self.raw_data) # type: ignore
+        self.mock_encoder.encode.assert_not_called() # type: ignore
 
     def test_encode_delegation(self) -> None:
         '''Testing encode delegation to internal encoder.'''
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = True
-        mock_encoder = MagicMock(spec=IA1z52N62Encoder)
-        mock_encoder.encode.return_value = True
-        cipher = A1z52N62(validation_engine=mock_engine, encoder=mock_encoder)
+        result = self.cipher.encode(self.raw_data)
+        self.assertTrue(result)
+        self.mock_encoder.encode.assert_called_once_with(self.raw_data) # type: ignore
+        self.assertEqual(self.enc_sequence, self.cipher.encoded_data)
 
-        self.assertTrue(cipher.encode("valid_data"))
-        mock_encoder.encode.assert_called_once_with("valid_data")
+    def test_encode_with_encoder_failure(self) -> None:
+        '''Testing encode when internal encoder fails.'''
+        self.mock_encoder.encode.return_value = False # type: ignore
+        result = self.cipher.encode(self.raw_data)
+        self.assertFalse(result)
+        self.mock_encoder.encode.assert_called_once_with(self.raw_data) # type: ignore
 
     def test_decode_with_none_data(self) -> None:
         '''Testing decode with None or empty data.'''
-        cipher = A1z52N62()
-        self.assertFalse(cipher.decode(None))
-        self.assertFalse(cipher.decode(''))
+        if bool(self.real_cipher):
+            self.assertFalse(self.real_cipher.decode(None))
+            self.assertFalse(self.real_cipher.decode(''))
 
     def test_decode_with_decoder_failure(self) -> None:
         '''Testing decode when internal decoder fails.'''
-        mock_decoder = MagicMock(spec=IA1z52N62Decoder)
-        mock_decoder.decode.return_value = False
-        cipher = A1z52N62(decoder=mock_decoder)
-
-        self.assertFalse(cipher.decode("encoded_data"))
-        mock_decoder.decode.assert_called_once_with("encoded_data")
+        self.mock_decoder.decode.return_value = False # type: ignore
+        result = self.cipher.decode(self.enc_sequence)
+        self.assertFalse(result)
+        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence) # type: ignore
 
     def test_decode_with_validation_failure(self) -> None:
         '''Testing decode when validation of decoded data fails.'''
-        mock_decoder = MagicMock(spec=IA1z52N62Decoder)
-        mock_decoder.decode.return_value = True
-        type(mock_decoder).decode_data = PropertyMock(return_value="decoded_invalid")
+        self.mock_decoder.decode.return_value = True # type: ignore
+        type(self.mock_decoder).decoded_data = PropertyMock(return_value="decoded_invalid") # type: ignore
+        self.mock_validation_engine.is_valid.return_value = False # type: ignore
 
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = False
-
-        cipher = A1z52N62(validation_engine=mock_engine, decoder=mock_decoder)
-
-        self.assertFalse(cipher.decode("encoded_data"))
-        mock_engine.is_valid.assert_called_once_with("decoded_invalid")
+        result = self.cipher.decode(self.enc_sequence)
+        self.assertFalse(result)
+        self.mock_validation_engine.is_valid.assert_called_once_with("decoded_invalid") # type: ignore
 
     def test_decode_delegation(self) -> None:
         '''Testing decode delegation to internal decoder and engine.'''
-        mock_decoder = MagicMock(spec=IA1z52N62Decoder)
-        mock_decoder.decode.return_value = True
-        type(mock_decoder).decode_data = PropertyMock(return_value="decoded_valid")
+        result = self.cipher.decode(self.enc_sequence)
+        self.assertTrue(result)
+        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence) # type: ignore
+        self.mock_validation_engine.is_valid.assert_called_once_with(self.raw_data) # type: ignore
+        self.assertEqual(self.raw_data, self.cipher.decoded_data)
 
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = True
+    def test_a1z52n62_random_data_roundtrip(self) -> None:
+        '''Testing roundtrip with random data.'''
+        if bool(self.real_cipher):
+            # Character set: A-Z, a-z, 0-9, and space
+            alphabet = string.ascii_letters + string.digits + ' '
+            for _ in range(10):  # Run 10 iterations with different random strings
+                length = random.randint(10, 50)
+                random_str = ''.join(
+                    random.choice(alphabet) for _ in range(length)
+                )
 
-        cipher = A1z52N62(validation_engine=mock_engine, decoder=mock_decoder)
+                self.assertTrue(self.real_cipher.encode(random_str))
+                encoded = self.real_cipher.encoded_data
 
-        self.assertTrue(cipher.decode("encoded_data"))
-        mock_decoder.decode.assert_called_once_with("encoded_data")
-        mock_engine.is_valid.assert_called_once_with("decoded_valid")
+                self.assertTrue(self.real_cipher.decode(encoded))
+                decoded = self.real_cipher.decoded_data
+
+                self.assertEqual(random_str, decoded)
 
 
 if __name__ == '__main__':

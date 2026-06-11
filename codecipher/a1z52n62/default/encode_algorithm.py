@@ -1,0 +1,98 @@
+# -*- coding: UTF-8 -*-
+
+'''
+Module
+    encode_algorithm.py
+Copyright
+    Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
+    codecipher is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    codecipher is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along
+    with this program. If not, see <http://www.gnu.org/licenses/>.
+Info
+    Defines class DefaultA1z52N62EncodeAlgorithm with default A1z52N62 algorithm implementation.
+'''
+
+from typing import List, Optional
+from codecipher.abstracts import IAlgorithm, IConfig, IA1Z52N62Config
+from .config import DefaultA1z52N62Config
+
+__author__: str = 'Vladimir Roncevic'
+__copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__: str = 'https://github.com/electux/codecipher/blob/main/LICENSE'
+__version__: str = '1.5.1'
+__maintainer__: str = 'Vladimir Roncevic'
+__email__: str = 'elektron.ronca@gmail.com'
+__status__: str = 'Updated'
+
+
+class DefaultA1z52N62EncodeAlgorithm(IAlgorithm[IA1Z52N62Config]):
+    '''
+        Defines class DefaultA1z52N62EncodeAlgorithm with attribute(s) and method(s).
+
+        It defines:
+
+            :attributes:
+                | _config - Configuration parameters for A1z52N62 algorithm.
+            :methods:
+                | __init__ - Initializes DefaultA1z52N62EncodeAlgorithm constructor.
+                | encoded_data - Property method for getting encoded data.
+                | encode - Encode data by using A1z52N62 algorithm.
+    '''
+
+    def __init__(self) -> None:
+        '''
+            Initializes DefaultA1z52N62EncodeAlgorithm constructor.
+
+            :exceptions: None
+        '''
+        self.__config: Optional[IConfig] = None
+
+    def execute(self, data: Optional[str] = None, config: Optional[IA1Z52N62Config] = None) -> Optional[str]:
+        '''
+            Encode data by using A1z52N62 algorithm.
+
+            :param data: Data which should to be encoded | None
+            :type data: <Optional[str]>
+            :param config: Configuration for algorithm | None
+            :type config: <Optional[IA1Z52N62Config]>
+            :return: Encoded data in str format (success) | None (fail)
+            :rtype: <Optional[str]>
+            :exceptions: None
+        '''
+        if not data:
+            return None
+
+        self.__config = config or DefaultA1z52N62Config()
+
+        if not self.__config:
+            return None
+
+        encode_list: List[str] = []
+
+        for element in data:
+            if element.isalpha():
+                if element.isupper():
+                    # 'A' -> 65 - 64 = 1.
+                    encode_list.append(str(ord(element) - self.__config.upper_case_offset))
+                else:
+                    # lower_case_base = 27, a ord('a') - 96 = 1, 'a' -> (1 + 26 = 27).
+                    encode_list.append(
+                        str(ord(element) - self.__config.lower_case_offset + (self.__config.lower_case_base - 1))
+                    )
+            elif element.isnumeric():
+                # '0' -> 0 + 53 = 53, '9' -> 9 + 53 = 62.
+                encode_list.append(str(int(element) + self.__config.numeric_base))
+            else:
+                # All other characters (spaces, punctuation) remain unchanged.
+                encode_list.append(element)
+
+        # Join encoded list with splitters
+        return self.__config.code_splitter.join(encode_list)

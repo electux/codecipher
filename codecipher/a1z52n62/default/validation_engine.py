@@ -2,7 +2,7 @@
 
 '''
 Module
-    default_validation_engine.py
+    validation_engine.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -21,7 +21,7 @@ Info
 
 from typing import List, Optional
 from codecipher.abstracts import IValidationEngine, IDataValidator
-from .default_data_validator import DefaultA1Z52N62DataValidator
+from .data_validator import DefaultA1Z52N62DataValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -48,15 +48,23 @@ class DefaultA1Z52N62ValidationEngine(IValidationEngine):
                 | is_valid - Validates data using all registered validators.
     '''
 
-    def __init__(self, validators: Optional[List[IDataValidator]] = None) -> None:
+    def __init__(
+        self,
+        allow_space: bool = False,
+        validators: Optional[List[IDataValidator]] = None
+    ) -> None:
         '''
             Initializes DefaultA1Z52N62ValidationEngine constructor.
 
+            :param allow_space: Whether to allow space character | False
+            :type allow_space: <bool>
             :param validators: Initial list of validators | None
             :type validators: <Optional[List[IDataValidator]]>
             :exceptions: None
         '''
-        self.__validators: List[IDataValidator] = validators or [DefaultA1Z52N62DataValidator()]
+        self.__validators: List[IDataValidator] = validators or [DefaultA1Z52N62DataValidator(
+            allow_space
+        )]
 
     def add_validator(self, validator: IDataValidator) -> None:
         '''

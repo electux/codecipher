@@ -19,8 +19,8 @@ Info
     Defines interface IValidationEngine for validation engines.
 '''
 
-from abc import ABC, abstractmethod
 from typing import List, Optional
+from abc import ABC, abstractmethod
 from .idata_validator import IDataValidator
 
 __author__: str = 'Vladimir Roncevic'
@@ -41,7 +41,7 @@ class IValidationEngine(ABC):
 
             :attributes: None
             :methods:
-                | add_validator - Adds a new validator to the engine.
+                | add_validator - Adds a new data validator to the engine.
                 | is_valid - Validates data using all registered validators.
     '''
 
@@ -50,22 +50,22 @@ class IValidationEngine(ABC):
         '''
             Adding a new data validator to the engine.
 
-            :param validator: Data validator instance to add.
+            :param validator: Data validator instance to be add.
             :type validator: <IDataValidator>
             :return: None
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method add_validator must be implemented.')
+        raise NotImplementedError('Method add_validator() must be implemented.')
 
     @abstractmethod
     def is_valid(self, data: Optional[str]) -> bool:
         '''
             Validating data using all registered validators.
 
-            :param data: Data which should be validated | None
+            :param data: Data which should to be validated | None
             :type data: <Optional[str]>
-            :return: True (if all valid) | False (if any invalid)
+            :return: True (valid) | False (invalid)
             :rtype: <bool>
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method is_valid must be implemented.')
+        raise NotImplementedError('Method is_valid() must be implemented.')

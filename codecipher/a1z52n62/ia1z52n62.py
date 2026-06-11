@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface IA1z52N62 for A1z52N62 class.
+    Defines interface IA1z52N62 for A1z52N62 class with encoders and decoders.
 '''
 
 from abc import ABC, abstractmethod
@@ -34,16 +34,16 @@ __status__: str = 'Updated'
 
 class IA1z52N62(ABC):
     '''
-        Defines interface IA1z52N62 with methods.
+        Defines interface IA1z52N62 with method(s).
 
         It defines:
 
             :attributes: None
             :methods:
                 | encode - Encoding data to A1z52N62 format.
-                | encode_data - Property method for getting encode data.
+                | encoded_data - Property method for getting encoded data.
                 | decode - Decoding data from A1z52N62 format.
-                | decode_data - Property method for getting decode data.
+                | decodes_data - Property method for getting decoded data.
     '''
 
     @abstractmethod
@@ -51,47 +51,47 @@ class IA1z52N62(ABC):
         '''
             Encoding data to A1z52N62 format.
 
-            :param data: Data which should be encoded | None
+            :param data: Data which should to be encoded | None
             :type data: <Optional[str]>
-            :return: True (if success) | False (if fail)
+            :return: True (success) | False (fail)
             :rtype: <bool>
-            :exceptions: None
+            :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method encode must be implemented.')
+        raise NotImplementedError('Method encode() must be implemented.')
 
     @property
     @abstractmethod
-    def encode_data(self) -> Optional[str]:
+    def encoded_data(self) -> Optional[str]:
         '''
-            Property method for getting encode data.
+            Property method for getting encoded data.
 
-            :return: Encoded data
+            :return: Encoded data | None
             :rtype: <Optional[str]>
-            :exceptions: None
+            :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method encode_data must be implemented.')
+        raise NotImplementedError('Method encode_data() must be implemented.')
 
     @abstractmethod
     def decode(self, data: Optional[str]) -> bool:
         '''
             Decoding data from A1z52N62 format.
 
-            :param data: Data which should be decoded | None
+            :param data: Data which should to be decoded | None
             :type data: <Optional[str]>
-            :return: True (if success) | False (if fail)
+            :return: True (success) | False (fail)
             :rtype: <bool>
-            :exceptions: None
+            :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method decode must be implemented.')
+        raise NotImplementedError('Method decode() must be implemented.')
 
     @property
     @abstractmethod
-    def decode_data(self) -> Optional[str]:
+    def decoded_data(self) -> Optional[str]:
         '''
-            Property method for getting decode data.
+            Property method for getting decoded data.
 
-            :return: Decoded data
+            :return: Decoded data | None
             :rtype: <Optional[str]>
-            :exceptions: None
+            :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method decode_data must be implemented.')
+        raise NotImplementedError('Method decode_data() must be implemented.')
