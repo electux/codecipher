@@ -2,7 +2,7 @@
 
 '''
 Module
-    default_data_validator.py
+    character_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,13 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DefaultATBSDataValidator for strict ATBS data validation.
+    Defines class CharacterValidator for strict chipher character validation.
 '''
 
-from typing import List, Optional
-from codecipher.abstracts import IDataValidator
+from typing import List, Optional, Set
 from codecipher.abstracts import ICharacterValidator
-from .default_character_validator import DefaultATBSCharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -34,41 +32,43 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class DefaultATBSDataValidator(IDataValidator):
+class CharacterValidator(ICharacterValidator):
     '''
-        Defines class DefaultATBSDataValidator with attribute(s) and method(s).
-        Creates data validator for ATBS.
+        Defines class CharacterValidator with attribute(s) and method(s).
+        Creates character validator with cipher character set.
 
         It defines:
 
             :attributes:
-                | __char_validator - Validator for individual characters.
+                | __allowed_chars - Strict cipher character set.
             :methods:
-                | __init__ - Initializes DefaultATBSDataValidator constructor.
-                | is_valid - Validates if data is in ATBS format.
+                | __init__ - Initializes CharacterValidator constructor.
+                | is_valid_char - Validates if a single character belongs to cipher charcter set.
     '''
 
-    def __init__(self, char_validator: Optional[ICharacterValidator] = None) -> None:
+    def __init__(self, allowed_chars: Optional[Set[str]] = None) -> None:
         '''
-            Initializes DefaultATBSDataValidator constructor.
+            Initializes CharacterValidator constructor.
 
-            :param char_validator: Character validator instance | None
-            :type char_validator: <Optional[ICharacterValidator]>
+            :param allowed_chars: Strict cipher character set.
+            :type allowed_chars: <Optional[Set[str]]>
+            :param allow_space: Whether to allow space character | False
+            :type allow_space: <bool>
             :exceptions: None
         '''
-        self.__char_validator: ICharacterValidator = char_validator or DefaultATBSCharacterValidator()
+        self.__allowed_chars: Optional[Set[str]] = allowed_chars
 
-    def is_valid(self, data: Optional[str]) -> bool:
+    def is_valid_char(self, character: Optional[str]) -> bool:
         '''
-            Validating if data is in ATBS format.
+            Validates if a single character belongs to cipher charcter set.
 
-            :param data: Data which should be validated | None
-            :type data: <Optional[str]>
-            :return: True (if valid) | False (if invalid)
+            :param character: Single character in string format to be validated
+            :type character: <Optional[str]>
+            :return: True (valid) | False (invalid)
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(data):
+        if not self.__allowed_chars or not character or len(character) != 1:
             return False
 
-        return all(self.__char_validator.is_valid_char(element) for element in data)
+        return character in self.__allowed_chars

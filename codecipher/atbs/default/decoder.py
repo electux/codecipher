@@ -21,7 +21,7 @@ Info
 '''
 
 from typing import List, Optional
-from .idecoder import IATBSDecoder
+from codecipher.abstracts import IDecoder
 from .lookup_table import LOOKUP_TABLE
 
 __author__: str = 'Vladimir Roncevic'
@@ -34,7 +34,7 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class ATBSDecoder(IATBSDecoder):
+class ATBSDecoder(IDecoder):
     '''
         Defines class ATBSDecoder with attribute(s) and method(s).
         Creates decode class with backend API.
@@ -42,7 +42,7 @@ class ATBSDecoder(IATBSDecoder):
         It defines:
 
             :attributes:
-                | __decode_data - Data decode container.
+                | __decoded_data - Data decode container.
             :methods:
                 | __init__ - Initializes ATBSDecoder constructor.
                 | decode_data - Property methods for decode data.
@@ -55,10 +55,10 @@ class ATBSDecoder(IATBSDecoder):
 
             :exceptions: None
         '''
-        self.__decode_data: Optional[str] = None
+        self.__decoded_data: Optional[str] = None
 
     @property
-    def decode_data(self) -> Optional[str]:
+    def decoded_data(self) -> Optional[str]:
         '''
             Property method for getting decode data.
 
@@ -66,22 +66,14 @@ class ATBSDecoder(IATBSDecoder):
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self.__decode_data
+        return self.__decoded_data
 
-    @decode_data.setter
-    def decode_data(self, decode_data: Optional[str]) -> None:
-        '''
-            Property method for setting decode data.
-
-            :param decode_data: Decoded data | None
-            :type decode_data: <Optional[str]>
-            :return: None
-            :exceptions: None
-        '''
-        if bool(decode_data):
-            self.__decode_data = decode_data
-
-    def decode(self, data: Optional[str]) -> bool:
+    def decode(
+        self,
+        data: Optional[str] = None,
+        key: Optional[str] = None,
+        shift_counter: Optional[int] = None
+    ) -> bool:
         '''
             Decoding data from ATBS format.
 
@@ -94,6 +86,6 @@ class ATBSDecoder(IATBSDecoder):
             decode_list: List[str] = []
             for element in data:
                 decode_list.append(LOOKUP_TABLE[element])
-            self.__decode_data = ''.join(decode_list)
+            self.__decoded_data = ''.join(decode_list)
             return True
         return False

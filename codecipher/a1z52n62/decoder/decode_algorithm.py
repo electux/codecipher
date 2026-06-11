@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DefaultA1z52N62DecodeAlgorithm with default A1z52N62 algorithm implementation.
+    Defines class DecodeAlgorithm with default A1z52N62 algorithm implementation.
 '''
 
 from typing import List, Optional
-from codecipher.abstracts import IAlgorithm, IConfig, IA1Z52N62Config
-from .config import DefaultA1z52N62Config
+from codecipher.abstracts import IAlgorithm, IConfig
+from codecipher.a1z52n62.config import A1z52N62Config
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -33,29 +33,29 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class DefaultA1z52N62DecodeAlgorithm(IAlgorithm[IA1Z52N62Config]):
+class DecodeAlgorithm(IAlgorithm[IConfig]):
     '''
-        Defines class DefaultA1z52N62DecodeAlgorithm with attribute(s) and method(s).
+        Defines class DecodeAlgorithm with attribute(s) and method(s).
 
         It defines:
 
             :attributes:
                 | _config - Configuration parameters for A1z52N62 algorithm.
             :methods:
-                | __init__ - Initializes DefaultA1z52N62DecodeAlgorithm constructor.
+                | __init__ - Initializes DecodeAlgorithm constructor.
                 | encoded_data - Property method for getting decoded data.
                 | encode - Decode data by using A1z52N62 algorithm.
     '''
 
     def __init__(self) -> None:
         '''
-            Initializes DefaultA1z52N62DecodeAlgorithm constructor.
+            Initializes DecodeAlgorithm constructor.
 
             :exceptions: None
         '''
         self.__config: Optional[IConfig] = None
 
-    def execute(self, data: Optional[str] = None, config: Optional[IA1Z52N62Config] = None) -> Optional[str]:
+    def execute(self, data: Optional[str] = None, config: Optional[IConfig] = None) -> Optional[str]:
         '''
             Decode data by using A1z52N62 algorithm.
 
@@ -70,7 +70,7 @@ class DefaultA1z52N62DecodeAlgorithm(IAlgorithm[IA1Z52N62Config]):
         if not data:
             return None
 
-        self.__config = config or DefaultA1z52N62Config()
+        self.__config = config or A1z52N62Config()
 
         if not self.__config:
             return None

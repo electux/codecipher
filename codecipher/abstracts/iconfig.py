@@ -16,10 +16,10 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines abstract class IConfig for cipher configurations.
+    Defines abstract class IConfig for cipher configuration.
 '''
 
-from typing import List
+from typing import List, Optional, Set
 from abc import ABC
 
 __author__: str = 'Vladimir Roncevic'
@@ -34,11 +34,33 @@ __status__: str = 'Updated'
 
 class IConfig(ABC):
     '''
-        Defines interface IDataValidator without attribute(s) and method(s).
+        Defines interface IConfig with attribute(s).
 
         It defines:
 
-            :attributes: None
+            :attributes:
+                | key - Controls transformation during encoding and decoding.
+                | shift - Controls transformation during encoding and decoding.
+                | upper_case_offset - Offset for uppercase letters in cipher set.
+                | lower_case_offset - Offset for lowercase letters in cipher set.
+                | lower_case_base - Base index for lowercase letters in cipher set.
+                | numeric_base - Base index for numeric characters in cipher set.
+                | alphabet_size - Size of alphabet in cipher set.
+                | code_splitter - Code splitter in cipher set.
+                | altchars - Defines replacements for '+' and '/' in cipher set.
+                | padding - Adds to end '=' in cipher set.
+                | allowed_chars - Strict set of allowed characters in cipher set.
             :methods: None
     '''
-    pass
+
+    key: Optional[str]
+    shift: int
+    upper_case_offset: int
+    lower_case_offset: int
+    lower_case_base: int
+    numeric_base: int
+    alphabet_size: int
+    code_splitter: str
+    altchars: Optional[bytes]
+    padding: bool
+    allowed_chars: Optional[Set[str]]

@@ -19,7 +19,7 @@ Info
     Defines interface ICharacterValidator for character validators.
 '''
 
-from typing import Optional, List
+from typing import List, Optional
 from abc import ABC, abstractmethod
 
 __author__: str = 'Vladimir Roncevic'
@@ -40,16 +40,16 @@ class ICharacterValidator(ABC):
 
             :attributes: None
             :methods:
-                | is_valid_char - Validates if a character is a valid constituent.
+                | is_valid_char - Validates if a single character belongs to cipher charcter set.
     '''
 
     @abstractmethod
-    def is_valid_char(self, char: Optional[str]) -> bool:
+    def is_valid_char(self, character: Optional[str]) -> bool:
         '''
-            Validating if a character is a valid ATBS alphabet constituent.
+            Validates if a single character belongs to cipher charcter set.
 
-            :param char: Single character to be validated | None
-            :type char: <Optional[str]>
+            :param character: Single character in string format to be validated
+            :type character: <Optional[str]>
             :return: True (valid) | False (invalid)
             :rtype: <bool>
             :exceptions: NotImplementedError

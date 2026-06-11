@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DefaultATBSValidationEngine for managing multiple data validators.
+    Defines class ValidationEngine for managing multiple cipher data validators.
 '''
 
-from typing import List, Optional
+from typing import List, Optional, Set
 from codecipher.abstracts import IValidationEngine, IDataValidator
-from .default_data_validator import DefaultATBSDataValidator
+from .data_validator import DataValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -33,37 +33,45 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class DefaultATBSValidationEngine(IValidationEngine):
+class ValidationEngine(IValidationEngine):
     '''
-        Defines class DefaultATBSValidationEngine with attribute(s) and method(s).
-        Creates validation engine class for ATBS.
+        Defines class ValidationEngine with attribute(s) and method(s).
+        Creates validation engine with options to add multiple data validators.
 
         It defines:
 
             :attributes:
                 | __validators - List of registered data validators.
             :methods:
-                | __init__ - Initializes DefaultATBSValidationEngine constructor.
-                | add_validator - Adds a new data validator to the engine.
+                | __init__ - Initializes ValidationEngine constructor.
+                | add_validator - Adds a new data validator to the validation engine.
                 | is_valid - Validates data using all registered validators.
     '''
 
-    def __init__(self, validators: Optional[List[IDataValidator]] = None) -> None:
+    def __init__(
+        self,
+        validators: Optional[List[IDataValidator]] = None,
+        allowed_chars: Optional[Set[str]] = None
+    ) -> None:
         '''
-            Initializes DefaultATBSValidationEngine constructor.
+            Initializes ValidationEngine constructor.
 
             :param validators: Initial list of validators | None
             :type validators: <Optional[List[IDataValidator]]>
+            :param allowed_chars: Strict cipher character set | None
+            :type allowed_chars: <Optional[Set[str]]>
             :exceptions: None
         '''
-        self.__validators: List[IDataValidator] = validators or [DefaultATBSDataValidator()]
+        self.__validators: List[IDataValidator] = validators or [
+            DataValidator(allowed_chars=allowed_chars)
+        ]
 
-    def add_validator(self, validator: IDataValidator) -> None:
+    def add_validator(self, validator: Optional[IDataValidator]) -> None:
         '''
-            Adding a new data validator to the engine.
+            Adds a new data validator to the validation engine.
 
-            :param validator: Validator instance to add.
-            :type validator: <IDataValidator>
+            :param validator: Data validator instance to be added.
+            :type validator: <Optional[IDataValidator]>
             :return: None
             :exceptions: None
         '''
@@ -72,15 +80,15 @@ class DefaultATBSValidationEngine(IValidationEngine):
 
     def is_valid(self, data: Optional[str]) -> bool:
         '''
-            Validating data using all registered validators.
+            Validates data using all registered validators.
 
-            :param data: Data which should be validated | None
+            :param data: Data which should to be validated | None
             :type data: <Optional[str]>
-            :return: True (if all valid) | False (if any invalid)
+            :return: True (valid) | False (invalid)
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(data):
+        if not data:
             return False
 
         if not self.__validators:

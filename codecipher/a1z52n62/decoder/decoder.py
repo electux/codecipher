@@ -2,7 +2,7 @@
 
 '''
 Module
-    encoder.py
+    decoder.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,15 +16,15 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DefaultA1z52N62Encoder with attribute(s) and method(s).
-    Creates encoder with A1z52N62 algorithm.
+    Defines class Decoder with attribute(s) and method(s).
+    Creates decoder with A1z52N62 algorithm.
 '''
 
 from dataclasses import dataclass, field
 from typing import List, Optional
-from codecipher.abstracts import IEncoder, IAlgorithm, IA1Z52N62Config
-from .config import DefaultA1z52N62Config
-from .encode_algorithm import DefaultA1z52N62EncodeAlgorithm
+from codecipher.abstracts import IDecoder, IAlgorithm, IConfig
+from codecipher.a1z52n62.config import A1z52N62Config
+from .decode_algorithm import DecodeAlgorithm
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -37,51 +37,51 @@ __status__: str = 'Updated'
 
 
 @dataclass
-class DefaultA1z52N62Encoder(IEncoder):
+class Decoder(IDecoder):
     '''
-        Defines class DefaultA1z52N62Encoder with attribute(s) and method(s).
-        Creates encoder with A1z52N62 algorithm.
+        Defines class Decoder with attribute(s) and method(s).
+        Creates decoder with A1z52N62 algorithm.
 
         It defines:
 
             :attributes:
                 | _config - Configuration parameters for A1z52N62 algorithm.
                 | _strategy - Strategy for A1z52N62 algorithm.
-                | _encoded_data - Container for encoded data.
+                | _decoded_data - Container for decoded data.
             :methods:
-                | encoded_data - Property method for getting encoded data.
-                | encode - Encode data by using A1z52N62 algorithm.
+                | decoded_data - Property method for getting decoded data.
+                | decode - Decode data by using A1z52N62 algorithm.
     '''
 
-    _config: IA1Z52N62Config = field(default_factory=DefaultA1z52N62Config)
-    _strategy: IAlgorithm[IA1Z52N62Config] = field(default_factory=DefaultA1z52N62EncodeAlgorithm)
-    _encoded_data: Optional[str] = field(default=None, init=False)
+    _config: IConfig = field(default_factory=A1z52N62Config)
+    _strategy: IAlgorithm[IConfig] = field(default_factory=DecodeAlgorithm)
+    _decoded_data: Optional[str] = field(default=None, init=False)
 
     @property
-    def encoded_data(self) -> Optional[str]:
+    def decoded_data(self) -> Optional[str]:
         '''
-            Property method for getting encoded data.
+            Property method for getting decoded data.
 
-            :return: Encoded data in str format | None
+            :return: Decoded data in str format | None
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self._encoded_data
+        return self._decoded_data
 
-    def encode(
+    def decode(
         self,
         data: Optional[str] = None,
         key: Optional[str] = None,
         shift_counter: Optional[int] = None
     ) -> bool:
         '''
-            Encode data by using A1z52N62 algorithm.
+            Decode data by using A1z52N62 algorithm.
 
-            :param data: Data which should to be encoded | None
+            :param data: Data which should to be decoded | None
             :type data: <Optional[str]>
-            :param key: Key for encoding | None (ignored for A1z52N62)
+            :param key: Key for decoding | None (ignored for A1z52N62)
             :type key: <Optional[str]>
-            :param shift_counter: Shift count for encoding | None (ignored for A1z52N62)
+            :param shift_counter: Shift count for decoding | None (ignored for A1z52N62)
             :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
@@ -90,9 +90,9 @@ class DefaultA1z52N62Encoder(IEncoder):
         if not data:
             return False
 
-        self._encoded_data = self._strategy.execute(data, self._config)
+        self._decoded_data = self._strategy.execute(data, self._config)
 
-        if not self._encoded_data:
+        if not self._decoded_data:
             return False
 
         return True

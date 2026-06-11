@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DefaultA1Z52N62ValidationEngine for managing multiple data validators.
+    Defines class DefaultATBSValidationEngine for managing multiple data validators.
 '''
 
 from typing import List, Optional
 from codecipher.abstracts import IValidationEngine, IDataValidator
-from .data_validator import DefaultA1Z52N62DataValidator
+from .data_validator import DefaultATBSDataValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -33,44 +33,36 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class DefaultA1Z52N62ValidationEngine(IValidationEngine):
+class DefaultATBSValidationEngine(IValidationEngine):
     '''
-        Defines class DefaultA1Z52N62ValidationEngine with attribute(s) and method(s).
-        Creates validation engine class for A1z52N62.
+        Defines class DefaultATBSValidationEngine with attribute(s) and method(s).
+        Creates validation engine class for ATBS.
 
         It defines:
 
             :attributes:
                 | __validators - List of registered data validators.
             :methods:
-                | __init__ - Initializes DefaultA1Z52N62ValidationEngine constructor.
+                | __init__ - Initializes DefaultATBSValidationEngine constructor.
                 | add_validator - Adds a new data validator to the engine.
                 | is_valid - Validates data using all registered validators.
     '''
 
-    def __init__(
-        self,
-        allow_space: bool = False,
-        validators: Optional[List[IDataValidator]] = None
-    ) -> None:
+    def __init__(self, validators: Optional[List[IDataValidator]] = None) -> None:
         '''
-            Initializes DefaultA1Z52N62ValidationEngine constructor.
+            Initializes DefaultATBSValidationEngine constructor.
 
-            :param allow_space: Whether to allow space character | False
-            :type allow_space: <bool>
             :param validators: Initial list of validators | None
             :type validators: <Optional[List[IDataValidator]]>
             :exceptions: None
         '''
-        self.__validators: List[IDataValidator] = validators or [DefaultA1Z52N62DataValidator(
-            allow_space
-        )]
+        self.__validators: List[IDataValidator] = validators or [DefaultATBSDataValidator()]
 
     def add_validator(self, validator: IDataValidator) -> None:
         '''
             Adding a new data validator to the engine.
 
-            :param validator: Data validator instance to add.
+            :param validator: Validator instance to add.
             :type validator: <IDataValidator>
             :return: None
             :exceptions: None

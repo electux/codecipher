@@ -2,7 +2,7 @@
 
 '''
 Module
-    default_config.py
+    config.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,12 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines configuration for algorithm A1z52N62.
+    Defines configuration for cipher A1z52N62.
 '''
 
-from typing import List
+from typing import List, Optional, Set
+from string import ascii_lowercase, ascii_uppercase, digits
 from dataclasses import dataclass
-from codecipher.abstracts import IA1Z52N62Config
+from codecipher.abstracts import IConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -34,27 +35,35 @@ __status__: str = 'Updated'
 
 
 @dataclass(frozen=True)
-class DefaultA1z52N62Config(IA1Z52N62Config):
+class A1z52N62Config(IConfig):
     '''
-        Defines class DefaultA1z52N62Config with attribute(s).
+        Defines class A1z52N62Config with attribute(s).
 
         It defines:
 
             :attributes:
-                | allow_space - Allow space in A1Z52N62 (default True).
+                | key - Controls transformation during encoding and decoding (default None).
+                | shift - Controls transformation during encoding and decoding (default 0).
                 | upper_case_offset - Offset for uppercase letters (default 64).
                 | lower_case_offset - Offset for lowercase letters (default 96).
                 | lower_case_base - Base index for lowercase letters (default 27).
                 | numeric_base - Base index for numeric characters (default 53).
                 | alphabet_size - Size of alphabet (default 26).
                 | code_splitter - Code splitter (default ' - ').
+                | altchars - Defines replacements for '+' and '/' (default None).
+                | padding - Adds to end '=' (default False).
+                | allowed_chars - Strict set of allowed characters (default ascii_lowercase + ascii_uppercase + digits).
             :methods: None
     '''
 
-    allow_space: bool = True
+    key: Optional[str] = None
+    shift: int = 0
     upper_case_offset: int = 64
     lower_case_offset: int = 96
     lower_case_base: int = 27
     numeric_base: int = 53
     alphabet_size: int = 26
     code_splitter: str = ' - '
+    altchars: Optional[bytes] = None
+    padding: bool = False
+    allowed_chars: Optional[Set[str]] = set(ascii_lowercase + ascii_uppercase + digits)

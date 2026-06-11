@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DefaultA1Z52N62DataValidator for strict A1z52N62 data validation.
+    Defines class CharacterValidator for strict chipher data validation.
 '''
 
-from typing import List, Optional
+from typing import List, Optional, Set
 from codecipher.abstracts import IDataValidator, ICharacterValidator
-from .character_validator import DefaultA1Z52N62CharacterValidator
+from .character_validator import CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -33,49 +33,49 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class DefaultA1Z52N62DataValidator(IDataValidator):
+class DataValidator(IDataValidator):
     '''
-        Defines class DefaultA1Z52N62DataValidator with attribute(s) and method(s).
-        Creates data validator for A1z52N62.
+        Defines class DataValidator with attribute(s) and method(s).
+        Creates data validator with cipher character validator.
 
         It defines:
 
             :attributes:
                 | __char_validator - Validator for individual characters.
             :methods:
-                | __init__ - Initializes DefaultA1Z52N62DataValidator constructor.
-                | is_valid - Validates if data is in A1z52N62 format.
+                | __init__ - Initializes DataValidator constructor.
+                | is_valid - Validates if data belongs to cipher data set.
     '''
 
     def __init__(
         self,
-        allow_space: bool = False,
-        char_validator: Optional[ICharacterValidator] = None
+        char_validator: Optional[ICharacterValidator] = None,
+        allowed_chars: Optional[Set[str]] = None
     ) -> None:
         '''
-            Initializes DefaultA1Z52N62DataValidator constructor.
+            Initializes DataValidator constructor.
 
-            :param allow_space: Whether to allow space character | False
-            :type allow_space: <bool>
             :param char_validator: Character validator instance | None
             :type char_validator: <Optional[ICharacterValidator]>
+            :param allowed_chars: Strict cipher character set | None
+            :type allowed_chars: <Optional[Set[str]]>
             :exceptions: None
         '''
-        self.__char_validator: ICharacterValidator = char_validator or DefaultA1Z52N62CharacterValidator(
-            allow_space
+        self.__char_validator: ICharacterValidator = char_validator or CharacterValidator(
+            allowed_chars
         )
 
     def is_valid(self, data: Optional[str]) -> bool:
         '''
-            Validating if data is in A1z52N62 format.
+            Validates if data belongs to cipher data set.
 
-            :param data: Data which should be validated | None
+            :param data: Data which should to be validated | None
             :type data: <Optional[str]>
-            :return: True (if valid) | False (if invalid)
+            :return: True (valid) | False (invalid)
             :rtype: <bool>
             :exceptions: None
         '''
-        if not bool(data):
+        if not data:
             return False
 
         return all(self.__char_validator.is_valid_char(element) for element in data)

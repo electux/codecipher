@@ -2,7 +2,7 @@
 
 '''
 Module
-    idata_validator.py
+    __init__.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,11 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface IDataValidator for data validators.
+    Initialization for codecipher.a1z52n62.encoder package.
 '''
 
-from typing import List, Optional
-from abc import ABC, abstractmethod
+from typing import List
+from .decoder import Decoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -31,27 +31,4 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-
-class IDataValidator(ABC):
-    '''
-        Defines interface IDataValidator with abstract method.
-
-        It defines:
-
-            :attributes: None
-            :methods:
-                | is_valid - Validates if data belongs to cipher data set.
-    '''
-
-    @abstractmethod
-    def is_valid(self, data: Optional[str]) -> bool:
-        '''
-            Validates if data belongs to cipher data set.
-
-            :param data: Data which should to be validated | None
-            :type data: <Optional[str]>
-            :return: True (valid) | False (invalid)
-            :rtype: <bool>
-            :exceptions: None
-        '''
-        raise NotImplementedError('Method is_valid() must be implemented.')
+__all__: List[str] = ['Decoder']

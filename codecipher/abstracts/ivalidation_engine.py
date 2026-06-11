@@ -41,17 +41,17 @@ class IValidationEngine(ABC):
 
             :attributes: None
             :methods:
-                | add_validator - Adds a new data validator to the engine.
+                | add_validator - Adds a new data validator to the validation engine.
                 | is_valid - Validates data using all registered validators.
     '''
 
     @abstractmethod
-    def add_validator(self, validator: IDataValidator) -> None:
+    def add_validator(self, validator: Optional[IDataValidator]) -> None:
         '''
-            Adding a new data validator to the engine.
+            Adds a new data validator to the validation engine.
 
-            :param validator: Data validator instance to be add.
-            :type validator: <IDataValidator>
+            :param validator: Data validator instance to be added.
+            :type validator: <Optional[IDataValidator]>
             :return: None
             :exceptions: NotImplementedError
         '''
@@ -60,7 +60,7 @@ class IValidationEngine(ABC):
     @abstractmethod
     def is_valid(self, data: Optional[str]) -> bool:
         '''
-            Validating data using all registered validators.
+            Validates data using all registered validators.
 
             :param data: Data which should to be validated | None
             :type data: <Optional[str]>

@@ -24,10 +24,10 @@ from typing import Optional, List
 from codecipher.abstracts import IValidationEngine
 from .iatbs import IATBS
 from .iencoder import IATBSEncoder
-from .encoder import ATBSEncoder
+from .default.encoder import ATBSEncoder
 from .idecoder import IATBSDecoder
-from .decoder import ATBSDecoder
-from .default_validation_engine import DefaultATBSValidationEngine
+from .default.decoder import ATBSDecoder
+from .default.validation_engine import DefaultATBSValidationEngine
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

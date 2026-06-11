@@ -17,18 +17,18 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initialization for abstracts package.
+    Initialization for codecipher.abstracts package.
 '''
 
 from typing import List
 from .iconfig import IConfig
-from .ia1z52n62_config import IA1Z52N62Config
 from .ialgorithm import IAlgorithm
 from .icharacter_validator import ICharacterValidator
 from .idata_validator import IDataValidator
 from .ivalidation_engine import IValidationEngine
 from .iencoder import IEncoder
 from .idecoder import IDecoder
+from .icipher_engine import ICipherEngine
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -41,11 +41,11 @@ __status__: str = 'Updated'
 
 __all__: List[str] = [
     'IConfig',
-    'IA1Z52N62Config',
     'IAlgorithm',
     'ICharacterValidator',
     'IDataValidator',
     'IValidationEngine',
     'IEncoder',
-    'IDecoder'
+    'IDecoder',
+    'ICipherEngine'
 ]

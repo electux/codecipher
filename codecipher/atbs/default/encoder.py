@@ -21,7 +21,7 @@ Info
 '''
 
 from typing import List, Optional
-from .iencoder import IATBSEncoder
+from codecipher.abstracts import IEncoder
 from .lookup_table import LOOKUP_TABLE
 
 __author__: str = 'Vladimir Roncevic'
@@ -34,7 +34,7 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class ATBSEncoder(IATBSEncoder):
+class ATBSEncoder(IEncoder):
     '''
         Defines class ATBSEncoder with attribute(s) and method(s).
         Creates encode class with backend API.
@@ -68,28 +68,12 @@ class ATBSEncoder(IATBSEncoder):
         '''
         return self.__encode_data
 
-    @encode_data.setter
-    def encode_data(self, encode_data: Optional[str]) -> None:
-        '''
-            Property method for setting encode data.
-
-            :param encode_data: Encode data | None
-            :type encode_data: <Optional[str]>
-            :return: None
-            :exceptions: None
-        '''
-        if bool(encode_data):
-            self.__encode_data = encode_data
-
-    def encode(self, data: Optional[str]) -> bool:
-        '''
-            Encoding data to ATBS format.
-
-            :param data: Data which should be encoded | None
-            :type data: <Optional[str]>
-            :return: None
-            :exceptions: None
-        '''
+    def encode(
+        self,
+        data: Optional[str] = None,
+        key: Optional[str] = None,
+        shift_counter: Optional[int] = None
+    ) -> bool:
         if bool(data):
             encode_list: List[str] = []
             for element in data:

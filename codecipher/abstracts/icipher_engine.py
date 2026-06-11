@@ -2,7 +2,7 @@
 
 '''
 Module
-    iencoder.py
+    icipher_engine.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,11 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface IATBSEncoder for ATBSEncode class.
+    Defines interface ICipherEngine for cipher class with encoders and decoders.
 '''
 
 from abc import ABC, abstractmethod
-from typing import Optional, List
+from typing import List, Optional
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -32,39 +32,40 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class IATBSEncoder(ABC):
+class ICipherEngine(ABC):
     '''
-        Defines interface IATBSEncoder with methods.
+        Defines interface ICipherEngine with method(s).
 
         It defines:
 
             :attributes: None
             :methods:
-                | encode_data - Property method for getting encode data.
-                | encode - Encoding data to ATBS format.
+                | encode - Encoding data to CIPHER format.
+                | decode - Decoding data from CIPHER format.
     '''
 
-    @property
     @abstractmethod
-    def encode_data(self) -> Optional[str]:
+    def encode(self, data: Optional[str]) -> Optional[str]:
         '''
-            Property method for getting encode data.
+            Encoding data to CIPHER format.
 
-            :return: Encoded data | None
+            :param data: Data which should to be encoded | None
+            :type data: <Optional[str]>
+            :return: Encoded data (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Property encode_data must be implemented.')
+        raise NotImplementedError('Method encode() must be implemented.')
 
     @abstractmethod
-    def encode(self, data: Optional[str]) -> bool:
+    def decode(self, data: Optional[str]) -> Optional[str]:
         '''
-            Encoding data to ATBS format.
+            Decoding data from CIPHER format.
 
-            :param data: Data which should be encoded | None
+            :param data: Data which should to be decoded | None
             :type data: <Optional[str]>
-            :return: True (if success) | False (if fail)
-            :rtype: <bool>
+            :return: Decoded data (success) | None (fail)
+            :rtype: <Optional[str]>
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method encode must be implemented.')
+        raise NotImplementedError('Method decode() must be implemented.')

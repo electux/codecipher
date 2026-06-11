@@ -23,12 +23,12 @@ from typing import List
 from .iatbs import IATBS
 from .iencoder import IATBSEncoder
 from .idecoder import IATBSDecoder
-from .encoder import ATBSEncoder
-from .decoder import ATBSDecoder
+from .default.encoder import ATBSEncoder
+from .default.decoder import ATBSDecoder
 from .atbs import ATBS
-from .default_validation_engine import DefaultATBSValidationEngine
-from .default_data_validator import DefaultATBSDataValidator
-from .default_character_validator import DefaultATBSCharacterValidator
+from .default.validation_engine import DefaultATBSValidationEngine
+from .default.data_validator import DefaultATBSDataValidator
+from .default.character_validator import DefaultATBSCharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

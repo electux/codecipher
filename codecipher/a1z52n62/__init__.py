@@ -20,7 +20,6 @@ Info
 '''
 
 from typing import List
-from .ia1z52n62 import IA1z52N62
 from .a1z52n62 import A1z52N62
 
 __author__: str = 'Vladimir Roncevic'
@@ -32,7 +31,4 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-__all__: List[str] = [
-    'IA1z52N62',
-    'A1z52N62'
-]
+__all__: List[str] = ['A1z52N62']

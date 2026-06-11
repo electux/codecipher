@@ -2,7 +2,7 @@
 
 '''
 Module
-    default_character_validator.py
+    default_data_validator.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,12 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DefaultA1Z52N62CharacterValidator for strict A1z52N62 character validation.
+    Defines class DefaultATBSDataValidator for strict ATBS data validation.
 '''
 
-from typing import List, Optional, Set
-from string import ascii_lowercase, ascii_uppercase, digits
+from typing import List, Optional
+from codecipher.abstracts import IDataValidator
 from codecipher.abstracts import ICharacterValidator
+from .character_validator import DefaultATBSCharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -33,44 +34,41 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class DefaultA1Z52N62CharacterValidator(ICharacterValidator):
+class DefaultATBSDataValidator(IDataValidator):
     '''
-        Defines class DefaultA1Z52N62CharacterValidator with attribute(s) and method(s).
-        Creates character validator for A1z52N62.
+        Defines class DefaultATBSDataValidator with attribute(s) and method(s).
+        Creates data validator for ATBS.
 
         It defines:
 
             :attributes:
-                | __allowed_chars - Strict ASCII alphanumeric character set (optional space).
+                | __char_validator - Validator for individual characters.
             :methods:
-                | __init__ - Initializes DefaultA1Z52N62CharacterValidator constructor.
-                | is_valid_char - Validates if a single character belongs to A1z52N62.
+                | __init__ - Initializes DefaultATBSDataValidator constructor.
+                | is_valid - Validates if data is in ATBS format.
     '''
 
-    def __init__(self, allow_space: bool = False) -> None:
+    def __init__(self, char_validator: Optional[ICharacterValidator] = None) -> None:
         '''
-            Initializes DefaultA1Z52N62CharacterValidator constructor.
+            Initializes DefaultATBSDataValidator constructor.
 
-            :param allow_space: Whether to allow space character | False
-            :type allow_space: <bool>
+            :param char_validator: Character validator instance | None
+            :type char_validator: <Optional[ICharacterValidator]>
             :exceptions: None
         '''
-        self.__allowed_chars: Set[str] = set(ascii_lowercase + ascii_uppercase + digits) 
+        self.__char_validator: ICharacterValidator = char_validator or DefaultATBSCharacterValidator()
 
-        if allow_space:
-            self.__allowed_chars.add(' ')
-
-    def is_valid_char(self, char: Optional[str]) -> bool:
+    def is_valid(self, data: Optional[str]) -> bool:
         '''
-            Validates if a single character belongs to A1z52N62.
+            Validating if data is in ATBS format.
 
-            :param char: Single character to validate | None
-            :type char: <Optional[str]>
+            :param data: Data which should be validated | None
+            :type data: <Optional[str]>
             :return: True (if valid) | False (if invalid)
             :rtype: <bool>
             :exceptions: None
         '''
-        if not char or len(char) != 1:
+        if not bool(data):
             return False
 
-        return char in self.__allowed_chars
+        return all(self.__char_validator.is_valid_char(element) for element in data)

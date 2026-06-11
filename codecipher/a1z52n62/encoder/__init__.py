@@ -16,18 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initialization for codecipher.a1z52n62.default package.
+    Initialization for codecipher.a1z52n62.encoder package.
 '''
 
 from typing import List
-from .config import DefaultA1z52N62Config
-from .character_validator import DefaultA1Z52N62CharacterValidator
-from .data_validator import DefaultA1Z52N62DataValidator
-from .validation_engine import DefaultA1Z52N62ValidationEngine
-from .decode_algorithm import DefaultA1z52N62DecodeAlgorithm
-from .encode_algorithm import DefaultA1z52N62EncodeAlgorithm
-from .decoder import DefaultA1z52N62Decoder
-from .encoder import DefaultA1z52N62Encoder
+from .encoder import Encoder
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -38,13 +31,4 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-__all__: List[str] = [
-    'DefaultA1z52N62Config',
-    'DefaultA1Z52N62CharacterValidator',
-    'DefaultA1Z52N62DataValidator',
-    'DefaultA1Z52N62ValidationEngine',
-    'DefaultA1z52N62DecodeAlgorithm',
-    'DefaultA1z52N62EncodeAlgorithm',
-    'DefaultA1z52N62Decoder',
-    'DefaultA1z52N62Encoder'
-]
+__all__: List[str] = ['Encoder']
