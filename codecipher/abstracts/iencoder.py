@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface IEncoder for algorithm encoder class.
+    Defines interface IEncoder for algorithm encoders.
 '''
 
 from abc import ABC, abstractmethod
@@ -43,7 +43,7 @@ class IEncoder(ABC):
             :rtype: <Optional[str]>
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method encoded_data() must be implemented')
+        raise NotImplementedError('Method encoded_data() must be implemented.')
 
     @abstractmethod
     def encode(
@@ -55,14 +55,14 @@ class IEncoder(ABC):
         '''
             Encode data using encoder cipher.
 
-            :param data: Data which should to be encoded | None
+            :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :param key: Key for encoding | None
+            :param key: Key in string format for process of encoding | None
             :type key: <Optional[str]>
-            :param shift_counter: Shift count for encoding | None
+            :param shift_counter: Shift in integer format count for process of encoding | None
             :type shift_counter: <Optional[int]>
-            :return: True (if success) | False (if fail)
+            :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: NotImplementedError
         '''
-        raise NotImplementedError('Method encode() must be implemented')
+        raise NotImplementedError('Method encode() must be implemented.')

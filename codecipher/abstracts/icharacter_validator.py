@@ -48,7 +48,7 @@ class ICharacterValidator(ABC):
         '''
             Validates if a single character belongs to cipher charcter set.
 
-            :param character: Single character in string format to be validated
+            :param character: Single character in string format to be validated | None
             :type character: <Optional[str]>
             :return: True (valid) | False (invalid)
             :rtype: <bool>

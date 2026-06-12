@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class IAlgorithm for cipher algorithm.
+    Defines class IAlgorithm for cipher algorithms.
 '''
 
 from typing import List, Optional, TypeVar, Generic
@@ -44,19 +44,19 @@ class IAlgorithm(ABC, Generic[ConfigT]):
 
             :attributes: None
             :methods:
-                | execute - Execute algorithm for processing data.
+                | execute - Execute chipher logic for processing data.
     '''
 
     @abstractmethod
     def execute(self, data: Optional[str] = None, config: Optional[ConfigT] = None) -> Optional[str]:
         '''
-            Execute algorithm for processing data.
+            Execute cipher logic for processing data.
 
-            :param data: Data which should to be processed | None
+            :param data: Data in string format which should to be processed | None
             :type data: <Optional[str]>
-            :param config: Configuration parameters for algorithm | None
+            :param config: Configuration parameters for cipher | None
             :type config: <Optional[IConfig]>
-            :return: Processed data in str format (success) | None (fail)
+            :return: Processed data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: None
         '''

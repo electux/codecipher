@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines configuration for cipher A1z52N62.
+    Defines configuration for cipher A1z52N62 logic.
 '''
 
 from typing import List, Optional, Set
-from string import ascii_lowercase, ascii_uppercase, digits
-from dataclasses import dataclass
+from string import ascii_lowercase, ascii_uppercase, digits, whitespace
+from dataclasses import dataclass, field
 from codecipher.abstracts import IConfig
 
 __author__: str = 'Vladimir Roncevic'
@@ -52,7 +52,7 @@ class A1z52N62Config(IConfig):
                 | code_splitter - Code splitter (default ' - ').
                 | altchars - Defines replacements for '+' and '/' (default None).
                 | padding - Adds to end '=' (default False).
-                | allowed_chars - Strict set of allowed characters (default ascii_lowercase + ascii_uppercase + digits).
+                | allowed_chars - Strict set of allowed characters (default ascii_lowercase + ascii_uppercase + digits + whitespace).
             :methods: None
     '''
 
@@ -66,4 +66,6 @@ class A1z52N62Config(IConfig):
     code_splitter: str = ' - '
     altchars: Optional[bytes] = None
     padding: bool = False
-    allowed_chars: Optional[Set[str]] = set(ascii_lowercase + ascii_uppercase + digits)
+    allowed_chars: Optional[Set[str]] = field(
+        default_factory=lambda: set(ascii_lowercase + ascii_uppercase + digits + whitespace)
+    )

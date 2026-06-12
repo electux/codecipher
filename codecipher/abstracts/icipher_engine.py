@@ -40,18 +40,18 @@ class ICipherEngine(ABC):
 
             :attributes: None
             :methods:
-                | encode - Encoding data to CIPHER format.
-                | decode - Decoding data from CIPHER format.
+                | encode - Encoding data in string format to CIPHER format.
+                | decode - Decoding data in string format from CIPHER format.
     '''
 
     @abstractmethod
     def encode(self, data: Optional[str]) -> Optional[str]:
         '''
-            Encoding data to CIPHER format.
+            Encoding data in string format to CIPHER format.
 
-            :param data: Data which should to be encoded | None
+            :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :return: Encoded data (success) | None (fail)
+            :return: Encoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: NotImplementedError
         '''
@@ -60,11 +60,11 @@ class ICipherEngine(ABC):
     @abstractmethod
     def decode(self, data: Optional[str]) -> Optional[str]:
         '''
-            Decoding data from CIPHER format.
+            Decoding data in string format from CIPHER format.
 
-            :param data: Data which should to be decoded | None
+            :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :return: Decoded data (success) | None (fail)
+            :return: Decoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: NotImplementedError
         '''

@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class EncodeAlgorithm with default A1z52N62 algorithm implementation.
+    Defines class EncodeAlgorithm with default cipher A1z52N62 implementation.
 '''
 
 from typing import List, Optional
@@ -40,11 +40,11 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for A1z52N62 algorithm.
+                | _config - Configuration parameters for cipher A1z52N62.
             :methods:
                 | __init__ - Initializes EncodeAlgorithm constructor.
                 | encoded_data - Property method for getting encoded data.
-                | encode - Encode data by using A1z52N62 algorithm.
+                | encode - Execute cipher A1z52N62 logic.
     '''
 
     def __init__(self) -> None:
@@ -57,13 +57,13 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
 
     def execute(self, data: Optional[str] = None, config: Optional[IConfig] = None) -> Optional[str]:
         '''
-            Encode data by using A1z52N62 algorithm.
+            Execute cipher A1z52N62 logic.
 
-            :param data: Data which should to be encoded | None
+            :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :param config: Configuration for algorithm | None
+            :param config: Configuration for cipher | None
             :type config: <Optional[IA1Z52N62Config]>
-            :return: Encoded data in str format (success) | None (fail)
+            :return: Encoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: None
         '''

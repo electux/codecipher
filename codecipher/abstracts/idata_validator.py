@@ -48,7 +48,7 @@ class IDataValidator(ABC):
         '''
             Validates if data belongs to cipher data set.
 
-            :param data: Data which should to be validated | None
+            :param data: Data in string format which should to be validated | None
             :type data: <Optional[str]>
             :return: True (valid) | False (invalid)
             :rtype: <bool>

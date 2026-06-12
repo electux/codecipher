@@ -50,7 +50,7 @@ class IValidationEngine(ABC):
         '''
             Adds a new data validator to the validation engine.
 
-            :param validator: Data validator instance to be added.
+            :param validator: Data validator instance to be added | None
             :type validator: <Optional[IDataValidator]>
             :return: None
             :exceptions: NotImplementedError
@@ -62,7 +62,7 @@ class IValidationEngine(ABC):
         '''
             Validates data using all registered validators.
 
-            :param data: Data which should to be validated | None
+            :param data: Data in string format which should to be validated | None
             :type data: <Optional[str]>
             :return: True (valid) | False (invalid)
             :rtype: <bool>

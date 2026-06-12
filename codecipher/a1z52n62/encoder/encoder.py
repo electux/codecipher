@@ -16,8 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class Encoder with attribute(s) and method(s).
-    Creates encoder with A1z52N62 algorithm.
+    Creates class encoder with cipher A1z52N62 logic.
 '''
 
 from dataclasses import dataclass, field
@@ -40,17 +39,16 @@ __status__: str = 'Updated'
 class Encoder(IEncoder):
     '''
         Defines class Encoder with attribute(s) and method(s).
-        Creates encoder with A1z52N62 algorithm.
 
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for A1z52N62 algorithm.
-                | _strategy - Strategy for A1z52N62 algorithm.
+                | _config - Configuration parameters for cipher A1z52N62 logic.
+                | _strategy - Strategy for cipher A1z52N62 logic.
                 | _encoded_data - Container for encoded data.
             :methods:
                 | encoded_data - Property method for getting encoded data.
-                | encode - Encode data by using A1z52N62 algorithm.
+                | encode - Encode data by cipher A1z52N62 logic.
     '''
 
     _config: IConfig = field(default_factory=A1z52N62Config)
@@ -62,7 +60,7 @@ class Encoder(IEncoder):
         '''
             Property method for getting encoded data.
 
-            :return: Encoded data in str format | None
+            :return: Encoded data in string format | None
             :rtype: <Optional[str]>
             :exceptions: None
         '''
@@ -75,13 +73,13 @@ class Encoder(IEncoder):
         shift_counter: Optional[int] = None
     ) -> bool:
         '''
-            Encode data by using A1z52N62 algorithm.
+            Encode data by cipher A1z52N62 logic.
 
-            :param data: Data which should to be encoded | None
+            :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :param key: Key for encoding | None (ignored for A1z52N62)
+            :param key: Key in string format for process of encoding | None (ignored)
             :type key: <Optional[str]>
-            :param shift_counter: Shift count for encoding | None (ignored for A1z52N62)
+            :param shift_counter: Shift count in interger format for process of encoding | None (ignored)
             :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
@@ -90,6 +88,7 @@ class Encoder(IEncoder):
         if not data:
             return False
 
+        # Execute cipher A1z52N62 logic with configuration parameters
         self._encoded_data = self._strategy.execute(data, self._config)
 
         if not self._encoded_data:

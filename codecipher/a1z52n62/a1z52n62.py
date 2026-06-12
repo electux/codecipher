@@ -45,10 +45,10 @@ class A1z52N62(ICipherEngine):
         It defines:
 
             :attributes:
-                | __config - Configuration for A1Z52N62 algorithm.
+                | __config - Configuration for cipher A1Z52N62.
                 | __validation_engine - Engine for data validation.
-                | __encoder - Encoder for A1Z52N62 algorithm.
-                | __decoder - Decoder for A1Z52N62 algorithm.
+                | __encoder - Encoder for cipher A1Z52N62.
+                | __decoder - Decoder for cipher A1Z52N62.
             :methods:
                 | __init__ - Initializes A1z52N62 constructor.
                 | encode - Encoding data to A1z52N62 format.
@@ -65,13 +65,13 @@ class A1z52N62(ICipherEngine):
         '''
             Initializes A1z52N62 constructor.
 
-            :param config: Configuration for A1Z52N62 algorithm | None
+            :param config: Configuration for cipher A1Z52N62 | None
             :type config: <Optional[IA1Z52N62Config]>
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
-            :param encoder: Encoder for algorithm | None
+            :param encoder: Encoder for cipher  | None
             :type encoder: <Optional[IEncoder]>
-            :param decoder: Decoder for algorithm | None
+            :param decoder: Decoder for cipher  | None
             :type decoder: <Optional[IDecoder]>
             :exceptions: None
         '''
@@ -87,17 +87,17 @@ class A1z52N62(ICipherEngine):
         '''
             Encoding data to A1z52N62 format.
 
-            :param data: Data which should to be encoded | None
+            :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :return: Encoded data (success) | None (fail)
+            :return: Encoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        # Checking and validation data for encoding
+        # Checking and validation data for process of encoding
         if not data or not self.__validation_engine.is_valid(data):
             return None
 
-        # Checking encoding data
+        # Checking process of encoding data
         if not self.__encoder.encode(data):
             return None
 
@@ -107,13 +107,13 @@ class A1z52N62(ICipherEngine):
         '''
             Decoding data from A1z52N62 format.
 
-            :param data: Data which should to be decoded | None
+            :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :return: Decoded data (success) | None (fail)
+            :return: Decoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        # Checking and decoding data
+        # Checking data and process of decoding data
         if not data or not self.__decoder.decode(data):
             return None
 

@@ -16,8 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class Decoder with attribute(s) and method(s).
-    Creates decoder with A1z52N62 algorithm.
+    Creates class decoder with cipher A1z52N62 logic.
 '''
 
 from dataclasses import dataclass, field
@@ -40,17 +39,16 @@ __status__: str = 'Updated'
 class Decoder(IDecoder):
     '''
         Defines class Decoder with attribute(s) and method(s).
-        Creates decoder with A1z52N62 algorithm.
 
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for A1z52N62 algorithm.
-                | _strategy - Strategy for A1z52N62 algorithm.
+                | _config - Configuration parameters for cipher A1z52N62 logic.
+                | _strategy - Strategy for cipher A1z52N62 logic.
                 | _decoded_data - Container for decoded data.
             :methods:
                 | decoded_data - Property method for getting decoded data.
-                | decode - Decode data by using A1z52N62 algorithm.
+                | decode - Decode data by cipher A1z52N62 logic.
     '''
 
     _config: IConfig = field(default_factory=A1z52N62Config)
@@ -62,7 +60,7 @@ class Decoder(IDecoder):
         '''
             Property method for getting decoded data.
 
-            :return: Decoded data in str format | None
+            :return: Decoded data in string format | None
             :rtype: <Optional[str]>
             :exceptions: None
         '''
@@ -75,13 +73,13 @@ class Decoder(IDecoder):
         shift_counter: Optional[int] = None
     ) -> bool:
         '''
-            Decode data by using A1z52N62 algorithm.
+            Decode data by cipher A1z52N62 logic.
 
-            :param data: Data which should to be decoded | None
+            :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :param key: Key for decoding | None (ignored for A1z52N62)
+            :param key: Key in string format for process of decoding | None (ignored)
             :type key: <Optional[str]>
-            :param shift_counter: Shift count for decoding | None (ignored for A1z52N62)
+            :param shift_counter: Shift count in integer format for process of decoding | None (ignored)
             :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
@@ -90,6 +88,7 @@ class Decoder(IDecoder):
         if not data:
             return False
 
+        # Execute cipher A1z52N62 logic with configuration parameters
         self._decoded_data = self._strategy.execute(data, self._config)
 
         if not self._decoded_data:

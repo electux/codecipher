@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines interface IDecoder for algorithm decoder class.
+    Defines interface IDecoder for algorithm decoders.
 '''
 
 from abc import ABC, abstractmethod
@@ -39,7 +39,7 @@ class IDecoder(ABC):
         '''
             Property method for getting decoded data.
 
-            :return: Decoded data | None
+            :return: Decoded data in string format | None
             :rtype: <Optional[str]>
             :exceptions: NotImplementedError
         '''
@@ -55,13 +55,13 @@ class IDecoder(ABC):
         '''
             Decode data using decoder cipher.
 
-            :param data: Data which should to be decoded | None
+            :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :param key: Key for decoding | None
+            :param key: Key in string format for process of decoding | None
             :type key: <Optional[str]>
-            :param shift_counter: Shift count for decoding | None
+            :param shift_counter: Shift count in integer format for process of decoding | None
             :type shift_counter: <Optional[int]>
-            :return: True (if success) | False (if fail)
+            :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: NotImplementedError
         '''
