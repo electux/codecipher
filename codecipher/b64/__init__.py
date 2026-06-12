@@ -16,20 +16,11 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class B64 with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Initialization for codecipher.b64 package.
 '''
 
 from typing import List
 from .b64 import B64
-from .ib64 import IB64
-from .b64encoder import B64Encoder
-from .b64decoder import B64Decoder
-from .iencoder import IEncoder
-from .idecoder import IDecoder
-from .default_validation_engine import DefaultB64ValidationEngine
-from .default_data_validator import DefaultB64DataValidator
-from .default_character_validator import DefaultB64CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,14 +31,4 @@ __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
-__all__: List[str] = [
-    'IB64',
-    'IEncoder',
-    'IDecoder',
-    'B64Encoder',
-    'B64Decoder',
-    'B64',
-    'DefaultB64ValidationEngine',
-    'DefaultB64DataValidator',
-    'DefaultB64CharacterValidator'
-]
+__all__: List[str] = ['B64']

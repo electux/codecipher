@@ -17,17 +17,16 @@ Copyright
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
     Defines class Caesar with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
 '''
 
-from typing import Optional, List
-from codecipher.abstracts import IValidationEngine
-from .iencoder import IEncoder
-from .icaesar import ICaesar
-from .idecoder import IDecoder
-from .encoder import CaesarEncoder
-from .decoder import CaesarDecoder
-from .default_validation_engine import DefaultCaesarValidationEngine
+from typing import List, Optional
+from codecipher.abstracts import (
+    ICipherEngine, IConfig, IValidationEngine, IEncoder, IDecoder
+)
+from codecipher.validation import ValidationEngine
+from codecipher.atbs.encoder import Encoder
+from codecipher.atbs.decoder import Decoder
+from .config import CaesarConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -39,26 +38,26 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class Caesar(ICaesar):
+class Caesar(ICipherEngine):
     '''
         Defines class Caesar with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
 
         It defines:
+
             :attributes:
+                | __config - Configuration for cipher CAESAR.
                 | __validation_engine - Engine for data validation.
-                | __encoder - Encoder for Caesar algorithm.
-                | __decoder - Decoder for Caesar algorithm.
+                | __encoder - Encoder for cipher CAESAR.
+                | __decoder - Decoder for cipher CAESAR.
             :methods:
                 | __init__ - Initializes Caesar constructor.
-                | encode - Encoding data to Caesar format.
-                | encode_data - Property method for getting encode data.
-                | decode - Decoding data from Caesar format.
-                | decode_data - Property method for getting decode data.
+                | encode - Encoding data to CAESAR format.
+                | decode - Decoding data from CAESAR format.
     '''
 
     def __init__(
         self,
+        config: Optional[IConfig] = None,
         validation_engine: Optional[IValidationEngine] = None,
         encoder: Optional[IEncoder] = None,
         decoder: Optional[IDecoder] = None,
@@ -66,68 +65,60 @@ class Caesar(ICaesar):
         '''
             Initializes Caesar constructor.
 
+            :param config: Configuration for cipher CAESAR | None
+            :type config: <Optional[IConfig]>
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
-            :param encoder: Encoder for algorithm | None
+            :param encoder: Encoder for cipher  | None
             :type encoder: <Optional[IEncoder]>
-            :param decoder: Decoder for algorithm | None
+            :param decoder: Decoder for cipher  | None
             :type decoder: <Optional[IDecoder]>
             :exceptions: None
         '''
-        self.__validation_engine: IValidationEngine = validation_engine or DefaultCaesarValidationEngine()
-        self.__encoder: IEncoder = encoder or CaesarEncoder()
-        self.__decoder: IDecoder = decoder or CaesarDecoder()
+        # Dependency injection or use default implementations
+        self.__config: IConfig = config or CaesarConfig()
+        self.__validation_engine: IValidationEngine = validation_engine or ValidationEngine(
+            allowed_chars=self.__config.allowed_chars
+        )
+        self.__encoder: IEncoder = encoder or Encoder(_config=self.__config)
+        self.__decoder: IDecoder = decoder or Decoder(_config=self.__config)
 
-    def encode(self, data: Optional[str], shift_counter: Optional[int]) -> bool:
+    def encode(self, data: Optional[str]) -> Optional[str]:
         '''
-            Encoding data to Caesar format.
+            Encoding data to CAESAR format.
 
-            :param data: Data which should be encoded | None
+            :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :param shift_counter: Shift value | None
-            :type shift_counter: <Optional[int]>
-            :return: True (if success) | False (if fail)
-            :rtype: <bool>
-            :exceptions: None
-        '''
-        if shift_counter is None or not self.__validation_engine.is_valid(data):
-            return False
-        return self.__encoder.encode(data, shift_counter)
-
-    @property
-    def encode_data(self) -> Optional[str]:
-        '''
-            Property method for getting encode data.
-
-            :return: Encoded data | None
+            :return: Encoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self.__encoder.encode_data
+        # Checking and validation data for process of encoding
+        if not data or not self.__validation_engine.is_valid(data):
+            return None
 
-    def decode(self, data: Optional[str], shift_counter: Optional[int]) -> bool:
+        # Checking process of encoding data
+        if not self.__encoder.encode(data):
+            return None
+
+        return self.__encoder.encoded_data
+
+    def decode(self, data: Optional[str]) -> Optional[str]:
         '''
-            Decoding data from Caesar format.
+            Decoding data from CAESAR format.
 
-            :param data: Data which should be decoded | None
+            :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :param shift_counter: Shift value | None
-            :type shift_counter: <Optional[int]>
-            :return: True (if success) | False (if fail)
-            :rtype: <bool>
-            :exceptions: None
-        '''
-        if shift_counter is None or not self.__validation_engine.is_valid(data):
-            return False
-        return self.__decoder.decode(data, shift_counter)
-
-    @property
-    def decode_data(self) -> Optional[str]:
-        '''
-            Property method for getting decode data.
-
-            :return: Decoded data | None
+            :return: Decoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: None
         '''
-        return self.__decoder.decode_data
+        # Checking data and process of decoding data
+        if not data or not self.__decoder.decode(data):
+            return None
+
+        # Checking and validation decoded data
+        if not self.__validation_engine.is_valid(self.__decoder.decoded_data):
+            return None
+
+        return self.__decoder.decoded_data

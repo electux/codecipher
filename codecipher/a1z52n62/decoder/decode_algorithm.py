@@ -62,7 +62,7 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
             :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
             :param config: Configuration for cipher | None
-            :type config: <Optional[IA1Z52N62Config]>
+            :type config: <Optional[IConfig]>
             :return: Decoded data in string format (success) | None (fail)
             :rtype: <Optional[str]>
             :exceptions: None
@@ -73,6 +73,9 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
         self.__config = config or A1z52N62Config()
 
         if not self.__config:
+            return None
+
+        if not self.__config.code_splitter:
             return None
 
         tokens: List[str] = data.split(self.__config.code_splitter)

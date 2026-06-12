@@ -19,7 +19,7 @@ Info
     Defines abstract class IConfig for cipher configurations.
 '''
 
-from typing import List, Optional, Set
+from typing import Dict, List, Optional, Set
 from abc import ABC
 
 __author__: str = 'Vladimir Roncevic'
@@ -50,6 +50,7 @@ class IConfig(ABC):
                 | altchars - Defines replacements for '+' and '/' in cipher set.
                 | padding - Adds to end '=' in cipher set.
                 | allowed_chars - Strict set of allowed characters in cipher set.
+                | lookup_table - Lookup table for cipher set.
             :methods: None
     '''
 
@@ -60,7 +61,8 @@ class IConfig(ABC):
     lower_case_base: int
     numeric_base: int
     alphabet_size: int
-    code_splitter: str
+    code_splitter: Optional[str]
     altchars: Optional[bytes]
     padding: bool
     allowed_chars: Optional[Set[str]]
+    lookup_table: Optional[Dict[str, str]]

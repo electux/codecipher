@@ -17,17 +17,16 @@ Copyright
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
     Defines class Vernam with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
 '''
 
 from typing import List, Optional
-from codecipher.abstracts import IValidationEngine
-from .encoder import VernamEncoder
-from .decoder import VernamDecoder
-from .ivernam import IVernam
-from .iencoder import IEncoder
-from .idecoder import IDecoder
-from .default_validation_engine import DefaultVernamValidationEngine
+from codecipher.abstracts import (
+    ICipherEngine, IConfig, IValidationEngine, IEncoder, IDecoder
+)
+from codecipher.validation import ValidationEngine
+from codecipher.atbs.encoder import Encoder
+from codecipher.atbs.decoder import Decoder
+from .config import VernamConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -39,90 +38,87 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class Vernam(IVernam):
+class Vernam(ICipherEngine):
     '''
         Defines class Vernam with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
 
         It defines:
 
             :attributes:
+                | __config - Configuration for cipher VERNAM.
                 | __validation_engine - Engine for data validation.
-                | __encoder - Encoder for algorithm.
-                | __decoder - Decoder for algorithm.
+                | __encoder - Encoder for cipher VERNAM.
+                | __decoder - Decoder for cipher VERNAM.
             :methods:
                 | __init__ - Initializes Vernam constructor.
-                | encode - Encoding data to Vernam format.
-                | encode_data - Property method for getting encode data.
-                | decode - Decoding data from Vernam format.
-                | decode_data - Property method for getting decode data.
+                | encode - Encoding data to VERNAM format.
+                | decode - Decoding data from VERNAM format.
     '''
 
     def __init__(
         self,
+        config: Optional[IConfig] = None,
         validation_engine: Optional[IValidationEngine] = None,
         encoder: Optional[IEncoder] = None,
-        decoder: Optional[IDecoder] = None
+        decoder: Optional[IDecoder] = None,
     ) -> None:
         '''
             Initializes Vernam constructor.
 
+            :param config: Configuration for cipher VERNAM | None
+            :type config: <Optional[IConfig]>
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
-            :param encoder: Encoder for algorithm | None
+            :param encoder: Encoder for cipher  | None
             :type encoder: <Optional[IEncoder]>
-            :param decoder: Decoder for algorithm | None
+            :param decoder: Decoder for cipher  | None
             :type decoder: <Optional[IDecoder]>
             :exceptions: None
         '''
-        self.__encoder: IEncoder = encoder or VernamEncoder()
-        self.__decoder: IDecoder = decoder or VernamDecoder()
-        self.__validation_engine: IValidationEngine = validation_engine or DefaultVernamValidationEngine()
+        # Dependency injection or use default implementations
+        self.__config: IConfig = config or VernamConfig()
+        self.__validation_engine: IValidationEngine = validation_engine or ValidationEngine(
+            allowed_chars=self.__config.allowed_chars
+        )
+        self.__encoder: IEncoder = encoder or Encoder(_config=self.__config)
+        self.__decoder: IDecoder = decoder or Decoder(_config=self.__config)
 
-    def encode(self, data: Optional[str], key: Optional[str]) -> bool:
+    def encode(self, data: Optional[str]) -> Optional[str]:
         '''
-            Encoding data to Vernam format.
+            Encoding data to VERNAM format.
 
-            :param data: Data which should be encoded | None
+            :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :param key: Key for encoding | None
-            :type key: <Optional[str]>
-            :return: True (if success) | False (if fail)
-            :rtype: <bool>
+            :return: Encoded data in string format (success) | None (fail)
+            :rtype: <Optional[str]>
             :exceptions: None
         '''
-        if self.__validation_engine.is_valid(data) and \
-           self.__validation_engine.is_valid(key):
-            return self.__encoder.encode(data, key)
-        return False
+        # Checking and validation data for process of encoding
+        if not data or not self.__validation_engine.is_valid(data):
+            return None
 
-    @property
-    def encode_data(self) -> Optional[str]:
-        '''
-            Property method for getting encode data.
-        '''
-        return self.__encoder.encode_data
+        # Checking process of encoding data
+        if not self.__encoder.encode(data):
+            return None
 
-    def decode(self, data: Optional[str], key: Optional[str]) -> bool:
-        '''
-            Decoding data from Vernam format.
+        return self.__encoder.encoded_data
 
-            :param data: Data which should be decoded | None
+    def decode(self, data: Optional[str]) -> Optional[str]:
+        '''
+            Decoding data from VERNAM format.
+
+            :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :param key: Key for decoding | None
-            :type key: <Optional[str]>
-            :return: True (if success) | False (if fail)
-            :rtype: <bool>
+            :return: Decoded data in string format (success) | None (fail)
+            :rtype: <Optional[str]>
             :exceptions: None
         '''
-        if self.__validation_engine.is_valid(data) and \
-           self.__validation_engine.is_valid(key):
-            return self.__decoder.decode(data, key)
-        return False
+        # Checking data and process of decoding data
+        if not data or not self.__decoder.decode(data):
+            return None
 
-    @property
-    def decode_data(self) -> Optional[str]:
-        '''
-            Property method for getting decode data.
-        '''
-        return self.__decoder.decode_data
+        # Checking and validation decoded data
+        if not self.__validation_engine.is_valid(self.__decoder.decoded_data):
+            return None
+
+        return self.__decoder.decoded_data

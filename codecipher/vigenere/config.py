@@ -16,10 +16,10 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines configuration for cipher A1z52N62 logic.
+    Defines configuration for cipher ATBS logic.
 '''
 
-from typing import List, Optional, Set
+from typing import Dict, List, Optional, Set
 from string import ascii_lowercase, ascii_uppercase, digits, whitespace
 from dataclasses import dataclass, field
 from codecipher.abstracts import IConfig
@@ -35,37 +35,39 @@ __status__: str = 'Updated'
 
 
 @dataclass(frozen=True)
-class A1z52N62Config(IConfig):
+class VigenereConfig(IConfig):
     '''
-        Defines class A1z52N62Config with attribute(s).
+        Defines class VigenereConfig with attribute(s).
 
         It defines:
 
             :attributes:
                 | key - Controls transformation during encoding and decoding (default None).
                 | shift - Controls transformation during encoding and decoding (default 0).
-                | upper_case_offset - Offset for uppercase letters (default 64).
-                | lower_case_offset - Offset for lowercase letters (default 96).
-                | lower_case_base - Base index for lowercase letters (default 27).
-                | numeric_base - Base index for numeric characters (default 53).
-                | alphabet_size - Size of alphabet (default 26).
-                | code_splitter - Code splitter (default ' - ').
+                | upper_case_offset - Offset for uppercase letters (default 0).
+                | lower_case_offset - Offset for lowercase letters (default 0).
+                | lower_case_base - Base index for lowercase letters (default 0).
+                | numeric_base - Base index for numeric characters (default 0).
+                | alphabet_size - Size of alphabet (default 0).
+                | code_splitter - Code splitter (default None).
                 | altchars - Defines replacements for '+' and '/' (default None).
                 | padding - Adds to end '=' (default False).
                 | allowed_chars - Strict set of allowed characters (default ascii_lowercase + ascii_uppercase + digits + whitespace).
+                | lookup_table - Lookup table for cipher set (default None).
             :methods: None
     '''
 
     key: Optional[str] = None
     shift: int = 0
-    upper_case_offset: int = 64
-    lower_case_offset: int = 96
-    lower_case_base: int = 27
-    numeric_base: int = 53
-    alphabet_size: int = 26
-    code_splitter: Optional[str] = ' - '
+    upper_case_offset: int = 0
+    lower_case_offset: int = 0
+    lower_case_base: int = 0
+    numeric_base: int = 0
+    alphabet_size: int = 0
+    code_splitter: Optional[str] = None
     altchars: Optional[bytes] = None
     padding: bool = False
     allowed_chars: Optional[Set[str]] = field(
         default_factory=lambda: set(ascii_lowercase + ascii_uppercase + digits + whitespace)
     )
+    lookup_table: Optional[Dict[str, str]] = None

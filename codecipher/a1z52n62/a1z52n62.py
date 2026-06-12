@@ -66,7 +66,7 @@ class A1z52N62(ICipherEngine):
             Initializes A1z52N62 constructor.
 
             :param config: Configuration for cipher A1Z52N62 | None
-            :type config: <Optional[IA1Z52N62Config]>
+            :type config: <Optional[IConfig]>
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
             :param encoder: Encoder for cipher  | None

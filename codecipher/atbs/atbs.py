@@ -2,7 +2,7 @@
 
 '''
 Module
-    aleph_taw_bet_shin.py
+    atbs.py
 Copyright
     Copyright (C) 2021 - 2026 Vladimir Roncevic <elektron.ronca@gmail.com>
     codecipher is free software: you can redistribute it and/or modify it
@@ -16,18 +16,17 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class AlephTawBetShin with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Defines class ATBS with attribute(s) and method(s).
 '''
 
 from typing import Optional, List
-from codecipher.abstracts import IValidationEngine
-from .iatbs import IATBS
-from .iencoder import IATBSEncoder
-from .default.encoder import ATBSEncoder
-from .idecoder import IATBSDecoder
-from .default.decoder import ATBSDecoder
-from .default.validation_engine import DefaultATBSValidationEngine
+from codecipher.abstracts import (
+    ICipherEngine, IConfig, IValidationEngine, IEncoder, IDecoder
+)
+from codecipher.validation import ValidationEngine
+from codecipher.atbs.encoder import Encoder
+from codecipher.atbs.decoder import Decoder
+from .config import ATBSConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -39,76 +38,87 @@ __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
 
 
-class ATBS(IATBS):
+class ATBS(ICipherEngine):
     '''
         Defines class ATBS with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
 
         It defines:
 
             :attributes:
-                | __config - Configuration for algorithm.
+                | __config - Configuration for cipher ATBS.
                 | __validation_engine - Engine for data validation.
-                | __encoder - Encoder for algorithm.
-                | __decoder - Decoder for algorithm.
+                | __encoder - Encoder for cipher ATBS.
+                | __decoder - Decoder for cipher ATBS.
             :methods:
                 | __init__ - Initializes ATBS constructor.
                 | encode - Encoding data to ATBS format.
-                | encode_data - Property method for getting encode data.
                 | decode - Decoding data from ATBS format.
-                | decode_data - Property method for getting decode data.
     '''
 
     def __init__(
         self,
+        config: Optional[IConfig] = None,
         validation_engine: Optional[IValidationEngine] = None,
-        encoder: Optional[IATBSEncoder] = None,
-        decoder: Optional[IATBSDecoder] = None,
+        encoder: Optional[IEncoder] = None,
+        decoder: Optional[IDecoder] = None,
     ) -> None:
         '''
             Initializes ATBS constructor.
 
-            :param config: Configuration for algorithm | None
-            :type config: <Optional[ATBSConfig]>
+            :param config: Configuration for cipher ATBS | None
+            :type config: <Optional[IConfig]>
             :param validation_engine: Engine for data validation | None
             :type validation_engine: <Optional[IValidationEngine]>
-            :param encoder: Encoder for algorithm | None
-            :type encoder: <Optional[IATBSEncoder]>
-            :param decoder: Decoder for algorithm | None
-            :type decoder: <Optional[IATBSDecoder]>
+            :param encoder: Encoder for cipher  | None
+            :type encoder: <Optional[IEncoder]>
+            :param decoder: Decoder for cipher  | None
+            :type decoder: <Optional[IDecoder]>
             :exceptions: None
         '''
-        self.__validation_engine: IValidationEngine = validation_engine or DefaultATBSValidationEngine()
-        self.__encoder: IATBSEncoder = encoder or ATBSEncoder()
-        self.__decoder: IATBSDecoder = decoder or ATBSDecoder()
+        # Dependency injection or use default implementations
+        self.__config: IConfig = config or ATBSConfig()
+        self.__validation_engine: IValidationEngine = validation_engine or ValidationEngine(
+            allowed_chars=self.__config.allowed_chars
+        )
+        self.__encoder: IEncoder = encoder or Encoder(_config=self.__config)
+        self.__decoder: IDecoder = decoder or Decoder(_config=self.__config)
 
-    def encode(self, data: Optional[str]) -> bool:
+    def encode(self, data: Optional[str]) -> Optional[str]:
         '''
             Encoding data to ATBS format.
-        '''
-        if not bool(data) or not self.__validation_engine.is_valid(data):
-            return False
-        return self.__encoder.encode(data)
 
-    @property
-    def encode_data(self) -> Optional[str]:
+            :param data: Data in string format which should to be encoded | None
+            :type data: <Optional[str]>
+            :return: Encoded data in string format (success) | None (fail)
+            :rtype: <Optional[str]>
+            :exceptions: None
         '''
-            Property method for getting encode data.
-        '''
-        return self.__encoder.encode_data
+        # Checking and validation data for process of encoding
+        if not data or not self.__validation_engine.is_valid(data):
+            return None
 
-    def decode(self, data: Optional[str]) -> bool:
+        # Checking process of encoding data
+        if not self.__encoder.encode(data):
+            return None
+
+        return self.__encoder.encoded_data
+
+    def decode(self, data: Optional[str]) -> Optional[str]:
         '''
             Decoding data from ATBS format.
-        '''
-        if not bool(data) or not self.__decoder.decode(data):
-            return False
 
-        return self.__validation_engine.is_valid(self.decode_data)
+            :param data: Data in string format which should to be decoded | None
+            :type data: <Optional[str]>
+            :return: Decoded data in string format (success) | None (fail)
+            :rtype: <Optional[str]>
+            :exceptions: None
+        '''
+        # Checking data and process of decoding data
+        if not data or not self.__decoder.decode(data):
+            return None
 
-    @property
-    def decode_data(self) -> Optional[str]:
-        '''
-            Property method for getting decode data.
-        '''
-        return self.__decoder.decode_data
+        # Checking and validation decoded data
+        if not self.__validation_engine.is_valid(self.__decoder.decoded_data):
+            return None
+
+        return self.__decoder.decoded_data

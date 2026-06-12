@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class EncodeAlgorithm with default cipher A1z52N62 implementation.
+    Defines class EncodeAlgorithm with default cipher ATBS implementation.
 '''
 
 from typing import List, Optional
 from codecipher.abstracts import IAlgorithm, IConfig
-from codecipher.a1z52n62.config import A1z52N62Config
+from codecipher.atbs.config import ATBSConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,11 +40,11 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for cipher A1z52N62.
+                | _config - Configuration parameters for cipher ATBS.
             :methods:
                 | __init__ - Initializes EncodeAlgorithm constructor.
                 | encoded_data - Property method for getting encoded data.
-                | encode - Execute cipher A1z52N62 logic.
+                | encode - Execute cipher ATBS logic.
     '''
 
     def __init__(self) -> None:
@@ -57,7 +57,7 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
 
     def execute(self, data: Optional[str] = None, config: Optional[IConfig] = None) -> Optional[str]:
         '''
-            Execute cipher A1z52N62 logic.
+            Execute cipher ATBS logic.
 
             :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
@@ -70,32 +70,26 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         if not data:
             return None
 
-        self.__config = config or A1z52N62Config()
+        self.__config = config or ATBSConfig()
 
         if not self.__config:
             return None
 
-        if not self.__config.code_splitter:
-            return None
+        #encode_list: List[str] = []
+        #key = (key * (len(data) // len(key))) + key[:len(data) % len(key)]
+        #for i, element in enumerate(data):
+        #    if element.isalpha() and key[i].isalpha():
+        #        key_code: int = ord(key[i].lower()) - 96
+        #        text_code: int = ord(element.lower()) - 96
+        #        ans: int = text_code + key_code - 1
+        #        if ans > 26:
+        #            ans -= 26
+        #        if element.isupper():
+        #            encode_list.append(chr(ans + 96).upper())
+        #        else:
+        #            encode_list.append(chr(ans + 96))
+        #    else:
+        #        encode_list.append(element)
+        #self._encode_data = ''.join(encode_list)
 
-        encode_list: List[str] = []
-
-        for element in data:
-            if element.isalpha():
-                if element.isupper():
-                    # 'A' -> 65 - 64 = 1.
-                    encode_list.append(str(ord(element) - self.__config.upper_case_offset))
-                else:
-                    # lower_case_base = 27, a ord('a') - 96 = 1, 'a' -> (1 + 26 = 27).
-                    encode_list.append(
-                        str(ord(element) - self.__config.lower_case_offset + (self.__config.lower_case_base - 1))
-                    )
-            elif element.isnumeric():
-                # '0' -> 0 + 53 = 53, '9' -> 9 + 53 = 62.
-                encode_list.append(str(int(element) + self.__config.numeric_base))
-            else:
-                # All other characters (spaces, punctuation) remain unchanged.
-                encode_list.append(element)
-
-        # Join encoded list with splitters
-        return self.__config.code_splitter.join(encode_list)
+        return ""
