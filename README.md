@@ -104,7 +104,7 @@ You can use Dockerfile to create image/container.
 ### Usage
 
 ```python
-from codecipher.a1z52n62 import A1Z52N62
+from codecipher.a1z52n62.engine import A1Z52N62
 from codecipher.atbs.engine import ATBS
 from codecipher.b64.engine import B64
 from codecipher.caesar.engine import Caesar
@@ -115,81 +115,78 @@ print("A1z52N62 cipher")
 cipher = A1Z52N62()
 data = "More Human Than Human01 Is Our Motto"
 # encoding data
-cipher.encode(data)
+encode_data = cipher.encode(data)
 # encoded data
-print(cipher.encode_data)
+print(encode_data)
 # decoding data
-cipher.decode(cipher.encode_data)
+decode_data = cipher.decode(encode_data)
 # decoded data
-print(cipher.decode_data)
+print(decode_data)
 print(50*'=')
 
 print("ATBS cipher")
 cipher = ATBS()
 data = "More Human Than Human01 Is Our Motto"
 # encoding data
-cipher.encode(data)
+encode_data = cipher.encode(data)
 # encoded data
-print(cipher.encode_data)
+print(encode_data)
 # decoding data
-cipher.decode(cipher.encode_data)
+decode_data = cipher.decode(encode_data)
 # decoded data
-print(cipher.decode_data)
+print(decode_data)
 print(50*'=')
 
 print("B64 cipher")
 cipher = B64()
 data = "More Human Than Human01 Is Our Motto"
 # encoding data
-cipher.encode(data)
+encode_data = cipher.encode(data)
 # encoded data
-print(cipher.encode_data)
+print(encode_data)
 # decoding data
-cipher.decode(cipher.encode_data)
+decode_data = cipher.decode(encode_data)
 # decoded data
-print(cipher.decode_data)
+print(decode_data)
 print(50*'=')
 
 print("Caesar cipher")
 cipher = Caesar()
 data = "More Human Than Human01 Is Our Motto"
 # encoding data
-cipher.encode(data, 3)
+encode_data = cipher.encode(data)
 # encoded data
-print(cipher.encode_data)
+print(encode_data)
 # decoding data
-cipher.decode(cipher.encode_data, 3)
+decode_data = cipher.decode(encode_data)
 # decoded data
-print(cipher.decode_data)
+print(decode_data)
 print(50*'=')
 
 print("Vigenere cipher")
 cipher = Vigenere()
 data = "More Human Than Human01 Is Our Motto"
-cipher.data_len = len(data)
-cipher.key = "AYUSH"
-cipher.generate_key()
 # encoding data
-cipher.encode(data, cipher.key)
+encode_data = cipher.encode(data)
 # encoded data
-print(cipher.encode_data)
+print(encode_data)
 # decoding data
-cipher.decode(cipher.encode_data, cipher.key)
+decode_data = cipher.decode(encode_data)
 # decoded data
-print(cipher.decode_data)
+print(decode_data)
 print(50*'=')
 
 print("Vernam cipher")
 cipher = Vernam()
 data = "More Human Than Human01 Is Our Motto"
 # encoding data
-cipher.encode(data, "randomrandomrandom")
+encode_data = cipher.encode(data)
 # encoded data
-print(cipher.encode_data)
+print(encode_data)
 # decoding data
-cipher.decode(cipher.encode_data, "randomrandomrandom")
+decode_data = cipher.decode(encode_data)
 # decoded data
-print(cipher.decode_data)
+print(decode_data)
 print(50*'=')
 ```
 
