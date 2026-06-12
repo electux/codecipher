@@ -15,4 +15,17 @@ Copyright
     See the GNU General Public License for more details.
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
+
+    Initialization for codecipher package.
 '''
+
+from typing import List
+
+__author__: str = 'Vladimir Roncevic'
+__copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
+__credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
+__license__: str = 'https://github.com/electux/codecipher/blob/main/LICENSE'
+__version__: str = '1.5.1'
+__maintainer__: str = 'Vladimir Roncevic'
+__email__: str = 'elektron.ronca@gmail.com'
+__status__: str = 'Updated'

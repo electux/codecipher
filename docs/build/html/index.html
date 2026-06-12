@@ -55,9 +55,11 @@ other information that should be provided before the modules are installed.</p>
 <li class="toctree-l2"><a class="reference internal" href="codecipher.html">codecipher package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="codecipher.html#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="codecipher.a1z52n62.html">codecipher.a1z52n62 package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="codecipher.abstracts.html">codecipher.abstracts package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="codecipher.atbs.html">codecipher.atbs package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="codecipher.b64.html">codecipher.b64 package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="codecipher.caesar.html">codecipher.caesar package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="codecipher.validation.html">codecipher.validation package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="codecipher.vernam.html">codecipher.vernam package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="codecipher.vigenere.html">codecipher.vigenere package</a></li>
 </ul>
@@ -111,37 +113,97 @@ pip3<span class="w"> </span>install<span class="w"> </span>codecipher
 <p><strong>codecipher</strong> is based on OOP.</p>
 <p>Package structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>codecipher/
-<span class="w">    </span>├──<span class="w"> </span>a1z52n62/
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>decode.py
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>encode.py
+├──<span class="w"> </span>a1z52n62/
+│<span class="w">   </span>├──<span class="w"> </span>config.py
+│<span class="w">   </span>├──<span class="w"> </span>decode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>encode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>engine.py
+│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+├──<span class="w"> </span>abstracts/
+│<span class="w">   </span>├──<span class="w"> </span>ialgorithm.py
+│<span class="w">   </span>├──<span class="w"> </span>icharacter_validator.py
+│<span class="w">   </span>├──<span class="w"> </span>icipher_engine.py
+│<span class="w">   </span>├──<span class="w"> </span>iconfig.py
+│<span class="w">   </span>├──<span class="w"> </span>idata_validator.py
+│<span class="w">   </span>├──<span class="w"> </span>idecoder.py
+│<span class="w">   </span>├──<span class="w"> </span>iencoder.py
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>└──<span class="w"> </span>ivalidation_engine.py
+├──<span class="w"> </span>atbs/
+│<span class="w">   </span>├──<span class="w"> </span>config.py
+│<span class="w">   </span>├──<span class="w"> </span>decode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>encode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>engine.py
+│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+├──<span class="w"> </span>b64/
+│<span class="w">   </span>├──<span class="w"> </span>config.py
+│<span class="w">   </span>├──<span class="w"> </span>decode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>encode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>engine.py
+│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+├──<span class="w"> </span>caesar/
+│<span class="w">   </span>├──<span class="w"> </span>config.py
+│<span class="w">   </span>├──<span class="w"> </span>decode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>encode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>engine.py
+│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+├──<span class="w"> </span>__init__.py
+├──<span class="w"> </span>py.typed
+├──<span class="w"> </span>validation/
+│<span class="w">   </span>├──<span class="w"> </span>character_validator.py
+│<span class="w">   </span>├──<span class="w"> </span>data_validator.py
+│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+│<span class="w">   </span>└──<span class="w"> </span>validation_engine.py
+├──<span class="w"> </span>vernam/
+│<span class="w">   </span>├──<span class="w"> </span>config.py
+│<span class="w">   </span>├──<span class="w"> </span>decode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>decoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>encode/
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encode_algorithm.py
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>encoder.py
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+│<span class="w">   </span>├──<span class="w"> </span>engine.py
+│<span class="w">   </span>└──<span class="w"> </span>__init__.py
+└──<span class="w"> </span>vigenere/
+<span class="w">    </span>├──<span class="w"> </span>config.py
+<span class="w">    </span>├──<span class="w"> </span>decode/
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>decode_algorithm.py
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>decoder.py
 <span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
-<span class="w">    </span>├──<span class="w"> </span>atbs/
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>decode.py
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>encode.py
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>lookup_table.py
-<span class="w">    </span>├──<span class="w"> </span>b64/
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>decode.py
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>encode.py
+<span class="w">    </span>├──<span class="w"> </span>encode/
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>encode_algorithm.py
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>encoder.py
 <span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
-<span class="w">    </span>├──<span class="w"> </span>caesar/
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>decode.py
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>encode.py
-<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
-<span class="w">    </span>├──<span class="w"> </span>__init__.py
-<span class="w">    </span>├──<span class="w"> </span>py.typed
-<span class="w">    </span>├──<span class="w"> </span>vernam/
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>decode.py
-<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>encode.py
-<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>__init__.py
-<span class="w">    </span>└──<span class="w"> </span>vigenere/
-<span class="w">        </span>├──<span class="w"> </span>decode.py
-<span class="w">        </span>├──<span class="w"> </span>encode.py
-<span class="w">        </span>├──<span class="w"> </span>__init__.py
-<span class="w">        </span>├──<span class="w"> </span>key_generator.py
-<span class="w">        </span>└──<span class="w"> </span>lookup_table.py
+<span class="w">    </span>├──<span class="w"> </span>engine.py
+<span class="w">    </span>└──<span class="w"> </span>__init__.py
 
-<span class="m">7</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">23</span><span class="w"> </span>files
+<span class="m">21</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">69</span><span class="w"> </span>files
 </pre></div>
 </div>
 </section>

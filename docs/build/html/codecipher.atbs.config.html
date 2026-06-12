@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>codecipher.atbs.config module &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
+    
+    <script src="_static/documentation_options.js?v=199d8b52"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="codecipher.atbs.engine module" href="codecipher.atbs.engine.html" />
+    <link rel="prev" title="codecipher.atbs.encode.encoder module" href="codecipher.atbs.encode.encoder.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.atbs.engine.html" title="codecipher.atbs.engine module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="codecipher.atbs.encode.encoder.html" title="codecipher.atbs.encode.encoder module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.atbs.html" accesskey="U">codecipher.atbs package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.atbs.config module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-codecipher.atbs.config">
+<span id="codecipher-atbs-config-module"></span><h1>codecipher.atbs.config module<a class="headerlink" href="#module-codecipher.atbs.config" title="Link to this heading">¶</a></h1>
+<dl class="simple">
+<dt>Module</dt><dd><p>config.py</p>
+</dd>
+<dt>Copyright</dt><dd><p>Copyright (C) 2021 - 2026 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+codecipher is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+codecipher is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</dd>
+<dt>Info</dt><dd><p>Defines configuration for cipher ATBS logic.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.atbs.config.</span></span><span class="sig-name descname"><span class="pre">ATBSConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_case_offset:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_case_offset:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_case_base:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numeric_base:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet_size:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_splitter:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">altchars:</span> <span class="pre">bytes</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allowed_chars:</span> <span class="pre">~typing.Set[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lookup_table:</span> <span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/codecipher/atbs/config.html#ATBSConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="codecipher.abstracts.iconfig.html#codecipher.abstracts.iconfig.IConfig" title="codecipher.abstracts.iconfig.IConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">IConfig</span></code></a></p>
+<p>Defines class ATBSConfig with attribute(s).</p>
+<p>It defines:</p>
+<blockquote>
+<div><dl class="field-list">
+<dt class="field-odd">attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="line-block">
+<div class="line">key - Controls transformation during encoding and decoding (default None).</div>
+<div class="line">shift - Controls transformation during encoding and decoding (default 0).</div>
+<div class="line">upper_case_offset - Offset for uppercase letters (default 0).</div>
+<div class="line">lower_case_offset - Offset for lowercase letters (default 0).</div>
+<div class="line">lower_case_base - Base index for lowercase letters (default 0).</div>
+<div class="line">numeric_base - Base index for numeric characters (default 0).</div>
+<div class="line">alphabet_size - Size of alphabet (default 0).</div>
+<div class="line">code_splitter - Code splitter (default None).</div>
+<div class="line">altchars - Defines replacements for ‘+’ and ‘/’ (default None).</div>
+<div class="line">padding - Adds to end ‘=’ (default False).</div>
+<div class="line">allowed_chars - Strict set of allowed characters (default ascii_lowercase + ascii_uppercase + digits + whitespace).</div>
+<div class="line">lookup_table - Lookup table for cipher set.</div>
+</div>
+</dd>
+<dt class="field-even">methods<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.allowed_chars">
+<span class="sig-name descname"><span class="pre">allowed_chars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.allowed_chars" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.alphabet_size">
+<span class="sig-name descname"><span class="pre">alphabet_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.alphabet_size" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.altchars">
+<span class="sig-name descname"><span class="pre">altchars</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.altchars" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.code_splitter">
+<span class="sig-name descname"><span class="pre">code_splitter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.code_splitter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.key" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.lookup_table">
+<span class="sig-name descname"><span class="pre">lookup_table</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.lookup_table" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.lower_case_base">
+<span class="sig-name descname"><span class="pre">lower_case_base</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.lower_case_base" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.lower_case_offset">
+<span class="sig-name descname"><span class="pre">lower_case_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.lower_case_offset" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.numeric_base">
+<span class="sig-name descname"><span class="pre">numeric_base</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.numeric_base" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.padding">
+<span class="sig-name descname"><span class="pre">padding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.padding" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.shift">
+<span class="sig-name descname"><span class="pre">shift</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.shift" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.atbs.config.ATBSConfig.upper_case_offset">
+<span class="sig-name descname"><span class="pre">upper_case_offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#codecipher.atbs.config.ATBSConfig.upper_case_offset" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">codecipher.atbs.config module</a><ul>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig"><code class="docutils literal notranslate"><span class="pre">ATBSConfig</span></code></a><ul>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig._abc_impl"><code class="docutils literal notranslate"><span class="pre">ATBSConfig._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.allowed_chars"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.allowed_chars</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.alphabet_size"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.alphabet_size</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.altchars"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.altchars</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.code_splitter"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.code_splitter</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.key"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.key</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.lookup_table"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.lookup_table</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.lower_case_base"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.lower_case_base</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.lower_case_offset"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.lower_case_offset</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.numeric_base"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.numeric_base</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.padding"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.padding</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.shift"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.shift</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.atbs.config.ATBSConfig.upper_case_offset"><code class="docutils literal notranslate"><span class="pre">ATBSConfig.upper_case_offset</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="codecipher.atbs.encode.encoder.html"
+                          title="previous chapter">codecipher.atbs.encode.encoder module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="codecipher.atbs.engine.html"
+                          title="next chapter">codecipher.atbs.engine module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/codecipher.atbs.config.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.atbs.engine.html" title="codecipher.atbs.engine module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="codecipher.atbs.encode.encoder.html" title="codecipher.atbs.encode.encoder module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.atbs.html" >codecipher.atbs package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.atbs.config module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

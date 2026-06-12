@@ -23,13 +23,13 @@ Info
 from __future__ import print_function
 from typing import List, Optional
 from os.path import abspath, dirname, join
-from setuptools import setup
+from setuptools import setup, find_packages
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__: str = '1.5.0'
+__version__: str = '1.5.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
@@ -46,7 +46,7 @@ SUPPORTED_PY_VERSIONS: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS
 setup(
     name='codecipher',
-    version='1.5.0',
+    version='1.5.1',
     description='Python Cipher Utilities',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -57,15 +57,7 @@ setup(
     keywords='cipher, encryption, decryption, cryptology, cryptography',
     platforms='any',
     classifiers=PYP_CLASSIFIERS,
-    packages=[
-        'codecipher',
-        'codecipher.a1z52n62',
-        'codecipher.atbs',
-        'codecipher.b64',
-        'codecipher.caesar',
-        'codecipher.vernam',
-        'codecipher.vigenere'
-    ],
+    packages=find_packages(exclude=['tests', 'tests.*']),
     package_data={
         'codecipher': [
             'py.typed'

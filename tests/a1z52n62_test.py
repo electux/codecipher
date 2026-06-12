@@ -22,21 +22,22 @@ Execute
     python3 -m unittest -v a1z52n62_test
 '''
 
-import sys
+import random
+import string
 import unittest
+from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-
-try:
-    from codecipher.a1z52n62 import A1z52N62
-except ImportError as test_error_message:
-    # Force close python test #################################################
-    sys.exit(f'\n{__file__}\n{test_error_message}\n')
+from codecipher.abstracts.iconfig import IConfig
+from codecipher.abstracts.ivalidation_engine import IValidationEngine
+from codecipher.abstracts.iencoder import IEncoder
+from codecipher.abstracts.idecoder import IDecoder
+from codecipher.a1z52n62.engine import A1z52N62
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/electux/codecipher/blob/dev/LICENSE'
-__version__: str = '1.5.0'
+__version__: str = '1.5.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
@@ -50,58 +51,290 @@ class A1z52N62TestCase(unittest.TestCase):
         It defines:
 
             :attributes:
-                | RAW_DATA - Raw text data for encoding.
-                | ENC_SEQ - Expected encoded sequence.
-                | raw_data - Object container data for encoding.
-                | enc_sequence - Object container for encoded sequence.
+                | RAW_DATA_REGULAR - Raw text data for encoding.
+                | ENC_SEQ_REGULAR - Expected encoded sequence.
+                | RAW_DATA_NON_REGULAR - Raw text data for encoding.
+                | ENC_SEQ_NON_REGULAR - Expected encoded sequence.
+                | raw_data_regular - Object container data for encoding.
+                | enc_sequence_regular - Object container for encoded sequence.
+                | raw_data_non_regular - Object container data for encoding.
+                | enc_sequence_non_regular - Object container for encoded sequence.
                 | enc_data - Encoded data.
                 | dec_data - Decoded data.
-                | cipher - Cipher object.
+                | cipher_regular - Cipher object with mocked regular dependencies.
+                | cipher_non_regular - Cipher object with mocked non-regular dependencies.
+                | real_cipher - Real cipher object for integration testing.
             :methods:
                 | setUp - Call before test cases.
                 | tearDown - Call after test cases.
-                | test_a1z52n62_encoding - Test for base encoding a1z52n62.
-                | test_a1z52n62_decoding - Test for base decoding a1z52n62.
+                | test_a1z52n62_encoding_regular_data - Test for base encoding a1z52n62 with regular data.
+                | test_a1z52n62_decoding_regular_data - Test for base decoding a1z52n62 with regular data.
+                | test_a1z52n62_encoding_non_regular_data - Test for base encoding a1z52n62 with non regular data.
+                | test_a1z52n62_decoding_non_regular_data - Test for base decoding a1z52n62 with non regular data.
+                | test_encode_with_none_data - Test for encoding with None data.
+                | test_encode_with_validation_failure - Test for encoding with validation failure.
+                | test_encode_delegation - Test for encoding delegation to encoder.
+                | test_decode_with_none_data - Test for decoding with None data.
+                | test_decode_with_decoder_failure - Test for decoding with decoder failure.
+                | test_decode_with_validation_failure - Test for decoding with validation failure.
+                | test_decode_delegation - Test for decoding delegation to decoder.
+                | test_encode_with_encoder_failure - Test for encoding with encoder failure.
     '''
 
-    RAW_DATA: str = 'More Human Than Human01 Is Our Motto'
-    ENC_SEQ: List[str] = [
-        '13', '42', '45', '32', ' ', '8', '48', '40', '28', '41', ' ',
-        '20', '35', '28', '41', ' ', '8', '48', '40', '28', '41', '53',
-        '54', ' ', '9', '46', ' ', '15', '48', '45', ' ', '13', '42',
-        '47', '47', '42'
+    RAW_DATA_REGULAR: str = 'MoreHumanThanHuman01IsOurMotto'
+    ENC_SEQ_REGULAR: List[str] = [
+        '13', '41', '44', '31', '8', '47', '39', '27', '40',
+        '20', '34', '27', '40', '8', '47', '39', '27', '40', '53',
+        '54', '9', '45', '15', '47', '44', '13', '41', '46', '46', '41'
+    ]
+
+    RAW_DATA_NON_REGULAR: str = 'More Human Than Human01 Is Our Motto'
+    ENC_SEQ_NON_REGULAR: List[str] = [
+        '13', '41', '44', '31', ' ', '8', '47', '39', '27', '40', ' ',
+        '20', '34', '27', '40', ' ', '8', '47', '39', '27', '40', '53',
+        '54', ' ', '9', '45', ' ', '15', '47', '44', ' ', '13', '41',
+        '46', '46', '41'
     ]
 
     def setUp(self) -> None:
         '''Call before test cases.'''
-        self.raw_data: Optional[str] = A1z52N62TestCase.RAW_DATA
-        self.enc_sequence: Optional[str] = ' - '.join(A1z52N62TestCase.ENC_SEQ)
+        self.raw_data_regular: Optional[str] = A1z52N62TestCase.RAW_DATA_REGULAR
+        self.enc_sequence_regular: Optional[str] = ' - '.join(A1z52N62TestCase.ENC_SEQ_REGULAR)
+        self.raw_data_non_regular: Optional[str] = A1z52N62TestCase.RAW_DATA_NON_REGULAR
+        self.enc_sequence_non_regular: Optional[str] = ' - '.join(A1z52N62TestCase.ENC_SEQ_NON_REGULAR)
         self.enc_data: Optional[str] = None
         self.dec_data: Optional[str] = None
-        self.cipher: Optional[A1z52N62] = A1z52N62()
+
+        # Mock dependencies for the base tests
+        # Regular A1Z52N62 encode data
+        self.mock_encoder_regular = MagicMock(spec=IEncoder)
+        self.mock_encoder_regular.encode.return_value = True # type: ignore
+        type(self.mock_encoder_regular).encoded_data = PropertyMock(return_value=self.enc_sequence_regular) # type: ignore
+        # Non regular A1Z52N62 encode data
+        self.mock_encoder_non_regular = MagicMock(spec=IEncoder)
+        self.mock_encoder_non_regular.encode.return_value = True # type: ignore
+        type(self.mock_encoder_non_regular).encoded_data = PropertyMock(return_value=self.enc_sequence_non_regular) # type: ignore
+        # Regular A1Z52N62 decode data
+        self.mock_decoder_regular = MagicMock(spec=IDecoder)
+        self.mock_decoder_regular.decode.return_value = True # type: ignore
+        type(self.mock_decoder_regular).decoded_data = PropertyMock(return_value=self.raw_data_regular) # type: ignore
+        # Non regular A1Z52N62 decode data
+        self.mock_decoder_non_regular = MagicMock(spec=IDecoder)
+        self.mock_decoder_non_regular.decode.return_value = True # type: ignore
+        type(self.mock_decoder_non_regular).decoded_data = PropertyMock(return_value=self.raw_data_non_regular) # type: ignore
+
+        self.mock_validation_engine = MagicMock(spec=IValidationEngine)
+        self.mock_validation_engine.is_valid.return_value = True # type: ignore
+
+        self.mock_config = MagicMock(spec=IConfig)
+
+        # Initialize A1Z52N62 with mocked regular dependencies
+        self.cipher_regular: A1z52N62 = A1z52N62(
+            config=self.mock_config,
+            validation_engine=self.mock_validation_engine,
+            encoder=self.mock_encoder_regular,
+            decoder=self.mock_decoder_regular
+        )
+
+        # Initialize A1Z52N62 with mocked non-regular dependencies
+        self.cipher_non_regular: A1z52N62 = A1z52N62(
+            config=self.mock_config,
+            validation_engine=self.mock_validation_engine,
+            encoder=self.mock_encoder_non_regular,
+            decoder=self.mock_decoder_non_regular
+        )
+
+        # Real cipher for integration testing
+        self.real_cipher: A1z52N62 = A1z52N62()
 
     def tearDown(self) -> None:
         '''Call after test cases.'''
-        self.raw_data = None
+        self.raw_data_regular = None
+        self.enc_sequence_regular = None
+        self.raw_data_non_regular = None
+        self.enc_sequence_non_regular = None
         self.enc_data = None
         self.dec_data = None
-        self.cipher = None
+        self.cipher_regular = None  # type: ignore
+        self.cipher_non_regular = None  # type: ignore
+        self.real_cipher = None  # type: ignore
+        self.mock_encoder_regular = None  # type: ignore
+        self.mock_encoder_non_regular = None  # type: ignore
+        self.mock_decoder_regular = None  # type: ignore
+        self.mock_decoder_non_regular = None  # type: ignore
+        self.mock_validation_engine = None  # type: ignore
+        self.mock_config = None  # type: ignore
 
-    def test_a1z52n62_encoding(self) -> None:
-        '''Test base encoding.'''
-        if bool(self.cipher):
-            self.cipher.encode(self.raw_data)
-            self.enc_data: Optional[str] = self.cipher.encode_data
-            self.assertEqual(self.enc_sequence, self.enc_data)
+    def test_a1z52n62_encoding_regular_data(self) -> None:
+        '''Testing base encoding regular data.'''
 
-    def test_a1z52n62_decoding(self) -> None:
-        '''Test base decoding.'''
-        if bool(self.cipher):
-            self.cipher.encode(self.raw_data)
-            self.enc_data = self.cipher.encode_data
-            self.cipher.decode(self.enc_data)
-            self.dec_data: Optional[str] = self.cipher.decode_data
-            self.assertEqual(self.raw_data, self.dec_data)
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(self.raw_data_regular)
+
+            self.assertTrue(result)
+
+            self.enc_data: Optional[str] = result
+
+            self.assertEqual(self.enc_sequence_regular, self.enc_data)
+
+    def test_a1z52n62_decoding_regular_data(self) -> None:
+        '''Testing base decoding regular data.'''
+
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(self.raw_data_regular)
+
+            self.assertTrue(result)
+
+            self.enc_data = result
+            result = self.real_cipher.decode(self.enc_data)
+
+            self.assertTrue(result)
+
+            self.dec_data: Optional[str] = result
+
+            self.assertEqual(self.raw_data_regular, self.dec_data)
+
+    def test_a1z52n62_encoding_non_regular_data(self) -> None:
+        '''Testing base encoding non-regular data.'''
+
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(self.raw_data_non_regular)
+
+            self.assertTrue(result)
+
+            self.enc_data: Optional[str] = result
+
+            self.assertEqual(self.enc_sequence_non_regular, self.enc_data)
+
+    def test_a1z52n62_decoding_non_regular_data(self) -> None:
+        '''Testing base decoding non-regular data.'''
+
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(self.raw_data_non_regular)
+
+            self.assertTrue(result)
+
+            self.enc_data = result
+            result = self.real_cipher.decode(self.enc_data)
+
+            self.assertTrue(result)
+
+            self.dec_data: Optional[str] = result
+
+            self.assertEqual(self.raw_data_non_regular, self.dec_data)
+
+    def test_encode_with_none_data(self) -> None:
+        '''Testing encode with None or empty data.'''
+
+        if bool(self.real_cipher):
+            self.assertFalse(self.real_cipher.encode(None))
+            self.assertFalse(self.real_cipher.encode(''))
+
+    def test_encode_with_validation_failure(self) -> None:
+        '''Testing encode when validation engine fails.'''
+        self.mock_validation_engine.is_valid.return_value = False # type: ignore
+        result = self.cipher_non_regular.encode(self.raw_data_non_regular)
+
+        self.assertFalse(result)
+
+        self.mock_validation_engine.is_valid.assert_called_once_with(self.raw_data_non_regular) # type: ignore
+        self.mock_encoder_non_regular.encode.assert_not_called() # type: ignore
+
+    def test_encode_delegation(self) -> None:
+        '''Testing encode delegation to internal encoder.'''
+        result = self.cipher_non_regular.encode(self.raw_data_non_regular)
+
+        self.assertTrue(result)
+
+        self.mock_encoder_non_regular.encode.assert_called_once_with(self.raw_data_non_regular) # type: ignore
+
+        self.assertEqual(self.enc_sequence_non_regular, result)
+
+    def test_encode_with_encoder_failure(self) -> None:
+        '''Testing encode when internal encoder fails.'''
+        self.mock_encoder_non_regular.encode.return_value = False # type: ignore
+
+        result = self.cipher_non_regular.encode(self.raw_data_non_regular)
+
+        self.assertFalse(result)
+
+        self.mock_encoder_non_regular.encode.assert_called_once_with(self.raw_data_non_regular) # type: ignore
+
+    def test_decode_with_none_data(self) -> None:
+        '''Testing decode with None or empty data.'''
+
+        if bool(self.real_cipher):
+            self.assertFalse(self.real_cipher.decode(None))
+            self.assertFalse(self.real_cipher.decode(''))
+
+    def test_decode_with_decoder_failure(self) -> None:
+        '''Testing decode when internal decoder fails.'''
+        self.mock_decoder_non_regular.decode.return_value = False # type: ignore
+
+        result = self.cipher_non_regular.decode(self.enc_sequence_non_regular)
+
+        self.assertFalse(result)
+
+        self.mock_decoder_non_regular.decode.assert_called_once_with(self.enc_sequence_non_regular) # type: ignore
+
+    def test_decode_with_validation_failure(self) -> None:
+        '''Testing decode when validation of decoded data fails.'''
+        self.mock_decoder_non_regular.decode.return_value = True # type: ignore
+        type(self.mock_decoder_non_regular).decoded_data = PropertyMock(return_value="decoded_invalid") # type: ignore
+        self.mock_validation_engine.is_valid.return_value = False # type: ignore
+
+        result = self.cipher_non_regular.decode(self.enc_sequence_non_regular)
+
+        self.assertFalse(result)
+
+        self.mock_validation_engine.is_valid.assert_called_once_with("decoded_invalid") # type: ignore
+
+    def test_decode_delegation(self) -> None:
+        '''Testing decode delegation to internal decoder and engine.'''
+        result = self.cipher_non_regular.decode(self.enc_sequence_non_regular)
+
+        self.assertTrue(result)
+
+        self.mock_decoder_non_regular.decode.assert_called_once_with(self.enc_sequence_non_regular) # type: ignore
+        self.mock_validation_engine.is_valid.assert_called_once_with(self.raw_data_non_regular) # type: ignore
+
+        self.assertEqual(self.raw_data_non_regular, result)
+
+    def test_a1z52n62_data_roundtrip(self) -> None:
+        '''Testing roundtrip with real data.'''
+
+        if bool(self.real_cipher):
+            encode_result = self.real_cipher.encode(self.raw_data_non_regular)
+
+            self.assertTrue(encode_result)
+
+            decode_result = self.real_cipher.decode(encode_result)
+
+            self.assertTrue(decode_result)
+
+            self.assertEqual(self.raw_data_non_regular, decode_result)
+
+    def test_a1z52n62_random_data_roundtrip(self) -> None:
+        '''Testing roundtrip with random data.'''
+
+        if bool(self.real_cipher):
+            # Character set: A-Z, a-z, 0-9, and space
+            alphabet = string.ascii_letters + string.digits + string.whitespace
+            for _ in range(10):  # Run 10 iterations with different random strings
+                length = random.randint(10, 50)
+                random_str = ''.join(
+                    random.choice(alphabet) for _ in range(length)
+                )
+
+                encode_result = self.real_cipher.encode(random_str)
+
+                self.assertTrue(encode_result)
+
+                decode_result = self.real_cipher.decode(encode_result)
+
+                self.assertTrue(decode_result)
+
+                self.assertEqual(random_str, decode_result)
 
 
 if __name__ == '__main__':

@@ -16,47 +16,16 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class Caesar with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Initialization for codecipher.caesar package.
 '''
 
-import sys
 from typing import List
-
-try:
-    from codecipher.caesar.encode import CaesarEncode
-    from codecipher.caesar.decode import CaesarDecode
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__: str = '1.5.0'
+__version__: str = '1.5.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
-
-
-class Caesar(CaesarEncode, CaesarDecode):
-    '''
-        Defines class Caesar with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
-
-        It defines:
-
-            :attributes:
-                | None.
-            :methods:
-                | __init__ - Initials Caesar constructor.
-    '''
-
-    def __init__(self) -> None:
-        '''
-            Initials Caesar constructor.
-
-            :exceptions: None
-        '''
-        super().__init__()

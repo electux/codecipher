@@ -16,47 +16,16 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class B64 with attribute(s) and method(s).
-    Creates container class with aggregate backend API.
+    Initialization for codecipher.b64 package.
 '''
 
-import sys
 from typing import List
-
-try:
-    from codecipher.b64.encode import B64Encode
-    from codecipher.b64.decode import B64Decode
-except ImportError as ats_error_message:  # pragma: no cover
-    # Force exit python #######################################################
-    sys.exit(f'\n{__file__}\n{ats_error_message}\n')  # pragma: no cover
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__: str = 'https://github.com/electux/codecipher/blob/main/LICENSE'
-__version__: str = '1.5.0'
+__version__: str = '1.5.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
-
-
-class B64(B64Encode, B64Decode):
-    '''
-        Defines class B64 with attribute(s) and method(s).
-        Creates container class with aggregate backend API.
-
-        It defines:
-
-            :attributes:
-                | None.
-            :methods:
-                | __init__ - Initials B64 constructor.
-    '''
-
-    def __init__(self) -> None:
-        '''
-            Initials B64 constructor.
-
-            :exceptions: None
-        '''
-        super().__init__()

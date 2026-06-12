@@ -1,14 +1,23 @@
 codecipher.caesar package
 =========================
 
-Submodules
-----------
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
 
    codecipher.caesar.decode
    codecipher.caesar.encode
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   codecipher.caesar.config
+   codecipher.caesar.engine
 
 Module contents
 ---------------

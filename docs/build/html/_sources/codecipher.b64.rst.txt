@@ -1,14 +1,23 @@
 codecipher.b64 package
 ======================
 
-Submodules
-----------
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
 
    codecipher.b64.decode
    codecipher.b64.encode
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   codecipher.b64.config
+   codecipher.b64.engine
 
 Module contents
 ---------------

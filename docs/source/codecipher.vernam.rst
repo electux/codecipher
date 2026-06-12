@@ -1,14 +1,23 @@
 codecipher.vernam package
 =========================
 
-Submodules
-----------
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
 
    codecipher.vernam.decode
    codecipher.vernam.encode
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   codecipher.vernam.config
+   codecipher.vernam.engine
 
 Module contents
 ---------------
