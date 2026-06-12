@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class EncodeAlgorithm with default cipher ATBS implementation.
+    Defines class EncodeAlgorithm with default cipher VERNAM implementation.
 '''
 
 from typing import List, Optional
 from codecipher.abstracts import IAlgorithm, IConfig
-from codecipher.atbs.config import ATBSConfig
+from codecipher.vernam.config import VernamConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,11 +40,10 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for cipher ATBS.
+                | _config - Configuration parameters for cipher VERNAM.
             :methods:
                 | __init__ - Initializes EncodeAlgorithm constructor.
-                | encoded_data - Property method for getting encoded data.
-                | encode - Execute cipher ATBS logic.
+                | execute - Execute cipher VERNAM logic.
     '''
 
     def __init__(self) -> None:
@@ -57,7 +56,7 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
 
     def execute(self, data: Optional[str] = None, config: Optional[IConfig] = None) -> Optional[str]:
         '''
-            Execute cipher ATBS logic.
+            Execute cipher VERNAM logic.
 
             :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
@@ -70,26 +69,32 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         if not data:
             return None
 
-        self.__config = config or ATBSConfig()
+        self.__config = config or VernamConfig()
 
         if not self.__config:
             return None
 
-        #encode_list: List[str] = []
-        #key = (key * (len(data) // len(key))) + key[:len(data) % len(key)]
-        #for i, element in enumerate(data):
-        #    if element.isalpha() and key[i].isalpha():
-        #        key_code: int = ord(key[i].lower()) - 96
-        #        text_code: int = ord(element.lower()) - 96
-        #        ans: int = text_code + key_code - 1
-        #        if ans > 26:
-        #            ans -= 26
-        #        if element.isupper():
-        #            encode_list.append(chr(ans + 96).upper())
-        #        else:
-        #            encode_list.append(chr(ans + 96))
-        #    else:
-        #        encode_list.append(element)
-        #self._encode_data = ''.join(encode_list)
+        key: str = getattr(self.__config, 'key', 'MyVerNamKey')
+        lower_case_offset: int = getattr(self.__config, 'lower_case_offset', 96)
+        alphabet_size: int = getattr(self.__config, 'alphabet_size', 26)
+        encode_list: List[str] = []
+        key = (key * (len(data) // len(key))) + key[:len(data) % len(key)]
 
-        return ""
+        for i, element in enumerate(data):
+
+            if element.isalpha() and key[i].isalpha():
+                key_code: int = ord(key[i].lower()) - lower_case_offset
+                text_code: int = ord(element.lower()) - lower_case_offset
+                ans: int = text_code + key_code - 1
+
+                if ans > alphabet_size:
+                    ans -= alphabet_size
+                if element.isupper():
+                    encode_list.append(chr(ans + lower_case_offset).upper())
+                else:
+                    encode_list.append(chr(ans + lower_case_offset))
+
+            else:
+                encode_list.append(element)
+
+        return ''.join(encode_list)

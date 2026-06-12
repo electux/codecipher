@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class EncodeAlgorithm with default cipher ATBS implementation.
+    Defines class EncodeAlgorithm with default cipher CAESAR implementation.
 '''
 
 from typing import List, Optional
 from codecipher.abstracts import IAlgorithm, IConfig
-from codecipher.atbs.config import ATBSConfig
+from codecipher.caesar.config import CaesarConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,11 +40,11 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for cipher ATBS.
+                | _config - Configuration parameters for cipher CAESAR.
             :methods:
                 | __init__ - Initializes EncodeAlgorithm constructor.
                 | encoded_data - Property method for getting encoded data.
-                | encode - Execute cipher ATBS logic.
+                | encode - Execute cipher CAESAR logic.
     '''
 
     def __init__(self) -> None:
@@ -57,7 +57,7 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
 
     def execute(self, data: Optional[str] = None, config: Optional[IConfig] = None) -> Optional[str]:
         '''
-            Execute cipher ATBS logic.
+            Execute cipher CAESAR logic.
 
             :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
@@ -70,36 +70,35 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         if not data:
             return None
 
-        self.__config = config or ATBSConfig()
+        self.__config = config or CaesarConfig()
 
         if not self.__config:
             return None
 
-        #encode_list: List[str] = []
-        #
-        #for element in data:
-        #
-        #    if not (('a' <= element <= 'z') or ('A' <= element <= 'Z')):
-        #        encode_list.append(element)
-        #        continue
-        #
-        #    element_index: Optional[int] = None
-        #    new_index: Optional[int] = None
-        #    new_unicode: Optional[int] = None
-        #    new_character: Optional[str] = None
-        #
-        #    if element.isupper():
-        #        element_index = ord(element) - ord('A')
-        #        new_index = (element_index + shift_counter) % 26
-        #        new_unicode = new_index + ord('A')
-        #    else:
-        #        element_index = ord(element) - ord('a')
-        #        new_index = (element_index + shift_counter) % 26
-        #        new_unicode = new_index + ord('a')
-        #
-        #    new_character = chr(new_unicode)
-        #    encode_list.append(new_character)
-        #
-        #self._encode_data = ''.join(encode_list)
+        shift: int = getattr(self.__config, 'shift', 3)
+        encode_list: List[str] = []
 
-        return ""
+        for element in data:
+
+            if not (('a' <= element <= 'z') or ('A' <= element <= 'Z')):
+                encode_list.append(element)
+                continue
+
+            element_index: Optional[int] = None
+            new_index: Optional[int] = None
+            new_unicode: Optional[int] = None
+            new_character: Optional[str] = None
+
+            if element.isupper():
+                element_index = ord(element) - ord('A')
+                new_index = (element_index + shift) % 26
+                new_unicode = new_index + ord('A')
+            else:
+                element_index = ord(element) - ord('a')
+                new_index = (element_index + shift) % 26
+                new_unicode = new_index + ord('a')
+
+            new_character = chr(new_unicode)
+            encode_list.append(new_character)
+
+        return ''.join(encode_list)

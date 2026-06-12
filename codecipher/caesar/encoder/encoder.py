@@ -16,13 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Creates class encoder with cipher A1z52N62 logic.
+    Creates class encoder with cipher CAESAR logic.
 '''
 
 from dataclasses import dataclass, field
 from typing import List, Optional
 from codecipher.abstracts import IEncoder, IAlgorithm, IConfig
-from codecipher.a1z52n62.config import A1z52N62Config
+from codecipher.caesar.config import CaesarConfig
 from .encode_algorithm import EncodeAlgorithm
 
 __author__: str = 'Vladimir Roncevic'
@@ -43,15 +43,15 @@ class Encoder(IEncoder):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for cipher A1z52N62 logic.
-                | _strategy - Strategy for cipher A1z52N62 logic.
+                | _config - Configuration parameters for cipher CAESAR logic.
+                | _strategy - Strategy for cipher CAESAR logic.
                 | _encoded_data - Container for encoded data.
             :methods:
                 | encoded_data - Property method for getting encoded data.
-                | encode - Encode data by cipher A1z52N62 logic.
+                | encode - Encode data by cipher CAESAR logic.
     '''
 
-    _config: IConfig = field(default_factory=A1z52N62Config)
+    _config: IConfig = field(default_factory=CaesarConfig)
     _strategy: IAlgorithm[IConfig] = field(default_factory=EncodeAlgorithm)
     _encoded_data: Optional[str] = field(default=None, init=False)
 
@@ -66,21 +66,12 @@ class Encoder(IEncoder):
         '''
         return self._encoded_data
 
-    def encode(
-        self,
-        data: Optional[str] = None,
-        key: Optional[str] = None,
-        shift_counter: Optional[int] = None
-    ) -> bool:
+    def encode(self, data: Optional[str] = None) -> bool:
         '''
-            Encode data by cipher A1z52N62 logic.
+            Encode data by cipher CAESAR logic.
 
             :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :param key: Key in string format for process of encoding | None (ignored)
-            :type key: <Optional[str]>
-            :param shift_counter: Shift count in interger format for process of encoding | None (ignored)
-            :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: None
@@ -88,7 +79,7 @@ class Encoder(IEncoder):
         if not data:
             return False
 
-        # Execute cipher A1z52N62 logic with configuration parameters
+        # Execute cipher CAESAR logic with configuration parameters
         self._encoded_data = self._strategy.execute(data, self._config)
 
         if not self._encoded_data:

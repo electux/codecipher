@@ -66,21 +66,12 @@ class Decoder(IDecoder):
         '''
         return self._decoded_data
 
-    def decode(
-        self,
-        data: Optional[str] = None,
-        key: Optional[str] = None,
-        shift_counter: Optional[int] = None
-    ) -> bool:
+    def decode(self, data: Optional[str] = None) -> bool:
         '''
             Decode data by cipher VERNAM logic.
 
             :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :param key: Key in string format for process of decoding | None (ignored)
-            :type key: <Optional[str]>
-            :param shift_counter: Shift count in integer format for process of decoding | None (ignored)
-            :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: None

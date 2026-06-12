@@ -24,8 +24,8 @@ from codecipher.abstracts import (
     ICipherEngine, IConfig, IValidationEngine, IEncoder, IDecoder
 )
 from codecipher.validation import ValidationEngine
-from codecipher.atbs.encoder import Encoder
-from codecipher.atbs.decoder import Decoder
+from codecipher.b64.encoder import Encoder
+from codecipher.b64.decoder import Decoder
 from .config import B64Config
 
 __author__: str = 'Vladimir Roncevic'
@@ -52,9 +52,7 @@ class B64(ICipherEngine):
             :methods:
                 | __init__ - Initializes B64 constructor.
                 | encode - Encoding data to B64 format.
-                | encode_data - Property method for getting encode data.
                 | decode - Decoding data from B64 format.
-                | decode_data - Property method for getting decode data.
     '''
 
     def __init__(

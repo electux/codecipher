@@ -51,7 +51,7 @@ class B64Config(IConfig):
                 | alphabet_size - Size of alphabet (default 0).
                 | code_splitter - Code splitter (default None).
                 | altchars - Defines replacements for '+' and '/' (default None).
-                | padding - Adds to end '=' (default False).
+                | padding - Adds to end '=' (default True).
                 | allowed_chars - Strict set of allowed characters (default ascii_lowercase + ascii_uppercase + digits + whitespace).
                 | lookup_table - Lookup table for cipher set (default None).
             :methods: None
@@ -66,7 +66,7 @@ class B64Config(IConfig):
     alphabet_size: int = 0
     code_splitter: Optional[str] = None
     altchars: Optional[bytes] = None
-    padding: bool = False
+    padding: bool = True
     allowed_chars: Optional[Set[str]] = field(
         default_factory=lambda: set(ascii_lowercase + ascii_uppercase + digits + whitespace)
     )

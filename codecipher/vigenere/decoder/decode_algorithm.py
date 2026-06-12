@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class DecodeAlgorithm with default cipher ATBS implementation.
+    Defines class DecodeAlgorithm with default cipher VIGENERE implementation.
 '''
 
-from typing import List, Optional
+from typing import Dict, List, Optional, Set
 from codecipher.abstracts import IAlgorithm, IConfig
-from codecipher.atbs.config import ATBSConfig
+from codecipher.vigenere.config import VigenereConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,11 +40,11 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for cipher ATBS.
+                | _config - Configuration parameters for cipher VIGENERE.
             :methods:
                 | __init__ - Initializes DecodeAlgorithm constructor.
-                | encoded_data - Property method for getting decoded data.
-                | encode - Execute cipher ATBS logic.
+                | _split_data_decode - Splitting data for process of decoding.
+                | execute - Execute cipher VIGENERE logic.
     '''
 
     def __init__(self) -> None:
@@ -55,9 +55,29 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
         '''
         self.__config: Optional[IConfig] = None
 
+    def _split_data_decode(self, data_to_decode: Optional[str], key: Optional[str]) -> List[str]:
+        '''
+            Splitting data for process of decoding.
+
+            :param data_to_decode: Data which should to be decoded | None
+            :type data_to_decode: <Optional[str]>
+            :param key: Key for process of decoding | None
+            :type key: <Optional[str]>
+            :return: List with data for process of decoding
+            :rtype: <List[str]>
+            :exceptions: None
+        '''
+        elements: List[str] = []
+
+        if data_to_decode and key:
+            for i in range(0, len(data_to_decode), len(key)):
+                elements.append(data_to_decode[i: i + len(key)])
+
+        return elements
+
     def execute(self, data: Optional[str] = None, config: Optional[IConfig] = None) -> Optional[str]:
         '''
-            Execute cipher ATBS logic.
+            Execute cipher VIGENERE logic.
 
             :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
@@ -70,21 +90,25 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
         if not data:
             return None
 
-        self.__config = config or ATBSConfig()
+        self.__config = config or VigenereConfig()
 
         if not self.__config:
             return None
 
-        #decode_list: List[str] = []
-        #for element in self._split_data_decode(data, key):
-        #    for index, letter in enumerate(element):
-        #        process_index: int = (
-        #            LookUpTable.LETTER_TO_INDEX[letter] -
-        #            LookUpTable.LETTER_TO_INDEX[key[index]]
-        #        ) % len(LookUpTable.ALPHANUM)
-        #        decode_list.append(
-        #            LookUpTable.INDEX_TO_LETTER[process_index]
-        #        )
-        #self._decode_data = ''.join(decode_list)
+        key: str = getattr(self.__config, 'key', 'MyVigenereKey')
+        allowed_chars: Optional[Set[str]] = getattr(self.__config, 'allowed_chars')
 
-        return ""
+        if not allowed_chars:
+            return None
+
+        alphanum: str = ''.join(allowed_chars)
+        letter_to_index: Dict[str, int] = dict(zip(alphanum, range(len(alphanum))))
+        index_to_letter: Dict[int, str] = dict(zip(range(len(alphanum)), alphanum))
+        decode_list: List[str] = []
+
+        for element in self._split_data_decode(data, key):
+            for index, letter in enumerate(element):
+                process_index: int = (letter_to_index[letter] - letter_to_index[key[index]]) % len(alphanum)
+                decode_list.append(index_to_letter[process_index])
+
+        return ''.join(decode_list)

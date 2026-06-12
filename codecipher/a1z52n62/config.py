@@ -19,7 +19,7 @@ Info
     Defines configuration for cipher A1z52N62 logic.
 '''
 
-from typing import List, Optional, Set
+from typing import Dict, List, Optional, Set
 from string import ascii_lowercase, ascii_uppercase, digits, whitespace
 from dataclasses import dataclass, field
 from codecipher.abstracts import IConfig
@@ -53,6 +53,7 @@ class A1z52N62Config(IConfig):
                 | altchars - Defines replacements for '+' and '/' (default None).
                 | padding - Adds to end '=' (default False).
                 | allowed_chars - Strict set of allowed characters (default ascii_lowercase + ascii_uppercase + digits + whitespace).
+                | lookup_table - Lookup table for cipher set (default None).
             :methods: None
     '''
 
@@ -69,3 +70,4 @@ class A1z52N62Config(IConfig):
     allowed_chars: Optional[Set[str]] = field(
         default_factory=lambda: set(ascii_lowercase + ascii_uppercase + digits + whitespace)
     )
+    lookup_table: Optional[Dict[str, str]] = None

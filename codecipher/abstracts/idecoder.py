@@ -46,21 +46,12 @@ class IDecoder(ABC):
         raise NotImplementedError('Method decoded_data() must be implemented.')
 
     @abstractmethod
-    def decode(
-        self,
-        data: Optional[str] = None,
-        key: Optional[str] = None,
-        shift_counter: Optional[int] = None
-    ) -> bool:
+    def decode(self, data: Optional[str] = None) -> bool:
         '''
             Decode data using decoder cipher.
 
             :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :param key: Key in string format for process of decoding | None
-            :type key: <Optional[str]>
-            :param shift_counter: Shift count in integer format for process of decoding | None
-            :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: NotImplementedError

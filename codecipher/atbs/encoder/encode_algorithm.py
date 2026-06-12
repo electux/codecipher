@@ -19,7 +19,7 @@ Info
     Defines class EncodeAlgorithm with default cipher ATBS implementation.
 '''
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from codecipher.abstracts import IAlgorithm, IConfig
 from codecipher.atbs.config import ATBSConfig
 
@@ -75,18 +75,14 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         if not self.__config:
             return None
 
-        #def encode(
-        #    self,
-        #    data: Optional[str] = None,
-        #    key: Optional[str] = None,
-        #    shift_counter: Optional[int] = None
-        #) -> bool:
-        #    if bool(data):
-        #        encode_list: List[str] = []
-        #        for element in data:
-        #            encode_list.append(LOOKUP_TABLE[element])
-        #        self.__encode_data = ''.join(encode_list)
-        #        return True
-        #    return False
+        lookup: Optional[Dict[str, str]] = getattr(self.__config, 'lookup_table', None)
 
-        return ""
+        if not lookup:
+            return None
+
+        encode_list: List[str] = []
+
+        for element in data:
+            encode_list.append(lookup.get(element, element))
+
+        return ''.join(encode_list)

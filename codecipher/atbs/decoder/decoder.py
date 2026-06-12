@@ -16,13 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Creates class decoder with cipher A1z52N62 logic.
+    Creates class decoder with cipher ATBS logic.
 '''
 
 from dataclasses import dataclass, field
 from typing import List, Optional
 from codecipher.abstracts import IDecoder, IAlgorithm, IConfig
-from codecipher.a1z52n62.config import A1z52N62Config
+from codecipher.atbs.config import ATBSConfig
 from .decode_algorithm import DecodeAlgorithm
 
 __author__: str = 'Vladimir Roncevic'
@@ -43,15 +43,15 @@ class Decoder(IDecoder):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for cipher A1z52N62 logic.
-                | _strategy - Strategy for cipher A1z52N62 logic.
+                | _config - Configuration parameters for cipher ATBS logic.
+                | _strategy - Strategy for cipher ATBS logic.
                 | _decoded_data - Container for decoded data.
             :methods:
                 | decoded_data - Property method for getting decoded data.
-                | decode - Decode data by cipher A1z52N62 logic.
+                | decode - Decode data by cipher ATBS logic.
     '''
 
-    _config: IConfig = field(default_factory=A1z52N62Config)
+    _config: IConfig = field(default_factory=ATBSConfig)
     _strategy: IAlgorithm[IConfig] = field(default_factory=DecodeAlgorithm)
     _decoded_data: Optional[str] = field(default=None, init=False)
 
@@ -66,21 +66,12 @@ class Decoder(IDecoder):
         '''
         return self._decoded_data
 
-    def decode(
-        self,
-        data: Optional[str] = None,
-        key: Optional[str] = None,
-        shift_counter: Optional[int] = None
-    ) -> bool:
+    def decode(self, data: Optional[str] = None) -> bool:
         '''
-            Decode data by cipher A1z52N62 logic.
+            Decode data by cipher ATBS logic.
 
             :param data: Data in string format which should to be decoded | None
             :type data: <Optional[str]>
-            :param key: Key in string format for process of decoding | None (ignored)
-            :type key: <Optional[str]>
-            :param shift_counter: Shift count in integer format for process of decoding | None (ignored)
-            :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: None
@@ -88,7 +79,7 @@ class Decoder(IDecoder):
         if not data:
             return False
 
-        # Execute cipher A1z52N62 logic with configuration parameters
+        # Execute cipher ATBS logic with configuration parameters
         self._decoded_data = self._strategy.execute(data, self._config)
 
         if not self._decoded_data:

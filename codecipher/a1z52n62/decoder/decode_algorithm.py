@@ -75,35 +75,40 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
         if not self.__config:
             return None
 
-        if not self.__config.code_splitter:
-            return None
+        splitter: str = getattr(self.__config, 'code_splitter', ' - ') or ' - '
 
-        tokens: List[str] = data.split(self.__config.code_splitter)
-        decode_list: List[str] = []
+        try:
+            tokens: List[str] = data.split(splitter)
+            decode_list: List[str] = []
 
-        for token in tokens:
+            for token in tokens:
 
-            if token.isdigit():
-                val = int(token)
+                if not token:
+                    continue
 
-                # Range 1 to 26: big letters (A-Z)
-                if 1 <= val <= self.__config.alphabet_size:
-                    decode_list.append(chr(val + self.__config.upper_case_offset))
+                if token.isdigit():
+                    val = int(token)
 
-                # Range 27 to 52: small letters (a-z)
-                elif self.__config.lower_case_base <= val <= (self.__config.lower_case_base + self.__config.alphabet_size - 1):
-                    decode_list.append(chr(val - (self.__config.lower_case_base - 1) + self.__config.lower_case_offset))
+                    # Range 1 to 26: big letters (A-Z)
+                    if 1 <= val <= self.__config.alphabet_size:
+                        decode_list.append(chr(val + self.__config.upper_case_offset))
 
-                # Range 53 to 62: digits (0-9)
-                elif val >= self.__config.numeric_base:
-                    decode_list.append(str(val - self.__config.numeric_base))
+                    # Range 27 to 52: small letters (a-z)
+                    elif self.__config.lower_case_base <= val <= (self.__config.lower_case_base + self.__config.alphabet_size - 1):
+                        decode_list.append(chr(val - (self.__config.lower_case_base - 1) + self.__config.lower_case_offset))
 
-                # Defanse step: any token out of range, append as string
+                    # Range 53 to 62: digits (0-9)
+                    elif val >= self.__config.numeric_base:
+                        decode_list.append(str(val - self.__config.numeric_base))
+
+                    # Defanse step: any token out of range, append as string
+                    else:
+                        decode_list.append(token)
                 else:
+                    # All others (ex. space ' ', dot '.'), append without changes to decode list
                     decode_list.append(token)
-            else:
-                # All others (ex. space ' ', dot '.'), append without changes to decode list
-                decode_list.append(token)
 
-        # Join decoded list without splitters and spaces
-        return "".join(decode_list)
+            # Join decoded list without splitters and spaces
+            return "".join(decode_list)
+        except (AttributeError, ValueError, TypeError):
+            return None

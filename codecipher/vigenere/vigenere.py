@@ -24,8 +24,8 @@ from codecipher.abstracts import (
     ICipherEngine, IConfig, IValidationEngine, IEncoder, IDecoder
 )
 from codecipher.validation import ValidationEngine
-from codecipher.atbs.encoder import Encoder
-from codecipher.atbs.decoder import Decoder
+from codecipher.vigenere.encoder import Encoder
+from codecipher.vigenere.decoder import Decoder
 from .config import VigenereConfig
 
 __author__: str = 'Vladimir Roncevic'

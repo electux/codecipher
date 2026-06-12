@@ -43,7 +43,7 @@ class CaesarConfig(IConfig):
 
             :attributes:
                 | key - Controls transformation during encoding and decoding (default None).
-                | shift - Controls transformation during encoding and decoding (default 0).
+                | shift - Controls transformation during encoding and decoding (default 3).
                 | upper_case_offset - Offset for uppercase letters (default 0).
                 | lower_case_offset - Offset for lowercase letters (default 0).
                 | lower_case_base - Base index for lowercase letters (default 0).
@@ -58,7 +58,7 @@ class CaesarConfig(IConfig):
     '''
 
     key: Optional[str] = None
-    shift: int = 0
+    shift: int = 3
     upper_case_offset: int = 0
     lower_case_offset: int = 0
     lower_case_base: int = 0

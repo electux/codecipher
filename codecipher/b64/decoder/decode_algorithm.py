@@ -21,8 +21,9 @@ Info
 
 from typing import List, Optional
 from base64 import b64decode
+from binascii import Error
 from codecipher.abstracts import IAlgorithm, IConfig
-from codecipher.atbs.config import ATBSConfig
+from codecipher.b64.config import B64Config
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -71,9 +72,23 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
         if not data:
             return None
 
-        self.__config = config or ATBSConfig()
+        self.__config = config or B64Config()
 
         if not self.__config:
             return None
 
-        return b64decode(data).decode()
+        if not self.__config.padding:
+            missing_padding: int = len(data) % 4
+
+            if missing_padding:
+                data += '=' * (4 - missing_padding)
+
+        try:
+            decoded_bytes: bytes = b64decode(data.encode('utf-8'), altchars=self.__config.altchars)
+
+            return decoded_bytes.decode('utf-8')
+        except (Error, UnicodeDecodeError, ValueError):
+            # binascii->Error: invalid base64 input
+            # UnicodeDecodeError: decoded bytes are not valid UTF-8
+            # ValueError: defensive catch for other decode-related errors
+            return None

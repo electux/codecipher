@@ -22,7 +22,7 @@ Info
 from typing import List, Optional
 from base64 import b64encode
 from codecipher.abstracts import IAlgorithm, IConfig
-from codecipher.atbs.config import ATBSConfig
+from codecipher.b64.config import B64Config
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -71,9 +71,15 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         if not data:
             return None
 
-        self.__config = config or ATBSConfig()
+        self.__config = config or B64Config()
 
         if not self.__config:
             return None
 
-        return (b64encode(data.encode())).decode()
+        encoded_bytes: bytes = b64encode(data.encode('utf-8'), altchars=self.__config.altchars)
+        encoded_str: str = encoded_bytes.decode('utf-8')
+
+        if not self.__config.padding:
+            encoded_str = encoded_str.rstrip('=')
+
+        return encoded_str

@@ -70,18 +70,20 @@ class ATBSConfig(IConfig):
     allowed_chars: Optional[Set[str]] = field(
         default_factory=lambda: set(ascii_lowercase + ascii_uppercase + digits + whitespace)
     )
-    lookup_table: Optional[Dict[str, str]] = {
-        'A': 'Z', 'B': 'Y', 'C': 'X', 'D': 'W', 'E': 'V',
-        'F': 'U', 'G': 'T', 'H': 'S', 'I': 'R', 'J': 'Q',
-        'K': 'P', 'L': 'O', 'M': 'N', 'N': 'M', 'O': 'L',
-        'P': 'K', 'Q': 'J', 'R': 'I', 'S': 'H', 'T': 'G',
-        'U': 'F', 'V': 'E', 'W': 'D', 'X': 'C', 'Y': 'B',
-        'Z': 'A', 'a': 'z', 'b': 'y', 'c': 'x', 'd': 'w',
-        'e': 'v', 'f': 'u', 'g': 't', 'h': 's', 'i': 'r',
-        'j': 'q', 'k': 'p', 'l': 'o', 'm': 'n', 'n': 'm',
-        'o': 'l', 'p': 'k', 'q': 'j', 'r': 'i', 's': 'h',
-        't': 'g', 'u': 'f', 'v': 'e', 'w': 'd', 'x': 'c',
-        'y': 'b', 'z': 'a', ' ': ' ', '\n': '\n', '0': '9',
-        '1': '8', '2': '7', '3': '6', '4': '5', '5': '4',
-        '6': '3', '7': '2', '8': '1', '9': '0'
-    }
+    lookup_table: Optional[Dict[str, str]] = field(
+        default_factory=lambda: {
+            'A': 'Z', 'B': 'Y', 'C': 'X', 'D': 'W', 'E': 'V',
+            'F': 'U', 'G': 'T', 'H': 'S', 'I': 'R', 'J': 'Q',
+            'K': 'P', 'L': 'O', 'M': 'N', 'N': 'M', 'O': 'L',
+            'P': 'K', 'Q': 'J', 'R': 'I', 'S': 'H', 'T': 'G',
+            'U': 'F', 'V': 'E', 'W': 'D', 'X': 'C', 'Y': 'B',
+            'Z': 'A', 'a': 'z', 'b': 'y', 'c': 'x', 'd': 'w',
+            'e': 'v', 'f': 'u', 'g': 't', 'h': 's', 'i': 'r',
+            'j': 'q', 'k': 'p', 'l': 'o', 'm': 'n', 'n': 'm',
+            'o': 'l', 'p': 'k', 'q': 'j', 'r': 'i', 's': 'h',
+            't': 'g', 'u': 'f', 'v': 'e', 'w': 'd', 'x': 'c',
+            'y': 'b', 'z': 'a', ' ': ' ', '\n': '\n', '0': '9',
+            '1': '8', '2': '7', '3': '6', '4': '5', '5': '4',
+            '6': '3', '7': '2', '8': '1', '9': '0'
+        }
+    )

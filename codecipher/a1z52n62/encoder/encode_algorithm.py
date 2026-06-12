@@ -75,8 +75,7 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         if not self.__config:
             return None
 
-        if not self.__config.code_splitter:
-            return None
+        splitter = getattr(self.__config, 'code_splitter', ' - ') or ' - '
 
         encode_list: List[str] = []
 
@@ -98,4 +97,4 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
                 encode_list.append(element)
 
         # Join encoded list with splitters
-        return self.__config.code_splitter.join(encode_list)
+        return splitter.join(encode_list)

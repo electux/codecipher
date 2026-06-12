@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines configuration for cipher ATBS logic.
+    Defines configuration for cipher VIGENERE logic.
 '''
 
 from typing import Dict, List, Optional, Set
@@ -42,7 +42,7 @@ class VigenereConfig(IConfig):
         It defines:
 
             :attributes:
-                | key - Controls transformation during encoding and decoding (default None).
+                | key - Controls transformation during encoding and decoding (default 'MyVigenereKey').
                 | shift - Controls transformation during encoding and decoding (default 0).
                 | upper_case_offset - Offset for uppercase letters (default 0).
                 | lower_case_offset - Offset for lowercase letters (default 0).
@@ -57,7 +57,7 @@ class VigenereConfig(IConfig):
             :methods: None
     '''
 
-    key: Optional[str] = None
+    key: Optional[str] = 'MyVigenereKey'
     shift: int = 0
     upper_case_offset: int = 0
     lower_case_offset: int = 0

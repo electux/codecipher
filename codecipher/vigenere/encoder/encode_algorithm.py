@@ -16,12 +16,12 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class EncodeAlgorithm with default cipher ATBS implementation.
+    Defines class EncodeAlgorithm with default cipher VIGENERE implementation.
 '''
 
-from typing import List, Optional
+from typing import Dict, List, Optional, Set
 from codecipher.abstracts import IAlgorithm, IConfig
-from codecipher.atbs.config import ATBSConfig
+from codecipher.vigenere.config import VigenereConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -40,11 +40,11 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         It defines:
 
             :attributes:
-                | _config - Configuration parameters for cipher ATBS.
+                | _config - Configuration parameters for cipher VIGENERE.
             :methods:
                 | __init__ - Initializes EncodeAlgorithm constructor.
-                | encoded_data - Property method for getting encoded data.
-                | encode - Execute cipher ATBS logic.
+                | _split_data_encode - Splitting data for process of encoding.
+                | execute - Execute cipher VIGENERE logic.
     '''
 
     def __init__(self) -> None:
@@ -55,9 +55,29 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         '''
         self.__config: Optional[IConfig] = None
 
+    def _split_data_encode(self, data_to_encode: Optional[str], key: Optional[str]) -> List[str]:
+        '''
+            Splitting data for process of encoding.
+
+            :param data_to_encode: Data which should to be encoded | None
+            :type data_to_encode: <Optional[str]>
+            :param key: Key for process of encoding | None
+            :type key: <Optional[str]>
+            :return: List with data for process of encoding
+            :rtype: <List[str]>
+            :exceptions: None
+        '''
+        elements: List[str] = []
+
+        if data_to_encode and key:
+            for i in range(0, len(data_to_encode), len(key)):
+                elements.append(data_to_encode[i: i + len(key)])
+
+        return elements
+
     def execute(self, data: Optional[str] = None, config: Optional[IConfig] = None) -> Optional[str]:
         '''
-            Execute cipher ATBS logic.
+            Execute cipher VIGENERE logic.
 
             :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
@@ -70,21 +90,25 @@ class EncodeAlgorithm(IAlgorithm[IConfig]):
         if not data:
             return None
 
-        self.__config = config or ATBSConfig()
+        self.__config = config or VigenereConfig()
 
         if not self.__config:
             return None
 
-        #encode_list: List[str] = []
-        #for element in self._split_data_encode(data, key):
-        #    for index, letter in enumerate(element):
-        #        process_index: int = (
-        #            LookUpTable.LETTER_TO_INDEX[letter] +
-        #            LookUpTable.LETTER_TO_INDEX[key[index]]
-        #        ) % len(LookUpTable.ALPHANUM)
-        #        encode_list.append(
-        #            LookUpTable.INDEX_TO_LETTER[process_index]
-        #        )
-        #self._encode_data = ''.join(encode_list)
+        key: str = getattr(self.__config, 'key', 'MyVigenereKey')
+        allowed_chars: Optional[Set[str]] = getattr(self.__config, 'allowed_chars')
 
-        return ""
+        if not allowed_chars:
+            return None
+
+        alphanum: str = ''.join(allowed_chars)
+        letter_to_index: Dict[str, int] = dict(zip(alphanum, range(len(alphanum))))
+        index_to_letter: Dict[int, str] = dict(zip(range(len(alphanum)), alphanum))
+        encode_list: List[str] = []
+
+        for element in self._split_data_encode(data, key):
+            for index, letter in enumerate(element):
+                process_index: int = (letter_to_index[letter] + letter_to_index[key[index]]) % len(alphanum)
+                encode_list.append(index_to_letter[process_index])
+
+        return ''.join(encode_list)

@@ -66,21 +66,12 @@ class Encoder(IEncoder):
         '''
         return self._encoded_data
 
-    def encode(
-        self,
-        data: Optional[str] = None,
-        key: Optional[str] = None,
-        shift_counter: Optional[int] = None
-    ) -> bool:
+    def encode(self, data: Optional[str] = None) -> bool:
         '''
             Encode data by cipher VIGENERE logic.
 
             :param data: Data in string format which should to be encoded | None
             :type data: <Optional[str]>
-            :param key: Key in string format for process of encoding | None (ignored)
-            :type key: <Optional[str]>
-            :param shift_counter: Shift count in interger format for process of encoding | None (ignored)
-            :type shift_counter: <Optional[int]>
             :return: True (success) | False (fail)
             :rtype: <bool>
             :exceptions: None

@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines configuration for cipher ATBS logic.
+    Defines configuration for cipher VERNAM logic.
 '''
 
 from typing import Dict, List, Optional, Set
@@ -42,13 +42,13 @@ class VernamConfig(IConfig):
         It defines:
 
             :attributes:
-                | key - Controls transformation during encoding and decoding (default None).
+                | key - Controls transformation during encoding and decoding (default "MyVerNamKey").
                 | shift - Controls transformation during encoding and decoding (default 0).
                 | upper_case_offset - Offset for uppercase letters (default 0).
-                | lower_case_offset - Offset for lowercase letters (default 0).
+                | lower_case_offset - Offset for lowercase letters (default 96).
                 | lower_case_base - Base index for lowercase letters (default 0).
                 | numeric_base - Base index for numeric characters (default 0).
-                | alphabet_size - Size of alphabet (default 0).
+                | alphabet_size - Size of alphabet (default 26).
                 | code_splitter - Code splitter (default None).
                 | altchars - Defines replacements for '+' and '/' (default None).
                 | padding - Adds to end '=' (default False).
@@ -57,13 +57,13 @@ class VernamConfig(IConfig):
             :methods: None
     '''
 
-    key: Optional[str] = None
+    key: Optional[str] = "MyVerNamKey"
     shift: int = 0
     upper_case_offset: int = 0
-    lower_case_offset: int = 0
+    lower_case_offset: int = 96
     lower_case_base: int = 0
     numeric_base: int = 0
-    alphabet_size: int = 0
+    alphabet_size: int = 26
     code_splitter: Optional[str] = None
     altchars: Optional[bytes] = None
     padding: bool = False

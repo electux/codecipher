@@ -19,7 +19,7 @@ Info
     Defines class DecodeAlgorithm with default cipher ATBS implementation.
 '''
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from codecipher.abstracts import IAlgorithm, IConfig
 from codecipher.atbs.config import ATBSConfig
 
@@ -75,18 +75,14 @@ class DecodeAlgorithm(IAlgorithm[IConfig]):
         if not self.__config:
             return None
 
-        #def decode(
-        #    self,
-        #    data: Optional[str] = None,
-        #    key: Optional[str] = None,
-        #    shift_counter: Optional[int] = None
-        #) -> bool:
-        #    if bool(data):
-        #        decode_list: List[str] = []
-        #        for element in data:
-        #            decode_list.append(LOOKUP_TABLE[element])
-        #        self.__decoded_data = ''.join(decode_list)
-        #        return True
-        #    return False
+        lookup: Optional[Dict[str, str]] = getattr(self.__config, 'lookup_table', None)
 
-        return ""
+        if not lookup:
+            return None
+
+        decode_list: List[str] = []
+
+        for element in data:
+            decode_list.append(lookup.get(element, element))
+
+        return ''.join(decode_list)
