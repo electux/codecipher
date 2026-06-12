@@ -16,11 +16,10 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Initialization for a1z52n62 package.
+    Initialization for codecipher.a1z52n62 package.
 '''
 
 from typing import List
-from .a1z52n62 import A1z52N62
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -30,5 +29,3 @@ __version__: str = '1.5.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
-
-__all__: List[str] = ['A1z52N62']

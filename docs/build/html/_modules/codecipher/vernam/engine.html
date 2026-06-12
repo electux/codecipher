@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>codecipher.vernam.engine &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=514cf933" />
+    
+    <script src="../../../_static/documentation_options.js?v=199d8b52"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.vernam.engine</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for codecipher.vernam.engine</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Module</span>
+<span class="sd">    vernam.py</span>
+<span class="sd">Copyright</span>
+<span class="sd">    Copyright (C) 2021 - 2026 Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;</span>
+<span class="sd">    codecipher is free software: you can redistribute it and/or modify it</span>
+<span class="sd">    under the terms of the GNU General Public License as published by the</span>
+<span class="sd">    Free Software Foundation, either version 3 of the License, or</span>
+<span class="sd">    (at your option) any later version.</span>
+<span class="sd">    codecipher is distributed in the hope that it will be useful, but</span>
+<span class="sd">    WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</span>
+<span class="sd">    See the GNU General Public License for more details.</span>
+<span class="sd">    You should have received a copy of the GNU General Public License along</span>
+<span class="sd">    with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">Info</span>
+<span class="sd">    Defines class Vernam with attribute(s) and method(s).</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">codecipher.abstracts.icipher_engine</span> <span class="kn">import</span> <span class="n">ICipherEngine</span>
+<span class="kn">from</span> <span class="nn">codecipher.abstracts.iconfig</span> <span class="kn">import</span> <span class="n">IConfig</span>
+<span class="kn">from</span> <span class="nn">codecipher.abstracts.ivalidation_engine</span> <span class="kn">import</span> <span class="n">IValidationEngine</span>
+<span class="kn">from</span> <span class="nn">codecipher.abstracts.iencoder</span> <span class="kn">import</span> <span class="n">IEncoder</span>
+<span class="kn">from</span> <span class="nn">codecipher.abstracts.idecoder</span> <span class="kn">import</span> <span class="n">IDecoder</span>
+<span class="kn">from</span> <span class="nn">codecipher.validation.validation_engine</span> <span class="kn">import</span> <span class="n">ValidationEngine</span>
+<span class="kn">from</span> <span class="nn">codecipher.vernam.encode.encoder</span> <span class="kn">import</span> <span class="n">Encoder</span>
+<span class="kn">from</span> <span class="nn">codecipher.vernam.decode.decoder</span> <span class="kn">import</span> <span class="n">Decoder</span>
+<span class="kn">from</span> <span class="nn">codecipher.vernam.config</span> <span class="kn">import</span> <span class="n">VernamConfig</span>
+
+<span class="n">__author__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__copyright__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;(C) 2026, https://electux.github.io/codecipher&#39;</span>
+<span class="n">__credits__</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
+<span class="n">__license__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/electux/codecipher/blob/main/LICENSE&#39;</span>
+<span class="n">__version__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;1.5.1&#39;</span>
+<span class="n">__maintainer__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__email__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
+<span class="n">__status__</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
+
+
+<div class="viewcode-block" id="Vernam">
+<a class="viewcode-back" href="../../../codecipher.vernam.engine.html#codecipher.vernam.engine.Vernam">[docs]</a>
+<span class="k">class</span> <span class="nc">Vernam</span><span class="p">(</span><span class="n">ICipherEngine</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Defines class Vernam with attribute(s) and method(s).</span>
+
+<span class="sd">        It defines:</span>
+
+<span class="sd">            :attributes:</span>
+<span class="sd">                | __config - Configuration for cipher VERNAM.</span>
+<span class="sd">                | __validation_engine - Engine for data validation.</span>
+<span class="sd">                | __encoder - Encoder for cipher VERNAM.</span>
+<span class="sd">                | __decoder - Decoder for cipher VERNAM.</span>
+<span class="sd">            :methods:</span>
+<span class="sd">                | __init__ - Initializes Vernam constructor.</span>
+<span class="sd">                | encode - Encoding data to VERNAM format.</span>
+<span class="sd">                | decode - Decoding data from VERNAM format.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">validation_engine</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IValidationEngine</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">encoder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IEncoder</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">decoder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">IDecoder</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Initializes Vernam constructor.</span>
+
+<span class="sd">            :param config: Configuration for cipher VERNAM | None</span>
+<span class="sd">            :type config: &lt;Optional[IConfig]&gt;</span>
+<span class="sd">            :param validation_engine: Engine for data validation | None</span>
+<span class="sd">            :type validation_engine: &lt;Optional[IValidationEngine]&gt;</span>
+<span class="sd">            :param encoder: Encoder for cipher  | None</span>
+<span class="sd">            :type encoder: &lt;Optional[IEncoder]&gt;</span>
+<span class="sd">            :param decoder: Decoder for cipher  | None</span>
+<span class="sd">            :type decoder: &lt;Optional[IDecoder]&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Dependency injection or use default implementations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">:</span> <span class="n">IConfig</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="n">VernamConfig</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__validation_engine</span><span class="p">:</span> <span class="n">IValidationEngine</span> <span class="o">=</span> <span class="n">validation_engine</span> <span class="ow">or</span> <span class="n">ValidationEngine</span><span class="p">(</span>
+            <span class="n">allowed_chars</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="o">.</span><span class="n">allowed_chars</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__encoder</span><span class="p">:</span> <span class="n">IEncoder</span> <span class="o">=</span> <span class="n">encoder</span> <span class="ow">or</span> <span class="n">Encoder</span><span class="p">(</span><span class="n">_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__decoder</span><span class="p">:</span> <span class="n">IDecoder</span> <span class="o">=</span> <span class="n">decoder</span> <span class="ow">or</span> <span class="n">Decoder</span><span class="p">(</span><span class="n">_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Vernam.encode">
+<a class="viewcode-back" href="../../../codecipher.vernam.engine.html#codecipher.vernam.engine.Vernam.encode">[docs]</a>
+    <span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Encoding data to VERNAM format.</span>
+
+<span class="sd">            :param data: Data in string format which should to be encoded | None</span>
+<span class="sd">            :type data: &lt;Optional[str]&gt;</span>
+<span class="sd">            :return: Encoded data in string format (success) | None (fail)</span>
+<span class="sd">            :rtype: &lt;Optional[str]&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Checking and validation data for process of encoding</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__validation_engine</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># Checking process of encoding data</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__encoder</span><span class="o">.</span><span class="n">encoded_data</span></div>
+
+
+<div class="viewcode-block" id="Vernam.decode">
+<a class="viewcode-back" href="../../../codecipher.vernam.engine.html#codecipher.vernam.engine.Vernam.decode">[docs]</a>
+    <span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Decoding data from VERNAM format.</span>
+
+<span class="sd">            :param data: Data in string format which should to be decoded | None</span>
+<span class="sd">            :type data: &lt;Optional[str]&gt;</span>
+<span class="sd">            :return: Decoded data in string format (success) | None (fail)</span>
+<span class="sd">            :rtype: &lt;Optional[str]&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="c1"># Checking data and process of decoding data</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__decoder</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># Checking and validation decoded data</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__validation_engine</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__decoder</span><span class="o">.</span><span class="n">decoded_data</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__decoder</span><span class="o">.</span><span class="n">decoded_data</span></div>
+</div>
+
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.vernam.engine</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

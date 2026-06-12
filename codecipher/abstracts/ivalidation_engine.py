@@ -21,7 +21,7 @@ Info
 
 from typing import List, Optional
 from abc import ABC, abstractmethod
-from .idata_validator import IDataValidator
+from codecipher.abstracts.idata_validator import IDataValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

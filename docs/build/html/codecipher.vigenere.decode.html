@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>codecipher.vigenere.decode module &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
+    <title>codecipher.vigenere.decode package &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
     
@@ -15,7 +15,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="codecipher.vigenere.encode module" href="codecipher.vigenere.encode.html" />
+    <link rel="next" title="codecipher.vigenere.decode.decode_algorithm module" href="codecipher.vigenere.decode.decode_algorithm.html" />
     <link rel="prev" title="codecipher.vigenere package" href="codecipher.vigenere.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -28,7 +28,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="codecipher.vigenere.encode.html" title="codecipher.vigenere.encode module"
+          <a href="codecipher.vigenere.decode.decode_algorithm.html" title="codecipher.vigenere.decode.decode_algorithm module"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="codecipher.vigenere.html" title="codecipher.vigenere package"
@@ -37,7 +37,7 @@
           <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="codecipher.vigenere.html" accesskey="U">codecipher.vigenere package</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.decode module</a></li> 
+        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.decode package</a></li> 
       </ul>
     </div>  
 
@@ -46,10 +46,40 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-codecipher.vigenere.decode">
-<span id="codecipher-vigenere-decode-module"></span><h1>codecipher.vigenere.decode module<a class="headerlink" href="#module-codecipher.vigenere.decode" title="Link to this heading">¶</a></h1>
+  <section id="codecipher-vigenere-decode-package">
+<h1>codecipher.vigenere.decode package<a class="headerlink" href="#codecipher-vigenere-decode-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.decode.decode_algorithm.html">codecipher.vigenere.decode.decode_algorithm module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.decode.decode_algorithm.html#codecipher.vigenere.decode.decode_algorithm.DecodeAlgorithm"><code class="docutils literal notranslate"><span class="pre">DecodeAlgorithm</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decode_algorithm.html#codecipher.vigenere.decode.decode_algorithm.DecodeAlgorithm._abc_impl"><code class="docutils literal notranslate"><span class="pre">DecodeAlgorithm._abc_impl</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decode_algorithm.html#codecipher.vigenere.decode.decode_algorithm.DecodeAlgorithm._split_data_decode"><code class="docutils literal notranslate"><span class="pre">DecodeAlgorithm._split_data_decode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decode_algorithm.html#codecipher.vigenere.decode.decode_algorithm.DecodeAlgorithm.execute"><code class="docutils literal notranslate"><span class="pre">DecodeAlgorithm.execute()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html">codecipher.vigenere.decode.decoder module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder"><code class="docutils literal notranslate"><span class="pre">Decoder</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder._abc_impl"><code class="docutils literal notranslate"><span class="pre">Decoder._abc_impl</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder._config"><code class="docutils literal notranslate"><span class="pre">Decoder._config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder._decoded_data"><code class="docutils literal notranslate"><span class="pre">Decoder._decoded_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder._strategy"><code class="docutils literal notranslate"><span class="pre">Decoder._strategy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder.decode"><code class="docutils literal notranslate"><span class="pre">Decoder.decode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder.decoded_data"><code class="docutils literal notranslate"><span class="pre">Decoder.decoded_data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-codecipher.vigenere.decode">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-codecipher.vigenere.decode" title="Link to this heading">¶</a></h2>
 <dl class="simple">
-<dt>Module</dt><dd><p>decode.py</p>
+<dt>Module</dt><dd><p>__init__.py</p>
 </dd>
 <dt>Copyright</dt><dd><p>Copyright (C) 2021 - 2026 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 codecipher is free software: you can redistribute it and/or modify it
@@ -63,100 +93,10 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
-<dt>Info</dt><dd><p>Defines class VigenereDecode with attribute(s) and method(s).
-Creates decode class with backend API.</p>
+<dt>Info</dt><dd><p>Initialization for codecipher.vigenere.decode package.</p>
 </dd>
 </dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="codecipher.vigenere.decode.VigenereDecode">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.vigenere.decode.</span></span><span class="sig-name descname"><span class="pre">VigenereDecode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_decode_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/codecipher/vigenere/decode.html#VigenereDecode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.decode.VigenereDecode" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Defines class VigenereDecode with attribute(s) and method(s).
-Creates decode class with backend API.</p>
-<p>It defines:</p>
-<blockquote>
-<div><dl class="field-list">
-<dt class="field-odd">attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="line-block">
-<div class="line">_decode_data - Data decode container.</div>
-</div>
-</dd>
-<dt class="field-even">methods<span class="colon">:</span></dt>
-<dd class="field-even"><div class="line-block">
-<div class="line">decode_data - Property methods for decode data.</div>
-<div class="line">_split_data - Splitting data for decoding.</div>
-<div class="line">decode - Decode data from Vigenere format.</div>
-</div>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="codecipher.vigenere.decode.VigenereDecode._decode_data">
-<span class="sig-name descname"><span class="pre">_decode_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.vigenere.decode.VigenereDecode._decode_data" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="codecipher.vigenere.decode.VigenereDecode._split_data_decode">
-<span class="sig-name descname"><span class="pre">_split_data_decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_decode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/codecipher/vigenere/decode.html#VigenereDecode._split_data_decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.decode.VigenereDecode._split_data_decode" title="Link to this definition">¶</a></dt>
-<dd><p>Splitting data for decoding.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_to_decode</strong> (<em>&lt;Optional</em><em>[</em><em>str</em><em>]</em><em>&gt;</em>) – Data which should be decoded | None</p></li>
-<li><p><strong>key</strong> (<em>&lt;Optional</em><em>[</em><em>str</em><em>]</em><em>&gt;</em>) – Key for decoding | None</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>List with data for decoding</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>&lt;List[str]&gt;</p>
-</dd>
-<dt class="field-even">Exceptions<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="codecipher.vigenere.decode.VigenereDecode.decode">
-<span class="sig-name descname"><span class="pre">decode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_to_decode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/codecipher/vigenere/decode.html#VigenereDecode.decode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.decode.VigenereDecode.decode" title="Link to this definition">¶</a></dt>
-<dd><p>Decoding data from Vigenere format.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_to_decode</strong> (<em>&lt;Optional</em><em>[</em><em>str</em><em>]</em><em>&gt;</em>) – Data which should be decoded</p></li>
-<li><p><strong>key</strong> (<em>&lt;Optional</em><em>[</em><em>str</em><em>]</em><em>&gt;</em>) – Key for decoding</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-<dt class="field-odd">Exceptions<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="codecipher.vigenere.decode.VigenereDecode.decode_data">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.vigenere.decode.VigenereDecode.decode_data" title="Link to this definition">¶</a></dt>
-<dd><p>Property method for getting decode data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Decode data in str format | None</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>&lt;Optional[str]&gt;</p>
-</dd>
-<dt class="field-odd">Exceptions<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+</section>
 </section>
 
 
@@ -169,14 +109,9 @@ Creates decode class with backend API.</p>
   <div>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
-<li><a class="reference internal" href="#">codecipher.vigenere.decode module</a><ul>
-<li><a class="reference internal" href="#codecipher.vigenere.decode.VigenereDecode"><code class="docutils literal notranslate"><span class="pre">VigenereDecode</span></code></a><ul>
-<li><a class="reference internal" href="#codecipher.vigenere.decode.VigenereDecode._decode_data"><code class="docutils literal notranslate"><span class="pre">VigenereDecode._decode_data</span></code></a></li>
-<li><a class="reference internal" href="#codecipher.vigenere.decode.VigenereDecode._split_data_decode"><code class="docutils literal notranslate"><span class="pre">VigenereDecode._split_data_decode()</span></code></a></li>
-<li><a class="reference internal" href="#codecipher.vigenere.decode.VigenereDecode.decode"><code class="docutils literal notranslate"><span class="pre">VigenereDecode.decode()</span></code></a></li>
-<li><a class="reference internal" href="#codecipher.vigenere.decode.VigenereDecode.decode_data"><code class="docutils literal notranslate"><span class="pre">VigenereDecode.decode_data</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">codecipher.vigenere.decode package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-codecipher.vigenere.decode">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -189,8 +124,8 @@ Creates decode class with backend API.</p>
   </div>
   <div>
     <h4>Next topic</h4>
-    <p class="topless"><a href="codecipher.vigenere.encode.html"
-                          title="next chapter">codecipher.vigenere.encode module</a></p>
+    <p class="topless"><a href="codecipher.vigenere.decode.decode_algorithm.html"
+                          title="next chapter">codecipher.vigenere.decode.decode_algorithm module</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -223,7 +158,7 @@ Creates decode class with backend API.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="codecipher.vigenere.encode.html" title="codecipher.vigenere.encode module"
+          <a href="codecipher.vigenere.decode.decode_algorithm.html" title="codecipher.vigenere.decode.decode_algorithm module"
              >next</a> |</li>
         <li class="right" >
           <a href="codecipher.vigenere.html" title="codecipher.vigenere package"
@@ -232,7 +167,7 @@ Creates decode class with backend API.</p>
           <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
           <li class="nav-item nav-item-3"><a href="codecipher.vigenere.html" >codecipher.vigenere package</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.decode module</a></li> 
+        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.decode package</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

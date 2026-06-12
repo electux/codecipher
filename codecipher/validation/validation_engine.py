@@ -20,8 +20,9 @@ Info
 '''
 
 from typing import List, Optional, Set
-from codecipher.abstracts import IValidationEngine, IDataValidator
-from .data_validator import DataValidator
+from codecipher.abstracts.ivalidation_engine import IValidationEngine
+from codecipher.abstracts.idata_validator import IDataValidator
+from codecipher.validation.data_validator import DataValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

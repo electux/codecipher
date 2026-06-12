@@ -20,7 +20,7 @@ Info
 '''
 
 from typing import List, Optional, Set
-from codecipher.abstracts import ICharacterValidator
+from codecipher.abstracts.icharacter_validator import ICharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

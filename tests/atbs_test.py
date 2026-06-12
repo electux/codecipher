@@ -25,8 +25,10 @@ Execute
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.abstracts import IValidationEngine
-from codecipher.atbs import ATBS, IATBSEncoder, IATBSDecoder
+from codecipher.abstracts.ivalidation_engine import IValidationEngine
+from codecipher.abstracts.iencoder import IEncoder
+from codecipher.abstracts.idecoder import IDecoder
+from codecipher.atbs.engine import ATBS
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -52,7 +54,11 @@ class ATBSTestCase(unittest.TestCase):
                 | enc_sequence - Object container for encoded sequence.
                 | enc_data - Encoded data.
                 | dec_data - Decoded data.
-                | cipher - Cipher object.
+                | cipher - Cipher object with mocked dependencies.
+                | real_cipher - Real cipher object for integration testing.
+                | mock_encoder - Mocked encoder.
+                | mock_decoder - Mocked decoder.
+                | mock_validation_engine - Mocked validation engine.
             :methods:
                 | setUp - Call before test cases.
                 | tearDown - Call after test cases.
@@ -78,13 +84,13 @@ class ATBSTestCase(unittest.TestCase):
         self.dec_data: Optional[str] = None
 
         # Mock dependencies for the base tests
-        self.mock_encoder = MagicMock(spec=IATBSEncoder)
+        self.mock_encoder = MagicMock(spec=IEncoder)
         self.mock_encoder.encode.return_value = True
-        type(self.mock_encoder).encode_data = PropertyMock(return_value=self.enc_sequence)
+        type(self.mock_encoder).encoded_data = PropertyMock(return_value=self.enc_sequence)
 
-        self.mock_decoder = MagicMock(spec=IATBSDecoder)
+        self.mock_decoder = MagicMock(spec=IDecoder)
         self.mock_decoder.decode.return_value = True
-        type(self.mock_decoder).decode_data = PropertyMock(return_value=self.raw_data)
+        type(self.mock_decoder).decoded_data = PropertyMock(return_value=self.raw_data)
 
         self.mock_validation_engine = MagicMock(spec=IValidationEngine)
         self.mock_validation_engine.is_valid.return_value = True
@@ -95,96 +101,103 @@ class ATBSTestCase(unittest.TestCase):
             decoder=self.mock_decoder
         )
 
+        # Real cipher for integration testing
+        self.real_cipher: ATBS = ATBS()
+
     def tearDown(self) -> None:
         '''Call after test cases.'''
         self.raw_data = None
         self.enc_data = None
         self.dec_data = None
         self.cipher = None  # type: ignore
+        self.real_cipher = None  # type: ignore
+        self.mock_encoder = None  # type: ignore
+        self.mock_decoder = None  # type: ignore
+        self.mock_validation_engine = None  # type: ignore
 
     def test_atbs_encoding(self) -> None:
-        '''Testing base encoding.'''
-        self.cipher.encode(self.raw_data)
-        self.enc_data: Optional[str] = self.cipher.encode_data
-        self.assertEqual(self.enc_sequence, self.enc_data)
+        '''Test base encoding with real cipher.'''
+        if bool(self.real_cipher):
+            self.enc_data = self.real_cipher.encode(self.raw_data)
+            self.assertTrue(bool(self.enc_data))
+            self.assertEqual(self.enc_sequence, self.enc_data)
 
     def test_atbs_decoding(self) -> None:
-        '''Testing base decoding.'''
-        self.cipher.encode(self.raw_data)
-        self.enc_data = self.cipher.encode_data
-        self.cipher.decode(self.enc_data)
-        self.dec_data: Optional[str] = self.cipher.decode_data
-        self.assertEqual(self.raw_data, self.dec_data)
+        '''Test base decoding with real cipher.'''
+        if bool(self.real_cipher):
+            encoded = self.real_cipher.encode(self.raw_data)
+            self.assertTrue(bool(encoded))
+            self.dec_data = self.real_cipher.decode(encoded)
+            self.assertTrue(bool(self.dec_data))
+            self.assertEqual(self.raw_data, self.dec_data)
 
-    def test_encode_with_none_data(self) -> None:
+    def test_atbs_with_none_data(self) -> None:
         '''Testing encode with None or empty data.'''
-        cipher = ATBS()
-        self.assertFalse(cipher.encode(None))
-        self.assertFalse(cipher.encode(''))
+        if bool(self.real_cipher):
+            self.assertFalse(self.real_cipher.encode(None))
+            self.assertFalse(self.real_cipher.decode(None))
+
+    def test_atbs_empty_string(self) -> None:
+        '''Test encoding and decoding with empty strings.'''
+        if bool(self.real_cipher):
+            self.assertFalse(self.real_cipher.encode(''))
+            self.assertFalse(self.real_cipher.decode(''))
+
+    def test_atbs_encoding_with_numbers(self) -> None:
+        '''Test Atbash transformation of numbers.'''
+        # 0 -> 9, 1 -> 8, etc.
+        data = "0123456789"
+        expected = "9876543210"
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(data)
+            self.assertEqual(expected, result)
+
+    def test_atbs_encoding_with_spaces(self) -> None:
+        '''Test Atbash with spaces (should remain unchanged).'''
+        data = "A B C"
+        expected = "Z Y X"
+        if bool(self.real_cipher):
+            result = self.real_cipher.encode(data)
+            self.assertEqual(expected, result)
 
     def test_encode_with_validation_failure(self) -> None:
         '''Testing encode when validation engine fails.'''
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = False
-        cipher = ATBS(validation_engine=mock_engine)
-
-        self.assertFalse(cipher.encode("test_data"))
-        mock_engine.is_valid.assert_called_once_with("test_data")
+        self.mock_validation_engine.is_valid.return_value = False # type: ignore
+        self.assertFalse(self.cipher.encode(self.raw_data))
+        self.mock_validation_engine.is_valid.assert_called_once_with(self.raw_data) # type: ignore
+        self.mock_encoder.encode.assert_not_called() # type: ignore
 
     def test_encode_delegation(self) -> None:
         '''Testing encode delegation to internal encoder.'''
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = True
-        mock_encoder = MagicMock(spec=IATBSEncoder)
-        mock_encoder.encode.return_value = True
-        cipher = ATBS(validation_engine=mock_engine, encoder=mock_encoder)
-
-        self.assertTrue(cipher.encode("valid_data"))
-        mock_encoder.encode.assert_called_once_with("valid_data")
-
-    def test_decode_with_none_data(self) -> None:
-        '''Testing decode with None or empty data.'''
-        cipher = ATBS()
-        self.assertFalse(cipher.decode(None))
-        self.assertFalse(cipher.decode(''))
+        result = self.cipher.encode(self.raw_data)
+        self.assertTrue(result)
+        self.mock_validation_engine.is_valid.assert_called_once_with(self.raw_data) # type: ignore
+        self.mock_encoder.encode.assert_called_once_with(self.raw_data) # type: ignore
+        self.assertEqual(self.enc_sequence, result)
 
     def test_decode_with_decoder_failure(self) -> None:
         '''Testing decode when internal decoder fails.'''
-        mock_decoder = MagicMock(spec=IATBSDecoder)
-        mock_decoder.decode.return_value = False
-        cipher = ATBS(decoder=mock_decoder)
-
-        self.assertFalse(cipher.decode("encoded_data"))
-        mock_decoder.decode.assert_called_once_with("encoded_data")
+        self.mock_decoder.decode.return_value = False # type: ignore
+        self.assertFalse(self.cipher.decode(self.enc_sequence))
+        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence) # type: ignore
 
     def test_decode_with_validation_failure(self) -> None:
         '''Testing decode when validation of decoded data fails.'''
-        mock_decoder = MagicMock(spec=IATBSDecoder)
-        mock_decoder.decode.return_value = True
-        type(mock_decoder).decode_data = PropertyMock(return_value="decoded_invalid")
+        # Decoder succeeds, but validation engine says NO
+        self.mock_decoder.decode.return_value = True # type: ignore
+        type(self.mock_decoder).decoded_data = PropertyMock(return_value="invalid_result") # type: ignore
+        self.mock_validation_engine.is_valid.return_value = False # type: ignore
 
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = False
-
-        cipher = ATBS(validation_engine=mock_engine, decoder=mock_decoder)
-
-        self.assertFalse(cipher.decode("encoded_data"))
-        mock_engine.is_valid.assert_called_once_with("decoded_invalid")
+        self.assertFalse(self.cipher.decode(self.enc_sequence))
+        self.mock_validation_engine.is_valid.assert_called_once_with("invalid_result") # type: ignore
 
     def test_decode_delegation(self) -> None:
         '''Testing decode delegation to internal decoder and engine.'''
-        mock_decoder = MagicMock(spec=IATBSDecoder)
-        mock_decoder.decode.return_value = True
-        type(mock_decoder).decode_data = PropertyMock(return_value="decoded_valid")
-
-        mock_engine = MagicMock(spec=IValidationEngine)
-        mock_engine.is_valid.return_value = True
-
-        cipher = ATBS(validation_engine=mock_engine, decoder=mock_decoder)
-
-        self.assertTrue(cipher.decode("encoded_data"))
-        mock_decoder.decode.assert_called_once_with("encoded_data")
-        mock_engine.is_valid.assert_called_once_with("decoded_valid")
+        result = self.cipher.decode(self.enc_sequence)
+        self.assertTrue(result)
+        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence) # type: ignore
+        self.mock_validation_engine.is_valid.assert_called_once_with(self.raw_data) # type: ignore
+        self.assertEqual(self.raw_data, result)
 
 
 if __name__ == '__main__':

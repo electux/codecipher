@@ -16,12 +16,13 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class CharacterValidator for strict chipher data validation.
+    Defines class DataValidator for strict chipher data validation.
 '''
 
 from typing import List, Optional, Set
-from codecipher.abstracts import IDataValidator, ICharacterValidator
-from .character_validator import CharacterValidator
+from codecipher.abstracts.idata_validator import IDataValidator
+from codecipher.abstracts.icharacter_validator import ICharacterValidator
+from codecipher.validation.character_validator import CharacterValidator
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -62,7 +63,7 @@ class DataValidator(IDataValidator):
             :exceptions: None
         '''
         self.__char_validator: ICharacterValidator = char_validator or CharacterValidator(
-            allowed_chars
+            allowed_chars=allowed_chars
         )
 
     def is_valid(self, data: Optional[str]) -> bool:

@@ -15,8 +15,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="codecipher.vigenere.decode module" href="codecipher.vigenere.decode.html" />
-    <link rel="prev" title="codecipher.vernam.encode module" href="codecipher.vernam.encode.html" /> 
+    <link rel="next" title="codecipher.vigenere.decode package" href="codecipher.vigenere.decode.html" />
+    <link rel="prev" title="codecipher.vernam.engine module" href="codecipher.vernam.engine.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -28,10 +28,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="codecipher.vigenere.decode.html" title="codecipher.vigenere.decode module"
+          <a href="codecipher.vigenere.decode.html" title="codecipher.vigenere.decode package"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="codecipher.vernam.encode.html" title="codecipher.vernam.encode module"
+          <a href="codecipher.vernam.engine.html" title="codecipher.vernam.engine module"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
@@ -47,49 +47,71 @@
             
   <section id="codecipher-vigenere-package">
 <h1>codecipher.vigenere package<a class="headerlink" href="#codecipher-vigenere-package" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.decode.html">codecipher.vigenere.decode package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.decode.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decode_algorithm.html">codecipher.vigenere.decode.decode_algorithm module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="codecipher.vigenere.decode.decode_algorithm.html#codecipher.vigenere.decode.decode_algorithm.DecodeAlgorithm"><code class="docutils literal notranslate"><span class="pre">DecodeAlgorithm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html">codecipher.vigenere.decode.decoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="codecipher.vigenere.decode.decoder.html#codecipher.vigenere.decode.decoder.Decoder"><code class="docutils literal notranslate"><span class="pre">Decoder</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.decode.html#module-codecipher.vigenere.decode">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.encode.html">codecipher.vigenere.encode package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.encode.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.encode.encode_algorithm.html">codecipher.vigenere.encode.encode_algorithm module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="codecipher.vigenere.encode.encode_algorithm.html#codecipher.vigenere.encode.encode_algorithm.EncodeAlgorithm"><code class="docutils literal notranslate"><span class="pre">EncodeAlgorithm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.encode.encoder.html">codecipher.vigenere.encode.encoder module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="codecipher.vigenere.encode.encoder.html#codecipher.vigenere.encode.encoder.Encoder"><code class="docutils literal notranslate"><span class="pre">Encoder</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.encode.html#module-codecipher.vigenere.encode">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.decode.html">codecipher.vigenere.decode module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.decode.html#codecipher.vigenere.decode.VigenereDecode"><code class="docutils literal notranslate"><span class="pre">VigenereDecode</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.html#codecipher.vigenere.decode.VigenereDecode._decode_data"><code class="docutils literal notranslate"><span class="pre">VigenereDecode._decode_data</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.html#codecipher.vigenere.decode.VigenereDecode._split_data_decode"><code class="docutils literal notranslate"><span class="pre">VigenereDecode._split_data_decode()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.html#codecipher.vigenere.decode.VigenereDecode.decode"><code class="docutils literal notranslate"><span class="pre">VigenereDecode.decode()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.decode.html#codecipher.vigenere.decode.VigenereDecode.decode_data"><code class="docutils literal notranslate"><span class="pre">VigenereDecode.decode_data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.config.html">codecipher.vigenere.config module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig"><code class="docutils literal notranslate"><span class="pre">VigenereConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig._abc_impl"><code class="docutils literal notranslate"><span class="pre">VigenereConfig._abc_impl</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.allowed_chars"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.allowed_chars</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.alphabet_size"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.alphabet_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.altchars"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.altchars</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.code_splitter"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.code_splitter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.key"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.key</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.lookup_table"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.lookup_table</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.lower_case_base"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.lower_case_base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.lower_case_offset"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.lower_case_offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.numeric_base"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.numeric_base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.padding"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.padding</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.shift"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.shift</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.config.html#codecipher.vigenere.config.VigenereConfig.upper_case_offset"><code class="docutils literal notranslate"><span class="pre">VigenereConfig.upper_case_offset</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.encode.html">codecipher.vigenere.encode module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode"><code class="docutils literal notranslate"><span class="pre">VigenereEncode</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode._encode_data"><code class="docutils literal notranslate"><span class="pre">VigenereEncode._encode_data</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode._split_data_encode"><code class="docutils literal notranslate"><span class="pre">VigenereEncode._split_data_encode()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode.encode"><code class="docutils literal notranslate"><span class="pre">VigenereEncode.encode()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode.encode_data"><code class="docutils literal notranslate"><span class="pre">VigenereEncode.encode_data</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.key_generator.html">codecipher.vigenere.key_generator module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.key_generator.html#codecipher.vigenere.key_generator.KeyGenerator"><code class="docutils literal notranslate"><span class="pre">KeyGenerator</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.key_generator.html#codecipher.vigenere.key_generator.KeyGenerator._data_len"><code class="docutils literal notranslate"><span class="pre">KeyGenerator._data_len</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.key_generator.html#codecipher.vigenere.key_generator.KeyGenerator._key"><code class="docutils literal notranslate"><span class="pre">KeyGenerator._key</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.key_generator.html#codecipher.vigenere.key_generator.KeyGenerator.data_len"><code class="docutils literal notranslate"><span class="pre">KeyGenerator.data_len</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.key_generator.html#codecipher.vigenere.key_generator.KeyGenerator.generate_key"><code class="docutils literal notranslate"><span class="pre">KeyGenerator.generate_key()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.key_generator.html#codecipher.vigenere.key_generator.KeyGenerator.key"><code class="docutils literal notranslate"><span class="pre">KeyGenerator.key</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.lookup_table.html">codecipher.vigenere.lookup_table module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.lookup_table.html#codecipher.vigenere.lookup_table.LookUpTable"><code class="docutils literal notranslate"><span class="pre">LookUpTable</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.lookup_table.html#codecipher.vigenere.lookup_table.LookUpTable.ALPHA"><code class="docutils literal notranslate"><span class="pre">LookUpTable.ALPHA</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.lookup_table.html#codecipher.vigenere.lookup_table.LookUpTable.ALPHANUM"><code class="docutils literal notranslate"><span class="pre">LookUpTable.ALPHANUM</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.lookup_table.html#codecipher.vigenere.lookup_table.LookUpTable.INDEX_TO_LETTER"><code class="docutils literal notranslate"><span class="pre">LookUpTable.INDEX_TO_LETTER</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.lookup_table.html#codecipher.vigenere.lookup_table.LookUpTable.LETTER_TO_INDEX"><code class="docutils literal notranslate"><span class="pre">LookUpTable.LETTER_TO_INDEX</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.lookup_table.html#codecipher.vigenere.lookup_table.LookUpTable.NUM"><code class="docutils literal notranslate"><span class="pre">LookUpTable.NUM</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.lookup_table.html#codecipher.vigenere.lookup_table.LookUpTable.WHITE_SPACE"><code class="docutils literal notranslate"><span class="pre">LookUpTable.WHITE_SPACE</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="codecipher.vigenere.engine.html">codecipher.vigenere.engine module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="codecipher.vigenere.engine.html#codecipher.vigenere.engine.Vigenere"><code class="docutils literal notranslate"><span class="pre">Vigenere</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.engine.html#codecipher.vigenere.engine.Vigenere._abc_impl"><code class="docutils literal notranslate"><span class="pre">Vigenere._abc_impl</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.engine.html#codecipher.vigenere.engine.Vigenere.decode"><code class="docutils literal notranslate"><span class="pre">Vigenere.decode()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="codecipher.vigenere.engine.html#codecipher.vigenere.engine.Vigenere.encode"><code class="docutils literal notranslate"><span class="pre">Vigenere.encode()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -114,33 +136,9 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
 </dd>
-<dt>Info</dt><dd><p>Defines class Vigenere with attribute(s) and method(s).
-Creates container class with aggregate backend API.</p>
+<dt>Info</dt><dd><p>Initialization for codecipher.vigenere package.</p>
 </dd>
 </dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="codecipher.vigenere.Vigenere">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.vigenere.</span></span><span class="sig-name descname"><span class="pre">Vigenere</span></span><a class="reference internal" href="_modules/codecipher/vigenere.html#Vigenere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.Vigenere" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="codecipher.vigenere.encode.html#codecipher.vigenere.encode.VigenereEncode" title="codecipher.vigenere.encode.VigenereEncode"><code class="xref py py-class docutils literal notranslate"><span class="pre">VigenereEncode</span></code></a>, <a class="reference internal" href="codecipher.vigenere.decode.html#codecipher.vigenere.decode.VigenereDecode" title="codecipher.vigenere.decode.VigenereDecode"><code class="xref py py-class docutils literal notranslate"><span class="pre">VigenereDecode</span></code></a>, <a class="reference internal" href="codecipher.vigenere.key_generator.html#codecipher.vigenere.key_generator.KeyGenerator" title="codecipher.vigenere.key_generator.KeyGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">KeyGenerator</span></code></a></p>
-<p>Defines class Vigenere with attribute(s) and method(s).
-Creates container class with aggregate backend API.</p>
-<p>It defines:</p>
-<blockquote>
-<div><dl class="field-list">
-<dt class="field-odd">attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="line-block">
-<div class="line">None.</div>
-</div>
-</dd>
-<dt class="field-even">methods<span class="colon">:</span></dt>
-<dd class="field-even"><div class="line-block">
-<div class="line">__init__ - Initials Vigenere constructor.</div>
-</div>
-</dd>
-</dl>
-</div></blockquote>
-</dd></dl>
-
 </section>
 </section>
 
@@ -155,11 +153,9 @@ Creates container class with aggregate backend API.</p>
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">codecipher.vigenere package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-codecipher.vigenere">Module contents</a><ul>
-<li><a class="reference internal" href="#codecipher.vigenere.Vigenere"><code class="docutils literal notranslate"><span class="pre">Vigenere</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#module-codecipher.vigenere">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -167,13 +163,13 @@ Creates container class with aggregate backend API.</p>
   </div>
   <div>
     <h4>Previous topic</h4>
-    <p class="topless"><a href="codecipher.vernam.encode.html"
-                          title="previous chapter">codecipher.vernam.encode module</a></p>
+    <p class="topless"><a href="codecipher.vernam.engine.html"
+                          title="previous chapter">codecipher.vernam.engine module</a></p>
   </div>
   <div>
     <h4>Next topic</h4>
     <p class="topless"><a href="codecipher.vigenere.decode.html"
-                          title="next chapter">codecipher.vigenere.decode module</a></p>
+                          title="next chapter">codecipher.vigenere.decode package</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -206,10 +202,10 @@ Creates container class with aggregate backend API.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="codecipher.vigenere.decode.html" title="codecipher.vigenere.decode module"
+          <a href="codecipher.vigenere.decode.html" title="codecipher.vigenere.decode package"
              >next</a> |</li>
         <li class="right" >
-          <a href="codecipher.vernam.encode.html" title="codecipher.vernam.encode module"
+          <a href="codecipher.vernam.engine.html" title="codecipher.vernam.engine module"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>

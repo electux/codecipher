@@ -21,7 +21,6 @@ Info
 '''
 
 from typing import List
-from .validation_engine import ValidationEngine
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -31,5 +30,3 @@ __version__: str = '1.5.1'
 __maintainer__: str = 'Vladimir Roncevic'
 __email__: str = 'elektron.ronca@gmail.com'
 __status__: str = 'Updated'
-
-__all__: List[str] = ['ValidationEngine']

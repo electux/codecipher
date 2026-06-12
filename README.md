@@ -104,15 +104,15 @@ You can use Dockerfile to create image/container.
 ### Usage
 
 ```python
-from codecipher.a1z52n62 import A1z52N62
-from codecipher.atbs import ATBS
-from codecipher.b64 import B64
-from codecipher.caesar import Caesar
-from codecipher.vigenere import Vigenere
-from codecipher.vernam import Vernam
+from codecipher.a1z52n62 import A1Z52N62
+from codecipher.atbs.engine import ATBS
+from codecipher.b64.engine import B64
+from codecipher.caesar.engine import Caesar
+from codecipher.vigenere.engine import Vigenere
+from codecipher.vernam.engine import Vernam
 
 print("A1z52N62 cipher")
-cipher = A1z52N62()
+cipher = A1Z52N62()
 data = "More Human Than Human01 Is Our Motto"
 # encoding data
 cipher.encode(data)
@@ -201,37 +201,97 @@ Package structure
 
 ```bash
     codecipher/
-        ├── a1z52n62/
-        │   ├── decode.py
-        │   ├── encode.py
+    ├── a1z52n62/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── abstracts/
+    │   ├── ialgorithm.py
+    │   ├── icharacter_validator.py
+    │   ├── icipher_engine.py
+    │   ├── iconfig.py
+    │   ├── idata_validator.py
+    │   ├── idecoder.py
+    │   ├── iencoder.py
+    │   ├── __init__.py
+    │   └── ivalidation_engine.py
+    ├── atbs/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── b64/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── caesar/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── __init__.py
+    ├── py.typed
+    ├── validation/
+    │   ├── character_validator.py
+    │   ├── data_validator.py
+    │   ├── __init__.py
+    │   └── validation_engine.py
+    ├── vernam/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    └── vigenere/
+        ├── config.py
+        ├── decode/
+        │   ├── decode_algorithm.py
+        │   ├── decoder.py
         │   └── __init__.py
-        ├── atbs/
-        │   ├── decode.py
-        │   ├── encode.py
-        │   ├── __init__.py
-        │   └── lookup_table.py
-        ├── b64/
-        │   ├── decode.py
-        │   ├── encode.py
+        ├── encode/
+        │   ├── encode_algorithm.py
+        │   ├── encoder.py
         │   └── __init__.py
-        ├── caesar/
-        │   ├── decode.py
-        │   ├── encode.py
-        │   └── __init__.py
-        ├── __init__.py
-        ├── py.typed
-        ├── vernam/
-        │   ├── decode.py
-        │   ├── encode.py
-        │   └── __init__.py
-        └── vigenere/
-            ├── decode.py
-            ├── encode.py
-            ├── __init__.py
-            ├── key_generator.py
-            └── lookup_table.py
-    
-    7 directories, 23 files
+        ├── engine.py
+        └── __init__.py
+
+    21 directories, 69 files
 ```
 
 ### Code coverage
@@ -239,78 +299,74 @@ Package structure
 | Name | Stmts | Miss | Cover |
 |------|-------|------|-------|
 | `codecipher/__init__.py` | 9 | 0 | 100%|
-| `codecipher/a1z52n62/__init__.py` | 20 | 0 | 100%|
-| `codecipher/a1z52n62/a1z52n62.py` | 37 | 0 | 100%|
-| `codecipher/a1z52n62/a1z52n62_config.py` | 18 | 0 | 100%|
-| `codecipher/a1z52n62/decoder.py` | 40 | 19 | 52%|
-| `codecipher/a1z52n62/default_character_validator.py` | 18 | 3 | 83%|
-| `codecipher/a1z52n62/default_data_validator.py` | 18 | 3 | 83%|
-| `codecipher/a1z52n62/default_validation_engine.py` | 23 | 7 | 70%|
-| `codecipher/a1z52n62/encoder.py` | 39 | 18 | 54%|
-| `codecipher/a1z52n62/ia1z52n62.py` | 25 | 4 | 84%|
-| `codecipher/a1z52n62/idecoder.py` | 22 | 3 | 86%|
-| `codecipher/a1z52n62/iencoder.py` | 22 | 3 | 86%|
-| `codecipher/abstracts/__init__.py` | 13 | 0 | 100%|
+| `codecipher/a1z52n62/__init__.py` | 9 | 0 | 100%|
+| `codecipher/a1z52n62/config.py` | 26 | 0 | 100%|
+| `codecipher/a1z52n62/decode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/a1z52n62/decode/decode_algorithm.py` | 41 | 6 | 85%|
+| `codecipher/a1z52n62/decode/decoder.py` | 30 | 2 | 93%|
+| `codecipher/a1z52n62/encode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/a1z52n62/encode/encode_algorithm.py` | 32 | 2 | 94%|
+| `codecipher/a1z52n62/encode/encoder.py` | 30 | 2 | 93%|
+| `codecipher/a1z52n62/engine.py` | 36 | 0 | 100%|
+| `codecipher/abstracts/__init__.py` | 9 | 0 | 100%|
+| `codecipher/abstracts/ialgorithm.py` | 16 | 1 | 94%|
 | `codecipher/abstracts/icharacter_validator.py` | 14 | 1 | 93%|
+| `codecipher/abstracts/icipher_engine.py` | 17 | 2 | 88%|
+| `codecipher/abstracts/iconfig.py` | 23 | 0 | 100%|
 | `codecipher/abstracts/idata_validator.py` | 14 | 1 | 93%|
+| `codecipher/abstracts/idecoder.py` | 10 | 2 | 80%|
+| `codecipher/abstracts/iencoder.py` | 10 | 2 | 80%|
 | `codecipher/abstracts/ivalidation_engine.py` | 18 | 2 | 89%|
-| `codecipher/atbs/__init__.py` | 19 | 0 | 100%|
-| `codecipher/atbs/atbs.py` | 35 | 0 | 100%|
-| `codecipher/atbs/decoder.py` | 29 | 10 | 66%|
-| `codecipher/atbs/default_character_validator.py` | 10 | 3 | 70%|
-| `codecipher/atbs/default_data_validator.py` | 19 | 3 | 84%|
-| `codecipher/atbs/default_validation_engine.py` | 23 | 7 | 70%|
-| `codecipher/atbs/encoder.py` | 29 | 10 | 66%|
-| `codecipher/atbs/iatbs.py` | 17 | 4 | 76%|
-| `codecipher/atbs/idecoder.py` | 18 | 2 | 89%|
-| `codecipher/atbs/iencoder.py` | 18 | 2 | 89%|
-| `codecipher/atbs/lookup_table.py` | 10 | 0 | 100%|
-| `codecipher/b64/__init__.py` | 19 | 0 | 100%|
-| `codecipher/b64/b64.py` | 35 | 0 | 100%|
-| `codecipher/b64/b64decoder.py` | 26 | 3 | 88%|
-| `codecipher/b64/b64encoder.py` | 26 | 3 | 88%|
-| `codecipher/b64/default_character_validator.py` | 18 | 1 | 94%|
-| `codecipher/b64/default_data_validator.py` | 18 | 1 | 94%|
-| `codecipher/b64/default_validation_engine.py` | 23 | 4 | 83%|
-| `codecipher/b64/ib64.py` | 25 | 4 | 84%|
-| `codecipher/b64/idecoder.py` | 18 | 2 | 89%|
-| `codecipher/b64/iencoder.py` | 18 | 2 | 89%|
-| `codecipher/caesar/__init__.py` | 19 | 0 | 100%|
-| `codecipher/caesar/caesar.py` | 35 | 0 | 100%|
-| `codecipher/caesar/decoder.py` | 44 | 2 | 95%|
-| `codecipher/caesar/default_character_validator.py` | 18 | 4 | 78%|
-| `codecipher/caesar/default_data_validator.py` | 18 | 4 | 78%|
-| `codecipher/caesar/default_validation_engine.py` | 23 | 8 | 65%|
-| `codecipher/caesar/encoder.py` | 44 | 2 | 95%|
-| `codecipher/caesar/icaesar.py` | 17 | 4 | 76%|
-| `codecipher/caesar/idecoder.py` | 10 | 2 | 80%|
-| `codecipher/caesar/iencoder.py` | 10 | 2 | 80%|
-| `codecipher/caesar/lookup_table.py` | 11 | 0 | 100%|
-| `codecipher/vernam/__init__.py` | 19 | 0 | 100%|
-| `codecipher/vernam/decoder.py` | 39 | 2 | 95%|
-| `codecipher/vernam/default_character_validator.py` | 18 | 1 | 94%|
-| `codecipher/vernam/default_data_validator.py` | 18 | 1 | 94%|
-| `codecipher/vernam/default_validation_engine.py` | 23 | 4 | 83%|
-| `codecipher/vernam/encoder.py` | 39 | 2 | 95%|
-| `codecipher/vernam/idecoder.py` | 18 | 2 | 89%|
-| `codecipher/vernam/iencoder.py` | 18 | 2 | 89%|
-| `codecipher/vernam/ivernam.py` | 25 | 4 | 84%|
-| `codecipher/vernam/lookup_table.py` | 11 | 0 | 100%|
-| `codecipher/vernam/vernam.py` | 35 | 0 | 100%|
-| `codecipher/vigenere/__init__.py` | 20 | 0 | 100%|
-| `codecipher/vigenere/decoder.py` | 38 | 3 | 92%|
-| `codecipher/vigenere/default_character_validator.py` | 18 | 1 | 94%|
-| `codecipher/vigenere/default_data_validator.py` | 18 | 1 | 94%|
-| `codecipher/vigenere/default_validation_engine.py` | 23 | 4 | 83%|
-| `codecipher/vigenere/encoder.py` | 38 | 3 | 92%|
-| `codecipher/vigenere/idecoder.py` | 18 | 2 | 89%|
-| `codecipher/vigenere/iencoder.py` | 18 | 2 | 89%|
-| `codecipher/vigenere/ikey_generator.py` | 22 | 3 | 86%|
-| `codecipher/vigenere/ivigenere.py` | 25 | 4 | 84%|
-| `codecipher/vigenere/key_generator.py` | 41 | 5 | 88%|
-| `codecipher/vigenere/lookup_table.py` | 16 | 0 | 100%|
-| `codecipher/vigenere/vigenere.py` | 46 | 0 | 100%|
-| **Total** | 1656 | 199 | 88% |
+| `codecipher/atbs/__init__.py` | 9 | 0 | 100%|
+| `codecipher/atbs/config.py` | 26 | 0 | 100%|
+| `codecipher/atbs/decode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/atbs/decode/decode_algorithm.py` | 28 | 3 | 89%|
+| `codecipher/atbs/decode/decoder.py` | 30 | 2 | 93%|
+| `codecipher/atbs/encode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/atbs/encode/encode_algorithm.py` | 28 | 3 | 89%|
+| `codecipher/atbs/encode/encoder.py` | 30 | 2 | 93%|
+| `codecipher/atbs/engine.py` | 36 | 1 | 97%|
+| `codecipher/b64/__init__.py` | 9 | 0 | 100%|
+| `codecipher/b64/config.py` | 26 | 0 | 100%|
+| `codecipher/b64/decode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/b64/decode/decode_algorithm.py` | 32 | 7 | 78%|
+| `codecipher/b64/decode/decoder.py` | 30 | 2 | 93%|
+| `codecipher/b64/encode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/b64/encode/encode_algorithm.py` | 27 | 3 | 89%|
+| `codecipher/b64/encode/encoder.py` | 30 | 2 | 93%|
+| `codecipher/b64/engine.py` | 36 | 2 | 94%|
+| `codecipher/caesar/__init__.py` | 9 | 0 | 100%|
+| `codecipher/caesar/config.py` | 26 | 0 | 100%|
+| `codecipher/caesar/decode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/caesar/decode/decode_algorithm.py` | 41 | 2 | 95%|
+| `codecipher/caesar/decode/decoder.py` | 30 | 2 | 93%|
+| `codecipher/caesar/encode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/caesar/encode/encode_algorithm.py` | 41 | 2 | 95%|
+| `codecipher/caesar/encode/encoder.py` | 30 | 2 | 93%|
+| `codecipher/caesar/engine.py` | 36 | 2 | 94%|
+| `codecipher/validation/__init__.py` | 9 | 0 | 100%|
+| `codecipher/validation/character_validator.py` | 17 | 1 | 94%|
+| `codecipher/validation/data_validator.py` | 19 | 1 | 95%|
+| `codecipher/validation/validation_engine.py` | 24 | 4 | 83%|
+| `codecipher/vernam/__init__.py` | 9 | 0 | 100%|
+| `codecipher/vernam/config.py` | 26 | 0 | 100%|
+| `codecipher/vernam/decode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/vernam/decode/decode_algorithm.py` | 44 | 5 | 89%|
+| `codecipher/vernam/decode/decoder.py` | 30 | 2 | 93%|
+| `codecipher/vernam/encode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/vernam/encode/encode_algorithm.py` | 44 | 5 | 89%|
+| `codecipher/vernam/encode/encoder.py` | 30 | 2 | 93%|
+| `codecipher/vernam/engine.py` | 36 | 0 | 100%|
+| `codecipher/vigenere/__init__.py` | 9 | 0 | 100%|
+| `codecipher/vigenere/config.py` | 26 | 0 | 100%|
+| `codecipher/vigenere/decode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/vigenere/decode/decode_algorithm.py` | 40 | 3 | 92%|
+| `codecipher/vigenere/decode/decoder.py` | 30 | 2 | 93%|
+| `codecipher/vigenere/encode/__init__.py` | 9 | 0 | 100%|
+| `codecipher/vigenere/encode/encode_algorithm.py` | 40 | 3 | 92%|
+| `codecipher/vigenere/encode/encoder.py` | 30 | 2 | 93%|
+| `codecipher/vigenere/engine.py` | 36 | 0 | 100%|
+| **Total** | 1541 | 90 | 94% |
 
 ### Docs
 

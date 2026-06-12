@@ -22,7 +22,7 @@ Info
 from typing import Dict, List, Optional, Set
 from string import ascii_lowercase, ascii_uppercase, digits, whitespace
 from dataclasses import dataclass, field
-from codecipher.abstracts import IConfig
+from codecipher.abstracts.iconfig import IConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

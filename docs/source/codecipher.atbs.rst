@@ -1,15 +1,23 @@
 codecipher.atbs package
 =======================
 
-Submodules
-----------
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
 
    codecipher.atbs.decode
    codecipher.atbs.encode
-   codecipher.atbs.lookup_table
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   codecipher.atbs.config
+   codecipher.atbs.engine
 
 Module contents
 ---------------

@@ -25,8 +25,10 @@ Execute
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.abstracts import IValidationEngine
-from codecipher.caesar import Caesar, IEncoder, IDecoder
+from codecipher.abstracts.ivalidation_engine import IValidationEngine
+from codecipher.abstracts.iencoder import IEncoder
+from codecipher.abstracts.idecoder import IDecoder
+from codecipher.caesar.engine import Caesar
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -105,54 +107,40 @@ class CaesarTestCase(unittest.TestCase):
     def test_caesar_encoding(self) -> None:
         '''Test base encoding.'''
         if bool(self.cipher):
-            self.cipher.encode(self.raw_data, 3)
-            self.enc_data = self.cipher.encode_data
+            self.enc_data = self.cipher.encode(self.raw_data)
             self.assertEqual(self.enc_sequence, self.enc_data)
 
     def test_caesar_decoding(self) -> None:
         '''Test base decoding.'''
         if bool(self.cipher):
-            self.cipher.encode(self.raw_data, 3)
-            self.enc_data = self.cipher.encode_data
-            self.cipher.decode(self.enc_data, 3)
-            self.dec_data = self.cipher.decode_data
+            encoded = self.cipher.encode(self.raw_data)
+            self.dec_data = self.cipher.decode(encoded)
             self.assertEqual(self.raw_data, self.dec_data)
 
     def test_caesar_encoding_empty_string(self) -> None:
         '''Test encoding an empty string.'''
         if bool(self.cipher):
-            result = self.cipher.encode(self.EMPTY_DATA, 3)
+            result = self.cipher.encode(self.EMPTY_DATA)
             self.assertFalse(result)
-            self.enc_data = self.cipher.encode_data
-            self.assertIsNone(self.enc_data)
 
     def test_caesar_decoding_empty_string(self) -> None:
         '''Test decoding an empty string.'''
         if bool(self.cipher):
-            result = self.cipher.decode(self.EMPTY_ENC_SEQ, 3)
+            result = self.cipher.decode(self.EMPTY_ENC_SEQ)
             self.assertFalse(result)
-            self.dec_data = self.cipher.decode_data
-            self.assertIsNone(self.dec_data)
 
     def test_caesar_with_none_data(self) -> None:
         '''Test encoding and decoding with None data.'''
         if bool(self.cipher):
-            self.assertFalse(self.cipher.encode(None, 3))
-            self.assertFalse(self.cipher.decode(None, 3))
-
-    def test_caesar_with_none_shift_counter(self) -> None:
-        '''Test encoding and decoding with None shift counter.'''
-        if bool(self.cipher):
-            self.assertFalse(self.cipher.encode(self.RAW_DATA, None))
-            self.assertFalse(self.cipher.decode(self.ENC_SEQ, None))
+            self.assertFalse(self.cipher.encode(None))
+            self.assertFalse(self.cipher.decode(None))
 
     def test_caesar_encoding_with_spaces(self) -> None:
         '''Test encoding a string with only spaces.'''
         data_with_spaces = '   '
         expected_encoded = '   ' # Spaces are ignored by Caesar cipher
         if bool(self.cipher):
-            self.cipher.encode(data_with_spaces, 5)
-            self.enc_data = self.cipher.encode_data
+            self.enc_data = self.cipher.encode(data_with_spaces)
             self.assertEqual(expected_encoded, self.enc_data)
 
     def test_caesar_decoding_with_spaces(self) -> None:
@@ -160,8 +148,7 @@ class CaesarTestCase(unittest.TestCase):
         data_with_spaces = '   '
         expected_encoded = '   '
         if bool(self.cipher):
-            self.cipher.decode(expected_encoded, 5)
-            self.dec_data = self.cipher.decode_data
+            self.dec_data = self.cipher.decode(expected_encoded)
             self.assertEqual(data_with_spaces, self.dec_data)
 
     def test_caesar_encoding_with_numbers_and_symbols(self) -> None:
@@ -169,8 +156,7 @@ class CaesarTestCase(unittest.TestCase):
         data = '123!@#abcABC'
         expected_encoded = '123!@#defDEF' # Numbers and symbols are ignored, letters shifted by 3
         if bool(self.cipher):
-            self.cipher.encode(data, 3)
-            self.enc_data = self.cipher.encode_data
+            self.enc_data = self.cipher.encode(data)
             self.assertEqual(expected_encoded, self.enc_data)
 
     def test_caesar_decoding_with_numbers_and_symbols(self) -> None:
@@ -178,22 +164,19 @@ class CaesarTestCase(unittest.TestCase):
         data = '123!@#abcABC'
         encoded_data = '123!@#defDEF'
         if bool(self.cipher):
-            self.cipher.decode(encoded_data, 3)
-            self.dec_data = self.cipher.decode_data
+            self.dec_data = self.cipher.decode(encoded_data)
             self.assertEqual(data, self.dec_data)
 
     def test_caesar_encoding_unicode(self) -> None:
         '''Test encoding a Unicode string.'''
         if bool(self.cipher):
-            self.cipher.encode(self.UNICODE_DATA, 3)
-            self.enc_data = self.cipher.encode_data
+            self.enc_data = self.cipher.encode(self.UNICODE_DATA)
             self.assertEqual(self.UNICODE_ENC_SEQ, self.enc_data)
 
     def test_caesar_decoding_unicode(self) -> None:
         '''Test decoding a Unicode string.'''
         if bool(self.cipher):
-            self.cipher.decode(self.UNICODE_ENC_SEQ, 3)
-            self.dec_data = self.cipher.decode_data
+            self.dec_data = self.cipher.decode(self.UNICODE_ENC_SEQ)
             self.assertEqual(self.UNICODE_DATA, self.dec_data)
 
     def test_caesar_mock_interactions(self) -> None:
@@ -201,25 +184,24 @@ class CaesarTestCase(unittest.TestCase):
         test_data = "Mock Data"
         mock_encoded = "Pbfn Gdwb"
         mock_decoded = "Mock Data"
-        shift = 3
 
         # Configure mock encoder
         self.mock_encoder.encode.return_value = True  # type: ignore
-        type(self.mock_encoder).encode_data = PropertyMock(return_value=mock_encoded)  # type: ignore
+        type(self.mock_encoder).encoded_data = PropertyMock(return_value=mock_encoded)  # type: ignore
 
         # Configure mock decoder
         self.mock_decoder.decode.return_value = True  # type: ignore
-        type(self.mock_decoder).decode_data = PropertyMock(return_value=mock_decoded)  # type: ignore
+        type(self.mock_decoder).decoded_data = PropertyMock(return_value=mock_decoded)  # type: ignore
 
         # Test encode interaction
-        self.assertTrue(self.mock_cipher_with_deps.encode(test_data, shift))
-        self.assertEqual(mock_encoded, self.mock_cipher_with_deps.encode_data)
-        self.mock_encoder.encode.assert_called_once_with(test_data, shift)  # type: ignore
+        result_enc = self.mock_cipher_with_deps.encode(test_data)
+        self.assertEqual(mock_encoded, result_enc)
+        self.mock_encoder.encode.assert_called_once_with(test_data)  # type: ignore
 
         # Test decode interaction
-        self.assertTrue(self.mock_cipher_with_deps.decode(mock_encoded, shift))
-        self.assertEqual(mock_decoded, self.mock_cipher_with_deps.decode_data)
-        self.mock_decoder.decode.assert_called_once_with(mock_encoded, shift)  # type: ignore
+        result_dec = self.mock_cipher_with_deps.decode(mock_encoded)
+        self.assertEqual(mock_decoded, result_dec)
+        self.mock_decoder.decode.assert_called_once_with(mock_encoded)  # type: ignore
 
 
 if __name__ == '__main__':

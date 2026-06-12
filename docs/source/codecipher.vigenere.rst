@@ -1,16 +1,23 @@
 codecipher.vigenere package
 ===========================
 
-Submodules
-----------
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
 
    codecipher.vigenere.decode
    codecipher.vigenere.encode
-   codecipher.vigenere.key_generator
-   codecipher.vigenere.lookup_table
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   codecipher.vigenere.config
+   codecipher.vigenere.engine
 
 Module contents
 ---------------

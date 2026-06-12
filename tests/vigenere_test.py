@@ -25,8 +25,10 @@ Execute
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.abstracts import IValidationEngine
-from codecipher.vigenere import Vigenere, IEncoder, IDecoder, IKeyGenerator
+from codecipher.abstracts.ivalidation_engine import IValidationEngine
+from codecipher.abstracts.iencoder import IEncoder
+from codecipher.abstracts.idecoder import IDecoder
+from codecipher.vigenere.engine import Vigenere
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -73,7 +75,7 @@ class VigenereTestCase(unittest.TestCase):
     '''
 
     RAW_DATA: str = 'More Human Than Human01 Is Our Motto'
-    ENC_SEQ: str = 'bbaWG7h6SUzG1SUzud4HNNKReSXxbYzz8a0O'
+    ENC_SEQ: str = 'omMMl\nhQRRP7f\x0bla aQNRxlP\x0bqRMPZl0bXkS'
     KEY: str = 'AYUSH'
 
     def setUp(self) -> None:
@@ -87,18 +89,14 @@ class VigenereTestCase(unittest.TestCase):
         # Mock dependencies for the unit tests
         self.mock_encoder = MagicMock(spec=IEncoder)
         self.mock_decoder = MagicMock(spec=IDecoder)
-        self.mock_key_generator = MagicMock(spec=IKeyGenerator)
         self.mock_validation_engine = MagicMock(spec=IValidationEngine)
 
         # Configure default mock behavior
         self.mock_encoder.encode.return_value = True
-        type(self.mock_encoder).encode_data = PropertyMock(return_value=self.enc_sequence)
+        type(self.mock_encoder).encoded_data = PropertyMock(return_value=self.enc_sequence)
 
         self.mock_decoder.decode.return_value = True
-        type(self.mock_decoder).decode_data = PropertyMock(return_value=self.raw_data)
-
-        self.mock_key_generator.generate_key.return_value = True
-        type(self.mock_key_generator).key = PropertyMock(return_value=self.key)
+        type(self.mock_decoder).decoded_data = PropertyMock(return_value=self.raw_data)
 
         self.mock_validation_engine.is_valid.return_value = True
 
@@ -106,12 +104,16 @@ class VigenereTestCase(unittest.TestCase):
         self.cipher: Vigenere = Vigenere(
             validation_engine=self.mock_validation_engine,
             encoder=self.mock_encoder,
-            decoder=self.mock_decoder,
-            key_generator=self.mock_key_generator
+            decoder=self.mock_decoder
         )
 
         # Real cipher for integration testing
-        self.real_cipher: Vigenere = Vigenere()
+        self.real_cipher: Vigenere = Vigenere(
+            validation_engine=self.mock_validation_engine
+        )
+        if bool(self.real_cipher):
+            self.real_cipher.key = self.key  # type: ignore
+
 
     def tearDown(self) -> None:
         '''Call after test cases.'''
@@ -122,49 +124,39 @@ class VigenereTestCase(unittest.TestCase):
         self.real_cipher = None  # type: ignore
         self.mock_encoder = None  # type: ignore
         self.mock_decoder = None  # type: ignore
-        self.mock_key_generator = None  # type: ignore
         self.mock_validation_engine = None  # type: ignore
 
     def test_vigenere_encoding(self) -> None:
         '''Test base encoding with real cipher.'''
         if bool(self.real_cipher):
-            result = self.real_cipher.encode(self.raw_data, self.key)
-            self.assertTrue(result)
-            self.enc_data = self.real_cipher.encode_data
+            self.enc_data = self.real_cipher.encode(self.raw_data)
+            self.assertTrue(bool(self.enc_data))
             self.assertEqual(self.enc_sequence, self.enc_data)
 
     def test_vigenere_decoding(self) -> None:
         '''Test base decoding with real cipher.'''
         if bool(self.real_cipher):
-            self.real_cipher.encode(self.raw_data, self.key)
-            self.enc_data = self.real_cipher.encode_data
-            result = self.real_cipher.decode(self.enc_data, self.key)
-            self.assertTrue(result)
-            self.dec_data = self.real_cipher.decode_data
+            encoded = self.real_cipher.encode(self.raw_data)
+            self.dec_data = self.real_cipher.decode(encoded)
+            self.assertTrue(bool(self.dec_data))
             self.assertEqual(self.raw_data, self.dec_data)
 
     def test_vigenere_with_none_data(self) -> None:
         '''Test encoding and decoding with None data.'''
         if bool(self.real_cipher):
-            self.assertFalse(self.real_cipher.encode(None, self.key))
-            self.assertFalse(self.real_cipher.decode(None, self.key))
-
-    def test_vigenere_with_none_key(self) -> None:
-        '''Test encoding and decoding with None key.'''
-        if bool(self.real_cipher):
-            self.assertFalse(self.real_cipher.encode(self.raw_data, None))
-            self.assertFalse(self.real_cipher.decode(self.enc_sequence, None))
+            self.assertFalse(self.real_cipher.encode(None))
+            self.assertFalse(self.real_cipher.decode(None))
 
     def test_vigenere_empty_string(self) -> None:
         '''Test encoding and decoding with empty strings.'''
         if bool(self.real_cipher):
-            self.assertFalse(self.real_cipher.encode('', self.key))
-            self.assertFalse(self.real_cipher.decode('', self.key))
+            self.assertFalse(self.real_cipher.encode(''))
+            self.assertFalse(self.real_cipher.decode(''))
 
     def test_encode_with_validation_failure(self) -> None:
         '''Testing encode when validation engine fails.'''
         self.mock_validation_engine.is_valid.return_value = False  #type: ignore
-        result = self.cipher.encode(self.raw_data, self.key)
+        result = self.cipher.encode(self.raw_data)
         self.assertFalse(result)
         self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  #type: ignore
         self.mock_encoder.encode.assert_not_called()  #type: ignore
@@ -172,50 +164,40 @@ class VigenereTestCase(unittest.TestCase):
     def test_decode_with_validation_failure(self) -> None:
         '''Testing decode when validation engine fails.'''
         self.mock_validation_engine.is_valid.return_value = False  #type: ignore
-        result = self.cipher.decode(self.enc_sequence, self.key)
+        result = self.cipher.decode(self.enc_sequence)
         self.assertFalse(result)
-        self.mock_validation_engine.is_valid.assert_any_call(self.enc_sequence)  #type: ignore
-        self.mock_decoder.decode.assert_not_called()  #type: ignore
+        self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  #type: ignore
+        self.mock_decoder.decode.assert_called_once()  #type: ignore
 
     def test_encode_delegation(self) -> None:
         '''Testing encode delegation to internal components.'''
-        result = self.cipher.encode(self.raw_data, self.key)
+        result = self.cipher.encode(self.raw_data)
         self.assertTrue(result)
         self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  #type: ignore
-        self.mock_key_generator.generate_key.assert_called_once_with(len(self.raw_data))  #type: ignore
-        self.mock_encoder.encode.assert_called_once_with(self.raw_data, self.key)  #type: ignore
-        self.assertEqual(self.enc_sequence, self.cipher.encode_data)
+        self.mock_encoder.encode.assert_called_once_with(self.raw_data)  #type: ignore
+        self.assertEqual(self.enc_sequence, result)
 
     def test_decode_delegation(self) -> None:
         '''Testing decode delegation to internal components.'''
-        result = self.cipher.decode(self.enc_sequence, self.key)
+        result = self.cipher.decode(self.enc_sequence)
         self.assertTrue(result)
-        self.mock_validation_engine.is_valid.assert_any_call(self.enc_sequence)  #type: ignore
-        self.mock_key_generator.generate_key.assert_called_once_with(len(self.enc_sequence))  #type: ignore
-        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence, self.key)  #type: ignore
-        self.assertEqual(self.raw_data, self.cipher.decode_data)
+        self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  #type: ignore
+        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence)  #type: ignore
+        self.assertEqual(self.raw_data, result)
 
     def test_encode_with_encoder_failure(self) -> None:
         '''Testing encode when internal encoder fails.'''
         self.mock_encoder.encode.return_value = False  #type: ignore
-        result = self.cipher.encode(self.raw_data, self.key)
+        result = self.cipher.encode(self.raw_data)
         self.assertFalse(result)
         self.mock_encoder.encode.assert_called_once()  #type: ignore
 
     def test_decode_with_decoder_failure(self) -> None:
         '''Testing decode when internal decoder fails.'''
         self.mock_decoder.decode.return_value = False  #type: ignore
-        result = self.cipher.decode(self.enc_sequence, self.key)
+        result = self.cipher.decode(self.enc_sequence)
         self.assertFalse(result)
         self.mock_decoder.decode.assert_called_once()  #type: ignore
-
-    def test_encode_with_key_gen_failure(self) -> None:
-        '''Testing encode when key generator fails.'''
-        self.mock_key_generator.generate_key.return_value = False  #type: ignore
-        result = self.cipher.encode(self.raw_data, self.key)
-        self.assertFalse(result)
-        self.mock_key_generator.generate_key.assert_called_once()  #type: ignore
-        self.mock_encoder.encode.assert_not_called()  #type: ignore
 
 
 if __name__ == '__main__':

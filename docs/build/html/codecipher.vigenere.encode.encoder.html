@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>codecipher.vigenere.encode.encoder module &#8212; codecipher https://github.com/electux/codecipher/releases documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
+    
+    <script src="_static/documentation_options.js?v=199d8b52"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="codecipher.vigenere.config module" href="codecipher.vigenere.config.html" />
+    <link rel="prev" title="codecipher.vigenere.encode.encode_algorithm module" href="codecipher.vigenere.encode.encode_algorithm.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.vigenere.config.html" title="codecipher.vigenere.config module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="codecipher.vigenere.encode.encode_algorithm.html" title="codecipher.vigenere.encode.encode_algorithm module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.vigenere.html" >codecipher.vigenere package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="codecipher.vigenere.encode.html" accesskey="U">codecipher.vigenere.encode package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.encode.encoder module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-codecipher.vigenere.encode.encoder">
+<span id="codecipher-vigenere-encode-encoder-module"></span><h1>codecipher.vigenere.encode.encoder module<a class="headerlink" href="#module-codecipher.vigenere.encode.encoder" title="Link to this heading">¶</a></h1>
+<dl class="simple">
+<dt>Module</dt><dd><p>encoder.py</p>
+</dd>
+<dt>Copyright</dt><dd><p>Copyright (C) 2021 - 2026 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+codecipher is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+codecipher is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along
+with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</dd>
+<dt>Info</dt><dd><p>Creates class encoder with cipher VIGENERE logic.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="codecipher.vigenere.encode.encoder.Encoder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">codecipher.vigenere.encode.encoder.</span></span><span class="sig-name descname"><span class="pre">Encoder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">_config:</span> <span class="pre">~codecipher.abstracts.iconfig.IConfig</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_strategy:</span> <span class="pre">~codecipher.abstracts.ialgorithm.IAlgorithm[~codecipher.abstracts.iconfig.IConfig]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/codecipher/vigenere/encode/encoder.html#Encoder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.encode.encoder.Encoder" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="codecipher.abstracts.iencoder.html#codecipher.abstracts.iencoder.IEncoder" title="codecipher.abstracts.iencoder.IEncoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">IEncoder</span></code></a></p>
+<p>Defines class Encoder with attribute(s) and method(s).</p>
+<p>It defines:</p>
+<blockquote>
+<div><dl class="field-list">
+<dt class="field-odd">attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="line-block">
+<div class="line">_config - Configuration parameters for cipher VIGENERE logic.</div>
+<div class="line">_strategy - Strategy for cipher VIGENERE logic.</div>
+<div class="line">_encoded_data - Container for encoded data.</div>
+</div>
+</dd>
+<dt class="field-even">methods<span class="colon">:</span></dt>
+<dd class="field-even"><div class="line-block">
+<div class="line">encoded_data - Property method for getting encoded data.</div>
+<div class="line">encode - Encode data by cipher VIGENERE logic.</div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.vigenere.encode.encoder.Encoder._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#codecipher.vigenere.encode.encoder.Encoder._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.vigenere.encode.encoder.Encoder._config">
+<span class="sig-name descname"><span class="pre">_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="codecipher.abstracts.iconfig.html#codecipher.abstracts.iconfig.IConfig" title="codecipher.abstracts.iconfig.IConfig"><span class="pre">IConfig</span></a></em><a class="headerlink" href="#codecipher.vigenere.encode.encoder.Encoder._config" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.vigenere.encode.encoder.Encoder._encoded_data">
+<span class="sig-name descname"><span class="pre">_encoded_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.vigenere.encode.encoder.Encoder._encoded_data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="codecipher.vigenere.encode.encoder.Encoder._strategy">
+<span class="sig-name descname"><span class="pre">_strategy</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="codecipher.abstracts.ialgorithm.html#codecipher.abstracts.ialgorithm.IAlgorithm" title="codecipher.abstracts.ialgorithm.IAlgorithm"><span class="pre">IAlgorithm</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="codecipher.abstracts.iconfig.html#codecipher.abstracts.iconfig.IConfig" title="codecipher.abstracts.iconfig.IConfig"><span class="pre">IConfig</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#codecipher.vigenere.encode.encoder.Encoder._strategy" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="codecipher.vigenere.encode.encoder.Encoder.encode">
+<span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/codecipher/vigenere/encode/encoder.html#Encoder.encode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#codecipher.vigenere.encode.encoder.Encoder.encode" title="Link to this definition">¶</a></dt>
+<dd><p>Encode data by cipher VIGENERE logic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>&lt;Optional</em><em>[</em><em>str</em><em>]</em><em>&gt;</em>) – Data in string format which should to be encoded | None</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True (success) | False (fail)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>&lt;bool&gt;</p>
+</dd>
+<dt class="field-even">Exceptions<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="codecipher.vigenere.encode.encoder.Encoder.encoded_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">encoded_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#codecipher.vigenere.encode.encoder.Encoder.encoded_data" title="Link to this definition">¶</a></dt>
+<dd><p>Property method for getting encoded data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Encoded data in string format | None</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>&lt;Optional[str]&gt;</p>
+</dd>
+<dt class="field-odd">Exceptions<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">codecipher.vigenere.encode.encoder module</a><ul>
+<li><a class="reference internal" href="#codecipher.vigenere.encode.encoder.Encoder"><code class="docutils literal notranslate"><span class="pre">Encoder</span></code></a><ul>
+<li><a class="reference internal" href="#codecipher.vigenere.encode.encoder.Encoder._abc_impl"><code class="docutils literal notranslate"><span class="pre">Encoder._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.encode.encoder.Encoder._config"><code class="docutils literal notranslate"><span class="pre">Encoder._config</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.encode.encoder.Encoder._encoded_data"><code class="docutils literal notranslate"><span class="pre">Encoder._encoded_data</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.encode.encoder.Encoder._strategy"><code class="docutils literal notranslate"><span class="pre">Encoder._strategy</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.encode.encoder.Encoder.encode"><code class="docutils literal notranslate"><span class="pre">Encoder.encode()</span></code></a></li>
+<li><a class="reference internal" href="#codecipher.vigenere.encode.encoder.Encoder.encoded_data"><code class="docutils literal notranslate"><span class="pre">Encoder.encoded_data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="codecipher.vigenere.encode.encode_algorithm.html"
+                          title="previous chapter">codecipher.vigenere.encode.encode_algorithm module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="codecipher.vigenere.config.html"
+                          title="next chapter">codecipher.vigenere.config module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/codecipher.vigenere.encode.encoder.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="codecipher.vigenere.config.html" title="codecipher.vigenere.config module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="codecipher.vigenere.encode.encode_algorithm.html" title="codecipher.vigenere.encode.encode_algorithm module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">codecipher https://github.com/electux/codecipher/releases documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >codecipher</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="codecipher.html" >codecipher package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="codecipher.vigenere.html" >codecipher.vigenere package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="codecipher.vigenere.encode.html" >codecipher.vigenere.encode package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">codecipher.vigenere.encode.encoder module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2026, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    </div>
+  </body>
+</html>

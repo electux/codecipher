@@ -25,8 +25,10 @@ Execute
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.abstracts import IValidationEngine
-from codecipher.vernam import Vernam, IEncoder, IDecoder
+from codecipher.abstracts.ivalidation_engine import IValidationEngine
+from codecipher.abstracts.iencoder import IEncoder
+from codecipher.abstracts.idecoder import IDecoder
+from codecipher.vernam.engine import Vernam
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'
@@ -61,7 +63,7 @@ class VernamTestCase(unittest.TestCase):
     '''
 
     RAW_DATA: str = 'More Human Than Human01 Is Our Motto'
-    ENC_SEQ: str = 'Doeh Tlmnq Fyaa Vgdaa01 Zs Rid Mbwha' # Example with key 'randomrandomrandom'
+    ENC_SEQ: str = 'Ymmi Uuykr Ffvr Uuykr01 Dw Bud Qmfrj'
     EMPTY_DATA: str = ''
     EMPTY_ENC_SEQ: str = ''
     UNICODE_DATA: str = 'Привет, мир! 👋'
@@ -83,10 +85,10 @@ class VernamTestCase(unittest.TestCase):
 
         # Configure default mock behavior
         self.mock_encoder.encode.return_value = True
-        type(self.mock_encoder).encode_data = PropertyMock(return_value=self.enc_sequence)
+        type(self.mock_encoder).encoded_data = PropertyMock(return_value=self.enc_sequence)
 
         self.mock_decoder.decode.return_value = True
-        type(self.mock_decoder).decode_data = PropertyMock(return_value=self.raw_data)
+        type(self.mock_decoder).decoded_data = PropertyMock(return_value=self.raw_data)
 
         self.mock_validation_engine.is_valid.return_value = True # Default to valid
 
@@ -98,7 +100,11 @@ class VernamTestCase(unittest.TestCase):
         )
 
         # Real cipher for direct testing without mocks
-        self.real_cipher: Vernam = Vernam(validation_engine=self.mock_validation_engine)
+        self.real_cipher: Vernam = Vernam(
+            validation_engine=self.mock_validation_engine
+        )
+        if bool(self.real_cipher):
+            self.real_cipher.key = self.key  # type: ignore
 
     def tearDown(self) -> None:
         '''Call after test cases.'''
@@ -114,60 +120,47 @@ class VernamTestCase(unittest.TestCase):
     def test_vernam_encoding(self) -> None:
         '''Test base encoding with real cipher.'''
         if bool(self.real_cipher):
-            result = self.real_cipher.encode(self.raw_data, self.key)
-            self.assertTrue(result)
-            self.enc_data = self.real_cipher.encode_data
+            self.enc_data = self.real_cipher.encode(self.raw_data)
+            self.assertTrue(bool(self.enc_data))
             self.assertEqual(self.enc_sequence, self.enc_data)
 
     def test_vernam_decoding(self) -> None:
         '''Test base decoding with real cipher.'''
         if bool(self.real_cipher):
             # First encode to get the encoded data
-            self.real_cipher.encode(self.raw_data, self.key)
-            self.enc_data = self.real_cipher.encode_data
+            encoded = self.real_cipher.encode(self.raw_data)
+            self.assertTrue(bool(encoded))
 
             # Then decode
-            result = self.real_cipher.decode(self.enc_data, self.key)
-            self.assertTrue(result)
-            self.dec_data = self.real_cipher.decode_data
+            self.dec_data = self.real_cipher.decode(encoded)
+            self.assertTrue(bool(self.dec_data))
             self.assertEqual(self.raw_data, self.dec_data)
 
     def test_vernam_encoding_empty_string(self) -> None:
         '''Test encoding an empty string.'''
         if bool(self.real_cipher):
-            result = self.real_cipher.encode(self.EMPTY_DATA, self.key)
+            result = self.real_cipher.encode(self.EMPTY_DATA)
             self.assertFalse(result)
-            self.enc_data = self.real_cipher.encode_data
-            self.assertIsNone(self.enc_data)
 
     def test_vernam_decoding_empty_string(self) -> None:
         '''Test decoding an empty string.'''
         if bool(self.real_cipher):
-            result = self.real_cipher.decode(self.EMPTY_ENC_SEQ, self.key)
+            result = self.real_cipher.decode(self.EMPTY_ENC_SEQ)
             self.assertFalse(result)
-            self.dec_data = self.real_cipher.decode_data
-            self.assertIsNone(self.dec_data)
 
     def test_vernam_with_none_data(self) -> None:
         '''Test encoding and decoding with None data.'''
         if bool(self.real_cipher):
-            self.assertFalse(self.real_cipher.encode(None, self.key))
-            self.assertFalse(self.real_cipher.decode(None, self.key))
-
-    def test_vernam_with_none_key(self) -> None:
-        '''Test encoding and decoding with None key.'''
-        if bool(self.real_cipher):
-            self.assertFalse(self.real_cipher.encode(self.raw_data, None))
-            self.assertFalse(self.real_cipher.decode(self.enc_sequence, None))
+            self.assertFalse(self.real_cipher.encode(None))
+            self.assertFalse(self.real_cipher.decode(None))
 
     def test_vernam_encoding_with_spaces(self) -> None:
         '''Test encoding a string with only spaces.'''
         data_with_spaces = '   '
         expected_encoded = '   ' # Vernam passes non-alpha chars through
         if bool(self.real_cipher):
-            result = self.real_cipher.encode(data_with_spaces, self.key)
-            self.assertTrue(result)
-            self.enc_data = self.real_cipher.encode_data
+            self.enc_data = self.real_cipher.encode(data_with_spaces)
+            self.assertTrue(bool(self.enc_data))
             self.assertEqual(expected_encoded, self.enc_data)
 
     def test_vernam_decoding_with_spaces(self) -> None:
@@ -175,9 +168,8 @@ class VernamTestCase(unittest.TestCase):
         data_with_spaces = '   '
         expected_encoded = '   '
         if bool(self.real_cipher):
-            result = self.real_cipher.decode(expected_encoded, self.key)
-            self.assertTrue(result)
-            self.dec_data = self.real_cipher.decode_data
+            self.dec_data = self.real_cipher.decode(expected_encoded)
+            self.assertTrue(bool(self.dec_data))
             self.assertEqual(data_with_spaces, self.dec_data)
 
     def test_vernam_encoding_with_numbers_and_symbols(self) -> None:
@@ -186,21 +178,19 @@ class VernamTestCase(unittest.TestCase):
         # Key 'randomrandomrandom'
         # Indices 0-5 are symbols, key is still consumed.
         # Index 6: 'a' + 'r' (key[6]), Index 7: 'b' + 'a' (key[7]), etc.
-        expected_encoded = '123!@#rbpDPO'
+        expected_encoded = '123!@#anmEZO'
         if bool(self.real_cipher):
-            result = self.real_cipher.encode(data, self.key)
-            self.assertTrue(result)
-            self.enc_data = self.real_cipher.encode_data
+            self.enc_data = self.real_cipher.encode(data)
+            self.assertTrue(bool(self.enc_data))
             self.assertEqual(expected_encoded, self.enc_data)
 
     def test_vernam_decoding_with_numbers_and_symbols(self) -> None:
         '''Test decoding a string with numbers and symbols.'''
         data = '123!@#abcABC'
-        encoded_data = '123!@#rbpDPO'
+        encoded_data = '123!@#anmEZO'
         if bool(self.real_cipher):
-            result = self.real_cipher.decode(encoded_data, self.key)
-            self.assertTrue(result)
-            self.dec_data = self.real_cipher.decode_data
+            self.dec_data = self.real_cipher.decode(encoded_data)
+            self.assertTrue(bool(self.dec_data))
             self.assertEqual(data, self.dec_data)
 
     def test_vernam_encoding_unicode_fails_validation(self) -> None:
@@ -208,68 +198,62 @@ class VernamTestCase(unittest.TestCase):
         cipher = Vernam()
         if bool(cipher):
             # Default CharacterValidator checks for ASCII, so Unicode should fail
-            result = cipher.encode(self.UNICODE_DATA, self.key)
+            result = cipher.encode(self.UNICODE_DATA)
             self.assertFalse(result)
-            self.assertIsNone(cipher.encode_data)
 
     def test_vernam_decoding_unicode_fails_validation(self) -> None:
         '''Test decoding a Unicode string (should fail validation).'''
         cipher = Vernam()
         if bool(cipher):
             # Default CharacterValidator checks for ASCII, so Unicode should fail
-            result = cipher.decode(self.UNICODE_ENC_SEQ, self.key)
+            result = cipher.decode(self.UNICODE_ENC_SEQ)
             self.assertFalse(result)
-            self.assertIsNone(cipher.decode_data)
 
     def test_encode_with_validation_failure(self) -> None:
         '''Testing encode when validation engine fails.'''
         self.mock_validation_engine.is_valid.return_value = False  # type: ignore
-        result = self.cipher.encode(self.raw_data, self.key)
+        result = self.cipher.encode(self.raw_data)
         self.assertFalse(result)
-        # is_valid should be called for data and then for key
         self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  # type: ignore
         self.mock_encoder.encode.assert_not_called()  # type: ignore
 
     def test_decode_with_validation_failure(self) -> None:
         '''Testing decode when validation engine fails.'''
         self.mock_validation_engine.is_valid.return_value = False  # type: ignore
-        result = self.cipher.decode(self.enc_sequence, self.key)
-        self.assertFalse(result)
-        # is_valid should be called for data and then for key
-        self.mock_validation_engine.is_valid.assert_any_call(self.enc_sequence)  # type: ignore
-        self.mock_decoder.decode.assert_not_called()  # type: ignore
+        result = self.cipher.decode(self.enc_sequence)
+        self.assertFalse(result) # type: ignore
+        self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  # type: ignore
+        self.mock_decoder.decode.assert_called_once()  # type: ignore
 
     def test_encode_delegation(self) -> None:
         '''Testing encode delegation to internal encoder.'''
-        result = self.cipher.encode(self.raw_data, self.key)
+        result = self.cipher.encode(self.raw_data) # type: ignore
         self.assertTrue(result)
         self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  # type: ignore
-        self.mock_validation_engine.is_valid.assert_called_with(self.key)  # type: ignore
-        self.mock_encoder.encode.assert_called_once_with(self.raw_data, self.key)  # type: ignore
-        self.assertEqual(self.enc_sequence, self.cipher.encode_data)
+        self.mock_encoder.encode.assert_called_once_with(self.raw_data)  # type: ignore
+        self.assertEqual(self.enc_sequence, result)
 
     def test_decode_delegation(self) -> None:
         '''Testing decode delegation to internal decoder.'''
-        result = self.cipher.decode(self.enc_sequence, self.key)
-        self.assertTrue(result)
-        self.mock_validation_engine.is_valid.assert_any_call(self.enc_sequence)  # type: ignore
-        self.mock_validation_engine.is_valid.assert_called_with(self.key)  # type: ignore
-        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence, self.key)  # type: ignore
-        self.assertEqual(self.raw_data, self.cipher.decode_data)
+        result = self.cipher.decode(self.enc_sequence)
+        self.assertTrue(result) # type: ignore
+        self.mock_validation_engine.is_valid.assert_any_call(self.raw_data)  # type: ignore
+        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence)  # type: ignore
+        self.assertEqual(self.raw_data, result)
 
     def test_encode_with_encoder_failure(self) -> None:
         '''Testing encode when internal encoder fails.'''
         self.mock_encoder.encode.return_value = False  # type: ignore
-        result = self.cipher.encode(self.raw_data, self.key)
+        result = self.cipher.encode(self.raw_data)
         self.assertFalse(result)
-        self.mock_encoder.encode.assert_called_once_with(self.raw_data, self.key)  # type: ignore
+        self.mock_encoder.encode.assert_called_once_with(self.raw_data)  # type: ignore
 
     def test_decode_with_decoder_failure(self) -> None:
         '''Testing decode when internal decoder fails.'''
         self.mock_decoder.decode.return_value = False  # type: ignore
-        result = self.cipher.decode(self.enc_sequence, self.key)
+        result = self.cipher.decode(self.enc_sequence)
         self.assertFalse(result)
-        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence, self.key)  # type: ignore
+        self.mock_decoder.decode.assert_called_once_with(self.enc_sequence)  # type: ignore
 
 
 if __name__ == '__main__':

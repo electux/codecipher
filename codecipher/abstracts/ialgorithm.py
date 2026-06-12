@@ -21,7 +21,7 @@ Info
 
 from typing import List, Optional, TypeVar, Generic
 from abc import ABC, abstractmethod
-from .iconfig import IConfig
+from codecipher.abstracts.iconfig import IConfig
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

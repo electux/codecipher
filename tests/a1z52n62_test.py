@@ -27,8 +27,11 @@ import string
 import unittest
 from unittest.mock import MagicMock, PropertyMock
 from typing import List, Optional
-from codecipher.abstracts import IConfig, IValidationEngine, IEncoder, IDecoder
-from codecipher.a1z52n62 import A1z52N62
+from codecipher.abstracts.iconfig import IConfig
+from codecipher.abstracts.ivalidation_engine import IValidationEngine
+from codecipher.abstracts.iencoder import IEncoder
+from codecipher.abstracts.idecoder import IDecoder
+from codecipher.a1z52n62.engine import A1z52N62
 
 __author__: str = 'Vladimir Roncevic'
 __copyright__: str = '(C) 2026, https://electux.github.io/codecipher'

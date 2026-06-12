@@ -93,37 +93,97 @@ Package structure
 .. code-block:: bash
 
     codecipher/
-        ├── a1z52n62/
-        │   ├── decode.py
-        │   ├── encode.py
+    ├── a1z52n62/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── abstracts/
+    │   ├── ialgorithm.py
+    │   ├── icharacter_validator.py
+    │   ├── icipher_engine.py
+    │   ├── iconfig.py
+    │   ├── idata_validator.py
+    │   ├── idecoder.py
+    │   ├── iencoder.py
+    │   ├── __init__.py
+    │   └── ivalidation_engine.py
+    ├── atbs/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── b64/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── caesar/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    ├── __init__.py
+    ├── py.typed
+    ├── validation/
+    │   ├── character_validator.py
+    │   ├── data_validator.py
+    │   ├── __init__.py
+    │   └── validation_engine.py
+    ├── vernam/
+    │   ├── config.py
+    │   ├── decode/
+    │   │   ├── decode_algorithm.py
+    │   │   ├── decoder.py
+    │   │   └── __init__.py
+    │   ├── encode/
+    │   │   ├── encode_algorithm.py
+    │   │   ├── encoder.py
+    │   │   └── __init__.py
+    │   ├── engine.py
+    │   └── __init__.py
+    └── vigenere/
+        ├── config.py
+        ├── decode/
+        │   ├── decode_algorithm.py
+        │   ├── decoder.py
         │   └── __init__.py
-        ├── atbs/
-        │   ├── decode.py
-        │   ├── encode.py
-        │   ├── __init__.py
-        │   └── lookup_table.py
-        ├── b64/
-        │   ├── decode.py
-        │   ├── encode.py
+        ├── encode/
+        │   ├── encode_algorithm.py
+        │   ├── encoder.py
         │   └── __init__.py
-        ├── caesar/
-        │   ├── decode.py
-        │   ├── encode.py
-        │   └── __init__.py
-        ├── __init__.py
-        ├── py.typed
-        ├── vernam/
-        │   ├── decode.py
-        │   ├── encode.py
-        │   └── __init__.py
-        └── vigenere/
-            ├── decode.py
-            ├── encode.py
-            ├── __init__.py
-            ├── key_generator.py
-            └── lookup_table.py
-    
-    7 directories, 23 files
+        ├── engine.py
+        └── __init__.py
+
+    21 directories, 69 files
 
 Copyright and licence
 ----------------------
